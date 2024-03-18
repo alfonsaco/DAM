@@ -1,0 +1,59 @@
+/*ESTILOS PARA EL HEADER*/
+header{
+    text-align:center;
+    border:solid black 1px;
+    padding: 10px;
+}
+/*FIN DE ESTILOS PARA EL HEADER*/
+/* ESTILOS TODA LA WEB*/
+body{
+    font-size: 1.2em;
+    padding: 3%;
+    margin: 2%
+}
+/* FIN ESTILOS TODA LA WEB*/
+
+/* ESTILOS PARA TABLAS*/
+table {
+    text-align: center;
+    border: 4px solid aqua;
+    margin: auto;
+}
+
+th,
+td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid aqua;
+}
+
+/*FIN ESTILOS PARA TABLAS*/
+
+/* ESTILOS PARA TÍTULOS DE SECCIÓN*/
+h1 {
+    text-align: center;
+}
+
+/*ESTILOS PARA EL ÍNDICE*/
+#indice{
+    border: solid black 1px;
+    max-width: 500px;
+}
+/*FIN DE ESTILOS PARA EL ÍNDICE*/
+
+/*FIN ESTILOS PARA TÍTULOS DE SECCIÓN*/
+
+/*ESTILOS PARA EL ENLACE*/
+a{
+    text-decoration: none;
+}
+/*FIN ENLACES */
+
+/*PIE DE PÁGINA*/
+footer {
+
+    background-color: lightgrey;
+    margin-top: 5%;
+    padding: 2px;
+}
+/*FIN PIE DE PÁGINA*/

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ribera del Tajo - Contacto</title>
+    <link rel="stylesheet" href="../Estilos/estilos.css" type="text/css">
+    <link rel="icon" href="../Imágenes/imagen3.jpg" type="image/jpg" id="Icono">
+</head>
+<body>
+    <!--Enlace que lleva al inicio de la página con una imagen-->
+    <header>
+        <a href="../index.html">
+            <img src="../Imágenes/imagen3.jpg" width="250px" alt="Imagen de inicio" id="Inicio">
+        </a>
+    </header><br><br><br>
+
+    <main>
+        <section>
+            <!--Aquí podemos encontrar la sección de contacto-->
+            <div>
+                <h1>Contacto</h1>
+                <form method="post" action="formilarioEnviado.html">
+                    <fieldset>
+                        <legend>Formulario de contacto</legend><br>
+                        <!--Para el nombre-->
+                        <label for="nombre1">Nombre (*):</label>
+                        <input type="text" id="nombre1" required placeholder="Escribe tu nombre" maxlength="25" autofocus><br><br>
+                        <!--Para el email-->
+                        <label for="email1">Email (*):</label>
+                        <input type="email" id="email1" required placeholder="Escribe tu Email"><br><br>
+                        <!--Para el teléfono-->
+                        <label for="telfono1">Teléfono:</label>
+                        <input type="tel" id="telfono1" placeholder="Escribe tu teléfono" maxlength="9"><br><br>
+                        <!--Para la web-->
+                        <label for="sitioWeb">Sitio Web:</label>
+                        <input type="url" id="sitioWeb" placeholder="Escribe la URL de tu web"><br><br>
+                        <!--Para el asunto-->
+                        <label for="asunto">Asunto (*):</label>
+                        <input type="text" id="asunto" required placeholder="Escribe un asunto"><br><br>
+                        <!--Para el mensaje-->
+                        <label for="mensaje">Mensaje (*):</label>
+                        <textarea id="mensaje" cols="20" rows="2" required placeholder="Deja aquí tu comentario..." maxlength="500"></textarea><br><br>
+                        <!--Para recibir emails de la página-->
+                        <input type="checkbox" id="check1" checked="checked"><label for="check1">Recibir emails de esta página</label><br><br>
+                        <!--Para enviar los datos y borrarlos-->
+                        <input type="submit" name="enviarDatos" value="Enviar">&nbsp;
+                        <input type="reset" name="borrarDatos" value="Borrar todo">
+                    </fieldset>
+                </form>
+            </div>
+
+            <!--Este es el enlace al Index-->
+            <div><br><br><br><br>
+                <a href="../index.html">&lt;-- Volver al Index</a>
+            </div>
+        </section>
+    </main>
+
+    <!--En el footer ponemos información del alumno-->
+    <footer>
+        <p>Este es el footer de la página</p>
+        <p><strong>Alumno: Alfonso Rincón Cuerva</strong></p>
+        <p>1º DAM</p>
+    </footer>
+</body>
+</html>

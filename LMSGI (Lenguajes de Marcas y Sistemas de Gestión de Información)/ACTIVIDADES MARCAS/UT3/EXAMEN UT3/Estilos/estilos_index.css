@@ -1,0 +1,59 @@
+/*Han de completarse los selectores que faltan, según los comentarios que hay
+encima de cada regla CSS */
+
+/**************************************************************/
+/**En estos selectores NO podéis usar Selector de CLASE ni ID**/
+/**************************************************************/
+
+/****Sólo el primer párrafo del pie de página**/
+
+footer p:first-child{
+    color: rebeccapurple;
+    font-weight: bold;
+}
+
+/** Todos los elementos que pertenezcan a una lista ordenada **/
+
+ol li{
+    color:green;
+    font-weight: bold;
+}
+
+/** Hermanos adyacentes del título de la web **/
+
+h1 h2{
+    color:crimson;
+}
+
+/** Todos los elementos de las listas desordenadas de tercer nivel **/
+
+ul ul ul > li{
+    color:darkorange;
+    font-weight: bolder;
+}
+
+/** Todos los títulos h3 de la página **/
+h3{
+    color:rgb(218, 32, 150);
+    font-weight: bolder;
+}
+
+/** Todos los elementos que tengan un atributo "href" */
+[href]{
+    font-weight: bolder;
+}
+
+/***************************************************************/
+
+/*************************************************************************/
+/**En estos selectores SI podéis usar Selector de CLASE o selectores ID**/
+/************************************************************************/
+
+/**** Todas las palabras "Información" *******/
+
+.informacion{
+    color:red;
+    font-style: italic;
+    text-decoration: underline double;
+    font-weight: 900;
+}

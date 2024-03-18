@@ -1,0 +1,91 @@
+:root{
+    --color-fondo: #333;
+}
+
+/*ESTILOS DEL BODY*/
+body{
+    background-color: var(--color-fondo);
+    padding: 2.5vh 0.5vw;
+}
+
+/*ESTILOS DEL HEADER*/
+header{
+    background-color: var(--color-fondo);
+    text-align: center;
+    margin-bottom: 10px;
+}
+/*Estilos para el h1 del Header*/
+@font-face {
+    font-family:'ICD';
+    src: url(../Fuentes/lcd.TTF);
+}
+h1{
+    font-family: ICD;
+    color:#B5EB1A;
+    font-variant: small-caps;
+    font-size: 2.5em;
+    border: rgb(47, 51, 45) 2px outset;
+    margin: 0;
+    padding: 6px 0;
+}
+
+/*ESTILOS PARA EL CONTENEDOR*/
+.contenedor{
+    background-image: url(../Imágenes/fondo1.jpg);
+    border: #6F7B68 solid 2px;
+    border-radius: 5px;
+    padding: 1%;
+}
+
+/*ESTILOS PARA EL MAIN*/
+/*Estilos para las secciones*/
+section{
+    display: flex;
+    margin-bottom: 40px;
+    gap: 30px;
+}
+section:nth-child(3){
+    margin-bottom: 0;
+}
+/*Estilos para cada div*/
+section div{
+    background-color: var(--color-fondo);
+    border: rgb(47, 51, 45) 2px outset;
+    width: 350px;
+    height: 230px;
+    padding: 12px 12px 0px 12px;
+}
+/*Estilos de las imágenes*/
+section div img{
+    width: 350px;
+    height: 200px;
+}
+/*Estilos para los párrafos del div*/
+section div p{
+    font-family: ICD;
+    font-variant: small-caps;
+    color: #6F7B68;
+    font-size: 1.2em;
+    text-align: right;
+    margin: 0;
+    margin-top: 3px;
+}
+/*Estilos para las imágenes del rinoceronte, el gato, el águila, el león y la jirafa*/
+.rinoceronte{
+    position: relative;
+    top: 20px;
+}
+.gato-aguila{
+    position: relative;
+    left: 70px;
+}
+.leon-jirafa{
+    height: 213px;
+    overflow: hidden;
+    position: relative;
+    top: 17px;
+    border: none;
+    border-top: 2px #7D8777 solid;
+    border-left: 2px #7D8777 solid;
+    border-right: 2px #000 solid;
+}
