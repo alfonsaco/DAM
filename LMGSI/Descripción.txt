@@ -1,2 +1,0 @@
-Todos los ejercicios de 1ºDAM de lenguajes de marcas.
-Contiene ejercicios de HTML, CSS, XML y Java Script
