@@ -1,0 +1,22 @@
+<? xml version="1.0" encoding="UTF-8"?>
+<!--Ejercicio 2-->
+<!--Se quita la tilde de la palabra versión, para que no de error-->
+<consolas>
+<!--Agregamos una etiqueta de consolas, para englobar todas las consolas que veremos a continuación-->
+    <consola nombre="Nintendo">
+        <!--Creamos atributos para los nombres de las consolas-->
+        <nombre>Nintendo Switch</nombre>
+        <!--También creo un atributo para el precio-->
+        <precio valor="285$"/>
+    </consola>
+    <consola nombre="Sony">
+        <nombre>PS5</nombre>
+        <precio valor="510$"/>
+    </consola>
+    <consola nombre="Microsoft">
+        <nombre>Xbox Series X</nombre>
+        <precio valor="475$"/>
+        <alternativa nombre="Xbox Series S"/>
+    </consola>
+<!--Se cierra la etiqueta de consolas-->
+</consolas>

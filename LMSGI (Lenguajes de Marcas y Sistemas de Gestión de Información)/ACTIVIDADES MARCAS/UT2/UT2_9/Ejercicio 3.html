@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de prueba de HTML5</title>
+</head>
+<body>
+    <form method="get" action="">
+        <label for="nombre">Nombre: </label>
+        <input type="text" required id="nombre" name="nombre1">
+        <br><br>
+        <label for="correo">Correo electrónico: </label>
+        <input type="email" required id="correo" name="email1" placeholder="ejemplo@correo.com">
+        <br><br>
+        <label for="url">URL: </label>
+        <input type="url" id="url" placeholder="Escribe la URL de tu página web personal" name="url1">
+        <br><br>
+        <label for="fecha">Fecha: </label>
+        <input type="date" id="fecha" name="fecha1">
+        <br><br>
+        <label for="hora">Tiempo: </label>
+        <input type="time" id="hora" name="hora1">
+        <br><br>
+        <label for="fechayhora">Fecha y hora: </label>
+        <input type="datetime-local" id="fechayhora" name="fechayhora1">
+        <br><br>
+        <label for="mes">Mes: </label>
+        <input type="month" id="mes" name="mes1">
+        <br><br>
+        <label for="semana">Semana: </label>
+        <input type="week" id="semana" name="semana1">
+        <br><br>
+        <label for="numero">Número (min -10, max 10): </label>
+        <input type="number" id="numero" min="-10" max="10" value="0" size="5" name="numero1">
+        <br><br>
+        <label for="telefono">Teléfono: </label>
+        <input type="tel" id="telefono" name="telefono1" minlength="3" maxlength="15">
+        <br><br>
+        <label for="busqueda">Término de búsqueda: </label>
+        <input type="search" id="busqueda" name="busqueda1">
+        <br><br>
+        <label for="color">Color favorito: </label>
+        <input type="color" id="color" name="color1">
+        <br><br>
+        <input type="submit" name="enviar">
+    </form>
+
+
+</body>
+</html>
