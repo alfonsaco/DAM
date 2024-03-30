@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pedido>
+    <Nombre_del_destinatario>Benito Pérez Galdós</Nombre_del_destinatario>
+    <Articulo>Monitor HP M24fwa</Articulo>
+    <Direccion>Calle Barco 4, 3º A</Direccion>
+    <Fecha_de_entrega>
+        <Dia>19</Dia>
+        <Mes>Septiembre</Mes>
+        <Año>2023</Año>
+    </Fecha_de_entrega>
+
+</pedido>

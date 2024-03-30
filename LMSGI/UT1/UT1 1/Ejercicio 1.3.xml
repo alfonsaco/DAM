@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<agenda>
+	<!--Vamos a crear un contacto-->
+	<contactos>
+		<nombre>Alumno</nombre>
+		<ciudad cp="15500">Ciudad Real</ciudad>
+        <!--El primer error se encuentra en la etiqueta <ciudad>, ya que una tenia la C en mayusculas-->
+		<telefono n="612345678"/>
+        <!--La eiqueta <telefono> no debe llevar tilde-->
+		<email>alumno@gmail.com</email>
+		<casado v="no"/>
+        <!--La etiqueta de <casado> no estaba cerrada-->
+		<AsignaturaPreferida>Matematicas</AsignaturaPreferida>
+        <!--El primer fallo en esta linea esta en Matematicas, que tenia tilde-->
+        <!--Otro fallo esta en el nombre de la etiqueta, ya que utiliza un @, el cual es un caracter reservado-->
+        <!--El ultimo fallo de esta línea esta en que la etiqueta que usa para cerrar no esta completa-->
+	</contactos>
+</agenda>
+

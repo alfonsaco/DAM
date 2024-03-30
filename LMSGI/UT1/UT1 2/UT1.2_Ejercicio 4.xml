@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--El primer error se encuentra en la línea 1, ya que pone "encodin", en lugar de "encoding"-->
+<!--Otro error que encontramos en esta línea está en "versión", ya que a pesar de estar
+programado en utf-8, no puede llevar una tilde en esa palabra, ya que el comando original
+no lleva tilde-->
+<!--Otro error estaba en el comentario inicial, ya que no se pueden poner comentarios en la primera línea-->
+
+<vehiculos>
+    <terrestres>
+        <vehiculo>bicicleta</vehiculo>
+        <!--Aquí había otro error, ya que la etiqueta <vehiculo> no se había cerrado-->
+        <vehiculo>coche</vehiculo>
+        <vehiculo>tractor</vehiculo>
+        <!--En estas dos últimas líneas, el error ha sido el mismo que en la línea 10-->
+    </terrestres>
+    <!--Aquí encontramos otro error, ya que no se ha cerrado la etiqueta <terrestres>-->
+
+    <acuaticos>
+        <vehiculo>canoa</vehiculo>
+        <!--No se ha cerrado la etiqueta <vehiculo>-->
+    </acuaticos>
+    <!--Tampoco se ha cerrado la etiqueta acuaticos-->
+
+    <aereos>
+        <vehiculo>avioneta</vehiculo>
+        <vehiculo>helicóptero</vehiculo>
+        <!--No se cerraron las etiquetas de <vehiculo>-->
+    </aereos>
+    <!--No se habia cerrado la eitqueta aereos-->
+
+</vehiculos>
+<!--Agregamos una etiqueta que englobe a todas las demás-->
