@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walter White - Contacto</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: rgb(197, 197, 197);
+            text-align:center;
+        }
+        header{
+            background-color:rgb(110, 110, 110);
+            padding:20px;
+            text-align: center;
+        }
+        nav li{
+            display:inline;
+            margin-right:200px;
+            margin-left:200px;
+        }
+        nav{
+            padding:1px;
+            background-color:rgb(138, 138, 138);
+        }
+        section{
+            text-align: center;
+        }
+        a{
+            color:black;
+        }
+        fieldset{
+            background-color:rgb(138, 138, 138);
+        }
+        legend{
+            background-color:rgb(112, 112, 112);
+            font-size:20px;
+            color:white;
+            margin-bottom:8px;
+            border:solid;
+            border-color:black;
+            border-width:1px;
+        }
+        textarea{
+            resize:none;
+        }
+        .formulario{
+            max-width:100px;
+            margin:0 auto;
+            padding-left:40px;
+            padding-right:40px;
+            padding-bottom:20px;
+        }
+        footer{
+            background-color:rgb(138, 138, 138);
+            padding:20px;
+            text-align:center;
+        }
+    </style>
+    <link rel="icon" href="../Imágenes/Walter Logo.png">
+</head>
+<body>
+    <!--Esta parte es igual que la página principal, con un header y un nav para registro e iniciar sesión-->
+    <header>
+        <a href="../index.html" name="inicio">
+            <img src="../Imágenes/Inicio.png" width="400px" alt="Imagen Inicio">
+        </a>
+    </header>
+
+    <!--Aquí se encuentra la sección de Inicio de Sesión y Registro-->
+    <nav>
+        <ul type="none">
+            <li><a href="inicio.html" name="iniciarsesion">Iniciar Sesión</a></li>
+            <li><a href="registro.html" name="registrarme">Registrarme</a></li>
+        </ul>
+    </nav>
+
+    <br><br>
+    <main>
+        <!--Dentro del main pondremos la sección de relleno de formulario para el contacto-->
+        <section>
+            <div>
+                <h1>Contacta con nosotros</h1>
+                <p>Si tienes cualquier duda, sugerencia o problema con nuestra web, no dudes en contactar
+                    con nosotros. <br>Para ello debes rellenar este formulario.</p>
+            </div>
+            <br>
+            <div>
+                <form>
+                    <!--Agregamos un formulario para que el usuario pueda contactar con nosotros-->
+                    <fieldset class="formulario">
+                        <legend align="center"><strong>DATOS A RELLENAR</strong></legend>
+                        <label for="nombre">Nombre: </label>
+                        <input type="text" id="nombre" size="30" required autofocus>
+                        <br><br>
+                        <label for="apellidos">Apellidos: </label>
+                        <input type="text" id="apellidos" size="30" required>
+                        <br><br>
+                        <label for="email">Email: </label>
+                        <input type="email" id="email" size="30" placeholder="email@ejemplo.com" required>
+                        <br><br>
+                        <label for="comentario">Motivo del mensaje: </label><br>
+                        <textarea cols="31" rows="7" required></textarea>
+                        <br><br>
+                        <input type="checkbox" id="check" checked="checkbox"><label for="check">Recibir emails de Walter White</label>
+                        <br><br>
+                        <input type="submit" name="enviar">
+                    </fieldset>
+                </form>
+            </div>
+        </section>
+    </main>
+    
+    <!--Esta es una sección con datos de contacto-->
+    <br><br><br><br>
+    <footer>
+        <a href="contacto.html" name="contacto">Contacto</a>
+        &nbsp; &nbsp; &nbsp; &nbsp;
+        <img src="../Imágenes/Email.png" width="35px" class="email" alt="Imagen de Email">
+        <a href="mailto:walterwhite@gmail.com" name="email1">walterwhite@gmail.com</a>
+        &nbsp; &nbsp; &nbsp; &nbsp;
+        <img src="../Imágenes/Telefono.png" width="23px" alt="Imagen de Teléfono">
+        <a href="tel:+34664345699" name="telfono1">664 34 56 99</a>
+    </footer>
+        
+</body>
+</html>

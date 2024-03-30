@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walter White - Iniciar Sesión</title>
+    <style>
+                body{
+            margin:0;
+            padding:0;
+            background-color:rgb(197, 197, 197);
+            text-align:center;
+        }
+        header{
+            background-color:rgb(110, 110, 110);
+            padding:20px;
+            text-align: center;
+        }
+        nav li{
+            display:inline;
+            margin-right:200px;
+            margin-left: 200px;
+        }
+        nav{
+            padding:1px;
+            background-color:rgb(138, 138, 138);
+        }
+        a{
+            color:black;
+        }
+        footer{
+            background-color:rgb(138, 138, 138);
+            padding:20px;
+            text-align:center;
+        }
+    </style>
+    <link rel="icon" href="../Imágenes/Walter Logo.png">
+</head>
+<body>
+    <!--Esta es la cabecera de la página, donde tenemos el logo y un enlace para ir al Inicio-->
+    <header>
+        <a href="../index.html" name="inicio">
+            <img src="../Imágenes/Inicio.png" width="400px" alt="Imagen Inicio">
+        </a>
+    </header>
+
+    <!--Aquí tenemos la sección de Iniciar Sesión dentro de un main-->
+    <main>
+        <br><br><br>
+        <h1>Iniciar Sesión</h1>
+        <form>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" required>
+            <br><br>
+
+            <label for="contra">Contraseña</label><br>
+            <input type="password" id="contra" required>
+            <br><br>
+        
+            <input type="submit" value="Iniciar Sesion">
+        </form>
+
+        <br><br><br><br><br><br><br><br><br>
+        ¿No tienes una cuenta? <a href="registro.html">Crear cuenta</a>
+        <br><br><br>
+    </main>
+
+    <!--Esta es la sección de contacto-->
+    <footer>
+        <a href="contacto.html" name="contacto">Contacto</a>
+        &nbsp; &nbsp; &nbsp; &nbsp;
+        <img src="../Imágenes/Email.png" width="35px" class="email" alt="Imagen de Email">
+        <a href="mailto:walterwhite@gmail.com" name="email1">walterwhite@gmail.com</a>
+        &nbsp; &nbsp; &nbsp; &nbsp;
+        <img src="../Imágenes/Telefono.png" width="23px" alt="Imagen de Teléfono">
+        <a href="tel:+34664345699" name="telefono1">664 34 56 99</a>
+    </footer>
+
+</body>
+</html>

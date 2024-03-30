@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walter White</title>
+    <style>
+        /*Aquí en CSS vamos a agregar pequeños detalles, como colores y tamaño de cada sección*/
+        body{
+            margin:0;
+            padding:0;
+            background-color:rgb(197, 197, 197);
+            text-align:center;
+        }
+        header{
+            background-color:rgb(110, 110, 110);
+            padding:20px;
+            text-align: center;
+        }
+        nav li{
+            display:inline;
+            margin-right:200px;
+            margin-left: 200px;
+        }
+        nav{
+            padding:1px;
+            background-color:rgb(138, 138, 138);
+        }
+        a{
+            color:black;
+        }
+        h1{
+            font-size:50px;
+            margin-bottom:15px;
+        }
+        table{
+            text-align:center;
+            margin:0 auto;
+        }
+        footer{
+            background-color:rgb(138, 138, 138);
+            padding:20px;
+            text-align:center;
+        }
+    </style>
+    <!--Con esto le pongo un icono a la página-->
+    <link rel="icon" href="Imágenes/Walter Logo.png">
+</head>
+<body>
+    <!--En el header tenemos una imagen que sirve como enlace para ir a la página principal-->
+    <header>
+        <a href="index.html" name="inicio">
+            <img src="Imágenes/Inicio.png" width="400px" alt="Imagen Inicio">
+        </a>
+    </header>
+    <!--En el nav pondremos la opción de iniciar sesión y registrarse en la página web-->
+    <nav>
+        <ul type="none">
+            <li><a href="Páginas/inicio.html" name="iniciarsesion">Iniciar Sesión</a></li>
+            <li><a href="Páginas/registro.html" name="registrarme">Registrarme</a></li>
+        </ul>
+    </nav>
+    <br>
+    <!--En el main pondremos la información principal de la página-->
+    <main>
+        <section>
+            <!--Ponemos un título-->
+            <div>
+                <h1>Bienvenido!!</h1>
+            </div>
+            <div>
+                <table>
+                    <!--Ponemos un video y una imagen de presentación dentro de una tabla-->
+                    <tr>
+                        <td><img src="Imágenes/Walter2.png" alt="Imagen de Walter White" width="200px"></td>
+                        <td><video width="457" controls autoplay muted>
+                            <source src="Videos/Breaking Bad Trailer (First Season).mp4" type="video/mp4">
+                        </video></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><p>Has entrado en la página web de <strong>Walter White</strong>. Por si no sabes<br>
+                            de quien estamos hablando, <strong>Walter White</strong> es el narcotraficante de <em>metanfetamina</em><br>
+                            más peligroso e importante de todo <em>Albuquerque</em>. Esto es solo una pequeña introducción,<br>pero para ver 
+                            toda la información completa entra en el enlace.
+                        </p></td>
+                    </tr>
+                </table>
+                <!--Aquí encontramos un enlace que nos llevará al curriculum-->
+                <a href="Páginas/curriculum.html">CURRICULUM</a>
+            </div>
+        </section>
+    </main>
+    <br><br><br><br>
+    <!--Aquí hay un footer con la información de contacto y un enlace para rellenar un formulario-->
+    <footer>
+        <a href="Páginas/contacto.html" name="contacto">Contacto</a>
+        &nbsp; &nbsp; &nbsp; &nbsp;
+        <img src="Imágenes/Email.png" width="35px" class="email" alt="Imagen de Email">
+        <!--Esto nos permite enviar un email al pulsar en el enlace-->
+        <a href="mailto:walterwhite@gmail.com" name="email1">walterwhite@gmail.com</a>
+        &nbsp; &nbsp; &nbsp; &nbsp;
+        <img src="Imágenes/Telefono.png" width="23px" alt="Imagen de Teléfono">
+        <!--Esto nos permite llamar directamente al número al pulsar en el enlace-->
+        <a href="tel:+34664345699" name="telfono1">664 34 56 99</a>
+    </footer>
+</body>
+</html>

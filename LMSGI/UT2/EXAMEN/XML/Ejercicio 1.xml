@@ -1,0 +1,37 @@
+<? xml version="1.0" encoding="UTF-8"?>
+<empresa>
+    <departamento>
+        <nombre>Departamento de administración</nombre>
+        <ciudad>Madrid</ciudad>
+        <jefe></jefe>
+        <empleados>
+            <empleado>
+                <nombre>Pepe Dominguez</nombre>
+                <puesto nombre="Administrador"/>
+                <sueldo>2000 €</sueldo>
+            </empleado>
+            <empleado>
+                <nombre>Jonathan Nuñez</nombre>
+                <puesto nombre="Co-Administrador"/>
+                <sueldo>1600 €</sueldo>
+            </empleado>
+        </empleados>
+    </departamento>
+    <departamento>
+        <nombre>Departamento de finanzas</nombre>
+        <ciudad>Salamanca</ciudad>
+        <jefe></jefe>
+        <empleados>
+            <empleado>
+                <nombre>Alberto Pérez</nombre>
+                <puesto nombre="Limpiador"/>
+                <sueldo>1400 €</sueldo>
+            </empleado>
+            <empleado>
+                <nombre>Pepa García</nombre>
+                <puesto nombre="Secretaria"/>
+                <sueldo>1500 €</sueldo>
+            </empleado>
+        </empleados>
+    </departamento>
+</empresa>
