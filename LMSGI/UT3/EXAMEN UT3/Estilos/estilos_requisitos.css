@@ -1,0 +1,27 @@
+/*Han de completarse los selectores que faltan, según los comentarios que hay
+encima de cada regla CSS */
+
+/* Todos los elementos "div" de clase "videoYoutube" en toda la pagina */
+div.videoYoutube{
+    text-align: center;
+    margin: 50px 0;
+}
+
+/* Cabecera de la tabla y pie de la tabla */
+thead, tfoot {
+    background-color:gainsboro;
+}
+
+/* Todos los elementos del tbody que no sean th */
+td {
+    color:blue;
+    font-weight: bolder;
+}
+
+/* Todos los elementos del pie de la tabla */
+tfoot *{
+    color:brown;
+    font-weight: 300;
+    font-style: italic;
+}
+

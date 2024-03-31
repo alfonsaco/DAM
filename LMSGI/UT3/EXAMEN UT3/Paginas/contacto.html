@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Smash Bros Ultimate - Contacto</title>
+    <link rel="stylesheet" href="../Estilos/estilos.css" type="text/css">
+    <link rel="stylesheet" href="../Estilos/estilos_contacto.css" type="text/css">
+    <link rel="shortcut icon" href="../Imágenes/mario.png">
+</head>
+<body>
+    <!--Header de la web-->
+    <header>
+        <h1>Super Smash Bros Ultimate</h1>
+    </header>
+    <!--Contenido principal-->
+    <main>
+        <section>
+            <!--Div que contiene el formulario-->
+            <div>
+                <form action="envio_formulario.html">
+                    <!--Primera caja del formulario-->
+                    <fieldset>
+                        <legend>Introduce tus datos personales</legend>
+                        <label for="nombre">Nombre (*):</label><br>
+                        <input type="text" id="nombre" required size="5" maxlength="20" name="FormularioNombre"><br>
+                        <label for="apellidos">Apellidos:</label><br>
+                        <input type="text" id="apellidos" size="15" maxlength="30" name="FormularioApellidos"><br>
+                        <label for="dni">DNI (*):</label><br>
+                        <input type="text" id="dni" required placeholder="25789658L" size="9" maxlength="9" minlength="9" name="FormularioDNI"><br>
+                        <label for="correo">Correo (*):</label><br>
+                        <input type="email" id="correo" required name="FormularioCorreo"><br><br>
+
+                        <label for="genero">Género:</label><br>
+                        <input type="radio" name="genero" value="Hombre"> Hombre<br>
+                        <input type="radio" name="genero" value="Mujer"> Mujer<br>
+                        <input type="radio" name="genero" value="Otro"> Otro<br><br>
+
+                        <label for="nacimiento">Fecha de nacimiento</label>
+                        <input type="date" id="nacimiento" name="FormularioNacimiento">
+                    </fieldset>
+                    <!--Segunda caja del formulario-->
+                    <fieldset>
+                        <legend>Información complementaria</legend>
+                        <label for="mensaje">Mensaje (*):</label><br>
+                        <textarea id="mensaje" name="FormularioMensaje" cols="50" rows="6" placeholder="Deja aquí el motivo de tu mensaje" required></textarea><br><br>
+
+                        <input type="checkbox" id="casilla" name="FormularioCasilla" value="contacto_empresa"> Marca esta casilla si te pones en contacto en nombre de tu empresa<br><br>
+
+                        <label for="enlace">Enlace a tu página web</label><br>
+                        <input type="url" id="enlace" name="FormularioEnlace" placeholder="http://mimascota.es"><br><br>
+
+                        <label for="foto">Mándame una foto de tu mascota</label><br>
+                        <input type="file" id="foto" name="fotoMascota"><br><br>
+                    </fieldset>
+                    <!--Botones-->
+                    <div class="ajustarBoton">
+                        <input type="submit" value="Enviar" id="Enviar_Datos">
+                        <input type="reset" value="Borrar formulario" id="Borrar_Datos">
+                    </div>
+                </form>
+            </div>
+            <!--Enlace al índice-->
+            <div class="divEnlaces">
+                <a href="../index.html">&lt;--Volver al índice</a>
+            </div>
+        </section>
+    </main>
+    <!--Footer de la web-->
+    <footer>
+        <p>Autor de la web: Alfonso Rincón Cuerva</p>
+        <p>1º DAM &copy;</p>
+    </footer>
+</body>
+</html>

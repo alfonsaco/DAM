@@ -1,0 +1,12 @@
+/*Estilos para ajustar la posición de los botones*/
+.ajustarBoton{
+    margin-top: 30px;
+    padding-left: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+/*Estilos para ajustar la posición del enlace*/
+.divEnlaces{
+    margin-top: 50px;
+}

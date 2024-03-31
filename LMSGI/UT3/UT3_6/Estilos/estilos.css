@@ -1,0 +1,74 @@
+body{
+    background-image: url(../Imágenes/fondo.jpg);
+    background-repeat: repeat;
+    color: #5C6884;
+    text-align: center;
+    margin: 0;
+}
+
+/*IMPORTACIÓN DE FUENTES*/
+@font-face {
+    font-family: 'Candy Cane';
+    src: url(../Fuentes/CandyCane.ttf);
+}
+
+
+/*ESTILOS PARA EL HEADER*/  /*ESTILOS PARA EL HEADER*/  /*ESTILOS PARA EL HEADER*/
+header{
+    background-color: #F7D1CF ;
+    font-family: 'Candy Cane';
+    font-weight: bold;
+    font-size: 40px;
+    font-variant: small-caps;
+    font-style: italic;
+    margin: 50px 150px 30px 150px;
+}
+/*Estilos para el h1 del header*/
+header h1{
+    padding: 10px 0px;
+}
+
+
+/*ESTILOS PARA EL MAIN*/  /*ESTILOS PARA EL MAIN*/  /*ESTILOS PARA EL MAIN*/
+main{
+    background-color: #F7D1CF ;
+    font-family: Tahoma, Geneva, Verdana, sans-serif;
+    font-variant: small-caps;
+    font-weight: bold;
+    font-style: italic;
+    margin: 50px 150px 30px 150px;
+}
+/*Estilso para la img dentro de main*/
+main section div img{
+    width: 50em;
+    padding-top: 50px;
+}
+/*Estilos para el ul dentro del main*/
+main section div ul{
+    padding: 0;
+    list-style-type: none;
+}
+/*Estilos para el h2 dentro del main*/
+main h2{
+    margin: 0;
+}
+.listas{
+    padding: 15px 0;
+}
+
+
+/*ESTILOS PARA EL FOOTER*/  /*ESTILOS PARA EL FOOTER*/  /*ESTILOS PARA EL FOOTER*/
+footer{
+    background-color: #F7D1CF ;
+    text-align: right;
+    font-style: italic;
+    font-variant: small-caps;
+    font-family: Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    margin: 50px 150px 60px 150px;
+}
+footer p{
+    padding: 7px 15px 7px 0px;
+}
+
+

@@ -1,0 +1,18 @@
+/*Han de completarse los selectores que faltan, según los comentarios que hay
+encima de cada regla CSS */
+
+/* Todos los elementos con atributos src */
+[src]{
+    width: 75px;
+    height: 50px;
+}
+
+/* Todas las imágenes que tengan la clase "personaje" */
+.personaje{
+    width: 120px;
+    height: 120px;
+}
+
+.tabla{
+    margin-bottom: 50px;
+}

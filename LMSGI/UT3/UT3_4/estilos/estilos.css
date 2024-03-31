@@ -1,0 +1,68 @@
+/* CSS CON COLORES */
+a:visited {
+    color: red
+}
+
+a:hover {
+    color: darkviolet;
+    font-weight: bold
+}
+
+a:active {
+    color: yellowgreen;
+}
+
+ul {
+    list-style-type: none
+}
+
+.color1{
+    color: darkslategray;
+}
+
+.color2{
+    color: rgb(71, 71, 156);
+}
+
+.color3{
+    color: rgba(102, 45, 45, 0.6);
+}
+
+.color4{
+    color:#0F0F43;
+}
+
+.color5{
+    color: rgb(30%,4%,0%);
+}
+
+.color6{
+    color: #366;
+}
+
+h1,
+h2 {
+    color: darkred
+}
+
+#recomendamos {
+    font-style: italic
+}
+
+.resaltado {
+    color: darkblue;
+    font-weight: bold
+}
+
+h1:hover {
+    color: green
+}
+
+ol .resaltado {
+    color: darkmagenta;
+}
+
+div>p {
+    text-indent: 15px
+}
+

@@ -1,0 +1,70 @@
+body{
+    font-family: Tahoma, Geneva, Verdana, sans-serif;
+    color: #3B5998;
+    background-color: #D0D8E9;
+    background-image: url(../Imagenes/fondo.png);
+    background-repeat: repeat-x;
+    font-size: .85em;
+}
+
+/*ESTILO DE LOS ENLACES*/
+a{
+    color: #3B5998;
+    text-decoration: none;
+}
+
+/*TEXTO EN NEGRITA*/
+.negrita{
+    font-weight: bold;
+}
+
+/*TEXTO EN NEGRITA Y CURSIVA*/
+.negritaCursiva{
+    font-weight: bold;
+    font-style: italic;
+}
+
+/*TEXTO EN CURSIVA*/
+.cursiva{
+    font-style: italic;
+}
+
+/*CENTRAR ELEMENTOS AL CENTRO*/
+.centrar{
+    text-align: center;
+}
+
+/*AJUSTAR TEXTO A LA PANTALLA*/
+.ajustar{
+    text-align: justify;
+}
+
+/*ESPACIO HORIZONTAL HACIA ABAJO*/
+.espacio{
+    padding: 10px 0px 0px 0px;
+}
+
+/*ESPACIO MAYOR HACIA ABAJO Y ARRIBA*/
+.espacio2{
+    padding: 35px 0px 20px 0px;
+}
+
+/*ESPACIO LATERAL A AMBOS LADOS*/
+.espacio3{
+    padding: 0px 8px 0px 8px;
+}
+
+/*ESPACIO HORIZONTAL HACIA ARRIBA Y ABAJO*/
+.espacio4{
+    padding: 8px 0px 8px 0px;
+}
+
+/*ESPACIO HACIA ARRIBA Y ABAJO MEDIO*/
+.espacio5{
+    padding: 20px 0px 10px 0px;
+}
+
+/*TEXTO SUBRAYADO*/
+.subrayado{
+    text-decoration: underline;
+}

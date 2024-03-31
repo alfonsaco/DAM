@@ -1,0 +1,63 @@
+h1{
+    color: rgb(0, 110, 110);
+}
+
+.azul{
+    color: blue;
+}
+
+.rojoN{
+    color: red;
+    font-weight: bold;
+}
+
+.rojoS{
+    color: red;
+    text-decoration: underline 2px;
+}
+
+.azulS{
+    color: blue;
+    font-style: italic;
+    text-decoration: underline 2px red;
+}
+
+.morado{
+    color: rgb(119, 0, 119);
+}
+
+.verde{
+    color: rgb(0, 121, 0);
+}
+
+.naranjaN{
+    color: orange;
+    font-weight: bold;
+}
+
+.naranja{
+    color: orange;
+}
+
+.mostaza{
+    color: rgb(122, 122, 0);
+}
+
+.violeta{
+    color: rgb(211, 69, 211);
+}
+
+.verdeS{
+    color: green;
+    text-decoration: underline 2px;
+}
+
+table,tr,th,td{
+    border: solid 2px #000;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+.cursiva{
+    font-style: italic;
+}
