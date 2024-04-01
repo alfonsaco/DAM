@@ -1,0 +1,69 @@
+body{
+    background-image: url(../Imagenes/fondo1.jpg);
+    margin: 30px 170px;
+    font-family: Arial Narrow;
+    font-variant: small-caps;
+    color: rgb(9, 26, 61).;
+}
+
+/*ESTILOS PARA EL HEADER*/
+header{
+    background-color: rgba(227, 232, 236, 0.5);
+    text-align: center;
+    position: relative;
+    top: 23px;
+}
+header p{
+    margin: 0;
+    font-size: 21px;
+}
+
+
+/*ESTILOS PARA EL CONTENIDO PRINCIPAL*/
+section{
+    background-image: url(../Imagenes/pinzas2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 650px;
+    display: flex;
+    align-items: center;
+}
+/*ESTILOS PARA LAS IMÁGENES*/
+section img{
+    width: 350px;
+    height: 250px;
+    position: absolute;
+}
+.taza{
+    z-index: 2;
+    left: 500px;
+    bottom: 280px;
+}
+.pastel{
+    z-index: 2;
+    right: 500px;
+    top: 380px;
+}
+.madera{
+    z-index: 1;
+    bottom: 150px;
+    right: 700px;
+}
+.vaso{
+    z-index: 1;
+    bottom: 160px;
+    right: 250px;
+}
+
+
+/*ESTILOS PARA EL FOOTER*/
+footer{
+    background-color: rgba(227, 232, 236, 0.5);
+    text-align: right;
+    position: relative;
+    bottom: 18px;
+}
+footer p{
+    margin: 0;
+}
+
