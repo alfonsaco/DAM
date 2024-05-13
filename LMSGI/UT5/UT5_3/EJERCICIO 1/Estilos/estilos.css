@@ -1,0 +1,26 @@
+/*ESTILOS PARA CENTRAR EL DIV*/
+body{
+    background-image: url(../Imágenes/Conduccion.webp);
+    background-size: cover;
+    margin: 0;
+    backdrop-filter: blur(5px);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*ESTILOS PARA EL DIV*/
+div{
+    background-color: #fff;
+    width: 500px;
+    height: 200px;
+    border-radius: 10px;
+    box-shadow: 0px 7px 10px rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 2em;
+}
