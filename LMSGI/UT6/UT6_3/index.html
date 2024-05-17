@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Estilos/estilos.css" type="text/css">
+    <title>UT6_3 Calculadora</title>
+</head>
+<body>
+    <main>
+        <div class="calculadora">
+            <!--Lugar donde se escribirán los cálculos-->
+            <div class="cadena">
+                <input type="text" id="campoTexto" readonly>
+            </div>
+            <!--Parte de las teclas de la calculadora-->
+            <div class="teclas">
+                <!--Fila 1-->
+                <div id="reset">AC</div>
+                <div id="delete">DEL</div>
+                <div class="simbolos" id="mas">+</div>
+                <div class="simbolos" id="menos">-</div>
+                <!--Fila 2-->
+                <div class="numeros" id="siete">7</div>
+                <div class="numeros" id="ocho">8</div>
+                <div class="numeros" id="nueve">9</div>
+                <div class="simbolos" id="multi">&times;</div>
+                <!--Fila 3-->
+                <div class="numeros" id="cuatro">4</div>
+                <div class="numeros" id="cinco">5</div>
+                <div class="numeros" id="seis">6</div>
+                <div class="simbolos" id="division">&divide;</div>
+                <!--Fila 4-->
+                <div class="numeros" id="uno">1</div>
+                <div class="numeros" id="dos">2</div>
+                <div class="numeros" id="tres">3</div>
+                <div class="simbolos" id="igual">&equals;</div>
+                <!--Fila 5-->
+                <div class="numeros" id="cero">0</div>
+                <div class="numeros" id="punto">.</div>
+            </div>
+        </div>
+    </main>
+    <!--Script-->
+    <script src="Script/script.js"></script>
+</body>
+</html>

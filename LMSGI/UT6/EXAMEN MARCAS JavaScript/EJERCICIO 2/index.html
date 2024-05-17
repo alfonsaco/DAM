@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EJERCICIO 2</title>
+</head>
+<body>
+    <script>
+        // Función suma
+        function calcSum(a, b) {
+            suma=a+b;
+            return suma;
+        }
+
+        // Do while para pedir números
+        alert("Script: El usuario deberá introducir dos números. El programa deberá decir si el primer número es mayor, menor o igual que el segundo. Después mostrará la suma de ambos números por pantalla.");
+        do {
+            var num1=prompt("Introduce un número entero");
+            var num2=prompt("Introduce otro número entero");
+            if(isNaN(num1) || isNaN(num2) || num1==='' || num2==='' || (num1-Math.floor(num1)!=0) || (num2-Math.floor(num2)!=0)){
+                alert("Por favor, introduce números válidos");
+            }
+        } while (isNaN(num1) || isNaN(num2) || num1==='' || num2==='' || (num1-Math.floor(num1)!=0) || (num2-Math.floor(num2)!=0));
+
+        // Condiciones
+        if (num1>num2) {
+            alert("El primer número es mayor que el segundo");
+            console.log("El primer número es mayor que el segundo");
+        } else if (num1 === num2) {
+            alert("Los números son iguales");
+            console.log("Los números son iguales");
+        } else {
+            alert("El segundo número es mayor que el primero");
+            console.log("El segundo número es mayor que el primero");
+        }
+
+
+        // Resultado
+        let resultado=calcSum(parseInt(num1), parseInt(num2));
+        alert("La suma de los números es: "+resultado);
+        console.log("La suma de los números es: "+resultado);
+    </script>
+</body>
+</html>

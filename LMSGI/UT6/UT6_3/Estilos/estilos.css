@@ -1,0 +1,89 @@
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(60deg, rgb(197, 197, 197), rgb(80, 80, 80));
+}
+
+/*ESTILOS DEL CONTENEDOR DE LA CALCULADORA*/
+.calculadora{
+    background-color: #191A1C;
+    color: #f8f8f8;
+    font-weight: bold;
+    font-family: sans-serif;
+    user-select: none;
+    width: 300px;
+    height: 350px;
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 10px;
+}
+
+/*ESTILOS DE LA PARTE DE LOS RESULTADOR*/
+.cadena{
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#campoTexto{
+    background-color: transparent;
+    border: 0;
+    width: 100%;
+    height: 80px;
+}
+
+/*ESTILOS DE LAS TECLAS*/
+.teclas{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 4px;
+    height: 70%;
+}
+.teclas div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+.teclas div:active{
+    border-bottom: 0px !important; 
+    box-shadow: 0px 0px 0px transparent;
+    transform: translateY(3px);
+    height: 94%;
+}
+.numeros{
+    background-color: #37393C;
+    border-bottom: #2c2d2e solid 5px;
+}
+#reset, #delete{
+    background-color: #727176;
+    border-bottom: solid 5px #4e4d50;
+}
+.simbolos{
+    background-color: #EC8A25;
+    border-bottom: solid 5px #a8611a;
+}
+/*Estilos de cada tecla*/
+#igual{
+    grid-row: 4/6;
+    grid-column: 4/5;
+}
+#igual:active{
+    height: 97%;
+}
+#cero{
+    grid-column: 1/3;
+}
+
+/*ESTILOS DE LA PARTE DE LOS CÁLCULOS*/
+input{
+    font-size: 2em;
+    color: #fff;
+    text-align: right;
+    
+}
+input:focus{
+    outline: 0;
+}

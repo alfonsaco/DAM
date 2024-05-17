@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(196, 196, 196);
+    font-family: sans-serif;
+}
+/*estilos para el div*/
+div{
+    width: 400px;
+    height: 300px;
+    border: dashed 3px #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}

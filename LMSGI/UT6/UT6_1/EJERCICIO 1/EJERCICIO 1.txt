@@ -1,0 +1,15 @@
+1)       En el Ejemplo 1, el script está situado dentro del <head>. El problema de esto, es que el script cargará antes de que cargue la estructura de la web, al estar situado por encima. Por tanto, el script no realizará la función para la cual fue creado, ya que se carga antes de que el botón haya sido creado.
+
+En cambio, en el Ejemplo 2 podemos ver que si funciona, aunque el script está metido directamente en el HTML, en lugar de estar en otro archivo .js. Igualmente, al estar por debajo de la estructura de la web dentro del <body>, se cargará después de que se haya cargado esta estructura, por tanto si hará su 	función.
+
+-------------------------------------------------------------------------------------------------
+
+2)        
+PARTE A
+----------
+No funcionará, ya que cuando el script se carga, la estructura de la web no habrá sido creada todavía.
+
+
+PARTE B
+----------
+Este si que funcionará, ya que se le ha agregado el evento DOMContentLoaded, lo que hace que el script se ejecute una vez el DOM ha sido totalmente cargado y analizado por el navegador. Este evento, una vez cargada la web, ejecuta la función.
