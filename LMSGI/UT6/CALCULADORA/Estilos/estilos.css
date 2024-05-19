@@ -87,3 +87,16 @@ input{
 input:focus{
     outline: 0;
 }
+
+
+.active-igual{
+    height: 97%;
+    border-bottom: 0px !important; 
+    transform: translateY(3px);
+}
+.active-teclas{
+    border-bottom: 0px !important; 
+    box-shadow: 0px 0px 0px transparent;
+    transform: translateY(3px);
+    height: 94%;
+}
