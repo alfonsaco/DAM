@@ -1,0 +1,6 @@
+----------- IES RIBERA DEL TAJO -----------
+Sancho Castro
+
+	Bases de Datos:9
+	Entornos de Desarrollo:9
+La nota media es: 0.47368421052631576

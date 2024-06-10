@@ -1,0 +1,8 @@
+----------- IES RIBERA DEL TAJO -----------
+Luis Perez
+
+	Sistemas Informáticos:8
+	Programación:7
+	Lenguajes de Marcas:6
+	Formacion y Orientación Laboral:10
+La nota media es: 0.8157894736842105

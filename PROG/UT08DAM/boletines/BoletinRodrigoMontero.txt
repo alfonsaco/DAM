@@ -1,0 +1,6 @@
+----------- IES RIBERA DEL TAJO -----------
+Rodrigo Montero
+
+	Programación:1
+	Entornos de Desarrollo:9
+La nota media es: 0.2631578947368421

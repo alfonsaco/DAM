@@ -1,0 +1,8 @@
+----------- IES RIBERA DEL TAJO -----------
+Pablo Duran
+
+	Sistemas Informáticos:7
+	Programación:8
+	Lenguajes de Marcas:7
+	Formacion y Orientación Laboral:10
+La nota media es: 0.8421052631578947

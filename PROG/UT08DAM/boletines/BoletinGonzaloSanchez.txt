@@ -1,0 +1,6 @@
+----------- IES RIBERA DEL TAJO -----------
+Gonzalo Sanchez
+
+	Bases de Datos:6
+	Entornos de Desarrollo:9
+La nota media es: 0.39473684210526316

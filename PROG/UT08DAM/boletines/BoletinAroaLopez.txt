@@ -1,0 +1,8 @@
+----------- IES RIBERA DEL TAJO -----------
+Aroa Lopez
+
+	Sistemas Informáticos:3
+	Programación:7
+	Lenguajes de Marcas:5
+	Formacion y Orientación Laboral:10
+La nota media es: 0.6578947368421053

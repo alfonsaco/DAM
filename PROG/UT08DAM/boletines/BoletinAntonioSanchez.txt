@@ -1,0 +1,9 @@
+----------- IES RIBERA DEL TAJO -----------
+Antonio Sanchez
+
+	Sistemas Informáticos:9
+	Programación:10
+	Bases de Datos:10
+	Lenguajes de Marcas:10
+	Formacion y Orientación Laboral:10
+La nota media es: 1.2894736842105263

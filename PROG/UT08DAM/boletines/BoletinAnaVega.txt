@@ -1,0 +1,6 @@
+----------- IES RIBERA DEL TAJO -----------
+Ana Vega
+
+	Bases de Datos:5
+	Entornos de Desarrollo:9
+La nota media es: 0.3684210526315789

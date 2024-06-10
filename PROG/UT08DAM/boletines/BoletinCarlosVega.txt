@@ -1,0 +1,9 @@
+----------- IES RIBERA DEL TAJO -----------
+Carlos Vega
+
+	Sistemas Informáticos:5
+	Programación:5
+	Bases de Datos:4
+	Lenguajes de Marcas:5
+	Formacion y Orientación Laboral:10
+La nota media es: 0.7631578947368421
