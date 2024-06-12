@@ -1,0 +1,14 @@
+idGuia;;id;nombre;apellidos;titulacion;experiencia;nacionalidad;idioma
+100;;Juan;Rodriguez;Historia del arte;5;;
+200;;María;Pérez;Historia;4;;
+300;;Rosa;Jiménez;Historia;5;;
+100;2222322L;Ana;García;;;Española;Español
+100;2323234M;Luis;Martínez;;;Española;Español
+200;C5454345;Carlos;Hernández;;;Chilena;Español
+200;654KJ5345;Laura;López;;;Colombiana;Español
+300;75PQ5465;José;González;;;Peruana;Español
+200;8JJ575464;Elena;Gómez;Filosofía;1;Uruguaya;Español
+300;10VM32524;Carmen;Díaz;;;Venezolana;Español
+300;USA1124352;Javier;Fernández;;;Estadounidense;Inglés
+200;1GE224544;Martha;Smith;;;Reino Unido;Inglés
+100;TE1452454;Susanne;Kross;;;Alemana;Alemán

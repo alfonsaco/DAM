@@ -1,0 +1,11 @@
+codigoGuia;codigoTurista;codigoVisita;hora;idioma;precio
+100;2222322L;V1;10;español;45.50
+100;2323234M;V2;10;español;45.50
+200;C5454345;V3;11;español;45.50
+200;654KJ5345;V4;11;español;45.50
+300;75PQ5465;V5;12;español;45.50
+200;8JJ575464;V6;13;español;45.50
+300;10VM32524;V7;13;español;45.50
+300;USA1124352;V8;12;ingles;50.50
+200;1GE224544;V9;12;ingles;50.50
+100;TE1452454;V10;13;ingles;50.50
