@@ -3,17 +3,87 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="#D5D5D5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/txtAutor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="85dp"
+        android:text="Autor: Alfonso Rincón Cuerva"
+        android:textColor="#505050"
+        android:textSize="15sp"
+        android:fontFamily="sans-serif"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtTittle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="100dp"
+        android:fontFamily="sans-serif"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:textColor="#984343"
+        android:text="Calculadora del N-ésimo Número Primo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtAutor" />
+
+    <TextView
+        android:id="@+id/txtDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:width="330dp"
+        android:textSize="15sp"
+        android:fontFamily="sans-serif"
+        android:textColor="#505050"
+        android:text="Introduce la posición del Nº Primo que quieres averiguar."
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTittle" />
+
+    <EditText
+        android:id="@+id/etxtNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="60dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Posición"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDescription" />
+
+    <Button
+        android:id="@+id/btnResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CALCULAR"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:strokeWidth="3dp"
+        app:strokeColor="#703535"
+        app:layout_constraintHorizontal_bias="0.63"
+        android:backgroundTint="#984343"
+        app:layout_constraintStart_toEndOf="@+id/etxtNumber"
+        app:layout_constraintTop_toTopOf="@+id/etxtNumber" />
+
+    <TextView
+        android:id="@+id/txtResult"
+        android:layout_width="184dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="50dp"
+        android:text="Resultado"
+        android:textSize="30sp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etxtNumber" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
