@@ -57,7 +57,7 @@
         android:layout_marginTop="60dp"
         android:ems="10"
         android:inputType="text"
-        android:text="Posición"
+        android:hint="Posición"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtDescription" />
 
