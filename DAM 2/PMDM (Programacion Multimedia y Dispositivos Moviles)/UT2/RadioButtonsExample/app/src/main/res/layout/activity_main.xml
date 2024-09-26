@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F2F0EB"
     tools:context=".MainActivity">
 
     <TextView
@@ -15,7 +16,7 @@
         android:layout_marginTop="32dp"
         android:fontFamily="sans-serif-black"
         android:text="¿Cuál es tu equipo de fútbol favorito?"
-        android:textColor="#B80A0A"
+        android:textColor="#565656"
         android:textSize="18sp"
         android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,24 +37,36 @@
             android:id="@+id/rbTalavera"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textSize="15sp"
+            android:paddingStart="10dp"
             android:text="Talavera C.F." />
 
         <RadioButton
             android:id="@+id/rbAlcazar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:paddingStart="10dp"
+            android:textSize="15sp"
             android:text="Gimnástico de Alcazar" />
 
         <RadioButton
             android:id="@+id/rbAlbacete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:paddingStart="10dp"
+            android:textSize="15sp"
             android:text="Albacete Balompié" />
 
         <RadioButton
             android:id="@+id/rbOtros"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:paddingStart="10dp"
+            android:textSize="15sp"
             android:text="Otros" />
     </RadioGroup>
 
@@ -61,9 +74,10 @@
         android:id="@+id/txtMensajeEquipo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text=""
+        android:layout_marginTop="32dp"
         android:gravity="center"
+        android:text=""
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup"
@@ -72,30 +86,32 @@
     <CheckBox
         android:id="@+id/checkBox"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="37dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="32dp"
-        android:text="CheckBox"
+        android:text="Me gusta el fútbol"
+        android:gravity="center_vertical|end"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="230dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtMensajeEquipo"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/txtGusto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text=""
+        android:layout_marginBottom="24dp"
         android:gravity="center"
+        android:text=""
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/checkBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
