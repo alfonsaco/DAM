@@ -8,6 +8,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,26 +32,43 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        // Elementos
         btnResult=findViewById(R.id.btnResult);
         txtResult=findViewById(R.id.txtResult);
         etxtNumber=findViewById(R.id.etxtNumber);
 
-        if(!etxtNumber.getText().toString().isEmpty()) {
+        //  Insertar números en la Criba de Eratóstenes
+        int posicion=0;
+        int[] cribaEratostenes=new int[1000];
+        for (int i=1; i<cribaEratostenes.length; i++) {
+            int contPrimoC=0;
+            for (int e=0; e<i; e++) {
+                if(i%2 == 0) {
+                    contPrimoC++;
+                }
+            }
+            if(contPrimoC <= 1) {
+                posicion++;
+                cribaEratostenes[posicion]=i;
+            }
+        }
+
+        //if(!etxtNumber.getText().toString().isEmpty()) {
             // Evento de pulsar el botón
             btnResult.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int numero=Integer.parseInt(String.valueOf(etxtNumber.getText()));
 
-                    if(numero == 1) {
-                        txtResult.setText("La posición 1 es del nº primo 1");
-                    } else if(numero == 2) {
-                        txtResult.setText("La posición 2 es del nº primo 1");
+                    // Imprimir texto por pantalla
+                    for(int i=0; i<cribaEratostenes.length; i++) {
+                        if(numero == cribaEratostenes[i]) {
+                            txtResult.setText("La posición "+i+" es del nº primo "+numero);
+                        }
                     }
-
                 }
             });
-        }
+        //}
 
     }
 }
