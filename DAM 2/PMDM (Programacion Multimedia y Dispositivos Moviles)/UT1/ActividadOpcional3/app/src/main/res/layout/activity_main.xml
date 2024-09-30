@@ -10,7 +10,9 @@
 
     <TextView
         android:id="@+id/txtFahrenheit"
-        android:layout_width="47dp"
+        android:minWidth="60dp"
+        android:layout_width="wrap_content"
+        android:maxWidth="110dp"
         android:layout_height="0dp"
         android:textSize="20sp"
         android:textColor="#C65314"
@@ -78,11 +80,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="110dp"
         android:text="Rankine"
-        android:textStyle="bold"
-        android:textSize="20sp"
         android:textColor="#E26A2D"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.42"
+        app:layout_constraintHorizontal_bias="0.39"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etxtDegree" />
 
@@ -102,7 +104,9 @@
 
     <TextView
         android:id="@+id/txtRankine"
-        android:layout_width="47dp"
+        android:minWidth="60dp"
+        android:layout_width="wrap_content"
+        android:maxWidth="110dp"
         android:layout_height="0dp"
         android:textSize="20sp"
         android:gravity="center"
@@ -114,7 +118,9 @@
 
     <TextView
         android:id="@+id/txtKelvin"
-        android:layout_width="47dp"
+        android:minWidth="60dp"
+        android:layout_width="wrap_content"
+        android:maxWidth="110dp"
         android:layout_height="0dp"
         android:textSize="20sp"
         android:gravity="center"
