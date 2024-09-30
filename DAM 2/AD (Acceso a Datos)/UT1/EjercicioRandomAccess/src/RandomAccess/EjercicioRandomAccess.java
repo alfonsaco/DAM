@@ -21,6 +21,33 @@ public class EjercicioRandomAccess {
 			case 1:
 				fichero=crearFichero(nombreArchivo);
 				break;
+			case 2:
+				System.out.print("¿Que registro quieres consultar? ");
+				int id=sc.nextInt();
+				if(consultarRegistro(nombreArchivo, id)) {
+					System.out.println("DEPARTAMENTO EXISTE");
+				} else {
+					System.out.println("DEPARTAMENTO NO EXISTE");
+				}
+				break;
+			case 3:
+				System.out.print("ID: ");
+				int codigo=sc.nextInt();
+				System.out.print("NOMBRE: ");
+				String nombre=sc.next();
+				System.out.print("LOCALIDAD: ");
+				String localidad=sc.next();
+				System.out.print("NÚMERO EMPLEADOS: ");
+				int numEmple=sc.nextInt();
+				System.out.print("SALARIO: ");
+				float salario=sc.nextFloat();
+				insertarRegistro(nombreArchivo, codigo, nombre, localidad, numEmple, salario);
+				break;
+			case 4:
+				System.out.print("¿Que registro quieres visualizar? ");
+				int codigo1=sc.nextInt();
+				visualizarRegistro(nombreArchivo, codigo1);
+				break;
 			case 7:
 				leerRegistros(nombreArchivo);
 				break;
@@ -29,6 +56,99 @@ public class EjercicioRandomAccess {
 				break;
 			}
 		} while(opcion!=8);
+	}
+
+	private static void insertarRegistro(String nombreArchivo, int codigo, String nombre2, String localidad2, int numEmple2, float salario2) {
+
+	}
+
+	// Verificar si existe o no existe un registro especifico
+	private static boolean consultarRegistro(String nombreArchivo, int idUsuario) throws IOException {
+		File file=new File(nombreArchivo);
+		RandomAccessFile archivo=new RandomAccessFile(file, "r");
+		
+		int id;
+		char[] nombre=new char[15];
+		char aux;
+		char[] localidad=new char[15];
+		int numEmple;
+		float salario;
+		
+		int tamaño=30+30+4+4+4;
+		int posicion=0;
+		
+		while(archivo.getFilePointer() != archivo.length()) {
+			archivo.seek(posicion);
+			// Leer id
+			id=archivo.readInt();
+			// Leer nombre
+			for (int i = 0; i < nombre.length; i++) {
+				aux=archivo.readChar();
+				nombre[i]=aux;
+			}
+			String nombreCompleto=new String(nombre);
+			// Leer localidad
+			for (int i = 0; i < localidad.length; i++) {
+				aux=archivo.readChar();
+				localidad[i]=aux;
+			}
+			String localidadCompleta=new String(localidad);
+			// Leer número empleados
+			numEmple=archivo.readInt();
+			// Leer salario
+			salario=archivo.readFloat();
+			
+			if(id == idUsuario) {
+				return true;
+			}
+			
+			posicion+=tamaño;
+		}
+		return false;
+	}
+
+	// Consultar registros en el fichero
+	private static void visualizarRegistro(String nombreArchivo, int idUsuario) throws IOException {
+		File file=new File(nombreArchivo);
+		RandomAccessFile archivo=new RandomAccessFile(file, "r");
+		
+		int id;
+		char[] nombre=new char[15];
+		char aux;
+		char[] localidad=new char[15];
+		int numEmple;
+		float salario;
+		
+		int tamaño=30+30+4+4+4;
+		int posicion=0;
+		
+		while(archivo.getFilePointer() != archivo.length()) {
+			archivo.seek(posicion);
+			// Leer id
+			id=archivo.readInt();
+			// Leer nombre
+			for (int i = 0; i < nombre.length; i++) {
+				aux=archivo.readChar();
+				nombre[i]=aux;
+			}
+			String nombreCompleto=new String(nombre);
+			// Leer localidad
+			for (int i = 0; i < localidad.length; i++) {
+				aux=archivo.readChar();
+				localidad[i]=aux;
+			}
+			String localidadCompleta=new String(localidad);
+			// Leer número empleados
+			numEmple=archivo.readInt();
+			// Leer salario
+			salario=archivo.readFloat();
+			
+			if(id == idUsuario) {
+				System.out.printf("\nID: %d   NOMBRE: %s   LOCALIDAD: %s   NÚMERO EMPLEADOS: %d   MEDIA SALARIO: %.2f€ \n\n", id, nombreCompleto, localidadCompleta, numEmple, salario);
+			}
+			
+			posicion+=tamaño;
+		}
 	}
 
 	// Leer todos los registros del fichero
@@ -67,7 +187,7 @@ public class EjercicioRandomAccess {
 			
 			System.out.printf("ID: %d   NOMBRE: %s   LOCALIDAD: %s   NÚMERO EMPLEADOS: %d   MEDIA SALARIO: %.2f€ \n", id, nombreCompleto, localidadCompleta, numEmple, salario);
 			
-			posicion=posicion+tamaño;
+			posicion+=tamaño;
 		}
 	}
 

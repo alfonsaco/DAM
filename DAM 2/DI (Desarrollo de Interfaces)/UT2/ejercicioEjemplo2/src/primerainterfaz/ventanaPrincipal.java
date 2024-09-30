@@ -27,12 +27,12 @@ public class ventanaPrincipal extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonPrincipal = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
-        jButtonPrincipal.setText("IR A DIÁLOGO");
-        jButtonPrincipal.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("IR AL DIÁLOGO");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonPrincipalActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -41,26 +41,27 @@ public class ventanaPrincipal extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(133, 133, 133)
-                .addComponent(jButtonPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addGap(113, 113, 113)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(129, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(124, 124, 124)
-                .addComponent(jButtonPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                .addGap(126, 126, 126))
+                .addGap(118, 118, 118)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(122, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrincipalActionPerformed
-        ventanaSecundaria ventanaSecundaria=new ventanaSecundaria(this,true);
-        ventanaSecundaria.setVisible(true);
-    }//GEN-LAST:event_jButtonPrincipalActionPerformed
-
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ventanaSecundaria pSec=new ventanaSecundaria(null,true);
+        pSec.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonPrincipal;
+    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }
