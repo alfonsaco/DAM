@@ -55,7 +55,8 @@ public class ventanaPrincipal extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrincipalActionPerformed
-        // TODO add your handling code here:
+        ventanaSecundaria ventanaSecundaria=new ventanaSecundaria(this,true);
+        ventanaSecundaria.setVisible(true);
     }//GEN-LAST:event_jButtonPrincipalActionPerformed
 
 
