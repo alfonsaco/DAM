@@ -31,22 +31,47 @@ public class EjercicioRandomAccess {
 				}
 				break;
 			case 3:
-				System.out.print("ID: ");
+				System.out.print("¿Que id tiene el registro que quieres insertar? ");
 				int codigo=sc.nextInt();
-				System.out.print("NOMBRE: ");
-				String nombre=sc.next();
-				System.out.print("LOCALIDAD: ");
-				String localidad=sc.next();
-				System.out.print("NÚMERO EMPLEADOS: ");
-				int numEmple=sc.nextInt();
-				System.out.print("SALARIO: ");
-				float salario=sc.nextFloat();
-				insertarRegistro(nombreArchivo, codigo, nombre, localidad, numEmple, salario);
+				if(consultarRegistro(nombreArchivo, codigo)) {
+					System.out.println("DEPARTAMENTO EXISTE");
+				} else {
+					System.out.println("DEPARTAMENTO NO EXISTE\n");
+					System.out.print("NOMBRE: ");
+					String nombre=sc.next();
+					System.out.print("LOCALIDAD: ");
+					String localidad=sc.next();
+					System.out.print("NÚMERO EMPLEADOS: ");
+					int numEmple=sc.nextInt();
+					System.out.print("SALARIO: ");
+					float salario=sc.nextFloat();
+					insertarRegistro(nombreArchivo, codigo, nombre, localidad, numEmple, salario);
+				}
 				break;
 			case 4:
 				System.out.print("¿Que registro quieres visualizar? ");
 				int codigo1=sc.nextInt();
 				visualizarRegistro(nombreArchivo, codigo1);
+				break;
+			case 5:
+				System.out.print("¿Que registro quieres modificar? ");
+				int idModificar=sc.nextInt();
+				if(consultarRegistro(nombreArchivo, idModificar)) {
+					modificarRegistro(idModificar, nombreArchivo);
+					System.out.println("REGISTRO MODIFICADO");
+				} else {
+					System.out.println("REGISTRO NO SE PUEDE MODIFICAR");
+				}
+				break;
+			case 6:
+				System.out.print("¿Que registro quieres borrar? ");
+				int idBorrar=sc.nextInt();
+				if(consultarRegistro(nombreArchivo, idBorrar)) {
+					borrarRegistro(idBorrar, nombreArchivo);
+					System.out.println("REGISTRO BORRADO");
+				} else {
+					System.out.println("REGISTRO NO EXISTE");
+				}
 				break;
 			case 7:
 				leerRegistros(nombreArchivo);
@@ -58,8 +83,149 @@ public class EjercicioRandomAccess {
 		} while(opcion!=8);
 	}
 
-	private static void insertarRegistro(String nombreArchivo, int codigo, String nombre2, String localidad2, int numEmple2, float salario2) {
+	// Método para borrar un registro
+	private static void borrarRegistro(int idBorrar, String nombreArchivo) throws IOException {
+		File file=new File(nombreArchivo);
+		RandomAccessFile archivo=new RandomAccessFile(file, "rw");
+		
+		int id;
+		char[] nombre=new char[15];
+		char aux;
+		char[] localidad=new char[15];
+		float salario;
+		int numEmple;
+		
+		StringBuffer buffer=null;
+		int posicion=0;
+		int tamaño=4+30+30+4+4;
+		
+		while(archivo.length() != archivo.getFilePointer()) {
+			archivo.seek(posicion);
+			
+			id=archivo.readInt();
+			
+			for (int i = 0; i < nombre.length; i++) {
+				aux=archivo.readChar();
+				nombre[i]=aux;
+			}
+			
+			for (int i = 0; i < localidad.length; i++) {
+				aux=archivo.readChar();
+				localidad[i]=aux;
+			}
+			
+			numEmple=archivo.readInt();
+			
+			salario=archivo.readFloat();
+			
+			if(id == idBorrar) {
+				archivo.seek(posicion);
+				
+				archivo.writeInt(0);
+				
+				buffer=new StringBuffer("");
+				buffer.setLength(15);
+				archivo.writeChars(buffer.toString());
+				
+				archivo.writeChars(buffer.toString());
+				
+				archivo.writeInt(0);
+				archivo.writeFloat(0);
+				break;
+			}
+			
+			posicion+=tamaño;
+		}
+	}
 
+	// Método para modificar un registro específico
+	private static void modificarRegistro(int idModificar, String nombreArchivo) throws IOException {
+		Scanner sc=new Scanner(System.in);
+		File file=new File(nombreArchivo);
+		RandomAccessFile archivo=new RandomAccessFile(file, "rw");
+		
+		System.out.print("NUEVA LOCALIDAD: ");
+		String nuevaLocalidad=sc.next();
+		System.out.print("NUEVO SALARIO: ");
+		float nuevoSalario=sc.nextFloat();
+		
+		int id;
+		char[] nombre=new char[15];
+		char aux;
+		char[] localidad=new char[15];
+		float salario;
+		int numEmple;
+		
+		StringBuffer buffer=null;
+		int posicion=0;
+		int tamaño=4+30+30+4+4;
+		
+		while(archivo.length() != archivo.getFilePointer()) {
+			archivo.seek(posicion);
+			
+			id=archivo.readInt();
+			
+			for (int i = 0; i < nombre.length; i++) {
+				aux=archivo.readChar();
+				nombre[i]=aux;
+			}
+			String nombreS=new String(nombre);
+			
+			for (int i = 0; i < localidad.length; i++) {
+				aux=archivo.readChar();
+				localidad[i]=aux;
+			}
+			String localidadS=new String(localidad);
+			
+			numEmple=archivo.readInt();
+			
+			salario=archivo.readFloat();
+			
+			if(idModificar == id) {
+				archivo.seek(posicion);
+				archivo.writeInt(id);
+				
+				buffer=new StringBuffer(nombreS);
+				buffer.setLength(15);
+				archivo.writeChars(buffer.toString());
+				// Insertar nueva localidad
+				buffer=new StringBuffer(nuevaLocalidad);
+				buffer.setLength(15);
+				archivo.writeChars(buffer.toString());
+				
+				archivo.writeInt(numEmple);
+				// Insertar nuevo salario
+				archivo.writeFloat(nuevoSalario);
+			}
+			
+			posicion+=tamaño;
+		}
+	}
+
+	private static void insertarRegistro(String nombreArchivo, int codigo, String nombre2, String localidad2, int numEmple2, float salario2) throws IOException {
+		File file=new File(nombreArchivo);
+		RandomAccessFile archivo=new RandomAccessFile(file, "rw");
+		
+		long tamaño=archivo.length();
+		StringBuffer buffer=null;
+		
+		archivo.seek(tamaño);
+		// imrpimir id
+		archivo.writeInt(codigo);
+		// escribir nombre
+		buffer=new StringBuffer(nombre2);
+		buffer.setLength(15);
+		archivo.writeChars(buffer.toString());
+		// escribir localidad
+		buffer=new StringBuffer(localidad2);
+		buffer.setLength(15);
+		archivo.writeChars(buffer.toString());
+		// escribir número empleados
+		archivo.writeInt(numEmple2);
+		// escribir salario
+		archivo.writeFloat(salario2);
+		
+		System.out.println("\nREGISTRO INSERTADO CORRECTAMENTE\n");
 	}
 
 	// Verificar si existe o no existe un registro especifico
