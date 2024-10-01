@@ -11,11 +11,13 @@ package ejercicioCambiarFondo;
  */
 public class PantallaSecundaria extends javax.swing.JDialog {
 
+    private PantallaPrincipal pantallaPrincipal;
     /**
      * Creates new form PantallaSecundaria
      */
     public PantallaSecundaria(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        pantallaPrincipal=(PantallaPrincipal)parent;
         initComponents();
     }
 
@@ -51,18 +53,33 @@ public class PantallaSecundaria extends javax.swing.JDialog {
         jButtonRojo.setForeground(new java.awt.Color(0, 0, 0));
         jButtonRojo.setText("ROJO");
         jButtonRojo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jButtonRojo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRojoActionPerformed(evt);
+            }
+        });
 
         jButtonVerde.setBackground(new java.awt.Color(153, 255, 102));
         jButtonVerde.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
         jButtonVerde.setForeground(new java.awt.Color(0, 0, 0));
         jButtonVerde.setText("VERDE");
         jButtonVerde.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jButtonVerde.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVerdeActionPerformed(evt);
+            }
+        });
 
         jButtonAzul.setBackground(new java.awt.Color(102, 153, 255));
         jButtonAzul.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jButtonAzul.setForeground(new java.awt.Color(0, 0, 0));
         jButtonAzul.setText("AZUL");
         jButtonAzul.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jButtonAzul.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAzulActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
         background.setLayout(backgroundLayout);
@@ -108,6 +125,24 @@ public class PantallaSecundaria extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonRojoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRojoActionPerformed
+        String valor="rojo";
+        pantallaPrincipal.establecerFondo(valor);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButtonRojoActionPerformed
+
+    private void jButtonVerdeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerdeActionPerformed
+        String valor="verde";
+        pantallaPrincipal.establecerFondo(valor);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButtonVerdeActionPerformed
+
+    private void jButtonAzulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAzulActionPerformed
+        String valor="azul";
+        pantallaPrincipal.establecerFondo(valor);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButtonAzulActionPerformed
 
     /**
      * @param args the command line arguments

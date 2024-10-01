@@ -5,19 +5,33 @@
  */
 package ejercicioCambiarFondo;
 
+import java.awt.Color;
+
 /**
  *
  * @author PROGRAMACION
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
 
+    public void establecerFondo(String valor) {
+        switch(valor) {
+            case "rojo":
+                fondoCambiar.setBackground(new Color(255,51,51));
+                break;
+            case "azul":
+                fondoCambiar.setBackground(new Color(102,153,255));
+                break;
+            case "verde":
+                fondoCambiar.setBackground(new Color(153,255,102));
+                break;
+        }
+    }
     /**
      * Creates new form PantallaPrincipal
      */
     public PantallaPrincipal() {
         initComponents();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,7 +42,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         background = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        fondoCambiar = new javax.swing.JPanel();
         jButtonSeleccionar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -36,7 +50,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         background.setBackground(new java.awt.Color(255, 255, 255));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        fondoCambiar.setBackground(new java.awt.Color(204, 204, 204));
 
         jButtonSeleccionar.setBackground(new java.awt.Color(51, 153, 255));
         jButtonSeleccionar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -50,24 +64,24 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout fondoCambiarLayout = new javax.swing.GroupLayout(fondoCambiar);
+        fondoCambiar.setLayout(fondoCambiarLayout);
+        fondoCambiarLayout.setHorizontalGroup(
+            fondoCambiarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fondoCambiarLayout.createSequentialGroup()
                 .addGap(107, 107, 107)
                 .addComponent(jButtonSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(109, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        fondoCambiarLayout.setVerticalGroup(
+            fondoCambiarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fondoCambiarLayout.createSequentialGroup()
                 .addGap(113, 113, 113)
                 .addComponent(jButtonSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(120, Short.MAX_VALUE))
         );
 
-        background.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
+        background.add(fondoCambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -125,7 +139,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel background;
+    private javax.swing.JPanel fondoCambiar;
     private javax.swing.JButton jButtonSeleccionar;
-    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
