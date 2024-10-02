@@ -89,8 +89,8 @@
 
     <TextView
         android:id="@+id/txtSecondsLeft"
-        android:layout_width="8dp"
-        android:layout_height="17dp"
+        android:layout_width="91dp"
+        android:layout_height="97dp"
         android:layout_marginTop="40dp"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
