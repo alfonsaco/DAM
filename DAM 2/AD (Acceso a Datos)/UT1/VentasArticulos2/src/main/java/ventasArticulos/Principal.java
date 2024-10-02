@@ -19,7 +19,24 @@ public class Principal {
 			
 			System.out.println("Número de articulos: "+articulos.size());
 			for (Articulo articulo : articulos) {
-				System.out.println("Código: "+articulo.getArtic().getDenominacion());
+				System.out.println("Código: "+articulo.getArtic().getCodigo()+"    Nombre: "+articulo.getArtic().getDenominacion()+"    PVP: "+articulo.getArtic().getPrecio());
+				System.out.printf("%10s %12s %25s %10s %10s\n","NUM VENTA","FECHA VENTA","NOM CLIENTE","UNIDADES","IMPORTE");
+				System.out.printf("%10s %12s %25s %10s %10s\n","----------","------------","-------------------------","----------","----------");
+				
+				ArrayList<Venta> ventas=articulo.getVentas();
+				int totalUnidades=0;
+				double totalImporte=0;
+				
+				for (Venta v : ventas) {
+					double importe=v.getUnidades()*articulo.getArtic().getPrecio();
+					totalUnidades+=v.getUnidades();
+					totalImporte+=importe;
+					
+					System.out.printf("%10s %12s %-25s %10s %10s\n",v.getNumventa(),v.getFecha(),v.getNombrecliente(),v.getUnidades(),importe);
+				}
+				System.out.printf("%10s %12s %25s %10s %10s\n","----------","------------","-------------------------","----------","----------");
+				System.out.printf("%10s %12s %25s %10s %10s\n","TOTALES: ","","",totalUnidades,totalImporte);
+
 			}
 			
 		} catch (Exception e) {
