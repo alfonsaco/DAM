@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     TextView txtSecondsLeft;
     ConstraintLayout constraintLayout;
     TextView txtSeriesLeft;
+    TextView txtState;
     boolean state=true;
 
     @Override
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         etxtRest=findViewById(R.id.etxtRest);
         constraintLayout=findViewById(R.id.constraintLayout);
         txtSeriesLeft=findViewById(R.id.txtSeriesLeft);
+        txtState=findViewById(R.id.txtState);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.constraintLayout), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -118,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onTick(long l) {
                     txtSecondsLeft.setText(String.valueOf(l/1000));
+                    txtState.setText("WORK/REST");
                 }
 
                 @Override
@@ -145,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
             public void onTick(long l) {
                 txtSecondsLeft.setText(String.valueOf(l/1000));
                 txtSeriesLeft.setText(String.valueOf(sets-1));
+                txtState.setText("WORK");
             }
 
             @Override

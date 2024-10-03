@@ -82,7 +82,7 @@ public class Principal {
 				
 				ArrayList<XMLalumnos.Nota> notas=listaNotas(numAlum);
 				
-				XMLalumnos.Alumno alu=new XMLalumnos.Alumno(numAlum,nombreS,localidadS,numAsig,media,notas);
+				XMLalumnos.Alumno alu=new XMLalumnos.Alumno(numAlum,nombreS.trim(),localidadS.trim(),numAsig,media,notas);
 				alumnos.add(alu);
 				
 				posicion+=tamaño;
@@ -137,7 +137,7 @@ public class Principal {
 				nota=archivo.readFloat();
 				
 				if(codigo == numAlum) {
-					XMLalumnos.Nota no=new XMLalumnos.Nota(asignaturaS,nota);
+					XMLalumnos.Nota no=new XMLalumnos.Nota(asignaturaS.trim(),nota);
 					notas.add(no);
 				}
 				

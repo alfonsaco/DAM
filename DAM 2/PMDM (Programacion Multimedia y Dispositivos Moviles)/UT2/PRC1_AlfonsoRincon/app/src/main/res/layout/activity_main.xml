@@ -89,11 +89,11 @@
 
     <TextView
         android:id="@+id/txtSecondsLeft"
-        android:layout_width="91dp"
-        android:layout_height="97dp"
-        android:layout_marginTop="40dp"
-        android:textSize="55sp"
+        android:layout_width="92dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="30dp"
         android:gravity="center"
+        android:textSize="55sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtState"
