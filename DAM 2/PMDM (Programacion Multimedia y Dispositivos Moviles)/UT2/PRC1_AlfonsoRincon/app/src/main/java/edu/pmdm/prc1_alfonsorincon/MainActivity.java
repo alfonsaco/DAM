@@ -58,13 +58,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(!etxtRest.getText().toString().isEmpty() && !etxtSets.getText().toString().isEmpty() && !etxtWork.getText().toString().isEmpty() && state==true) {
-                    state=false;
+                    if(Integer.parseInt(etxtRest.getText().toString())>0 && Integer.parseInt(etxtSets.getText().toString())>0 && Integer.parseInt(etxtWork.getText().toString())>0) {
+                        state=false;
 
-                    int sets=Integer.parseInt(etxtSets.getText().toString());
-                    int work=Integer.parseInt(etxtWork.getText().toString());
-                    int rest=Integer.parseInt(etxtRest.getText().toString());
+                        int sets=Integer.parseInt(etxtSets.getText().toString());
+                        int work=Integer.parseInt(etxtWork.getText().toString());
+                        int rest=Integer.parseInt(etxtRest.getText().toString());
 
-                    exerciseCounter(work, rest, sets);
+                        exerciseCounter(work, rest, sets);
+                    } else {
+                        String titleFalse="NÚMROS INVÁLIDOS";
+                        String textFalse="Uno o más números introducidos no son válidos. Deben ser mayores de 0";
+                        mostrarAlerta(titleFalse, textFalse);
+                    }
 
                 } else {
                     if(state==false) {
@@ -108,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         if(finalCont > 0) {
             constraintLayout.setBackgroundColor(Color.rgb(255, 129, 110));
 
-            timer=new CountDownTimer(rest, 1000) {
+            timer=new CountDownTimer(rest*1000, 1000) {
                 @Override
                 public void onTick(long l) {
                     txtSecondsLeft.setText(String.valueOf(l/1000));
@@ -137,8 +143,8 @@ public class MainActivity extends AppCompatActivity {
         timer=new CountDownTimer(totalFinal, 1000) {
             @Override
             public void onTick(long l) {
-                txtSecondsLeft.setText(String.valueOf((l/1000)+1));
-                txtSeriesLeft.setText(String.valueOf(sets));
+                txtSecondsLeft.setText(String.valueOf(l/1000));
+                txtSeriesLeft.setText(String.valueOf(sets-1));
             }
 
             @Override
