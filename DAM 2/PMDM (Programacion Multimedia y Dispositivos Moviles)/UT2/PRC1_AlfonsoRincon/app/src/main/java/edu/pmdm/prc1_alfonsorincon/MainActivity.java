@@ -89,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-
     }
 
     public void mostrarAlerta(String title, String text) {
