@@ -66,9 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 if(!etxtRest.getText().toString().isEmpty() && !etxtSets.getText().toString().isEmpty() && !etxtWork.getText().toString().isEmpty() && state==true) {
                     if(Integer.parseInt(etxtRest.getText().toString())>0 && Integer.parseInt(etxtSets.getText().toString())>0 && Integer.parseInt(etxtWork.getText().toString())>0) {
                         if(Integer.parseInt(etxtRest.getText().toString())>1000 || Integer.parseInt(etxtSets.getText().toString())>100 || Integer.parseInt(etxtWork.getText().toString())>1000) {
-                            String titleFalse="VALORES DEMASIADO GRANDES";
-                            String textFalse="Los valores introducidos son muy grandes. El número máximo de Sets es 100, y el máximo de Work y Rest es 1000";
-                            mostrarAlerta(titleFalse, textFalse);
+                            mostrarAlerta(R.string.dialog_title_highValues, R.string.dialog_text_highValues);
                         } else {
                             state=false;
 
@@ -79,20 +77,14 @@ public class MainActivity extends AppCompatActivity {
                             exerciseCounter(work, rest, sets);
                         }
                     } else {
-                        String titleFalse="NÚMROS INVÁLIDOS";
-                        String textFalse="Uno o más números introducidos no son válidos. Deben ser mayores de 0";
-                        mostrarAlerta(titleFalse, textFalse);
+                        mostrarAlerta(R.string.dialog_title_invalidValues, R.string.dialog_text_invalidValues);
                     }
 
                 } else {
                     if(state==false) {
-                        String titleFalse="ESPERE";
-                        String textFalse="ESPERE A QUE EL PROGRAMA TERMINE";
-                        mostrarAlerta(titleFalse, textFalse);
+                        mostrarAlerta(R.string.dialog_title_wait, R.string.dialog_text_wait);
                     } else {
-                        String titleWhiteSpaces="HAY CAMPOS SIN RELLENAR";
-                        String textWhiteSpaces="Debe rellenar todos los campos pra comenzar el programa";
-                        mostrarAlerta(titleWhiteSpaces,textWhiteSpaces);
+                        mostrarAlerta(R.string.dialog_title_empty,R.string.dialog_text_empty);
                     }
                 }
             }
@@ -101,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void mostrarAlerta(String title, String text) {
+    public void mostrarAlerta(int title, int text) {
         // Se mostrará un alerta, en caso de que haya campos sin rellenar
         AlertDialog alerta=new AlertDialog.Builder(MainActivity.this)
                 .setTitle(title)
