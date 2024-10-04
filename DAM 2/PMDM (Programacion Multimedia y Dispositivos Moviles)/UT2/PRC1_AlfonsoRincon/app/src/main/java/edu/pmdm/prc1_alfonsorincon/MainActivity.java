@@ -65,13 +65,19 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(!etxtRest.getText().toString().isEmpty() && !etxtSets.getText().toString().isEmpty() && !etxtWork.getText().toString().isEmpty() && state==true) {
                     if(Integer.parseInt(etxtRest.getText().toString())>0 && Integer.parseInt(etxtSets.getText().toString())>0 && Integer.parseInt(etxtWork.getText().toString())>0) {
-                        state=false;
+                        if(Integer.parseInt(etxtRest.getText().toString())>1000 || Integer.parseInt(etxtSets.getText().toString())>100 || Integer.parseInt(etxtWork.getText().toString())>1000) {
+                            String titleFalse="VALORES DEMASIADO GRANDES";
+                            String textFalse="Los valores introducidos son muy grandes. El número máximo de Sets es 100, y el máximo de Work y Rest es 1000";
+                            mostrarAlerta(titleFalse, textFalse);
+                        } else {
+                            state=false;
 
-                        int sets=Integer.parseInt(etxtSets.getText().toString());
-                        int work=Integer.parseInt(etxtWork.getText().toString());
-                        int rest=Integer.parseInt(etxtRest.getText().toString());
+                            int sets=Integer.parseInt(etxtSets.getText().toString());
+                            int work=Integer.parseInt(etxtWork.getText().toString());
+                            int rest=Integer.parseInt(etxtRest.getText().toString());
 
-                        exerciseCounter(work, rest, sets);
+                            exerciseCounter(work, rest, sets);
+                        }
                     } else {
                         String titleFalse="NÚMROS INVÁLIDOS";
                         String textFalse="Uno o más números introducidos no son válidos. Deben ser mayores de 0";
@@ -176,12 +182,14 @@ public class MainActivity extends AppCompatActivity {
         etxtSets.setTextColor(color);
         etxtWork.setTextColor(color);
 
-        // Variables para el botón
+        // Variables para el botón. Aunque la función no sea muy recomendada, es la única manera de poder utilizar las variables del método
+        // y cambiar los colores del .xml
         int btnStroke=getResources().getIdentifier("button_"+value,"color",getPackageName());
         int btnBackground=getResources().getIdentifier("btnBackground_"+value, "color", getPackageName());
 
         GradientDrawable btnColours=(GradientDrawable)btnPlay.getBackground();
         btnColours.setColor(ContextCompat.getColor(this, btnBackground));
+        // El 10 es equivalente al grosor del borde del botón
         btnColours.setStroke(10,ContextCompat.getColor(this, btnStroke));
     }
 }

@@ -77,7 +77,7 @@
 
     <TextView
         android:id="@+id/txtSeriesLeft"
-        android:layout_width="28dp"
+        android:layout_width="wrap_content"
         android:layout_height="49dp"
         android:layout_marginTop="8dp"
         android:textColor="#737373"
@@ -104,7 +104,7 @@
 
     <TextView
         android:id="@+id/txtSecondsLeft"
-        android:layout_width="93dp"
+        android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_marginTop="8dp"
         android:gravity="center"
