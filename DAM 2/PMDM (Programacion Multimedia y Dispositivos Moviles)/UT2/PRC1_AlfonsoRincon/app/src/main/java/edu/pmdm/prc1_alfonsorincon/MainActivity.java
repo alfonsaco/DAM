@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -156,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
+                playSound();
                 restCounter(work, rest, sets);
             }
         }.start();
@@ -183,5 +185,11 @@ public class MainActivity extends AppCompatActivity {
         btnColours.setColor(ContextCompat.getColor(this, btnBackground));
         // El 10 es equivalente al grosor del borde del botón
         btnColours.setStroke(10,ContextCompat.getColor(this, btnStroke));
+    }
+
+    public void playSound() {
+        MediaPlayer sound=MediaPlayer.create(
+                getApplicationContext(), R.raw.beep);
+        sound.start();
     }
 }
