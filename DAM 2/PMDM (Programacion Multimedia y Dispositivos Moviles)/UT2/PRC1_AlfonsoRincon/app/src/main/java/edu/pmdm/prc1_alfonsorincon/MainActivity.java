@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -113,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         int finalCont = cont;
 
         if(finalCont > 0) {
-            constraintLayout.setBackgroundColor(Color.rgb(255, 129, 110));
+            cambiarColor(R.color.background_red);
 
             timer=new CountDownTimer(rest*1000, 1000) {
                 @Override
@@ -138,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
     // Función para ejecutar el contador de ejercicio, y cambiar el fondo a verde.
     // Se pondrá fuera del onCreate, ya que no se pueden definir métodos dentro de otro
     private void exerciseCounter(int work, int rest, int sets) {
-        constraintLayout.setBackgroundColor(Color.rgb(144, 255, 110));
+        cambiarColor(R.color.background_green);
 
         // Tiempo en milisegundos
         int totalFinal=work*1000;
@@ -157,4 +158,7 @@ public class MainActivity extends AppCompatActivity {
         }.start();
     }
 
+    private void cambiarColor(int colorFondo) {
+        constraintLayout.setBackgroundColor(ContextCompat.getColor(this, colorFondo));
+    }
 }
