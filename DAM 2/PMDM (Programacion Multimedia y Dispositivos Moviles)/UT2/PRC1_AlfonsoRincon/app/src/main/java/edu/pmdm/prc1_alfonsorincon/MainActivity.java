@@ -3,6 +3,7 @@ package edu.pmdm.prc1_alfonsorincon;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     ConstraintLayout constraintLayout;
     TextView txtSeriesLeft;
     TextView txtState;
+    TextView txtSeriesLeftMessage;
     boolean state=true;
 
     @Override
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         constraintLayout=findViewById(R.id.constraintLayout);
         txtSeriesLeft=findViewById(R.id.txtSeriesLeft);
         txtState=findViewById(R.id.txtState);
+        txtSeriesLeftMessage=findViewById(R.id.txtSeriesLeftMessage);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.constraintLayout), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -114,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         int finalCont = cont;
 
         if(finalCont > 0) {
-            cambiarColor(R.color.background_red);
+            cambiarColor(R.color.background_red, R.color.text_red, "red");
 
             timer=new CountDownTimer(rest*1000, 1000) {
                 @Override
@@ -129,7 +132,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             }.start();
         } else {
-            constraintLayout.setBackgroundColor(Color.rgb(255, 255, 255));
+            // Restaurar colores iniciales
+            cambiarColor(R.color.background_grey, R.color.text_grey, "grey");
+
             txtSeriesLeft.setText(String.valueOf(finalCont));
             txtSecondsLeft.setText(String.valueOf(finalCont));
             state=true;
@@ -139,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
     // Función para ejecutar el contador de ejercicio, y cambiar el fondo a verde.
     // Se pondrá fuera del onCreate, ya que no se pueden definir métodos dentro de otro
     private void exerciseCounter(int work, int rest, int sets) {
-        cambiarColor(R.color.background_green);
+        cambiarColor(R.color.background_green, R.color.text_green, "green");
 
         // Tiempo en milisegundos
         int totalFinal=work*1000;
@@ -158,7 +163,25 @@ public class MainActivity extends AppCompatActivity {
         }.start();
     }
 
-    private void cambiarColor(int colorFondo) {
-        constraintLayout.setBackgroundColor(ContextCompat.getColor(this, colorFondo));
+    private void cambiarColor(int bakgroundColor, int textColor, String value) {
+        constraintLayout.setBackgroundColor(ContextCompat.getColor(this, bakgroundColor));
+
+        // Obtenemos el valor del color para usarlo en los textos
+        int color=ContextCompat.getColor(this, textColor);
+        txtSecondsLeft.setTextColor(color);
+        txtState.setTextColor(color);
+        txtSeriesLeft.setTextColor(color);
+        txtSeriesLeftMessage.setTextColor(color);
+        etxtRest.setTextColor(color);
+        etxtSets.setTextColor(color);
+        etxtWork.setTextColor(color);
+
+        // Variables para el botón
+        int btnStroke=getResources().getIdentifier("button_"+value,"color",getPackageName());
+        int btnBackground=getResources().getIdentifier("btnBackground_"+value, "color", getPackageName());
+
+        GradientDrawable btnColours=(GradientDrawable)btnPlay.getBackground();
+        btnColours.setColor(ContextCompat.getColor(this, btnBackground));
+        btnColours.setStroke(10,ContextCompat.getColor(this, btnStroke));
     }
 }
