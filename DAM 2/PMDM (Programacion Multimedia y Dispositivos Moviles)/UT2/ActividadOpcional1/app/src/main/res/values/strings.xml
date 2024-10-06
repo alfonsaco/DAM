@@ -12,4 +12,17 @@
     <string name="texto_gallo">Imagen del gallo, del Horóscopo chino</string>
     <string name="texto_perro">Imagen del perro, del Horóscopo chino</string>
     <string name="texto_cerdo">Imagen del cerdo, del Horóscopo chino</string>
+    <!--Descripciones de cada imagen-->
+    <string name="descripcion_rata">Las personas nacidas en el año de la Rata son inteligentes, ingeniosas y adaptables. Son buenos comunicadores y suelen ser encantadores, aunque a veces pueden ser oportunistas.</string>
+    <string name="descripcion_toro">Los nacidos bajo el signo del Buey son trabajadores, decididos y pacientes. Son personas tranquilas y estables, confiables y persistentes, aunque a veces pueden ser un poco tercos.</string>
+    <string name="descripcion_tigre">El Tigre representa el coraje y la pasión. Los nacidos bajo este signo son valientes, competitivos y seguros de sí mismos. A veces pueden ser impulsivos, pero también son protectores y generosos.</string>
+    <string name="descripcion_conejo">Las personas nacidas bajo el signo del Conejo son delicadas, amables y muy sensibles. Son tranquilas y atentas a los detalles, y el Conejo es considerado el signo de la elegancia y la diplomacia.</string>
+    <string name="descripcion_dragon">Los Dragones son enérgicos, ambiciosos y carismáticos. Son líderes naturales y suelen tener gran confianza en sí mismos. En la cultura china, el Dragón es un símbolo de poder y fortuna.</string>
+    <string name="descripcion_serpiente">Las Serpientes son pensadoras profundas, inteligentes y estratégicas. Son reservadas, misteriosas y prefieren actuar con precaución. También se consideran sabias y reflexivas.</string>
+    <string name="descripcion_caballo">Los nacidos en el año del Caballo son libres y enérgicos. Disfrutan de la independencia y la aventura, son entusiastas y trabajadoras, aunque a veces pueden ser inquietos o impacientes.</string>
+    <string name="descripcion_cabra">Las personas nacidas bajo este signo son creativas, amables y sensibles. La Cabra representa la tranquilidad y la armonía. Aprecian los ambientes pacíficos y tienden a ser artísticas.</string>
+    <string name="descripcion_mono">Los Monos son astutos, ingeniosos y curiosos. Son grandes solucionadores de problemas y se adaptan rápidamente. Tienen un buen sentido del humor, pero pueden ser traviesos en ocasiones.</string>
+    <string name="descripcion_gallo">El Gallo es un perfeccionista. Las personas bajo este signo son meticulosas, observadoras y trabajadoras. Son francas y directas, aunque a veces pueden parecer arrogantes.</string>
+    <string name="descripcion_perro">Las personas del signo del Perro son leales, honestas y sinceras. Son amigos confiables y protectores de sus seres queridos. Pueden ser reservados con extraños, pero muy cariñosos con los suyos.</string>
+    <string name="descripcion_cerdo">El Cerdo es símbolo de sinceridad y bondad. Las personas nacidas bajo este signo son generosas y disfrutan de la vida. Son optimistas, aunque a veces pueden ser un poco ingenuas.</string>
 </resources>
