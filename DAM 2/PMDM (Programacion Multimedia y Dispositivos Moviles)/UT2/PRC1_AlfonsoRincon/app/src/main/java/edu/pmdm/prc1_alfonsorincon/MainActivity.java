@@ -122,21 +122,25 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onTick(long l) {
                     txtSecondsLeft.setText(String.valueOf(l/1000));
-                    txtState.setText("WORK/REST");
+                    txtState.setText("REST");
                 }
 
                 @Override
                 public void onFinish() {
+                    playSoundBeep();
                     exerciseCounter(work, rest, finalCont);
                 }
             }.start();
         } else {
             // Restaurar colores iniciales
             cambiarColor(R.color.background_grey, R.color.text_grey, "grey");
-
+            // Cambiar el texto de los TextView
             txtSeriesLeft.setText(String.valueOf(finalCont));
             txtSecondsLeft.setText(String.valueOf(finalCont));
+            txtState.setText("FINISHED");
+            // Ponemos el boolean a true, para que podamos volver a ejecutar la función
             state=true;
+            playSoundGong();
         }
     }
 
@@ -157,7 +161,10 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                playSound();
+                // Reproducir el sonido beep, siempre que no se esté en la última serie
+                if((sets-1) != 0) {
+                    playSoundBeep();
+                }
                 restCounter(work, rest, sets);
             }
         }.start();
@@ -187,9 +194,14 @@ public class MainActivity extends AppCompatActivity {
         btnColours.setStroke(10,ContextCompat.getColor(this, btnStroke));
     }
 
-    public void playSound() {
+    public void playSoundBeep() {
         MediaPlayer sound=MediaPlayer.create(
                 getApplicationContext(), R.raw.beep);
+        sound.start();
+    }
+    public void playSoundGong() {
+        MediaPlayer sound=MediaPlayer.create(
+                getApplicationContext(), R.raw.gong);
         sound.start();
     }
 }
