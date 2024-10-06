@@ -16,18 +16,18 @@
         android:elevation="8dp"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnToro"
+        app:layout_constraintStart_toEndOf="@+id/btnBuey"
         android:contentDescription="@string/texto_tigre"
-        app:layout_constraintTop_toTopOf="@+id/btnToro"
+        app:layout_constraintTop_toTopOf="@+id/btnBuey"
         app:srcCompat="@drawable/tigre" />
 
     <ImageButton
-        android:id="@+id/btnToro"
+        android:id="@+id/btnBuey"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="24dp"
         android:background="#FFF"
-        android:contentDescription="@string/texto_toro"
+        android:contentDescription="@string/texto_buey"
         android:elevation="8dp"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,9 +43,9 @@
         android:elevation="8dp"
         android:contentDescription="@string/texto_rata"
         android:scaleType="fitCenter"
-        app:layout_constraintEnd_toStartOf="@+id/btnToro"
+        app:layout_constraintEnd_toStartOf="@+id/btnBuey"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btnToro"
+        app:layout_constraintTop_toTopOf="@+id/btnBuey"
         app:srcCompat="@drawable/rata" />
 
     <ImageButton
@@ -72,7 +72,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnToro"
+        app:layout_constraintTop_toBottomOf="@+id/btnBuey"
         app:srcCompat="@drawable/dragon" />
 
     <ImageButton

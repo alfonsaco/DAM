@@ -14,7 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
 
     ImageButton btnRat;
-    ImageButton btnToro;
+    ImageButton btnBuey;
     ImageButton btnCerdo;
     ImageButton btnMono;
     ImageButton btnCabra;
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnRat=findViewById(R.id.btnRat);
         btnCaballo=findViewById(R.id.btnCaballo);
-        btnToro = findViewById(R.id.btnToro);
+        btnBuey = findViewById(R.id.btnBuey);
         btnCerdo = findViewById(R.id.btnCerdo);
         btnMono = findViewById(R.id.btnMono);
         btnCabra = findViewById(R.id.btnCabra);
@@ -60,10 +60,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnToro.setOnClickListener(new View.OnClickListener() {
+        btnBuey.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                siguientePantalla("Toro", R.string.descripcion_toro, R.drawable.toro);
+                siguientePantalla("Buey", R.string.descripcion_buey, R.drawable.toro);
             }
         });
 
