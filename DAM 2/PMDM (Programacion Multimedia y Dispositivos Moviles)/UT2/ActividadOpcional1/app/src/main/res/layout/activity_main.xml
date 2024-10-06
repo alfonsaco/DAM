@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="#F6F6F6"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageButton
+        android:id="@+id/btnTigre"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#FFF"
+        android:elevation="8dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnToro"
+        android:contentDescription="@string/texto_tigre"
+        app:layout_constraintTop_toTopOf="@+id/btnToro"
+        app:srcCompat="@drawable/tigre" />
+
+    <ImageButton
+        android:id="@+id/btnToro"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="32dp"
+        android:background="#FFF"
+        android:contentDescription="@string/texto_toro"
+        android:elevation="8dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:srcCompat="@drawable/toro" />
+
+    <ImageButton
+        android:id="@+id/btnRat"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#FFF"
+        android:elevation="8dp"
+        android:contentDescription="@string/texto_rata"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toStartOf="@+id/btnToro"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnToro"
+        app:srcCompat="@drawable/rata" />
+
+    <ImageButton
+        android:id="@+id/btnConejo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#FFF"
+        android:elevation="8dp"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/texto_conejo"
+        app:layout_constraintEnd_toStartOf="@+id/btnDragon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnDragon"
+        app:srcCompat="@drawable/conejo" />
+
+    <ImageButton
+        android:id="@+id/btnDragon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="32dp"
+        android:background="#FFF"
+        android:elevation="8dp"
+        android:contentDescription="@string/texto_dragon"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnToro"
+        app:srcCompat="@drawable/dragon" />
+
+    <ImageButton
+        android:id="@+id/btnSerpiente"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#FFF"
+        android:elevation="8dp"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/texto_serpiente"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnDragon"
+        app:layout_constraintTop_toTopOf="@+id/btnDragon"
+        app:srcCompat="@drawable/serpiente" />
+
+    <ImageButton
+        android:id="@+id/btnCaballo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#FFF"
+        android:elevation="8dp"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/texto_caballo"
+        app:layout_constraintEnd_toStartOf="@+id/btnCabra"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnCabra"
+        app:srcCompat="@drawable/caballo" />
+
+    <ImageButton
+        android:id="@+id/btnCabra"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="32dp"
+        android:background="#FFF"
+        android:elevation="8dp"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/texto_cabra"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDragon"
+        app:srcCompat="@drawable/cabra" />
+
+    <ImageButton
+        android:id="@+id/btnMono"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#FFF"
+        android:elevation="8dp"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/texto_mono"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnCabra"
+        app:layout_constraintTop_toTopOf="@+id/btnCabra"
+        app:srcCompat="@drawable/mono" />
+
+    <ImageButton
+        android:id="@+id/btnGallo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#FFF"
+        android:elevation="8dp"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/texto_gallo"
+        app:layout_constraintEnd_toStartOf="@+id/btnPerro"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnPerro"
+        app:srcCompat="@drawable/gallo" />
+
+    <ImageButton
+        android:id="@+id/btnPerro"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="32dp"
+        android:background="#FFF"
+        android:elevation="8dp"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/texto_perro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCabra"
+        app:srcCompat="@drawable/perro" />
+
+    <ImageButton
+        android:id="@+id/btnCerdo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#FFF"
+        android:elevation="8dp"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/texto_cerdo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnPerro"
+        app:layout_constraintTop_toTopOf="@+id/btnPerro"
+        app:srcCompat="@drawable/cerdo" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:textColor="#636363"
+        android:textStyle="bold|italic"
+        android:text="Presiona un botón"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

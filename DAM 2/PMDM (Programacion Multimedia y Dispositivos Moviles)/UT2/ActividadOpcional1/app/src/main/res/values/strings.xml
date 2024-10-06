@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ActividadOpcional1</string>
+    <string name="texto_rata">Imagen de la rata, del Horóscopo chino</string>
+    <string name="texto_toro">Imagen del toro, del Horóscopo chino</string>
+    <string name="texto_tigre">Imagen del tigre, del Horóscopo chino</string>
+    <string name="texto_conejo">Imagen del conejo, del Horóscopo chino</string>
+    <string name="texto_dragon">Imagen del dragon, del Horóscopo chino</string>
+    <string name="texto_serpiente">Imagen de la serpiente, del Horóscopo chino</string>
+    <string name="texto_caballo">Imagen del caballo, del Horóscopo chino</string>
+    <string name="texto_cabra">Imagen de la cabra, del Horóscopo chino</string>
+    <string name="texto_mono">Imagen del mono, del Horóscopo chino</string>
+    <string name="texto_gallo">Imagen del gallo, del Horóscopo chino</string>
+    <string name="texto_perro">Imagen del perro, del Horóscopo chino</string>
+    <string name="texto_cerdo">Imagen del cerdo, del Horóscopo chino</string>
+</resources>
