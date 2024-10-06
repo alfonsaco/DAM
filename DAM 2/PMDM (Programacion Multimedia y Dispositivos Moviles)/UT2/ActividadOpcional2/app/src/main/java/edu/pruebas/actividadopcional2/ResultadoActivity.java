@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class ResultadoActivity extends AppCompatActivity {
 
     TextView txtInsertarNombre;
+    TextView txtIRPF;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +22,13 @@ public class ResultadoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_resultado);
 
         txtInsertarNombre=findViewById(R.id.txtInsertarNombre);
+        txtIRPF=findViewById(R.id.txtIRPF);
+
         // Variables Intent
         Intent intent=getIntent();
         String nombre=intent.getStringExtra("nombre");
         String apellidos=intent.getStringExtra("apellidos");
+        double irpf=intent.getDoubleExtra("irpf", -1);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -34,5 +38,6 @@ public class ResultadoActivity extends AppCompatActivity {
 
         // Insertar los datos
         txtInsertarNombre.setText(nombre+" "+apellidos);
+        txtIRPF.setText(String.valueOf(irpf));
     }
 }
