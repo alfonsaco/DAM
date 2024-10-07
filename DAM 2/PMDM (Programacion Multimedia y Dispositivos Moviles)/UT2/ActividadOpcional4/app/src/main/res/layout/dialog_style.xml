@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        android:orientation="vertical"
+        android:padding="20dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="Seleccione un color" />
+
+        <TextView
+            android:id="@+id/txtRojo"
+            android:layout_width="match_parent"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+        <SeekBar
+            android:id="@+id/seekRojo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/txtVerde"
+            android:layout_width="match_parent"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+        <SeekBar
+            android:id="@+id/seekVerde"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/txtAzul"
+            android:layout_width="match_parent"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+        <SeekBar
+            android:id="@+id/seekAzul"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:id="@+id/viewColor"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp" />
+
+        <Button
+            android:id="@+id/btnConfirmar"
+            android:layout_width="200dp"
+            android:layout_gravity="end"
+            android:textColor="#6A07DE"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:backgroundTint="#00FFFFFF"
+            android:layout_height="wrap_content"
+            android:text="CONFIRMAR" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
