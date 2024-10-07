@@ -36,8 +36,8 @@ public class ResultadoActivity extends AppCompatActivity {
             return insets;
         });
 
-        // Insertar los datos
+        // Resultado final
         txtInsertarNombre.setText(nombre+" "+apellidos);
-        txtIRPF.setText(String.valueOf(irpf));
+        txtIRPF.setText(String.valueOf(irpf+"€"));
     }
 }
