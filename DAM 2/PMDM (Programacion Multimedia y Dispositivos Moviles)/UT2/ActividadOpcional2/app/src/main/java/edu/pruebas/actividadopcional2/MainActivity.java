@@ -118,28 +118,32 @@ public class MainActivity extends AppCompatActivity {
 
     // Método para calcular el IRPF por tramos
     private double calcularIRPFtramos(double baseImponible) {
-        double restante=0;
+        double restante=baseImponible;
         double total=0;
 
-        if(baseImponible-12450 > 0) {
+        if(restante > 0) {
             total=12450 * 0.19;
-            restante=baseImponible - 12450;
+            restante-=12450;
         } else {
-            return restante * 0.19;
+            return baseImponible * 0.19;
         }
 
-        if(restante-7750 > 0) {
+        if(restante > 0) {
             total+=(7750 * 0.24);
             restante-=7750;
         } else {
-            return total + (restante * 0.24);
+            return total + (7750 * 0.24);
         }
 
-        if(restante-5895 > 0) {
-            total+=(5895 * 0.3);
+        if(restante > 0) {
+            total+=5895 * 0.3;
             restante-=5895;
         } else {
-            return total + (restante * 0.3);
+            return total + (5895 * 0.3);
+        }
+
+        if (restante > 0) {
+            total += restante * 0.37;
         }
 
         return total;
