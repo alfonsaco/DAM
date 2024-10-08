@@ -1,81 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="729dp"
+        android:layout_width="401dp"
+        android:layout_height="383dp"
         android:orientation="vertical"
-        android:padding="20dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
+        android:paddingTop="10dp"
+        android:paddingRight="35dp"
+        android:paddingLeft="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
+            android:text="Seleccione un color"
             android:textSize="20sp"
-            android:text="Seleccione un color" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txtRojo"
             android:layout_width="match_parent"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="10dp"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:text="Rojo = 0" />
 
         <SeekBar
             android:id="@+id/seekRojo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:max="255" />
 
         <TextView
             android:id="@+id/txtVerde"
             android:layout_width="match_parent"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="10dp"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:text="Verde = 0" />
 
         <SeekBar
             android:id="@+id/seekVerde"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:max="255" />
 
         <TextView
             android:id="@+id/txtAzul"
             android:layout_width="match_parent"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="10dp"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:text="Azul = 0" />
 
         <SeekBar
             android:id="@+id/seekAzul"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:max="255" />
 
         <View
             android:id="@+id/viewColor"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="60dp" />
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp" />
 
         <Button
             android:id="@+id/btnConfirmar"
-            android:layout_width="200dp"
-            android:layout_gravity="end"
-            android:textColor="#6A07DE"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:backgroundTint="#00FFFFFF"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CONFIRMAR" />
+            android:layout_gravity="end"
+            android:backgroundTint="#00FFFFFF"
+            android:text="CONFIRMAR"
+            android:textColor="#6A07DE"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

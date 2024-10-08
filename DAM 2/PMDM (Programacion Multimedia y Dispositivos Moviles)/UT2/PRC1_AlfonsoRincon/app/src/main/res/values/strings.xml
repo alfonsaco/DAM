@@ -8,5 +8,5 @@
     <string name="dialog_title_wait">ESPERE</string>
     <string name="dialog_text_wait">ESPERE A QUE EL PROGRAMA TERMINE</string>
     <string name="dialog_title_empty">HAY CAMPOS SIN RELLENAR</string>
-    <string name="dialog_text_empty">Debe rellenar todos los campos pra comenzar el programa</string>
+    <string name="dialog_text_empty">Debe rellenar todos los campos para comenzar el programa</string>
 </resources>
