@@ -10,7 +10,7 @@ import java.awt.event.MouseEvent;
 
 /**
  *
- * @author PROGRAMACION
+ * @author Alfonso
  */
 public class GenerarNumeros extends javax.swing.JFrame {
 
@@ -19,9 +19,9 @@ public class GenerarNumeros extends javax.swing.JFrame {
      */
     public GenerarNumeros() {
         initComponents();
-            jButtonGenerar.setContentAreaFilled(false);
-            jButtonGenerar.setFocusPainted(false);
-
+        // Para evitar que el botón tenga otro color por defecto
+        jButtonGenerar.setContentAreaFilled(false);
+        jButtonGenerar.setFocusPainted(false);
     }
 
     /**
@@ -140,7 +140,7 @@ public class GenerarNumeros extends javax.swing.JFrame {
 
     private void jButtonGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerarActionPerformed
         int numeroRandom=0;
-        
+        // Distintas opciones para cada RadioButton
         if(jRadioButton0a100.isSelected()) {
             numeroRandom=(int) Math.round(1+Math.random()*99);
         } else if(jRadioButton100a200.isSelected()) {
@@ -150,7 +150,7 @@ public class GenerarNumeros extends javax.swing.JFrame {
         } else {
                numeroRandom=0; 
         }
-        
+        // Imprimir el resultado en el jLabel
         jLabelResultado.setText(Integer.toString(numeroRandom));
     }//GEN-LAST:event_jButtonGenerarActionPerformed
 
