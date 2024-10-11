@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author PROGRAMACION
+ * @author Alfonso
  */
 public class CategorizarPalabras extends javax.swing.JFrame {
 

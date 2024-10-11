@@ -94,15 +94,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // Función para mostrar una alerta. Le pasaremos los valores de titulo y su descripción
     public void mostrarAlerta(int title, int text) {
-        // Se mostrará un alerta, en caso de que haya campos sin rellenar
         AlertDialog alerta=new AlertDialog.Builder(MainActivity.this)
                 .setTitle(title)
                 .setMessage(text)
                 .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        // Acción al presionar el botón "Aceptar"
-                        dialog.dismiss(); // Cerrar el diálogo
+                        dialog.dismiss();
                     }
                 })
                 .show();
