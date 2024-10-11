@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onFinish() {
-                    playSoundBeep();
+                    playSound(R.raw.beep);
                     exerciseCounter(work, rest, finalCont);
                 }
             }.start();
@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
             txtState.setText("FINISHED");
             // Ponemos el boolean a true, para que podamos volver a ejecutar la función
             state=true;
-            playSoundGong();
+            playSound(R.raw.gong);
         }
     }
 
@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
             public void onFinish() {
                 // Reproducir el sonido beep, siempre que no se esté en la última serie
                 if((sets-1) != 0) {
-                    playSoundBeep();
+                    playSound(R.raw.beep);
                 }
                 restCounter(work, rest, sets);
             }
@@ -194,14 +194,10 @@ public class MainActivity extends AppCompatActivity {
         btnColours.setStroke(10,ContextCompat.getColor(this, btnStroke));
     }
 
-    public void playSoundBeep() {
+    // Función para reproducir el sonido
+    public void playSound(int soundID) {
         MediaPlayer sound=MediaPlayer.create(
-                getApplicationContext(), R.raw.beep);
-        sound.start();
-    }
-    public void playSoundGong() {
-        MediaPlayer sound=MediaPlayer.create(
-                getApplicationContext(), R.raw.gong);
+                getApplicationContext(), soundID);
         sound.start();
     }
 }

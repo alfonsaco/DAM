@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Al pulsar el botón, nos llevará a la siguiente pantalla, que tendrá el resultado
-//        if(!etxtApellidos.getText().toString().isEmpty() && !etxtFecha.getText().toString().isEmpty() && !etxtNombre.getText().toString().isEmpty() && !etxtNumHijos.getText().toString().isEmpty() && !etxtSalarioBruto.getText().toString().isEmpty()) {
+        //if(!etxtApellidos.getText().toString().isEmpty() && !etxtNombre.getText().toString().isEmpty() && !etxtNumHijos.getText().toString().isEmpty() && !etxtSalarioBruto.getText().toString().isEmpty()) {
             btnCalcular.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
-//        }
+        //}
     }
 
     // Método para calcular el IRPF familiar por tramos
