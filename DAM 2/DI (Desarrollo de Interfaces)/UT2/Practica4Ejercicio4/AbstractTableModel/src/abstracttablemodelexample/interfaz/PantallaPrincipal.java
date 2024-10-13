@@ -3,12 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gestionClientes.gui;
+package abstracttablemodelexample.interfaz;
 
-import gestionClientes.dto.Cliente;
-import gestionClientes.logica.LogicaNegocio;
-import java.util.List;
-import javax.swing.table.DefaultTableModel;
+import abstracttablemodelexample.interfaz.tablemodels.AlumnosTableModel;
+import abstracttablemodelexample.logica.LogicaNegocio;
 
 /**
  *
@@ -16,23 +14,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
 
+    private LogicaNegocio logicaNegocio=new LogicaNegocio();
     /**
      * Creates new form PantallaPrincipal
      */
     public PantallaPrincipal() {
         initComponents();
-        refrescarTabla();
-    }
-    
-    private void refrescarTabla() {
-        DefaultTableModel dtm=new DefaultTableModel();
-        dtm.setColumnIdentifiers(new String[]{"Nombre","Apellidos","Fecha Alta","Provincia"});
-        
-        List<Cliente> listaClientes=LogicaNegocio.getListaClientes();
-        for (Cliente c : listaClientes) {
-            dtm.addRow(c.toArrayString());
-        }
-        jTableClientes.setModel(dtm);
+        jTable1.setModel(new AlumnosTableModel(logicaNegocio.getListaAlumnos()));
     }
 
     /**
@@ -44,15 +32,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableClientes = new javax.swing.JTable();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenuClientes = new javax.swing.JMenu();
-        jMenuAlta = new javax.swing.JMenuItem();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTableClientes.setModel(new javax.swing.table.DefaultTableModel(
+        jPanel1.setForeground(new java.awt.Color(153, 255, 153));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -63,50 +51,42 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTableClientes);
-        if (jTableClientes.getColumnModel().getColumnCount() > 0) {
-            jTableClientes.getColumnModel().getColumn(2).setMinWidth(130);
-        }
+        jScrollPane1.setViewportView(jTable1);
 
-        jMenuClientes.setText("Clientes");
-
-        jMenuAlta.setText("Alta");
-        jMenuAlta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuAltaActionPerformed(evt);
-            }
-        });
-        jMenuClientes.add(jMenuAlta);
-
-        jMenuBar1.add(jMenuClientes);
-
-        setJMenuBar(jMenuBar1);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jMenuAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAltaActionPerformed
-        DialogoAlta dialogoAlta=new DialogoAlta(this,true);
-        dialogoAlta.setVisible(true);
-        refrescarTabla();
-    }//GEN-LAST:event_jMenuAltaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,10 +124,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem jMenuAlta;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenu jMenuClientes;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableClientes;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
