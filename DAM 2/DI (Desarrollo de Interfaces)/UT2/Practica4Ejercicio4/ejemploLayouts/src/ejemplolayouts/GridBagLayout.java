@@ -9,12 +9,12 @@ package ejemplolayouts;
  *
  * @author PROGRAMACION
  */
-public class GridLayout extends javax.swing.JFrame {
+public class GridBagLayout extends javax.swing.JFrame {
 
     /**
-     * Creates new form PantallaPrincipal
+     * Creates new form GridBagLayout
      */
-    public GridLayout() {
+    public GridBagLayout() {
         initComponents();
     }
 
@@ -27,67 +27,50 @@ public class GridLayout extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton7 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-
-        jButton7.setText("jButton7");
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
-        jPanel1.setLayout(new java.awt.GridLayout(3, 3, 10, 10));
+        jPanel1.setBackground(new java.awt.Color(204, 255, 204));
+        java.awt.GridBagLayout jPanel1Layout = new java.awt.GridBagLayout();
+        jPanel1Layout.columnWidths = new int[] {200};
+        jPanel1Layout.rowHeights = new int[] {100};
+        jPanel1Layout.columnWeights = new double[] {100.0};
+        jPanel1Layout.rowWeights = new double[] {200.0};
+        jPanel1.setLayout(jPanel1Layout);
+
+        jTextField1.setText("jTextField1");
+        jPanel1.add(jTextField1, new java.awt.GridBagConstraints());
 
         jButton1.setText("jButton1");
-        jPanel1.add(jButton1);
+        jPanel1.add(jButton1, new java.awt.GridBagConstraints());
 
-        jButton2.setText("jButton2");
-        jPanel1.add(jButton2);
-
-        jButton4.setText("jButton4");
-        jPanel1.add(jButton4);
-
-        jButton8.setText("jButton8");
-        jPanel1.add(jButton8);
+        jLabel1.setText("jLabel1");
+        jPanel1.add(jLabel1, new java.awt.GridBagConstraints());
 
         jButton3.setText("jButton3");
-        jPanel1.add(jButton3);
+        jPanel1.add(jButton3, new java.awt.GridBagConstraints());
 
-        jButton10.setText("jButton10");
-        jPanel1.add(jButton10);
-
-        jButton9.setText("jButton9");
-        jPanel1.add(jButton9);
-
-        jButton5.setText("jButton5");
-        jPanel1.add(jButton5);
-
-        jButton6.setText("jButton6");
-        jPanel1.add(jButton6);
+        jButton2.setText("jButton2");
+        jPanel1.add(jButton2, new java.awt.GridBagConstraints());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(56, 56, 56))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(38, 38, 38))
+                .addGap(22, 22, 22)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         pack();
@@ -110,36 +93,30 @@ public class GridLayout extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GridLayout.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GridBagLayout.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GridLayout.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GridBagLayout.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GridLayout.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GridBagLayout.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GridLayout.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GridBagLayout.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GridLayout().setVisible(true);
+                new GridBagLayout().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

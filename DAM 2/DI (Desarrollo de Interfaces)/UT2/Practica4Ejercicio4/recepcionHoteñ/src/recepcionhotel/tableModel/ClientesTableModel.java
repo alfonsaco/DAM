@@ -15,6 +15,7 @@ import recepcionhotel.beans.Cliente;
  */
 public class ClientesTableModel extends AbstractTableModel {
     private List<Cliente> listaClientes;
+    private String[] columnas={"Nombre","Apellidos","Check In","Check Out","Número habitación","Tipo Habitación"};
 
     public ClientesTableModel(List<Cliente> listaClientes) {
         this.listaClientes = listaClientes;
@@ -41,19 +42,26 @@ public class ClientesTableModel extends AbstractTableModel {
         Cliente c=listaClientes.get(i);
         switch(i1) {
             case 0:
-                return listaClientes.get(i1).getNombre();
+                return c.getNombre();
             case 1:
-                return listaClientes.get(i1).getApellidos();
+                return c.getApellidos();
             case 2:
-                return listaClientes.get(i1).getCheckIn();
+                return c.getCheckIn();
             case 3:
-                return listaClientes.get(i1).getCheckOut();
+                return c.getCheckOut();
             case 4:
-                return listaClientes.get(i1).getNumHab();
+                return c.getNumHab();
             case 5:
-                return listaClientes.get(i1).getTipoHab();
+                return c.getTipoHab();
         }
         return null;
     }
+
+    @Override
+    public String getColumnName(int i) {
+        return columnas[i];
+    }
+    
+    
     
 }
