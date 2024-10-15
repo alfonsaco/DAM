@@ -15,7 +15,7 @@ import recepcionhotel.beans.Cliente;
  */
 public class ClientesTableModel extends AbstractTableModel {
     private List<Cliente> listaClientes;
-    private String[] columnas={"Nombre","Apellidos","Check In","Check Out","Número habitación","Tipo Habitación"};
+    private String[] columnas={"Nombre","Apellidos","Check In","Check Out","Número habitación","Tipo Habitación", "DNI"};
 
     public ClientesTableModel(List<Cliente> listaClientes) {
         this.listaClientes = listaClientes;
@@ -34,7 +34,7 @@ public class ClientesTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 6;
+        return columnas.length;
     }
 
     @Override
@@ -53,6 +53,8 @@ public class ClientesTableModel extends AbstractTableModel {
                 return c.getNumHab();
             case 5:
                 return c.getTipoHab();
+            case 6:
+                return c.getDni();
         }
         return null;
     }
@@ -61,7 +63,5 @@ public class ClientesTableModel extends AbstractTableModel {
     public String getColumnName(int i) {
         return columnas[i];
     }
-    
-    
     
 }

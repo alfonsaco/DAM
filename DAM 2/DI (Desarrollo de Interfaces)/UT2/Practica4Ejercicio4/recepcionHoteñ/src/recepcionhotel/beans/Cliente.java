@@ -14,18 +14,20 @@ import java.util.Date;
 public class Cliente {
     private String nombre;
     private String apellidos;
-    private Date checkIn;
-    private Date checkOut;
+    private String checkIn;
+    private String checkOut;
     private int numHab;
     private String tipoHab;
+    private String dni;
 
-    public Cliente(String nombre, String apellidos, Date checkIn, Date checkOut, int numHab, String tipoHab) {
+    public Cliente(String nombre, String apellidos, String checkIn, String checkOut, int numHab, String tipoHab, String dni) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.numHab = numHab;
         this.tipoHab = tipoHab;
+        this.dni = dni;
     }
     public Cliente() {
 
@@ -47,19 +49,19 @@ public class Cliente {
         this.apellidos = apellidos;
     }
 
-    public Date getCheckIn() {
+    public String getCheckIn() {
         return checkIn;
     }
 
-    public void setCheckIn(Date checkIn) {
+    public void setCheckIn(String checkIn) {
         this.checkIn = checkIn;
     }
 
-    public Date getCheckOut() {
+    public String getCheckOut() {
         return checkOut;
     }
 
-    public void setCheckOut(Date checkOut) {
+    public void setCheckOut(String checkOut) {
         this.checkOut = checkOut;
     }
 
@@ -78,4 +80,14 @@ public class Cliente {
     public void setTipoHab(String tipoHab) {
         this.tipoHab = tipoHab;
     }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+    
+    
 }

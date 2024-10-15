@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import recepcionhotel.beans.Cliente;
 
 /**
@@ -22,18 +23,20 @@ public class LogicaHotel {
     public LogicaHotel() throws ParseException {
         listaClientes=new ArrayList<>();
         Date d=new Date();
-        SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
+        Date d1=new Date();
+        SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy", new Locale("es","ES"));
         
-        listaClientes.add(new Cliente("Pedro","Pérez",sdf.parse("05-02-2024"),sdf.parse("07-09-2024"),10,"Suite"));
-        listaClientes.add(new Cliente("María","García",sdf.parse("10-03-2024"),sdf.parse("15-03-2024"),5,"Doble"));
-        listaClientes.add(new Cliente("Juan","Rodríguez",sdf.parse("22-04-2024"),sdf.parse("30-04-2024"),8,"Individual"));
-        listaClientes.add(new Cliente("Laura","López",sdf.parse("12-05-2024"),sdf.parse("17-05-2024"),5,"Suite"));
-        listaClientes.add(new Cliente("Carlos","Sánchez",sdf.parse("01-06-2024"),sdf.parse("05-06-2024"),4,"Doble"));
-        listaClientes.add(new Cliente("Lucía","Martínez",sdf.parse("15-07-2024"),sdf.parse("22-07-2024"),7,"Individual"));
-        listaClientes.add(new Cliente("Andrés","Hernández",sdf.parse("23-08-2024"),sdf.parse("30-08-2024"),7,"Suite"));
-        listaClientes.add(new Cliente("Ana","Díaz",sdf.parse("02-09-2024"),sdf.parse("06-09-2024"),4,"Doble"));
-        listaClientes.add(new Cliente("Miguel","Fernández",sdf.parse("10-10-2024"),sdf.parse("15-10-2024"),5,"Individual"));
-        listaClientes.add(new Cliente("Pedro","Pérez",sdf.parse("05-02-2024"),sdf.parse("07-09-2024"),10,"Suite"));
+        listaClientes.add(new Cliente("Pedro","Pérez","05-02-2024","07-09-2024",10,"Suite", "12345678A"));
+        listaClientes.add(new Cliente("María","García","10-03-2024","15-03-2024",5,"Doble", "23456789B"));
+        listaClientes.add(new Cliente("Juan","Rodríguez","22-04-2024","30-04-2024",8,"Individual", "34567890C"));
+        listaClientes.add(new Cliente("Laura","López","12-05-2024","17-05-2024",5,"Suite", "45678901D"));
+        listaClientes.add(new Cliente("Carlos","Sánchez","01-06-2024","05-06-2024",4,"Doble", "56789012E"));
+        listaClientes.add(new Cliente("Lucía","Martínez","15-07-2024","22-07-2024",7,"Individual", "67890123F"));
+        listaClientes.add(new Cliente("Andrés","Hernández","23-08-2024","30-08-2024",7,"Suite", "78901234G"));
+        listaClientes.add(new Cliente("Ana","Díaz","02-09-2024","06-09-2024",4,"Doble", "89012345H"));
+        listaClientes.add(new Cliente("Miguel","Fernández","10-10-2024","15-10-2024",5,"Individual", "90123456I"));
+        listaClientes.add(new Cliente("Pedro","Pérez","05-02-2024","07-09-2024",10,"Suite", "12345678A"));
+
     }
 
     public List<Cliente> getListaClientes() {
@@ -43,6 +46,5 @@ public class LogicaHotel {
     public void setListaClientes(List<Cliente> listaClientes) {
         this.listaClientes = listaClientes;
     }
-    
     
 }
