@@ -5,6 +5,7 @@
  */
 package actividadpowerpoint1;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -42,7 +43,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        ItemAnadirSerie = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -89,13 +90,21 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         jMenu1.setText("Insertar");
 
-        jMenuItem1.setText("Añadir película");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+        ItemAnadirSerie.setText("Añadir película");
+        ItemAnadirSerie.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ItemAnadirSerieMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ItemAnadirSerieMouseExited(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        ItemAnadirSerie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ItemAnadirSerieActionPerformed(evt);
+            }
+        });
+        jMenu1.add(ItemAnadirSerie);
 
         jMenuBar1.add(jMenu1);
 
@@ -118,15 +127,27 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void ItemAnadirSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemAnadirSerieActionPerformed
         Dialog d=new Dialog(this, true);
         d.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_ItemAnadirSerieActionPerformed
 
     private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
-        String seleccion=jList1.getSelectedValue();
-        System.out.println("Se ha seleccionado el elemento "+seleccion);
+        // Condicional para evitar que se imprima 2 veces el texto (1 para la deseleccion
+        // y otra para la selección)
+        if(!evt.getValueIsAdjusting()) {
+            String seleccion=jList1.getSelectedValue();
+            System.out.println("Se ha seleccionado el elemento "+seleccion);   
+        }
     }//GEN-LAST:event_jList1ValueChanged
+
+    private void ItemAnadirSerieMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ItemAnadirSerieMouseEntered
+        ItemAnadirSerie.setForeground(Color.yellow);
+    }//GEN-LAST:event_ItemAnadirSerieMouseEntered
+
+    private void ItemAnadirSerieMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ItemAnadirSerieMouseExited
+        ItemAnadirSerie.setForeground(new Color(41,41,41));
+    }//GEN-LAST:event_ItemAnadirSerieMouseExited
 
     /**
      * @param args the command line arguments
@@ -169,12 +190,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem ItemAnadirSerie;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList<String> jList1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

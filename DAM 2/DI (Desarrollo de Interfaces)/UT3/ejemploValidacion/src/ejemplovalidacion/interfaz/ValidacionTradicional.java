@@ -22,6 +22,7 @@ public class ValidacionTradicional extends javax.swing.JFrame {
      */
     public ValidacionTradicional() {
         initComponents();
+        jButton1.setEnabled(false);
         ValidationGroup group=validationPanel.getValidationGroup();
         group.add(jTextFieldNombre, StringValidators.REQUIRE_NON_EMPTY_STRING);
         group.add(jTextFieldEdad, StringValidators.REQUIRE_VALID_INTEGER);
