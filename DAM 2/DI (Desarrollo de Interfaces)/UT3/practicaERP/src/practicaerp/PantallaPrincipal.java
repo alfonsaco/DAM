@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Image;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.border.MatteBorder;
 
 /**
@@ -205,6 +206,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("INGRESAR");
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel7MouseEntered(evt);
             }
@@ -355,6 +359,19 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public boolean validarFormulario() {
+        String contra=jTextFieldContra.getText();
+        String usu=jTextFieldUsuario.getText();
+        
+        if(contra.equals("") || contra.equals("Introduce una contraseña...") || usu.equals("") || usu.equals("Introduce un usuario...")) {
+            JOptionPane.showMessageDialog(this, "Datos no válidos");
+            return false;
+        } else {
+            JOptionPane.showMessageDialog(this, "Datos insertados con éxito"); 
+            return true;
+        }
+    }
+    
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         System.exit(0);
     }//GEN-LAST:event_jLabel4MouseClicked
@@ -426,6 +443,18 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jTextFieldUsuario.setForeground(new Color(153,153,153));
         jTextFieldContra.setText("Introduce una contraseña...");
         jTextFieldContra.setForeground(new Color(153,153,153));
+        
+        // Condicionales para evitar, que al pulsar el botón, se quede insertado el texto del placeholder
+        String textoC=jTextFieldContra.getText();
+        if(jTextFieldContra.isFocusOwner() && textoC.equals("Introduce una contraseña...")) {
+            jTextFieldContra.setText("");
+            jTextFieldContra.setForeground(Color.BLACK);         
+        }
+        String textoU=jTextFieldUsuario.getText();
+        if(jTextFieldUsuario.isFocusOwner() && textoU.equals("Introduce un usuario...")) {
+            jTextFieldUsuario.setText("");
+            jTextFieldUsuario.setForeground(Color.BLACK);         
+        }
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
@@ -440,6 +469,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void jLabel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseExited
         Cerrar.setBackground(new Color(230,14,14));
     }//GEN-LAST:event_jLabel4MouseExited
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        validarFormulario();
+    }//GEN-LAST:event_jLabel7MouseClicked
 
     /**
      * @param args the command line arguments
