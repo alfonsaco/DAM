@@ -364,7 +364,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         String usu=jTextFieldUsuario.getText();
         
         if(contra.equals("") || contra.equals("Introduce una contraseña...") || usu.equals("") || usu.equals("Introduce un usuario...")) {
-            JOptionPane.showMessageDialog(this, "Datos no válidos");
+            JOptionPane.showMessageDialog(this, "Datos no válidos", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         } else {
             JOptionPane.showMessageDialog(this, "Datos insertados con éxito"); 
