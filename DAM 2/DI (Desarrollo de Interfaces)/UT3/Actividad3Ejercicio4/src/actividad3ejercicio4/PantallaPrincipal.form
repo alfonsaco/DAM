@@ -528,6 +528,15 @@
                   </SubComponents>
                 </Container>
                 <Container class="javax.swing.JPanel" name="Figura1">
+                  <Properties>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Cursor de Mano"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="Figura1MouseDragged"/>
+                    <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Figura1MousePressed"/>
+                  </Events>
 
                   <Layout>
                     <DimensionLayout dim="0">
@@ -573,6 +582,15 @@
                   </SubComponents>
                 </Container>
                 <Container class="javax.swing.JPanel" name="Figura2">
+                  <Properties>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Cursor de Mano"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="Figura2MouseDragged"/>
+                    <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Figura2MousePressed"/>
+                  </Events>
 
                   <Layout>
                     <DimensionLayout dim="0">

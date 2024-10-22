@@ -20,11 +20,20 @@ import javax.swing.border.MatteBorder;
 public class PantallaPrincipal extends javax.swing.JFrame {
 
     private Color colorDibujar;
+    private int offsetX1;
+    private int offsetY1;
+    private int offsetX2;
+    private int offsetY2;
     /**
      * Creates new form PantallaPrincipal
      */
     public PantallaPrincipal() {
         initComponents();   
+        
+        // Color transparente para los Contenedores de las bolas
+        Color transparente=new Color(255,0,0,0);
+        Figura1.setBackground(transparente);
+        Figura2.setBackground(transparente);
         
         // Bordes para los TextFields
         MatteBorder bordeAbajo=BorderFactory.createMatteBorder(0, 0, 1, 0, Color.GRAY);
@@ -351,6 +360,18 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(26, 0, 0, 0);
         ContenedorTextFields.add(jTextFieldFigura2, gridBagConstraints);
 
+        Figura1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Figura1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                Figura1MouseDragged(evt);
+            }
+        });
+        Figura1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                Figura1MousePressed(evt);
+            }
+        });
+
         jLabelFigura1.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         jLabelFigura1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFigura1.setText("Nombre figura 1");
@@ -377,6 +398,18 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 .addComponent(Bola1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        Figura2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Figura2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                Figura2MouseDragged(evt);
+            }
+        });
+        Figura2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                Figura2MousePressed(evt);
+            }
+        });
 
         jLabelFigura2.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         jLabelFigura2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -500,9 +533,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ContenedorPintarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ContenedorPintarMouseMoved
-        Graphics g = ContenedorPintar.getGraphics();
-        g.setColor(colorDibujar);
-        g.fillRect(evt.getX(), evt.getY(), 5, 5);
+            Graphics g = ContenedorPintar.getGraphics();
+            g.setColor(colorDibujar);
+            g.fillRect(evt.getX(), evt.getY(), 5, 5);
     }//GEN-LAST:event_ContenedorPintarMouseMoved
 
     // CLICK LSITENER DE TODOS LOS COLORES
@@ -589,6 +622,31 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void jLabel6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseExited
         BotonInsertarNombre.setBackground(new Color(0,153,204));
     }//GEN-LAST:event_jLabel6MouseExited
+
+    // Listeners para poder mover las bolas
+    private void Figura1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Figura1MousePressed
+        offsetX1=evt.getX();
+        offsetY1=evt.getY();
+    }//GEN-LAST:event_Figura1MousePressed
+
+    private void Figura1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Figura1MouseDragged
+        int x=evt.getXOnScreen()-offsetX1;
+        int y=evt.getYOnScreen()-offsetY1;
+        
+        Figura1.setLocation(x, y);
+    }//GEN-LAST:event_Figura1MouseDragged
+
+    private void Figura2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Figura2MousePressed
+        offsetX2=evt.getX();
+        offsetY2=evt.getY();
+    }//GEN-LAST:event_Figura2MousePressed
+
+    private void Figura2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Figura2MouseDragged
+        int x=evt.getXOnScreen()-offsetX2;
+        int y=evt.getYOnScreen()-offsetY2;
+        
+        Figura2.setLocation(x, y);
+    }//GEN-LAST:event_Figura2MouseDragged
 
     /**
      * @param args the command line arguments
