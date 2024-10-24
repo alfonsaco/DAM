@@ -9,7 +9,7 @@ import java.awt.Color;
 
 /**
  *
- * @author PROGRAMACION
+ * @author Alfonso
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
 

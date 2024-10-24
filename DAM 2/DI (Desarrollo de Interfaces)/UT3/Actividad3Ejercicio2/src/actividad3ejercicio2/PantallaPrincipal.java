@@ -13,7 +13,7 @@ import javax.swing.border.MatteBorder;
 
 /**
  *
- * @author PROGRAMACION
+ * @author Alfonso
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
 

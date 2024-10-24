@@ -15,7 +15,7 @@ import javax.swing.border.MatteBorder;
 
 /**
  *
- * @author PROGRAMACION
+ * @author Alfonso
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
 
@@ -80,6 +80,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -608,6 +610,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         if(!n1.equals("") && !n1.equals("Nombre figura 1...") && !n2.equals("") && !n2.equals("Nombre figura 2...")) {
             jLabelFigura1.setText(n1);
             jLabelFigura2.setText(n2);
+            
+            VentanaMouseDrag.repaint();
+            VentanaMouseDrag.revalidate();
         } else {
             JOptionPane.showMessageDialog(this, "Rellena los dos campos");
         }
@@ -630,8 +635,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_Figura1MousePressed
 
     private void Figura1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Figura1MouseDragged
-        int x=evt.getXOnScreen()-offsetX1;
-        int y=evt.getYOnScreen()-offsetY1;
+        int x=evt.getXOnScreen()-offsetX1-Figura1.getWidth();
+        int y=evt.getYOnScreen()-offsetY1-Figura1.getHeight();
         
         Figura1.setLocation(x, y);
     }//GEN-LAST:event_Figura1MouseDragged
@@ -642,8 +647,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_Figura2MousePressed
 
     private void Figura2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Figura2MouseDragged
-        int x=evt.getXOnScreen()-offsetX2;
-        int y=evt.getYOnScreen()-offsetY2;
+        int x=evt.getXOnScreen()-offsetX2-Figura2.getWidth();
+        int y=evt.getYOnScreen()-offsetY2-Figura2.getHeight();
         
         Figura2.setLocation(x, y);
     }//GEN-LAST:event_Figura2MouseDragged
