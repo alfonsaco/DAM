@@ -64,29 +64,36 @@ public class MainActivity extends AppCompatActivity {
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!etxtRest.getText().toString().isEmpty() && !etxtSets.getText().toString().isEmpty() && !etxtWork.getText().toString().isEmpty() && state==true) {
-                    if(Integer.parseInt(etxtRest.getText().toString())>0 && Integer.parseInt(etxtSets.getText().toString())>0 && Integer.parseInt(etxtWork.getText().toString())>0) {
-                        if(Integer.parseInt(etxtRest.getText().toString())>1000 || Integer.parseInt(etxtSets.getText().toString())>100 || Integer.parseInt(etxtWork.getText().toString())>1000) {
-                            mostrarAlerta(R.string.dialog_title_highValues, R.string.dialog_text_highValues);
+                // Try catch, para evitar que se puedan intrduir valores muy grandes (Ej: 111111111111111111). Esto sucede
+                // ya que el valor maximo de int es 2,147,483,647, y a partir de este, Java ono puede convertir más ese
+                // String a int. Por eso, se saca esta excepción.
+                try {
+                    if(!etxtRest.getText().toString().isEmpty() && !etxtSets.getText().toString().isEmpty() && !etxtWork.getText().toString().isEmpty() && state==true) {
+                        if(Integer.parseInt(etxtRest.getText().toString())>0 && Integer.parseInt(etxtSets.getText().toString())>0 && Integer.parseInt(etxtWork.getText().toString())>0) {
+                            if(Integer.parseInt(etxtRest.getText().toString())>1000 || Integer.parseInt(etxtSets.getText().toString())>100 || Integer.parseInt(etxtWork.getText().toString())>1000) {
+                                mostrarAlerta(R.string.dialog_title_highValues, R.string.dialog_text_highValues);
+                            } else {
+                                state=false;
+
+                                int sets=Integer.parseInt(etxtSets.getText().toString());
+                                int work=Integer.parseInt(etxtWork.getText().toString());
+                                int rest=Integer.parseInt(etxtRest.getText().toString());
+
+                                exerciseCounter(work, rest, sets);
+                            }
                         } else {
-                            state=false;
-
-                            int sets=Integer.parseInt(etxtSets.getText().toString());
-                            int work=Integer.parseInt(etxtWork.getText().toString());
-                            int rest=Integer.parseInt(etxtRest.getText().toString());
-
-                            exerciseCounter(work, rest, sets);
+                            mostrarAlerta(R.string.dialog_title_invalidValues, R.string.dialog_text_invalidValues);
                         }
-                    } else {
-                        mostrarAlerta(R.string.dialog_title_invalidValues, R.string.dialog_text_invalidValues);
-                    }
 
-                } else {
-                    if(state==false) {
-                        mostrarAlerta(R.string.dialog_title_wait, R.string.dialog_text_wait);
                     } else {
-                        mostrarAlerta(R.string.dialog_title_empty,R.string.dialog_text_empty);
+                        if(state==false) {
+                            mostrarAlerta(R.string.dialog_title_wait, R.string.dialog_text_wait);
+                        } else {
+                            mostrarAlerta(R.string.dialog_title_empty,R.string.dialog_text_empty);
+                        }
                     }
+                } catch(NumberFormatException e) {
+                    mostrarAlerta(R.string.dialog_title_highValues, R.string.dialog_text_highValues);
                 }
             }
 
