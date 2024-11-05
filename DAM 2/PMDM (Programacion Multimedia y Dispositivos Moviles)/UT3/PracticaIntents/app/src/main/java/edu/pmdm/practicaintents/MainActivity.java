@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     EditText etxtEdad=null;
     RadioButton rbEclipse=null;
     RadioButton rbNetBeans=null;
-    private ActivityResultLauncher<Intent> launcher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +70,11 @@ public class MainActivity extends AppCompatActivity {
                             preferencia="NetBeans";
                         }
                         Intent i=new Intent(getApplicationContext(),SecondActivity.class);
-
-
-                        launcher.launch(i);
+                        i.putExtra("nombre", nombre);
+                        i.putExtra("edad",edad);
+                        i.putExtra("ciudad",ciudad);
+                        i.putExtra("preferencia",preferencia);
+                        startActivity(i);
                     }
                 }
             }
