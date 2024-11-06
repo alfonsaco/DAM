@@ -7,18 +7,41 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class SecondActivity extends AppCompatActivity {
+public class SummaryActivity extends AppCompatActivity {
 
-    TextView txtNombre;
-    TextView txtEdad;
-    TextView txtCiudad;
-    TextView txtPreferencia;
-    Button btnVolver;
+    TextView txtNombre=null;
+    TextView txtEdad=null;
+    TextView txtCiudad=null;
+    TextView txtPreferencia=null;
+    Button btnVolver=null;
+    Button btnEditar=null;
+    String nombreIntent, edadIntent, ciudadIntent, preferenciaIntent;
+
+    private ActivityResultLauncher<Intent> launcher=registerForActivityResult(new ActivityResultContracts.StartActivityForResult()
+            , new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    Intent data = result.getData();
+                    String nombreEditado=data.getStringExtra("nombre");
+                    String edadEditada=data.getStringExtra("edad");
+                    String ciudadEditada=data.getStringExtra("ciudad");
+                    String preferenciaEditada=data.getStringExtra("preferencia");
+
+                    txtNombre.setText(nombreEditado);
+                    txtEdad.setText(edadEditada);
+                    txtCiudad.setText(ciudadEditada);
+                    txtPreferencia.setText(preferenciaEditada);
+                }
+    });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,15 +49,15 @@ public class SecondActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_second);
 
-        Intent intent=getIntent();
-
         txtNombre=findViewById(R.id.txtNombre);
         txtCiudad=findViewById(R.id.txtCiudad);
         txtEdad=findViewById(R.id.txtEdad);
         txtPreferencia=findViewById(R.id.txtPreferencia);
         btnVolver=findViewById(R.id.btnVolver);
+        btnEditar=findViewById(R.id.btnEditar);
 
-        // Obtengo los varlores
+        // Obtengo los valores
+        Intent intent=getIntent();
         String nombreIntent=intent.getStringExtra("nombre");
         String edadIntent=intent.getStringExtra("edad");
         String ciudadIntent=intent.getStringExtra("ciudad");
@@ -61,6 +84,18 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+
+        btnEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(getApplicationContext(), EditActivity.class);
+                i.putExtra("nombre", nombreIntent);
+                i.putExtra("edad", edadIntent);
+                i.putExtra("ciudad", ciudadIntent);
+                i.putExtra("preferencia", preferenciaIntent);
+                launcher.launch(i);
             }
         });
     }
