@@ -5,6 +5,7 @@
  */
 package biblioteca;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import org.jvnet.substance.SubstanceLookAndFeel;
 
@@ -19,6 +20,7 @@ public class Biblioteca {
      */
     public static void main(String[] args) {
         // Look and Feel
+        JDialog.setDefaultLookAndFeelDecorated(true);
         JFrame.setDefaultLookAndFeelDecorated(true);
         SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.MistSilverSkin");
         

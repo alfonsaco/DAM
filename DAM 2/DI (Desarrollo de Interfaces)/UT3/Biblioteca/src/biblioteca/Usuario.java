@@ -14,19 +14,33 @@ public class Usuario {
     private String apellidos;
     private String dni;
     private String email;
+    private String nacionalidad;
+    private String preferencias;
+    private String noticias;
 
     public Usuario() {
     }
 
-    public Usuario(String nombre, String apellidos, String dni, String email) {
+    public Usuario(String nombre, String apellidos, String dni, String email, String nacionalidad, String preferencias, String noticias) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.dni = dni;
         this.email = email;
+        this.nacionalidad = nacionalidad;
+        this.preferencias = preferencias;
+        this.noticias = noticias;
     }
 
     public String getNombre() {
         return nombre;
+    }
+
+    public String getNacionalidad() {
+        return nacionalidad;
+    }
+
+    public void setNacionalidad(String nacionalidad) {
+        this.nacionalidad = nacionalidad;
     }
 
     public void setNombre(String nombre) {
@@ -56,4 +70,20 @@ public class Usuario {
     public void setEmail(String email) {
         this.email = email;
     }     
+
+    public String getPreferencias() {
+        return preferencias;
+    }
+
+    public void setPreferencias(String preferencias) {
+        this.preferencias = preferencias;
+    }
+
+    public String getNoticias() {
+        return noticias;
+    }
+
+    public void setNoticias(String noticias) {
+        this.noticias = noticias;
+    }        
 }

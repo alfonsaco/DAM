@@ -28,6 +28,8 @@ public class Formulario extends javax.swing.JFrame {
     public Formulario() {
         initComponents();
         
+        usuarios=new ArrayList<>();
+        
         // Configuración del Frame
         this.setSize(625, 512);
         this.setTitle("Biblioteca");
@@ -71,16 +73,16 @@ public class Formulario extends javax.swing.JFrame {
         jTextFieldApellidos = new javax.swing.JTextField();
         jTextFieldDNI = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButtonSI = new javax.swing.JRadioButton();
+        jRadioButtonNO = new javax.swing.JRadioButton();
         jTextFieldEmail = new javax.swing.JTextField();
         ContenedorCheck = new javax.swing.JPanel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jCheckBox6 = new javax.swing.JCheckBox();
+        jCheckBoxAventuras = new javax.swing.JCheckBox();
+        jCheckBoxNegra = new javax.swing.JCheckBox();
+        jCheckBoxFantastica = new javax.swing.JCheckBox();
+        jCheckBoxHistorica = new javax.swing.JCheckBox();
+        jCheckBoxCienciaFiccion = new javax.swing.JCheckBox();
+        jCheckBoxJuvenil = new javax.swing.JCheckBox();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -211,19 +213,19 @@ public class Formulario extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 72);
         ContenedorFormulario.add(jComboBox1, gridBagConstraints);
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("Si");
+        buttonGroup1.add(jRadioButtonSI);
+        jRadioButtonSI.setText("Si");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 5;
-        ContenedorFormulario.add(jRadioButton1, gridBagConstraints);
+        ContenedorFormulario.add(jRadioButtonSI, gridBagConstraints);
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("No");
+        buttonGroup1.add(jRadioButtonNO);
+        jRadioButtonNO.setText("No");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 5;
-        ContenedorFormulario.add(jRadioButton2, gridBagConstraints);
+        ContenedorFormulario.add(jRadioButtonNO, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -237,47 +239,47 @@ public class Formulario extends javax.swing.JFrame {
         ContenedorCheck.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Preferencias", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Dialog", 1, 14), new java.awt.Color(51, 51, 51))); // NOI18N
         ContenedorCheck.setLayout(new java.awt.GridBagLayout());
 
-        jCheckBox1.setText("Aventuras");
-        jCheckBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBoxAventuras.setText("Aventuras");
+        jCheckBoxAventuras.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 15, 22);
-        ContenedorCheck.add(jCheckBox1, gridBagConstraints);
+        ContenedorCheck.add(jCheckBoxAventuras, gridBagConstraints);
 
-        jCheckBox2.setText("Negra");
-        jCheckBox2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBoxNegra.setText("Negra");
+        jCheckBoxNegra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        ContenedorCheck.add(jCheckBox2, gridBagConstraints);
+        ContenedorCheck.add(jCheckBoxNegra, gridBagConstraints);
 
-        jCheckBox3.setText("Fantástica");
-        jCheckBox3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBoxFantastica.setText("Fantástica");
+        jCheckBoxFantastica.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 13, 23);
-        ContenedorCheck.add(jCheckBox3, gridBagConstraints);
+        ContenedorCheck.add(jCheckBoxFantastica, gridBagConstraints);
 
-        jCheckBox4.setText("Histórica");
-        jCheckBox4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBoxHistorica.setText("Histórica");
+        jCheckBoxHistorica.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        ContenedorCheck.add(jCheckBox4, gridBagConstraints);
+        ContenedorCheck.add(jCheckBoxHistorica, gridBagConstraints);
 
-        jCheckBox5.setText("Ciencia Ficción");
-        jCheckBox5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBoxCienciaFiccion.setText("Ciencia Ficción");
+        jCheckBoxCienciaFiccion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 14, 0);
-        ContenedorCheck.add(jCheckBox5, gridBagConstraints);
+        ContenedorCheck.add(jCheckBoxCienciaFiccion, gridBagConstraints);
 
-        jCheckBox6.setText("Juvenil");
-        jCheckBox6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBoxJuvenil.setText("Juvenil");
+        jCheckBoxJuvenil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        ContenedorCheck.add(jCheckBox6, gridBagConstraints);
+        ContenedorCheck.add(jCheckBoxJuvenil, gridBagConstraints);
 
         ContenedorGeneral.add(ContenedorCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 320, 380, 120));
 
@@ -313,7 +315,7 @@ public class Formulario extends javax.swing.JFrame {
         return dni.matches("[0-9]{8}[a-zA-Z]");
     }
     private boolean esEmail(String email) {
-        return email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]");
+        return email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]");
     }
     
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
@@ -321,10 +323,25 @@ public class Formulario extends javax.swing.JFrame {
         String apellidos=jTextFieldApellidos.getText();
         String DNI=jTextFieldDNI.getText();
         String email=jTextFieldEmail.getText();
+        int contSeleccion=0;
+        String seleccion="";
         
-        if(esLetra(nombre) && esLetra(apellidos) && esDNI(DNI) && esEmail(email)) {
-            JOptionPane.showMessageDialog(null, "Usuario añadido con éxito");
-            usuarios.add(new Usuario(nombre, apellidos, DNI, email));
+        // Ver si se han seleccionado noticias o no
+        if(jRadioButtonSI.isSelected()) {
+            seleccion="SI";
+            contSeleccion++;
+        } else if(jRadioButtonNO.isSelected()) {
+            contSeleccion++;
+            seleccion="NO";
+        }
+        
+        String preferencias=elegirPreferencias();
+        String nacionalidad=String.valueOf(jComboBox1.getSelectedItem());
+        
+        if(esLetra(nombre) && esLetra(apellidos) && esDNI(DNI) && esEmail(email) && contSeleccion>0) {
+            JOptionPane.showMessageDialog(null, "Usuario añadido con éxito");            
+            usuarios.add(new Usuario(nombre, apellidos, DNI, email,nacionalidad,preferencias,seleccion));
+            vaciarCampos();
             
         // Campos vacíos
         } else if(nombre.isEmpty() || apellidos.isEmpty() || DNI.isEmpty() || email.isEmpty()){
@@ -340,10 +357,65 @@ public class Formulario extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, DNI+" no es válido","DNI inválido", JOptionPane.ERROR_MESSAGE);
             } else if(!esEmail(email)) {
                 JOptionPane.showMessageDialog(null, email+" no es válido","Email inválido", JOptionPane.ERROR_MESSAGE);
+            } else if(contSeleccion==0) {
+                JOptionPane.showMessageDialog(null, "Elige si quieres recibir noticias o no","Elige una opción", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jLabel1MouseClicked
 
+    // Método para seleccionar preferencias
+    private String elegirPreferencias() {
+        String preferencias="";
+        
+        if(jCheckBoxAventuras.isSelected()){
+            preferencias+="Aventuras ";
+        }
+        if(jCheckBoxCienciaFiccion.isSelected()){
+            preferencias+="Ciencia Ficción ";
+        }
+        if(jCheckBoxFantastica.isSelected()){
+            preferencias+="Fantástica ";
+        }
+        if(jCheckBoxHistorica.isSelected()){
+            preferencias+="Histórica ";
+        }
+        if(jCheckBoxJuvenil.isSelected()){
+            preferencias+="Juvenil ";
+        }
+        if(jCheckBoxNegra.isSelected()){
+            preferencias+="Negra ";
+        }        
+        
+        return preferencias;
+    }
+     
+    private void vaciarCampos() {
+        jTextFieldApellidos.setText("");
+        jTextFieldDNI.setText("");
+        jTextFieldEmail.setText("");
+        jTextFieldNombre.setText("");
+        
+        if(jCheckBoxAventuras.isSelected()){
+            jCheckBoxAventuras.setSelected(false);
+        }
+        if(jCheckBoxCienciaFiccion.isSelected()){
+            jCheckBoxCienciaFiccion.setSelected(false);
+        }
+        if(jCheckBoxFantastica.isSelected()){
+            jCheckBoxFantastica.setSelected(false);
+        }
+        if(jCheckBoxHistorica.isSelected()){
+            jCheckBoxHistorica.setSelected(false);
+        }
+        if(jCheckBoxJuvenil.isSelected()){
+            jCheckBoxJuvenil.setSelected(false);
+        }
+        if(jCheckBoxNegra.isSelected()){
+            jCheckBoxNegra.setSelected(false);
+        }                
+    }
+
+    
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         t.setVisible(true);
     }//GEN-LAST:event_jLabel2MouseClicked
@@ -356,12 +428,12 @@ public class Formulario extends javax.swing.JFrame {
     private javax.swing.JPanel ContenedorGeneral;
     private javax.swing.JLabel Imagen;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox6;
+    private javax.swing.JCheckBox jCheckBoxAventuras;
+    private javax.swing.JCheckBox jCheckBoxCienciaFiccion;
+    private javax.swing.JCheckBox jCheckBoxFantastica;
+    private javax.swing.JCheckBox jCheckBoxHistorica;
+    private javax.swing.JCheckBox jCheckBoxJuvenil;
+    private javax.swing.JCheckBox jCheckBoxNegra;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -374,11 +446,13 @@ public class Formulario extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButtonNO;
+    private javax.swing.JRadioButton jRadioButtonSI;
     private javax.swing.JTextField jTextFieldApellidos;
     private javax.swing.JTextField jTextFieldDNI;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldNombre;
     // End of variables declaration//GEN-END:variables
+
+
 }
