@@ -10,8 +10,13 @@ public class Consejos {
 	 *  
 	 *  3. Cerrar los "sent" y "rset" con close()
 	 * 	
+	 *  4. NO PONER LAS ' ' EN LOS LIKE. ES DECIR:
+	 *  	String consulta3="select tasa from paises where codpais like ?";	
+	 *     SI POR CASUALIDAD PUSIESEMOS COMILLAS EN LIKE, ROLLO LIKE '?', NOS VA A DAR UN ERROR DE ESTE TIPO:
+	 *     	
+	 *     java.sql.SQLException: Índice de columna no válido
 	 * 
-	 * 
+	 *  5. Cuando haga las verificaciones de si existe o no, recordar devoler "existe,", no false o true
 	 * 
 	 * 	-----------------------------------------------------------------------
 	 * 				    			BORRAR COLUMNA
