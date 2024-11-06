@@ -13,6 +13,7 @@ public class Principal {
 
 		Scanner sc = new Scanner(System.in);
 		int opcion = 0;
+				
 
 		do {
 			mostrarMenu();

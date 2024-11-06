@@ -5,6 +5,11 @@
  */
 package biblioteca;
 
+import java.awt.Color;
+import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
+import javax.swing.border.MatteBorder;
+
 /**
  *
  * @author PROGRAMACION
@@ -20,6 +25,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         // Estilos para la interfaz
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        
+        MatteBorder bordeBajo=BorderFactory.createMatteBorder(0, 0, 2, 0, new Color(141,141,141));
+        jTextFieldUus.setBorder(bordeBajo);
+        jPasswordField1.setBorder(bordeBajo);   
     }
 
     /**
@@ -30,69 +39,106 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
+        Contendeor = new javax.swing.JPanel();
+        jTextFieldUus = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        BotonInterfaz = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jPasswordField1 = new javax.swing.JPasswordField();
+
+        jScrollPane1.setViewportView(jTextPane1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 51, 51));
+        Contendeor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jTextFieldUus.setBackground(new java.awt.Color(220, 226, 232));
+        Contendeor.add(jTextFieldUus, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 164, -1));
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel2.setText("Usuario:");
+        Contendeor.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 131, -1));
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel3.setText("Contraseña:");
+        Contendeor.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 131, -1));
+
+        BotonInterfaz.setBackground(new java.awt.Color(255, 51, 51));
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(245, 245, 245));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("jLabel1");
+        jLabel1.setText("ENTRAR");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
-                .addContainerGap())
+        javax.swing.GroupLayout BotonInterfazLayout = new javax.swing.GroupLayout(BotonInterfaz);
+        BotonInterfaz.setLayout(BotonInterfazLayout);
+        BotonInterfazLayout.setHorizontalGroup(
+            BotonInterfazLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+        BotonInterfazLayout.setVerticalGroup(
+            BotonInterfazLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(155, 173, 91, 50));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 79, 164, -1));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 118, 164, -1));
+        Contendeor.add(BotonInterfaz, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 150, 50));
 
-        jLabel2.setText("Usuario:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 86, 131, -1));
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("INICIAR SESIÓN");
+        Contendeor.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 430, 60));
 
-        jLabel3.setText("Contraseña:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 123, 131, -1));
+        jPasswordField1.setBackground(new java.awt.Color(220, 226, 232));
+        Contendeor.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 160, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Contendeor, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Contendeor, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        Formulario f=new Formulario();
-        f.setVisible(true);
-        dispose();
+        String nombre=jTextFieldUus.getText();
+        String contra=String.valueOf(jPasswordField1.getPassword());        
+        
+        if(nombre.equals("admin") && contra.equals("admin")) {
+            Formulario f=new Formulario();
+            f.setVisible(true);
+            dispose();       
+        } else {
+            JOptionPane.showMessageDialog(this, "Nombre o contraseña incorrectos");
+        }
     }//GEN-LAST:event_jLabel1MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel BotonInterfaz;
+    private javax.swing.JPanel Contendeor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextFieldUus;
+    private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }
