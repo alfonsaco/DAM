@@ -9,7 +9,6 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -31,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btnEnviar=findViewById(R.id.btnEnviar);
-        etxtNombre=findViewById(R.id.etxtNombre);
+        etxtNombre=findViewById(R.id.etxtNombreModificar);
         etxtCiudad=findViewById(R.id.etxtCiudad);
         etxtEdad=findViewById(R.id.etxtEdad);
         rbNetBeans=findViewById(R.id.rbNetBeans);
@@ -69,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             preferencia="NetBeans";
                         }
-                        Intent i=new Intent(getApplicationContext(),SecondActivity.class);
+                        Intent i=new Intent(getApplicationContext(), SummaryActivity.class);
                         i.putExtra("nombre", nombre);
                         i.putExtra("edad",edad);
                         i.putExtra("ciudad",ciudad);

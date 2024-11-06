@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/etxtNombre"
+        android:id="@+id/etxtNombreModificar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
@@ -42,9 +42,9 @@
         android:ems="10"
         android:hint="Edad"
         android:inputType="number"
-        app:layout_constraintEnd_toEndOf="@+id/etxtNombre"
-        app:layout_constraintStart_toStartOf="@+id/etxtNombre"
-        app:layout_constraintTop_toBottomOf="@+id/etxtNombre" />
+        app:layout_constraintEnd_toEndOf="@+id/etxtNombreModificar"
+        app:layout_constraintStart_toStartOf="@+id/etxtNombreModificar"
+        app:layout_constraintTop_toBottomOf="@+id/etxtNombreModificar" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
