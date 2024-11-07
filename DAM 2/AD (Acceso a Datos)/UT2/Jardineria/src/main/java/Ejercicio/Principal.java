@@ -64,10 +64,66 @@ public class Principal {
 			case 6:
 				oficinasFuncionAlmacenada();
 				break;
+			
+			case 8:
+				nuevosEmpleados();
+				break;
 			}
 				
 			
 		} while (opcion != 0);
+	}
+
+	private static void nuevosEmpleados() {
+		String consulta="insert into empleados select * from nuevosempleados"
+				+ "where codigoempleado not in (select codigoempleado from empleados)";
+		
+		try {
+			java.sql.PreparedStatement sent = conexion.prepareStatement(consulta);
+			sent.executeUpdate();
+			System.out.println("EMPLEADOS AGREGADOS CON ÉXITO");
+			
+		} catch (SQLException e) {
+			System.out.println("LOS EMPLEADOS YA FUERON AÑADIDOS ANTERIORMENTE");
+		}
+	}
+
+	private static void actualizarNuevosEmpleados() {
+			// Crear la columna en la tabla EMPLEADOS
+			String alter="alter table nuevosempleados add numclientes number(5)";
+			
+			try {
+				java.sql.PreparedStatement sent = conexion.prepareStatement(alter);
+				sent.executeUpdate();
+				System.out.println("Columna NUMCLIENTE creada");
+				
+			} catch (SQLException e) {
+				System.out.println("La columna NUMCLIENTE ya existe");
+			}
+			
+			// Almacenar número de clientes en la tabla
+			/* 
+			 * LA CONSULTA DE ESTO SERÍA LA SIGUIENTE
+			 *   select e.codigoempleado, count(*) 
+			 * 	    	from empleados e 
+			 *   left join clientes c on c.codigoempleadorepventas=e.codigoempleado 
+			 * 		    group by e.codigoempleado;
+			 * 
+			 */
+			String actualizar="update nuevosempleados emple set NUMCLIENTES ="+
+				"( select count(*) from clientes where codigoempleadorepventas = emple.codigoempleado)";
+			
+			try {
+				java.sql.PreparedStatement sent = conexion.prepareStatement(actualizar);
+				int lin=sent.executeUpdate();
+				System.out.println("Numclientes actualizados"+lin);
+				
+				sent.close();
+				
+			} catch (SQLException e) {
+				System.out.println("Los empleados ya fueron actualizados");
+			}
+		
 	}
 
 	private static void oficinasFuncionAlmacenada() {

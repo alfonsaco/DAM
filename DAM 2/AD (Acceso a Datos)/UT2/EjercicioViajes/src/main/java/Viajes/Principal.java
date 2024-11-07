@@ -100,7 +100,6 @@ public class Principal {
 		
 	}
 		
-
 	private static boolean plazaOcupada(int numPlaza, int codViaje) {
 		boolean ocupada=false;
 		
