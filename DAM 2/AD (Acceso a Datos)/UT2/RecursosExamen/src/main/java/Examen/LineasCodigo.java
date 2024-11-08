@@ -1,10 +1,6 @@
 package Examen;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import com.mysql.jdbc.PreparedStatement;
+import java.sql.*;
 
 public class LineasCodigo {
 
@@ -17,7 +13,7 @@ public class LineasCodigo {
 		
 		// ---------------------------------------------------
 		try {	
-			java.sql.PreparedStatement sent=conexion.prepareStatement(consulta);
+			PreparedStatement sent=conexion.prepareStatement(consulta);
 			sent=conexion.prepareStatement(codigoMax);				
 			ResultSet res=sent.executeQuery(codigoMax);
 			res.next();

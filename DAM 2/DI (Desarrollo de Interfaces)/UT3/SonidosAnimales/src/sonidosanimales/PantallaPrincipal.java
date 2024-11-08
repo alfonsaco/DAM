@@ -6,11 +6,12 @@
 package sonidosanimales;
 
 import java.applet.AudioClip;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author PROGRAMACION
+ * @author Alfonso
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
     
@@ -22,6 +23,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         initComponents();
         
         sound=java.applet.Applet.newAudioClip(getClass().getResource("/sonidosanimales/raw/monkey.wav"));
+        
+        this.setIconImage(new ImageIcon(getClass().getResource("/sonidosanimales/animales/animales.jpg")).getImage());
     }
 
     /**
