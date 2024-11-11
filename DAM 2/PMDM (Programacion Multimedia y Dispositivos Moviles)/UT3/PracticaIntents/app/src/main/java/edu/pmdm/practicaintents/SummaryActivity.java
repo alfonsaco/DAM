@@ -26,22 +26,30 @@ public class SummaryActivity extends AppCompatActivity {
     Button btnEditar=null;
     String nombreIntent, edadIntent, ciudadIntent, preferenciaIntent;
 
-    private ActivityResultLauncher<Intent> launcher=registerForActivityResult(new ActivityResultContracts.StartActivityForResult()
-            , new ActivityResultCallback<ActivityResult>() {
+    private ActivityResultLauncher<Intent> launcher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
-                    Intent data = result.getData();
-                    String nombreEditado=data.getStringExtra("nombre");
-                    String edadEditada=data.getStringExtra("edad");
-                    String ciudadEditada=data.getStringExtra("ciudad");
-                    String preferenciaEditada=data.getStringExtra("preferencia");
+                    if (result.getResultCode() == RESULT_OK) {
+                        Intent data = result.getData();
+                        if (data != null) {
+                            String nombreEditado = data.getStringExtra("nombre");
+                            String edadEditada = data.getStringExtra("edad");
+                            String ciudadEditada = data.getStringExtra("ciudad");
+                            String preferenciaEditada = data.getStringExtra("preferencia");
 
-                    txtNombre.setText(nombreEditado);
-                    txtEdad.setText(edadEditada);
-                    txtCiudad.setText(ciudadEditada);
-                    txtPreferencia.setText(preferenciaEditada);
+                            // Actualiza los TextView con los datos modificados
+                            txtNombre.setText(nombreEditado);
+                            txtEdad.setText(edadEditada);
+                            txtCiudad.setText(ciudadEditada);
+                            txtPreferencia.setText(preferenciaEditada);
+                        }
+                    }
                 }
-    });
+            }
+    );
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

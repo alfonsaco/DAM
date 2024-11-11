@@ -7,6 +7,10 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -49,12 +53,28 @@ public class EditActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        Button btnGuardar=findViewById(R.id.btnGuardar);
+        // Obtén las referencias de los campos de entrada
+        EditText etxtNombreModificar = findViewById(R.id.etxtNombreModificar);
+        EditText etxtEdadModificar = findViewById(R.id.etxtEdadModificar);
+        EditText etxtCiudadModificar = findViewById(R.id.etxtCiudadModificar);
+        EditText etxPreferenciaModificar = findViewById(R.id.etxPreferenciaModificar);
+
+        // Configura el botón Guardar
+        Button btnGuardar = findViewById(R.id.btnGuardar);
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Crea un Intent para devolver los datos modificados
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("nombre", etxtNombreModificar.getText().toString());
+                resultIntent.putExtra("edad", etxtEdadModificar.getText().toString());
+                resultIntent.putExtra("ciudad", etxtCiudadModificar.getText().toString());
+                resultIntent.putExtra("preferencia", etxPreferenciaModificar.getText().toString());
 
+                // Configura el resultado de la actividad
+                setResult(RESULT_OK, resultIntent);
 
+                // Finaliza la actividad
                 finish();
             }
         });
