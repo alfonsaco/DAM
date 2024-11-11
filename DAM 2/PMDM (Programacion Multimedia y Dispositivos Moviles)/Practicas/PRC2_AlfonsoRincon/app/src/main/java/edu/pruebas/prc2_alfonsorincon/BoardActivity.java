@@ -34,8 +34,9 @@ public class BoardActivity extends AppCompatActivity {
     private void setDifficulty(String difficulty) {
         switch (difficulty) {
             case "easy":
-                int[][] board=locateMines(10);
+                int[][] board=locateMines(8,8,10);
                 printBoard(board);
+                createGrid(board);
                 break;
 
             case "medium":
@@ -46,6 +47,11 @@ public class BoardActivity extends AppCompatActivity {
 
                 break;
         }
+    }
+
+    // Método para crear el grid mediante el array de números
+    private void createGrid(int[][] board) {
+
     }
 
     // Método para leer el Array completo y mostrarlo por consola
@@ -59,15 +65,8 @@ public class BoardActivity extends AppCompatActivity {
     }
 
     // Método para situar las minas de forma aleatoria a lo largo del Grid
-    private int[][] locateMines(int minesNumber) {
-        int[][] board=new int[8][8];
-
-        // Para llenar el Array de 0
-        for (int i=0; i<board.length; i++) {
-            for (int e=0; e<board[i].length; e++) {
-                board[i][e]=0;
-            }
-        }
+    private int[][] locateMines(int widht, int height, int minesNumber) {
+        int[][] board=new int[widht][height];
 
         // Método para insertar minas en el tablero de forma aleatoria
         int contMines=0;
@@ -75,8 +74,9 @@ public class BoardActivity extends AppCompatActivity {
         do {
             for (int i=0; i<board.length; i++) {
                 for (int e=0; e<board[i].length; e++) {
-                    random=(int) (Math.random()*15);
-                    // Verificar que en la posición en cuestión, no haya una mina ya
+                    random=(int) (Math.random()*14);
+                    // Verificar que en la posición en cuestión, no haya una mina ya. Si el random es
+                    // 5, se colocará una mina.
                     if(random==5 && board[i][e]!=-1 && contMines<minesNumber) {
                         contMines++;
                         board[i][e]=-1;
@@ -85,6 +85,46 @@ public class BoardActivity extends AppCompatActivity {
             }
 
         } while(contMines < minesNumber);
+
+        // Situar los números
+        for (int i=0; i<board.length; i++) {
+            for (int e=0; e<board[i].length; e++) {
+                if(board[i][e]!=-1) {
+                    // Verificar mina de arriba
+                    if(i>0 && board[i-1][e]==-1) {
+                        board[i][e]++;
+                    }
+                    // Verificar mina de abajo
+                    if(i<board.length-1 && board[i+1][e]==-1) {
+                        board[i][e]++;
+                    }
+                    // Verificar mina de la izquierda
+                    if(e>0 && board[i][e-1]==-1) {
+                        board[i][e]++;
+                    }
+                    // Verificar mina de la derecha
+                    if(e<board[i].length-1 && board[i][e+1]==-1) {
+                        board[i][e]++;
+                    }
+                    // Verificar arriba izquierda
+                    if(i>0 && e>0 && board[i-1][e-1]==-1) {
+                        board[i][e]++;
+                    }
+                    // Verificar arriba derecha
+                    if(i>0 && e<board[i].length-1 && board[i-1][e+1]==-1) {
+                        board[i][e]++;
+                    }
+                    // Verificar abajo izquierda
+                    if(i<board.length-1 && e>0 && board[i+1][e-1]==-1) {
+                        board[i][e]++;
+                    }
+                    // Verificar abajo derecha
+                    if(i<board.length-1 && e<board[i].length-1 && board[i+1][e+1]==-1) {
+                        board[i][e]++;
+                    }
+                }
+            }
+        }
 
         return board;
     }
