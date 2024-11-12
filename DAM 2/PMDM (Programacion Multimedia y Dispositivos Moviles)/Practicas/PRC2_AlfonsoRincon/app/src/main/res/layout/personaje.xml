@@ -20,6 +20,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="OK"
+        android:backgroundTint="#00000000"
+        android:textColor="#24147C"
         app:layout_constraintEnd_toEndOf="@+id/spinner"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
 

@@ -1,11 +1,16 @@
 package edu.pruebas.prc2_alfonsorincon;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -16,9 +21,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class JuegoActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class JuegoActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private Partida partida;
+    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +34,14 @@ public class JuegoActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_tablero);
 
+        // Crear la ToolBar
         Toolbar toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        // Línea de código para poder cambiar el color de los 3 puntitos de la ToolBar
+        if(toolbar.getOverflowIcon() != null) {
+            toolbar.getOverflowIcon().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+        }
+
 
         /*
         partida=new Partida();
@@ -55,7 +69,24 @@ public class JuegoActivity extends AppCompatActivity {
         View dialogInflater=null;
 
         if(id == R.id.itemPersonaje) {
-            dialogInflater=inflater.inflate(R.layout.intrucciones, null);
+            dialogInflater = inflater.inflate(R.layout.personaje, null);
+
+            // Configura el Spinner del dialogo
+            Spinner dialogSpinner = dialogInflater.findViewById(R.id.spinner);
+
+            // Lista de elementos para el Spinner
+            ArrayList<Items> elementosSpinner = new ArrayList<>();
+            elementosSpinner.add(new Items("Bomba clásica", R.drawable.clasica));
+            elementosSpinner.add(new Items("TNT", R.drawable.tnt));
+            elementosSpinner.add(new Items("Granada", R.drawable.granada));
+            elementosSpinner.add(new Items("Mina marina", R.drawable.submarina));
+            elementosSpinner.add(new Items("Bomba Mario Bros", R.drawable.mariobros));
+
+            // Crea el adaptador y asígnalo al Spinner del diálogo
+            Adapter adapter = new Adapter(this, elementosSpinner);
+            dialogSpinner.setAdapter(adapter);
+            dialogSpinner.setOnItemSelectedListener(this);
+
         } else if(id == R.id.itemReiniciar) {
             dialogInflater=inflater.inflate(R.layout.intrucciones, null);
         } else if(id == R.id.itemConfiguracion) {
@@ -73,6 +104,7 @@ public class JuegoActivity extends AppCompatActivity {
             AlertDialog dialog = builder.create();
             dialog.show();
 
+            // Funciones de la opción de las intrucciones
             if(id == R.id.itemInstrucciones) {
                 Button btnOK=dialogInflater.findViewById(R.id.btnOKpersonaje);
 
@@ -82,10 +114,23 @@ public class JuegoActivity extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 });
+
+                // Funciones de la opción de la configuración
             } else if(id == R.id.itemConfiguracion) {
                 Button btnVolver=dialogInflater.findViewById(R.id.btnVolver);
 
                 btnVolver.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
+                // Funciones de la opción de elegir personaje
+            } else if(id == R.id.itemPersonaje) {
+                Button btnOKpersonaje=dialogInflater.findViewById(R.id.btnOKpersonaje);
+
+                btnOKpersonaje.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         dialog.dismiss();
@@ -97,4 +142,15 @@ public class JuegoActivity extends AppCompatActivity {
         return true;
     }
 
+    // Métodos del Spinner
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        Items items=(Items)adapterView.getSelectedItem();
+        Toast.makeText(this, items.getTexto(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
 }

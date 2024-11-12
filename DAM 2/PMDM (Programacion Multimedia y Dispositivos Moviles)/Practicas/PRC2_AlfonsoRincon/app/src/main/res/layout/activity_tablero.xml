@@ -11,12 +11,13 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="#C6C6C6"
+        android:background="#A13131"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title="Buscaminas"
-        app:titleTextColor="#202020"></androidx.appcompat.widget.Toolbar>
+        app:titleMarginStart="20dp"
+        app:titleTextColor="#EDEDED"></androidx.appcompat.widget.Toolbar>
 
     <GridLayout
         android:id="@+id/gridLayout"

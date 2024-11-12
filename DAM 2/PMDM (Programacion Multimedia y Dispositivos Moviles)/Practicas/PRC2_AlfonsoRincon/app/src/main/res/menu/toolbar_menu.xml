@@ -4,7 +4,7 @@
 
     <item android:id="@+id/itemPersonaje"
         android:title="Personajes"
-        android:icon="@drawable/icono"
+        android:icon="@drawable/submarina"
         app:showAsAction="ifRoom" ></item>
 
     <item android:id="@+id/itemInstrucciones"
