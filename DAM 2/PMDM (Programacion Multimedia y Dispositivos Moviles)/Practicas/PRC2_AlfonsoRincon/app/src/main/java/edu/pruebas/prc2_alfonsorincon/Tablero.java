@@ -12,6 +12,7 @@ public class Tablero {
     public int y;
     public int minas;
     private Context context;
+    private Casilla[][] tablero;
 
     // Array de los botones. Como algunos son ImageButtons, y otro Buttons, no se pueden
     // almacenar en un array de Buttons, por ejemplo, por lo que los almaceno en un Array de
@@ -49,9 +50,9 @@ public class Tablero {
         this.x = x;
     }
 
-    /*
+
     // Método para situar las minas de forma aleatoria a lo largo del Grid, además de poner los respectivos números en cada casilla
-    public int[][] situarMinas(int anchura, int altura, int numMinas) {
+    public int[][] establecerMinas(int anchura, int altura, int numMinas) {
         int[][] tablero=new int[anchura][altura];
 
         // Método para insertar minas en el tablero de forma aleatoria
@@ -124,7 +125,7 @@ public class Tablero {
         }
     }
 
-
+/*
     // Método para crear el grid mediante el array de números
     public void crearTablero(int[][] tablero, int tamañoGrid) {
         GridLayout gridLayout=((MainActivity) context).findViewById(R.id.gridLayout);

@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -43,6 +44,9 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
             toolbar.getOverflowIcon().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
         }
 
+        // Partida
+        partida=new Partida();
+
 
         /*
         partida=new Partida();
@@ -53,6 +57,10 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        // Comenzar la partida al iniciar la actividad
+        partida.comenzar(8, 8, 10);
+
     }
 
     // Funciones del ActionbBar
@@ -121,11 +129,25 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
 
                 // Funciones de la opción de la configuración
             } else if(id == R.id.itemConfiguracion) {
-                Button btnVolver=dialogInflater.findViewById(R.id.btnVolver);
+                final View finalDialogInflater=dialogInflater;
+                Button btnVolver=finalDialogInflater.findViewById(R.id.btnVolver);
 
                 btnVolver.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        RadioButton rdPrincipiante=finalDialogInflater.findViewById(R.id.rdPrincipiante);
+                        RadioButton rdAmateur=finalDialogInflater.findViewById(R.id.rdAmateur);
+                        RadioButton rdAvanzado=finalDialogInflater.findViewById(R.id.rdAvanzado);
+
+                        // Condicionales para ver que dificultad se ha elegido, y así poder crear una nueva partida
+                        if(rdPrincipiante != null && rdPrincipiante.isChecked()) {
+                            partida.comenzar(8, 8, 10);
+                        } else if(rdAmateur != null && rdAmateur.isChecked()) {
+                            partida.comenzar(12, 12, 30);
+                        } else if(rdAvanzado != null && rdAvanzado.isChecked()) {
+                            partida.comenzar(16, 16, 60);
+                        }
+
                         dialog.dismiss();
                     }
                 });

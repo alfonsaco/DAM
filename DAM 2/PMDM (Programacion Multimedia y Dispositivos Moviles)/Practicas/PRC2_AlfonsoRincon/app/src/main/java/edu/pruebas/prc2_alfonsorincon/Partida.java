@@ -20,23 +20,12 @@ public class Partida {
     public void setPuntos(int puntos) {
         this.puntos = puntos;
     }
-/*
+
     // Método para definir la dificultad del juego. Por defecto, se inicia en Easy
-    public void seleccionarDificultad(String difficulty) {
-        switch (difficulty) {
-            case "facil":
-                int[][] array=tablero.situarMinas(16,16,60);
-                tablero.imprimirTablero(array);
-                tablero.crearTablero(array ,16);
-                break;
+    public void comenzar(int x, int y, int minas) {
+        int[][] array=tablero.establecerMinas(x,y,minas);
+        tablero.imprimirTablero(array);
+                //tablero.crearTablero(array ,16);
 
-            case "medio":
-
-                break;
-
-            case "avanzado":
-
-                break;
-        }
-    }*/
+    }
 }
