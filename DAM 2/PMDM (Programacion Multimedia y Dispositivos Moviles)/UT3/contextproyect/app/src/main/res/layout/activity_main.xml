@@ -37,12 +37,22 @@
 
     <Button
         android:id="@+id/btnFondo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="190dp"
+        android:layout_height="49dp"
         android:layout_marginBottom="120dp"
         android:text="CAMBIAR FONDO"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnBotones"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="24dp"
+        android:text="CAMBIAR BOTONES"
+        app:layout_constraintBottom_toTopOf="@+id/btnFondo"
+        app:layout_constraintEnd_toEndOf="@+id/btnFondo"
+        app:layout_constraintStart_toStartOf="@+id/btnFondo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

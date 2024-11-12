@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">PRC2_AlfonsoRincon</string>
+    
+    <string-array name="opciones_spinner">
+
+    </string-array>
 </resources>

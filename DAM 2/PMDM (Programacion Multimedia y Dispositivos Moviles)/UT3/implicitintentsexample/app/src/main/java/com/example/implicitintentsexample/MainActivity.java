@@ -6,14 +6,46 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
+
+    Button btnAbrirWeb=null;
+
+    private ActivityResultLauncher<Intent> launcher=registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if(result.getResultCode() == RESULT_OK) {
+                        Intent data=result.getData();
+                        if(data != null) {
+                            String urlModificada=data.getStringExtra("URL");
+                            if(urlModificada != null) {
+                                btnAbrirWeb.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        Intent i=new Intent(Intent.ACTION_VIEW, Uri.parse(urlModificada));
+                                        startActivity(i);
+                                    }
+                                });
+                            } else {
+                                Toast.makeText(getApplicationContext(), "URL no válida", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         // Botón para abrir una página web
-        Button btnAbrirWeb = findViewById(R.id.btnAbrirWeb);
+        btnAbrirWeb = findViewById(R.id.btnAbrirWeb);
         btnAbrirWeb.setOnClickListener(v -> {
             // Crear un intent implícito para abrir una página web
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com"));
@@ -57,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(getApplicationContext(), ConfigAtivity.class);
-                startActivity(i);
+                launcher.launch(i);
             }
         });
     }

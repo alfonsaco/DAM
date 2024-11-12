@@ -3,12 +3,9 @@ package edu.pruebas.prc2_alfonsorincon;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.GridLayout;
-import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -77,7 +74,7 @@ public class JuegoActivity extends AppCompatActivity {
             dialog.show();
 
             if(id == R.id.itemInstrucciones) {
-                Button btnOK=dialogInflater.findViewById(R.id.btnOK);
+                Button btnOK=dialogInflater.findViewById(R.id.btnOKpersonaje);
 
                 btnOK.setOnClickListener(new View.OnClickListener() {
                     @Override
