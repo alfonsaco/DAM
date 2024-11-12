@@ -5,18 +5,28 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BoardActivity">
+    tools:context=".JuegoActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#C6C6C6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Buscaminas"
+        app:titleTextColor="#202020"></androidx.appcompat.widget.Toolbar>
 
     <GridLayout
         android:id="@+id/gridLayout"
-        android:layout_width="0dp"
-        android:layout_height="650dp"
+        android:layout_width="409dp"
+        android:layout_height="605dp"
         android:background="#FFE2E2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
-    </GridLayout>
+        app:layout_constraintVertical_bias="1.0"></GridLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

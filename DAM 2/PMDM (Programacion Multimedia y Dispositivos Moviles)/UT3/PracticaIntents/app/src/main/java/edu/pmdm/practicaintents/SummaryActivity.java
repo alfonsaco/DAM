@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResult;
@@ -39,7 +40,7 @@ public class SummaryActivity extends AppCompatActivity {
                             String ciudadEditada = data.getStringExtra("ciudad");
                             String preferenciaEditada = data.getStringExtra("preferencia");
 
-                            // Actualiza los TextView con los datos modificados
+                            // Actualizar los TextView con los datos modificados
                             txtNombre.setText(nombreEditado);
                             txtEdad.setText(edadEditada);
                             txtCiudad.setText(ciudadEditada);
@@ -50,6 +51,15 @@ public class SummaryActivity extends AppCompatActivity {
             }
     );
 
+    private ActivityResultLauncher<Intent> l=registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult o) {
+
+                }
+            }
+    );
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +101,20 @@ public class SummaryActivity extends AppCompatActivity {
         btnVolver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "Datos guardados correctamente", Toast.LENGTH_SHORT);
+                txtNombre.setText("");
+                txtEdad.setText("");
+                txtCiudad.setText("");
+                txtPreferencia.setText("");
+
+                // Vaciar los campos del MainActivity
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("nombre", "");
+                resultIntent.putExtra("edad", "");
+                resultIntent.putExtra("ciudad", "");
+                resultIntent.putExtra("preferencia", "");
+                setResult(RESULT_OK, resultIntent);
+
                 finish();
             }
         });
@@ -98,11 +122,10 @@ public class SummaryActivity extends AppCompatActivity {
         btnEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(getApplicationContext(), EditActivity.class);
+                Intent i=new Intent(SummaryActivity.this, EditActivity.class);
                 i.putExtra("nombre", nombreIntent);
                 i.putExtra("edad", edadIntent);
                 i.putExtra("ciudad", ciudadIntent);
-                i.putExtra("preferencia", preferenciaIntent);
                 launcher.launch(i);
             }
         });

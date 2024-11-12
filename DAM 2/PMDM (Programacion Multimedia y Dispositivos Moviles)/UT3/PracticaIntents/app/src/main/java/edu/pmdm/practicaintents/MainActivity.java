@@ -9,6 +9,10 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -22,6 +26,34 @@ public class MainActivity extends AppCompatActivity {
     EditText etxtEdad=null;
     RadioButton rbEclipse=null;
     RadioButton rbNetBeans=null;
+
+    private ActivityResultLauncher<Intent> launcher=registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == RESULT_OK) {
+                        // Recuperar los datos del Intent de SummaryActivity
+                        Intent data=result.getData();
+                        if (data != null) {
+                            String nombre = data.getStringExtra("nombre");
+                            String edad = data.getStringExtra("edad");
+                            String ciudad = data.getStringExtra("ciudad");
+                            String preferencia = data.getStringExtra("preferencia");
+
+                            if (nombre.equals("") && edad.equals("") && ciudad.equals("") && preferencia.equals("")) {
+                                etxtNombre.setText("");
+                                etxtEdad.setText("");
+                                etxtCiudad.setText("");
+                                rbEclipse.setChecked(false);
+                                rbNetBeans.setChecked(false);
+                            }
+                        }
+                    }
+                }
+            }
+    );
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                         i.putExtra("edad",edad);
                         i.putExtra("ciudad",ciudad);
                         i.putExtra("preferencia",preferencia);
-                        startActivity(i);
+                        launcher.launch(i);
                     }
                 }
             }

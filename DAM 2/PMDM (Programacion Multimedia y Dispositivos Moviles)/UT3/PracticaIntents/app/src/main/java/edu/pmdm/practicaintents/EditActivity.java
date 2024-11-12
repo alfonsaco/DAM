@@ -29,18 +29,15 @@ public class EditActivity extends AppCompatActivity {
         EditText etxtNombreModificar=findViewById(R.id.etxtNombreModificar);
         EditText etxtEdadModificar=findViewById(R.id.etxtEdadModificar);
         EditText etxtCiudadModificar=findViewById(R.id.etxtCiudadModificar);
-        EditText etxPreferenciaModificar=findViewById(R.id.etxPreferenciaModificar);
 
         Intent intent = getIntent();
         String nombre = intent.getStringExtra("nombre");
         String edad = intent.getStringExtra("edad");
         String ciudad = intent.getStringExtra("ciudad");
-        String preferencia = intent.getStringExtra("preferencia");
 
         etxtNombreModificar.setText(nombre);
         etxtCiudadModificar.setText(ciudad);
         etxtEdadModificar.setText(edad);
-        etxPreferenciaModificar.setText(preferencia);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -53,28 +50,22 @@ public class EditActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        // Obtén las referencias de los campos de entrada
         EditText etxtNombreModificar = findViewById(R.id.etxtNombreModificar);
         EditText etxtEdadModificar = findViewById(R.id.etxtEdadModificar);
         EditText etxtCiudadModificar = findViewById(R.id.etxtCiudadModificar);
-        EditText etxPreferenciaModificar = findViewById(R.id.etxPreferenciaModificar);
 
-        // Configura el botón Guardar
         Button btnGuardar = findViewById(R.id.btnGuardar);
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Crea un Intent para devolver los datos modificados
+                // Devolvemos los datos modificados
                 Intent resultIntent = new Intent();
                 resultIntent.putExtra("nombre", etxtNombreModificar.getText().toString());
                 resultIntent.putExtra("edad", etxtEdadModificar.getText().toString());
                 resultIntent.putExtra("ciudad", etxtCiudadModificar.getText().toString());
-                resultIntent.putExtra("preferencia", etxPreferenciaModificar.getText().toString());
 
-                // Configura el resultado de la actividad
                 setResult(RESULT_OK, resultIntent);
 
-                // Finaliza la actividad
                 finish();
             }
         });

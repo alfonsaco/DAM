@@ -2,7 +2,6 @@ package edu.pruebas.prc2_alfonsorincon;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 
@@ -38,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(getApplicationContext(), BoardActivity.class);
+                Intent i=new Intent(getApplicationContext(), JuegoActivity.class);
                 startActivity(i);
             }
         });
