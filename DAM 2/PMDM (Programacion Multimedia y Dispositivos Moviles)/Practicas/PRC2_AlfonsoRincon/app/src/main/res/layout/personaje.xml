@@ -7,8 +7,8 @@
 
     <View
         android:id="@+id/view3"
-        android:layout_width="352dp"
-        android:layout_height="169dp"
+        android:layout_width="340dp"
+        android:layout_height="135dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,9 +18,8 @@
         android:id="@+id/btnOKpersonaje"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="OK"
         android:backgroundTint="#00000000"
+        android:text="OK"
         android:textColor="#24147C"
         app:layout_constraintEnd_toEndOf="@+id/spinner"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
@@ -29,11 +28,10 @@
         android:id="@+id/spinner"
         android:layout_width="286dp"
         android:layout_height="58dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="@+id/view3"
         app:layout_constraintStart_toStartOf="@+id/view3"
         app:layout_constraintTop_toTopOf="@+id/view3"
-
 
 
         />

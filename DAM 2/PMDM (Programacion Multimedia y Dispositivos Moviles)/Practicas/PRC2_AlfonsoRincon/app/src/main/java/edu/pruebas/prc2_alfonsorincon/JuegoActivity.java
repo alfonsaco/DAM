@@ -27,6 +27,7 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
 
     private Partida partida;
     private Spinner spinner;
+    private int personajeSeleccionado=R.drawable.submarina;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,8 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        MenuItem item=menu.findItem(R.id.itemPersonaje);
+        item.setIcon(personajeSeleccionado);
         return true;
     }
 
@@ -68,13 +71,14 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
         LayoutInflater inflater=getLayoutInflater();
         View dialogInflater=null;
 
+        // Crear el Spinner, en caso de que se haya seleccionado la opción de personajes en el ToolBar
         if(id == R.id.itemPersonaje) {
             dialogInflater = inflater.inflate(R.layout.personaje, null);
 
-            // Configura el Spinner del dialogo
+            // Spinner de diálogo
             Spinner dialogSpinner = dialogInflater.findViewById(R.id.spinner);
 
-            // Lista de elementos para el Spinner
+            // Agregamos todos los elementos al Spinner
             ArrayList<Items> elementosSpinner = new ArrayList<>();
             elementosSpinner.add(new Items("Bomba clásica", R.drawable.clasica));
             elementosSpinner.add(new Items("TNT", R.drawable.tnt));
@@ -82,7 +86,7 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
             elementosSpinner.add(new Items("Mina marina", R.drawable.submarina));
             elementosSpinner.add(new Items("Bomba Mario Bros", R.drawable.mariobros));
 
-            // Crea el adaptador y asígnalo al Spinner del diálogo
+            // Creación del adaptador y asignación al Spinner del diálogo
             Adapter adapter = new Adapter(this, elementosSpinner);
             dialogSpinner.setAdapter(adapter);
             dialogSpinner.setOnItemSelectedListener(this);
@@ -133,6 +137,9 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                 btnOKpersonaje.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        // Usamos invalidateOptionsMenu(), para recrear el ToolBar, y así, poner la nueva imagen que hemos seleccionado.
+                        // Gracias a esto, el icono se actualizará
+                        invalidateOptionsMenu();
                         dialog.dismiss();
                     }
                 });
@@ -146,7 +153,8 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         Items items=(Items)adapterView.getSelectedItem();
-        Toast.makeText(this, items.getTexto(), Toast.LENGTH_SHORT).show();
+        // Una vez seleccionado el nuevo personaje, será este. Lo podremos utilizar más tarde
+        personajeSeleccionado=items.getImagen();
     }
 
     @Override
