@@ -52,4 +52,17 @@ Toast.makeText(getApplicationContext(),"No puede haber campos vacíos", Toast.LE
 
 
 INTENT IMPLICITOS
-i.setData(Uri."mailto:");
+i.setData(Uri."mailto:"+correo);	Para enviar el email
+i.putExtra(Intent.EXTRA_SUBECT, asunto);
+i.putExtra(Intent.EXTRA_TEX mesaje)
+
+
+
+
+setImageResource()	Esto aceptar ints, como el id de eun elemento= R.drawable.icono. otros, como setImage() acepta iconos, por lo que estos id no los aceptará
+AJUSTAR IMÁGENES
+scaleType="centerInside"	Ajusta las imágenes al elemento, haciendo uque se centren y tengan su tamaño. Es útil para cuando tenemos imágenes muy grandes, o pequeñas, y quedan mal. Ajusta el tamaño de la imagen al elemento.DESDE EL CÓDIGO:
+	button.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+
+
+instanceOf	Es como el  typeOf de JS. Permite verficiar que tipo de elemento es. por ejemplo if(botón instaceof Button), verificará si el elemento es una instancia de Button. Si es un botón, devolverá true.
