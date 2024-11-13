@@ -3,6 +3,8 @@ package edu.pruebas.prc2_alfonsorincon;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -231,6 +234,8 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
 
                     // Agregar los estilos creados en el XML a los botones
                     button.setBackgroundResource(R.drawable.estilos_boton);
+                    // Línea de código para poder hacer que la imagen se ajuste al tamaño del botón
+                    button.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
 
                     // Guardar el botón en el array de View
                     buttons[i][e] = button;
@@ -240,13 +245,11 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                         @Override
                         public void onClick(View v) {
                             button.setImageResource(personajeSeleccionado);
+                            button.setBackgroundColor(fondoBoton);
 
-                            // Acción al hacer clic en la casilla
-                            if (v instanceof ImageButton) {
-                                // Acciones para la mina
-                            } else if (v instanceof Button) {
-                                // Acciones para una casilla normal
-                            }
+                            button.setEnabled(false);
+
+                            hasPerdido(tablero);
                         }
                     });
 
@@ -314,6 +317,36 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                 }
             }
         });
+    }
+
+    // Método que se ejecuta cuando tocas una bomba
+    public void hasPerdido(int[][] tablero) {
+        for (int i = 0; i < tablero.length; i++) {
+            for (int e = 0; e < tablero[i].length; e++) {
+                View view = buttons[i][e];
+
+                // Mostrar todos los botones que sean minas
+                if (tablero[i][e] == -1 && view instanceof ImageButton) {
+                    ImageButton mina = (ImageButton) view;
+                    mina.setImageResource(personajeSeleccionado);
+                    mina.setBackgroundColor(fondoBoton);
+                    mina.setEnabled(false);
+
+                    // Mostrar todos los botones que no sean minas
+                } else if (view instanceof Button) {
+                    Button boton = (Button) view;
+                    mostrarNumero(boton, i, e, tablero);
+                }
+            }
+        }
+
+        // Dialog que nos informa de que el juego se ha terminado. Tardará 2 segundos en lanzarse.
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(JuegoActivity.this, "SE ACABÓ EL JUEGO", Toast.LENGTH_SHORT).show();
+            }
+        }, 2000);
     }
 
 }
