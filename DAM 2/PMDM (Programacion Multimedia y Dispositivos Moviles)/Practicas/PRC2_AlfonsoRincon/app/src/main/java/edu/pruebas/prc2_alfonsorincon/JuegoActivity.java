@@ -193,6 +193,11 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
     // Método para crear el grid mediante el array de números
     public void crearTablero(int[][] tablero, int tamañoGrid) {
         android.widget.GridLayout gridLayout=findViewById(R.id.gridLayout);
+
+        // Línea de código, para evitar que cada vez que cambio de dificultad, se superpongan los botones, ya que se sobrecarga
+        // la aplicación, y acaba petando. Cone sto, se borran todos los botones, y se crea desde cero el nuevo grid.
+        gridLayout.removeAllViews();
+
         gridLayout.setRowCount(tamañoGrid);
         gridLayout.setColumnCount(tamañoGrid);
 
