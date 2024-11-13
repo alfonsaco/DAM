@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -21,6 +22,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.gridlayout.widget.GridLayout;
 
 import java.util.ArrayList;
 
@@ -29,6 +31,11 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
     private Partida partida;
     private Spinner spinner;
     private int personajeSeleccionado=R.drawable.submarina;
+    // Array de los botones. Como algunos son ImageButtons, y otro Buttons, no se pueden
+    // almacenar en un array de Buttons, por ejemplo, por lo que los almaceno en un Array de
+    // View, ya que ambos heredan de esta clase.
+    private View[][] buttons;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +54,6 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
         // Partida
         partida=new Partida();
 
-
         /*
         partida=new Partida();
         partida.seleccionarDificultad("facil");
@@ -59,7 +65,7 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
         });
 
         // Comenzar la partida al iniciar la actividad
-        partida.comenzar(8, 8, 10);
+        partida.comenzar(8, 8, 10, this);
 
     }
 
@@ -141,11 +147,11 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
 
                         // Condicionales para ver que dificultad se ha elegido, y así poder crear una nueva partida
                         if(rdPrincipiante != null && rdPrincipiante.isChecked()) {
-                            partida.comenzar(8, 8, 10);
+                            partida.comenzar(8, 8, 10, JuegoActivity.this);
                         } else if(rdAmateur != null && rdAmateur.isChecked()) {
-                            partida.comenzar(12, 12, 30);
+                            partida.comenzar(12, 12, 30, JuegoActivity.this);
                         } else if(rdAvanzado != null && rdAvanzado.isChecked()) {
-                            partida.comenzar(16, 16, 60);
+                            partida.comenzar(16, 16, 60, JuegoActivity.this);
                         }
 
                         dialog.dismiss();
@@ -183,4 +189,76 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
+    // Método para crear el grid mediante el array de números
+    public void crearTablero(int[][] tablero, int tamañoGrid) {
+        android.widget.GridLayout gridLayout=findViewById(R.id.gridLayout);
+        gridLayout.setRowCount(tamañoGrid);
+        gridLayout.setColumnCount(tamañoGrid);
+
+        // Definir el tamaño del botón
+        //      getDisplayMetrics(): contiene información sobre la pantalla del dispositivo
+        //      widthPixels: devuelve el ancho en píxeles
+        int buttonSize=getResources().getDisplayMetrics().widthPixels / tamañoGrid;
+        buttons=new View[tamañoGrid][tamañoGrid];
+
+        for (int i=0; i<tablero.length; i++) {
+            for (int e=0; e<tablero[i].length; e++) {
+                if(tablero[i][e] == -1) {
+                    ImageButton button=new ImageButton(this);
+
+                    // Configuración básica para ambos tipos de botón
+                    button.setLayoutParams(new android.widget.GridLayout.LayoutParams());
+                    button.getLayoutParams().width = buttonSize;
+                    button.getLayoutParams().height = buttonSize;
+
+                    // Guardar el botón en el array de View
+                    buttons[i][e] = button;
+
+                    // Configurar comportamiento al hacer clic
+                    button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // Acción al hacer clic en la casilla
+                            if (v instanceof ImageButton) {
+                                // Acciones para la mina
+                            } else if (v instanceof Button) {
+                                // Acciones para una casilla normal
+                            }
+                        }
+                    });
+
+                    // Añadir el botón al GridLayout
+                    gridLayout.addView(button);
+                } else {
+                    Button button=new Button(this);
+
+                    // Configuración básica para ambos tipos de botón
+                    button.setLayoutParams(new android.widget.GridLayout.LayoutParams());
+                    button.getLayoutParams().width = buttonSize;
+                    button.getLayoutParams().height = buttonSize;
+
+                    // Guardar el botón en el array de View
+                    buttons[i][e] = button;
+
+                    // Configurar comportamiento al hacer clic
+                    button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // Acción al hacer clic en la casilla
+                            if (v instanceof ImageButton) {
+                                // Acciones para la mina
+                            } else if (v instanceof Button) {
+                                // Acciones para una casilla normal
+                            }
+                        }
+                    });
+
+                    // Añadir el botón al GridLayout
+                    gridLayout.addView(button);
+                }
+            }
+        }
+    }
+
 }

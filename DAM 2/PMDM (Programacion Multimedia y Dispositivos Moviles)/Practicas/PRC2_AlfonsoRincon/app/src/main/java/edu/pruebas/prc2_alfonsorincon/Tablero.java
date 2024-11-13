@@ -11,17 +11,14 @@ public class Tablero {
     public int x;
     public int y;
     public int minas;
+    private GridLayout gridLayout;
     private Context context;
-    private Casilla[][] tablero;
-
-    // Array de los botones. Como algunos son ImageButtons, y otro Buttons, no se pueden
-    // almacenar en un array de Buttons, por ejemplo, por lo que los almaceno en un Array de
-    // View, ya que ambos heredan de esta clase.
-    private View[][] buttons;
 
     // Constructor
-    public Tablero(Context context, int x, int y, int minas) {
+    // Constructor
+    public Tablero(Context context, GridLayout gridLayout, int x, int y, int minas) {
         this.context = context;
+        this.gridLayout = gridLayout; // Guardamos el GridLayout directamente
         this.x = x;
         this.y = y;
         this.minas = minas;
@@ -125,7 +122,7 @@ public class Tablero {
         }
     }
 
-/*
+    /*
     // Método para crear el grid mediante el array de números
     public void crearTablero(int[][] tablero, int tamañoGrid) {
         GridLayout gridLayout=((MainActivity) context).findViewById(R.id.gridLayout);
@@ -195,7 +192,6 @@ public class Tablero {
                 }
             }
         }
-    }
-*/
+    }*/
 
 }

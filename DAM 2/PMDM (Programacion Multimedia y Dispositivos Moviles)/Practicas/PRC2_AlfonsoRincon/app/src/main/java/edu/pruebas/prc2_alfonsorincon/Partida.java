@@ -21,11 +21,11 @@ public class Partida {
         this.puntos = puntos;
     }
 
-    // Método para definir la dificultad del juego. Por defecto, se inicia en Easy
-    public void comenzar(int x, int y, int minas) {
+    // Método para definir la dificultad del juego. Por defecto, se inicia en Fácil
+    public void comenzar(int x, int y, int minas, JuegoActivity juego) {
         int[][] array=tablero.establecerMinas(x,y,minas);
         tablero.imprimirTablero(array);
-                //tablero.crearTablero(array ,16);
+        juego.crearTablero(array, x);
 
     }
 }
