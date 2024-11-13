@@ -2,4 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="primero">#2168db</color>
+    <color name="dos">#10ad15</color>
+    <color name="tres">#ad2010</color>
+    <color name="cuatro">#122578</color>
+    <color name="cinco">#8410b5</color>
+    <color name="fondo">#EDEDED</color>
 </resources>

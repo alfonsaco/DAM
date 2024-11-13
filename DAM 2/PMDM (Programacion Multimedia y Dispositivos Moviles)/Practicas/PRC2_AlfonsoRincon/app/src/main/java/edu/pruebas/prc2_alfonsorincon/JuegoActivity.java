@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -36,12 +37,27 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
     // View, ya que ambos heredan de esta clase.
     private View[][] buttons;
 
+    // Colores
+    int fondoBoton;
+    int uno;
+    int dos;
+    int tres;
+    int cuatro;
+    int cinco;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_tablero);
+
+        // Colores
+        int fondoBoton=ContextCompat.getColor(this, R.color.fondo);
+        int uno=ContextCompat.getColor(this, R.color.primero);
+        int dos=ContextCompat.getColor(this, R.color.dos);
+        int tres=ContextCompat.getColor(this, R.color.tres);
+        int cuatro=ContextCompat.getColor(this, R.color.cuatro);
+        int cinco=ContextCompat.getColor(this, R.color.cinco);
 
         // Crear la ToolBar
         Toolbar toolbar=findViewById(R.id.toolbar);
@@ -54,10 +70,6 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
         // Partida
         partida=new Partida();
 
-        /*
-        partida=new Partida();
-        partida.seleccionarDificultad("facil");
-*/
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -217,6 +229,9 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                     button.getLayoutParams().width = buttonSize;
                     button.getLayoutParams().height = buttonSize;
 
+                    // Agregar los estilos creados en el XML a los botones
+                    button.setBackgroundResource(R.drawable.estilos_boton);
+
                     // Guardar el botón en el array de View
                     buttons[i][e] = button;
 
@@ -243,13 +258,38 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                     button.getLayoutParams().width = buttonSize;
                     button.getLayoutParams().height = buttonSize;
 
+                    // Agregar los estilos creados en el XML a los botones
+                    button.setBackgroundResource(R.drawable.estilos_boton);
+
                     // Guardar el botón en el array de View
                     buttons[i][e] = button;
 
                     // Configurar comportamiento al hacer clic
+                    final int i1=i;
+                    final int e1=e;
                     button.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            // Cambiar el color y fondo de los botones
+                           // button.setBackgroundColor(fondoBoton);
+
+                            if(tablero[i1][e1] == 1) {
+                                button.setText("1");
+                                button.setTextColor(uno);
+                            } else if(tablero[i1][e1] == 2) {
+                                button.setText("2");
+                                button.setTextColor(dos);
+                            } else if(tablero[i1][e1] == 3) {
+                                button.setText("3");
+                                button.setTextColor(tres);
+                            } else if(tablero[i1][e1] == 4) {
+                                button.setText("4");
+                                button.setTextColor(cuatro);
+                            } else if(tablero[i1][e1] == 5) {
+                                button.setText("5");
+                                button.setTextColor(cinco);
+                            }
+
                             // Acción al hacer clic en la casilla
                             if (v instanceof ImageButton) {
                                 // Acciones para la mina
