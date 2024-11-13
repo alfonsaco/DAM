@@ -21,15 +21,15 @@
 
     <!-- Botón para realizar una llamada -->
     <Button
-        android:id="@+id/btnLlamar"
+        android:id="@+id/btnEnviarCorreo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Realizar Llamada"
-        app:layout_constraintTop_toBottomOf="@id/btnAbrirWeb"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:text="Enviar correo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnAbrirWeb" />
 
     <Button
         android:id="@+id/btnCamara"
@@ -39,7 +39,7 @@
         android:text="Abrir cámara"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLlamar" />
+        app:layout_constraintTop_toBottomOf="@+id/btnEnviarCorreo" />
 
     <Button
         android:id="@+id/btnConfigurar"

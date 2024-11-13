@@ -41,7 +41,15 @@ Esto lo que hace es devolver un OK a la otra actividad, para que esta entienda q
 Ya dentro de esto, podemos poner lo que queramos. Podemos modificar campos, modificar funciones, por ejemplo la funció de un botón. Todo lo que pondrmamos aquí, cambiará en el código, da igual lo que se haya puesto antes.
 
 
+INTENT DE PAGINA WEB
+Para que pueda abrir la web, debe empezar con "https://". En caso contrario, dará error.
+
+
 TOASTS
 Toast.makeText(getApplicationContext(),"No puede haber campos vacíos", Toast.LENGTH_SHORT).show();
 
 
+
+
+INTENT IMPLICITOS
+i.setData(Uri."mailto:");

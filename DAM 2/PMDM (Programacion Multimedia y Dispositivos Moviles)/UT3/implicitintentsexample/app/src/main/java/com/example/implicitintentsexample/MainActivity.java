@@ -21,6 +21,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
 
     Button btnAbrirWeb=null;
+    Button btnEnviarCorreo=null;
 
     private ActivityResultLauncher<Intent> launcher=registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -30,13 +31,58 @@ public class MainActivity extends AppCompatActivity {
                     if(result.getResultCode() == RESULT_OK) {
                         Intent data=result.getData();
                         if(data != null) {
+                            // Obtenemos la URL del otro acivity
                             String urlModificada=data.getStringExtra("URL");
                             if(urlModificada != null) {
                                 btnAbrirWeb.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        Intent i=new Intent(Intent.ACTION_VIEW, Uri.parse(urlModificada));
-                                        startActivity(i);
+                                        // Verificamos si contiene el https://. En caso contrario, se lo añadimos
+                                        if(urlModificada.contains("https://")) {
+                                            Intent i=new Intent(Intent.ACTION_VIEW, Uri.parse(urlModificada));
+                                            startActivity(i);
+                                        } else {
+                                            Intent i=new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+urlModificada));
+                                            startActivity(i);
+                                        }
+                                    }
+                                });
+                            } else {
+                                Toast.makeText(getApplicationContext(), "URL no válida", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                }
+            });
+
+    private ActivityResultLauncher<Intent> launcherCorreo=registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if(result.getResultCode() == RESULT_OK) {
+                        Intent data=result.getData();
+                        if(data != null) {
+                            // Obtenemos la URL del otro acivity
+                            String urlModificada=data.getStringExtra("URL");
+                            String correoEnviar;
+                            String asuntoEnviar;
+                            String mensajeEnviar;
+
+                            if(urlModificada != null) {
+                                btnEnviarCorreo.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        // Crear Intent con ACTION_SENDTO y mailto
+                                        Intent intent = new Intent(Intent.ACTION_SENDTO);
+                                        intent.setData(Uri.parse("mailto:" + correo));
+                                        // Asunto del email
+                                        intent.putExtra(Intent.EXTRA_SUBJECT, asunto);
+                                        // Mensaje del email
+                                        intent.putExtra(Intent.EXTRA_TEXT, mensaje);
+
+                                        // Abrir el correo para poder enviar el email
+                                        startActivity(intent);
                                     }
                                 });
                             } else {
@@ -65,12 +111,10 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // Botón para realizar una llamada
-        Button btnLlamar = findViewById(R.id.btnLlamar);
-        btnLlamar.setOnClickListener(v -> {
-            // Crear un intent implícito para realizar una llamada
-            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:123456789"));
-            startActivity(intent);
+        // Botón para enviar el correo
+        btnEnviarCorreo=findViewById(R.id.btnEnviarCorreo);
+        btnEnviarCorreo.setOnClickListener(v -> {
+            Toast.makeText(MainActivity.this, "No hay ningún correo para enviar", Toast.LENGTH_SHORT).show();
         });
 
         // Botón para realizar una llamada

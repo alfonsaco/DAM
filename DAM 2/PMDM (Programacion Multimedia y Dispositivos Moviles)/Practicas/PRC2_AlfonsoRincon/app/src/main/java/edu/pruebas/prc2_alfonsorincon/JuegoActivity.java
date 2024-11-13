@@ -52,12 +52,12 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
         setContentView(R.layout.activity_tablero);
 
         // Colores
-        int fondoBoton=ContextCompat.getColor(this, R.color.fondo);
-        int uno=ContextCompat.getColor(this, R.color.primero);
-        int dos=ContextCompat.getColor(this, R.color.dos);
-        int tres=ContextCompat.getColor(this, R.color.tres);
-        int cuatro=ContextCompat.getColor(this, R.color.cuatro);
-        int cinco=ContextCompat.getColor(this, R.color.cinco);
+        fondoBoton=ContextCompat.getColor(this, R.color.fondo);
+        uno=ContextCompat.getColor(this, R.color.primero);
+        dos=ContextCompat.getColor(this, R.color.dos);
+        tres=ContextCompat.getColor(this, R.color.tres);
+        cuatro=ContextCompat.getColor(this, R.color.cuatro);
+        cinco=ContextCompat.getColor(this, R.color.cinco);
 
         // Crear la ToolBar
         Toolbar toolbar=findViewById(R.id.toolbar);
@@ -235,10 +235,12 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                     // Guardar el botón en el array de View
                     buttons[i][e] = button;
 
-                    // Configurar comportamiento al hacer clic
+                    // Configurar comportamiento al hacer click
                     button.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            button.setImageResource(personajeSeleccionado);
+
                             // Acción al hacer clic en la casilla
                             if (v instanceof ImageButton) {
                                 // Acciones para la mina
@@ -264,46 +266,54 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                     // Guardar el botón en el array de View
                     buttons[i][e] = button;
 
-                    // Configurar comportamiento al hacer clic
+                    // Configurar comportamiento al hacer click
                     final int i1=i;
                     final int e1=e;
-                    button.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            // Cambiar el color y fondo de los botones
-                           // button.setBackgroundColor(fondoBoton);
-
-                            if(tablero[i1][e1] == 1) {
-                                button.setText("1");
-                                button.setTextColor(uno);
-                            } else if(tablero[i1][e1] == 2) {
-                                button.setText("2");
-                                button.setTextColor(dos);
-                            } else if(tablero[i1][e1] == 3) {
-                                button.setText("3");
-                                button.setTextColor(tres);
-                            } else if(tablero[i1][e1] == 4) {
-                                button.setText("4");
-                                button.setTextColor(cuatro);
-                            } else if(tablero[i1][e1] == 5) {
-                                button.setText("5");
-                                button.setTextColor(cinco);
-                            }
-
-                            // Acción al hacer clic en la casilla
-                            if (v instanceof ImageButton) {
-                                // Acciones para la mina
-                            } else if (v instanceof Button) {
-                                // Acciones para una casilla normal
-                            }
-                        }
-                    });
+                    mostrarNumero(button, i1, e1, tablero);
 
                     // Añadir el botón al GridLayout
                     gridLayout.addView(button);
                 }
             }
         }
+    }
+
+    // Método para mostrar el número con su color, al destapar un botón sin mina
+    public void mostrarNumero(Button boton, int i, int e, int[][] tablero) {
+        boton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Cambiar el color y fondo de los botones
+                boton.setBackgroundColor(fondoBoton);
+
+                if(tablero[i][e] == 1) {
+                    boton.setText("1");
+                    boton.setTextColor(uno);
+                } else if(tablero[i][e] == 2) {
+                    boton.setText("2");
+                    boton.setTextColor(dos);
+                } else if(tablero[i][e] == 3) {
+                    boton.setText("3");
+                    boton.setTextColor(tres);
+                } else if(tablero[i][e] == 4) {
+                    boton.setText("4");
+                    boton.setTextColor(cuatro);
+                } else if(tablero[i][e] == 5) {
+                    boton.setText("5");
+                    boton.setTextColor(cinco);
+                }
+
+                // Deshabilitar el botón
+                boton.setEnabled(false);
+
+                // Acción al hacer clic en la casilla
+                if (v instanceof ImageButton) {
+                    // Acciones para la mina
+                } else if (v instanceof Button) {
+                    // Acciones para una casilla normal
+                }
+            }
+        });
     }
 
 }
