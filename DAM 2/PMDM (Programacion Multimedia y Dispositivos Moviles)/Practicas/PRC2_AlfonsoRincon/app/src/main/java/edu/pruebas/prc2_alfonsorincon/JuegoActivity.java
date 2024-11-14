@@ -241,36 +241,45 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
         for (int i=0; i<tablero.length; i++) {
             for (int e=0; e<tablero[i].length; e++) {
                 if(tablero[i][e] == -1) {
-                    ImageButton button=new ImageButton(this);
+                    ImageButton boton=new ImageButton(this);
 
                     // Configuración básica para ambos tipos de botón
-                    button.setLayoutParams(new android.widget.GridLayout.LayoutParams());
-                    button.getLayoutParams().width = buttonSize;
-                    button.getLayoutParams().height = buttonSize;
+                    boton.setLayoutParams(new android.widget.GridLayout.LayoutParams());
+                    boton.getLayoutParams().width = buttonSize;
+                    boton.getLayoutParams().height = buttonSize;
 
                     // Agregar los estilos creados en el XML a los botones
-                    button.setBackgroundResource(R.drawable.estilos_boton);
+                    boton.setBackgroundResource(R.drawable.estilos_boton);
                     // Línea de código para poder hacer que la imagen se ajuste al tamaño del botón
-                    button.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+                    boton.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
 
                     // Guardar el botón en el array de View
-                    botones[i][e] = button;
+                    botones[i][e] = boton;
 
                     // Configurar comportamiento al hacer click
-                    button.setOnClickListener(new View.OnClickListener() {
+                    boton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            button.setImageResource(personajeSeleccionado);
-                            button.setBackgroundColor(fondoBoton);
+                            boton.setImageResource(personajeSeleccionado);
+                            boton.setBackgroundColor(fondoBoton);
 
-                            button.setEnabled(false);
+                            boton.setEnabled(false);
 
                             hasPerdido(tablero);
                         }
                     });
 
+                    boton.setOnLongClickListener(new View.OnLongClickListener() {
+                        @Override
+                        public boolean onLongClick(View view) {
+                            boton.setBackgroundResource(R.drawable.bandera);
+
+                            return false;
+                        }
+                    });
+
                     // Añadir el botón al GridLayout
-                    gridLayout.addView(button);
+                    gridLayout.addView(boton);
                 } else {
                     Button boton=new Button(this);
 
@@ -292,6 +301,20 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                         @Override
                         public void onClick(View v) {
                             mostrarNumero(boton, i1, e1, tablero);
+
+                            if(tablero[i1][e1] == 0) {
+                                destaparCeros(i1, e1, tablero);
+                            }
+                        }
+                    });
+
+                    // En caso de que se ponga un banderín donde no hay minas, se acabará el juego
+                    boton.setOnLongClickListener(new View.OnLongClickListener() {
+                        @Override
+                        public boolean onLongClick(View view) {
+                            hasPerdido(tablero);
+
+                            return false;
                         }
                     });
 
@@ -300,6 +323,10 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                 }
             }
         }
+    }
+
+    public void destaparCeros(int anchura, int altura, int[][] tablero) {
+
     }
 
     // Método para mostrar el número con su color, al destapar un botón sin mina
