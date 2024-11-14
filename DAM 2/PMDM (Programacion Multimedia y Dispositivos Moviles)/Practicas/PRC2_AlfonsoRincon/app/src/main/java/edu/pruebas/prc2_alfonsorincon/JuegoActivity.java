@@ -1,9 +1,9 @@
 package edu.pruebas.prc2_alfonsorincon;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -26,7 +26,6 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.gridlayout.widget.GridLayout;
 
 import java.util.ArrayList;
 
@@ -38,7 +37,12 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
     // Array de los botones. Como algunos son ImageButtons, y otro Buttons, no se pueden
     // almacenar en un array de Buttons, por ejemplo, por lo que los almaceno en un Array de
     // View, ya que ambos heredan de esta clase.
-    private View[][] buttons;
+    private View[][] botones;
+
+    // Valores para resetear la dificultad, en caso de que se cambie
+    int anchura=8;
+    int altura=8;
+    int minas=10;
 
     // Colores
     int fondoBoton;
@@ -121,7 +125,8 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
             dialogSpinner.setOnItemSelectedListener(this);
 
         } else if(id == R.id.itemReiniciar) {
-            dialogInflater=inflater.inflate(R.layout.intrucciones, null);
+            partida.comenzar(anchura, altura, minas, JuegoActivity.this);
+
         } else if(id == R.id.itemConfiguracion) {
             dialogInflater=inflater.inflate(R.layout.configuracion, null);
         } else if(id == R.id.itemInstrucciones) {
@@ -163,10 +168,21 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                         // Condicionales para ver que dificultad se ha elegido, y así poder crear una nueva partida
                         if(rdPrincipiante != null && rdPrincipiante.isChecked()) {
                             partida.comenzar(8, 8, 10, JuegoActivity.this);
+                            anchura=8;
+                            altura=8;
+                            minas=10;
+
                         } else if(rdAmateur != null && rdAmateur.isChecked()) {
                             partida.comenzar(12, 12, 30, JuegoActivity.this);
+                            anchura=12;
+                            altura=12;
+                            minas=30;
+
                         } else if(rdAvanzado != null && rdAvanzado.isChecked()) {
                             partida.comenzar(16, 16, 60, JuegoActivity.this);
+                            anchura=16;
+                            altura=16;
+                            minas=60;
                         }
 
                         dialog.dismiss();
@@ -220,7 +236,7 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
         //      getDisplayMetrics(): contiene información sobre la pantalla del dispositivo
         //      widthPixels: devuelve el ancho en píxeles
         int buttonSize=getResources().getDisplayMetrics().widthPixels / tamañoGrid;
-        buttons=new View[tamañoGrid][tamañoGrid];
+        botones =new View[tamañoGrid][tamañoGrid];
 
         for (int i=0; i<tablero.length; i++) {
             for (int e=0; e<tablero[i].length; e++) {
@@ -238,7 +254,7 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                     button.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
 
                     // Guardar el botón en el array de View
-                    buttons[i][e] = button;
+                    botones[i][e] = button;
 
                     // Configurar comportamiento al hacer click
                     button.setOnClickListener(new View.OnClickListener() {
@@ -256,26 +272,31 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                     // Añadir el botón al GridLayout
                     gridLayout.addView(button);
                 } else {
-                    Button button=new Button(this);
+                    Button boton=new Button(this);
 
                     // Configuración básica para ambos tipos de botón
-                    button.setLayoutParams(new android.widget.GridLayout.LayoutParams());
-                    button.getLayoutParams().width = buttonSize;
-                    button.getLayoutParams().height = buttonSize;
+                    boton.setLayoutParams(new android.widget.GridLayout.LayoutParams());
+                    boton.getLayoutParams().width = buttonSize;
+                    boton.getLayoutParams().height = buttonSize;
 
                     // Agregar los estilos creados en el XML a los botones
-                    button.setBackgroundResource(R.drawable.estilos_boton);
+                    boton.setBackgroundResource(R.drawable.estilos_boton);
 
                     // Guardar el botón en el array de View
-                    buttons[i][e] = button;
+                    botones[i][e] = boton;
 
                     // Configurar comportamiento al hacer click
                     final int i1=i;
                     final int e1=e;
-                    mostrarNumero(button, i1, e1, tablero);
+                    boton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            mostrarNumero(boton, i1, e1, tablero);
+                        }
+                    });
 
                     // Añadir el botón al GridLayout
-                    gridLayout.addView(button);
+                    gridLayout.addView(boton);
                 }
             }
         }
@@ -283,47 +304,36 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
 
     // Método para mostrar el número con su color, al destapar un botón sin mina
     public void mostrarNumero(Button boton, int i, int e, int[][] tablero) {
-        boton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Cambiar el color y fondo de los botones
-                boton.setBackgroundColor(fondoBoton);
+        // Cambiar el color y fondo de los botones
+        boton.setBackgroundColor(fondoBoton);
 
-                if(tablero[i][e] == 1) {
-                    boton.setText("1");
-                    boton.setTextColor(uno);
-                } else if(tablero[i][e] == 2) {
-                    boton.setText("2");
-                    boton.setTextColor(dos);
-                } else if(tablero[i][e] == 3) {
-                    boton.setText("3");
-                    boton.setTextColor(tres);
-                } else if(tablero[i][e] == 4) {
-                    boton.setText("4");
-                    boton.setTextColor(cuatro);
-                } else if(tablero[i][e] == 5) {
-                    boton.setText("5");
-                    boton.setTextColor(cinco);
-                }
+        if(tablero[i][e] == 1) {
+            boton.setText("1");
+            boton.setTextColor(uno);
+        } else if(tablero[i][e] == 2) {
+            boton.setText("2");
+            boton.setTextColor(dos);
+        } else if(tablero[i][e] == 3) {
+            boton.setText("3");
+            boton.setTextColor(tres);
+        } else if(tablero[i][e] == 4) {
+            boton.setText("4");
+            boton.setTextColor(cuatro);
+        } else if(tablero[i][e] == 5) {
+            boton.setText("5");
+            boton.setTextColor(cinco);
+        }
 
-                // Deshabilitar el botón
-                boton.setEnabled(false);
-
-                // Acción al hacer clic en la casilla
-                if (v instanceof ImageButton) {
-                    // Acciones para la mina
-                } else if (v instanceof Button) {
-                    // Acciones para una casilla normal
-                }
-            }
-        });
+        // Deshabilitar el botón
+        boton.setEnabled(false);
     }
 
-    // Método que se ejecuta cuando tocas una bomba
+    // Método que se ejecuta cuando tocas una bomba. Se mostrará todo el tablero, y se deshabilitarán
+    // todos los botones
     public void hasPerdido(int[][] tablero) {
         for (int i = 0; i < tablero.length; i++) {
             for (int e = 0; e < tablero[i].length; e++) {
-                View view = buttons[i][e];
+                View view = botones[i][e];
 
                 // Mostrar todos los botones que sean minas
                 if (tablero[i][e] == -1 && view instanceof ImageButton) {
@@ -340,13 +350,32 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
             }
         }
 
-        // Dialog que nos informa de que el juego se ha terminado. Tardará 2 segundos en lanzarse.
+        // Tras 3 segundos, se mostrará un diálogo que permitirá reiniciar el juego
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(JuegoActivity.this, "SE ACABÓ EL JUEGO", Toast.LENGTH_SHORT).show();
+                // Inflater para poder coger el id del diálogo
+                LayoutInflater inflater=getLayoutInflater();
+                View dialogInflater=inflater.inflate(R.layout.derrota, null);
+
+                // Builder de la alerta
+                AlertDialog.Builder builder=new AlertDialog.Builder(JuegoActivity.this);
+                builder.setView(dialogInflater);
+
+                AlertDialog alerta=builder.create();
+
+                Button btnReiniciar=dialogInflater.findViewById(R.id.btnDerrotaReiniciar);
+                btnReiniciar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        partida.comenzar(anchura, altura, minas, JuegoActivity.this);
+                        alerta.dismiss();
+                    }
+                });
+
+                alerta.show();
             }
-        }, 2000);
+        }, 3000);
     }
 
 }
