@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(getApplicationContext(), JuegoActivity.class);
+                // Paro la música de fondo, y reproduzco el sonido de play
+                mp.stop();
                 reproducirAudio(R.raw.play);
                 startActivity(i);
             }

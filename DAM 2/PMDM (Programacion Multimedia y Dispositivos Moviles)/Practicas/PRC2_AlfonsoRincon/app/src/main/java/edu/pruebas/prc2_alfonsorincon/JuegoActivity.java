@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -52,6 +53,10 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
     int cuatro;
     int cinco;
 
+    // Contador minas
+    int contMina=minas;
+    TextView tvContador;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +70,9 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
         tres=ContextCompat.getColor(this, R.color.tres);
         cuatro=ContextCompat.getColor(this, R.color.cuatro);
         cinco=ContextCompat.getColor(this, R.color.cinco);
+
+        tvContador=findViewById(R.id.tvContador);
+
 
         // Crear la ToolBar
         Toolbar toolbar=findViewById(R.id.toolbar);
@@ -86,6 +94,7 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
         // Comenzar la partida al iniciar la actividad
         partida.comenzar(8, 8, 10, this);
 
+        tvContador.setText(String.valueOf(contMina));
     }
 
     // Funciones del ActionbBar
@@ -274,7 +283,11 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                         public boolean onLongClick(View view) {
                             boton.setBackgroundResource(R.drawable.bandera);
 
-                            return false;
+                            contMina--;
+                            tvContador.setText(String.valueOf(contMina));
+
+                            // Ponemos true, para evitar que tras el longClick, se haga un Click
+                            return true;
                         }
                     });
 
@@ -300,11 +313,12 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                     boton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            mostrarNumero(boton, i1, e1, tablero);
-
-                            if(tablero[i1][e1] == 0) {
+                            // Si la casilla es un 0, iniciar el algoritmo recursivo
+                            if (tablero[i1][e1] == 0) {
                                 destaparCeros(i1, e1, tablero);
                             }
+
+                            mostrarNumero(boton, i1, e1, tablero);
                         }
                     });
 
@@ -314,7 +328,7 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                         public boolean onLongClick(View view) {
                             hasPerdido(tablero);
 
-                            return false;
+                            return true;
                         }
                     });
 
@@ -325,9 +339,46 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
         }
     }
 
-    public void destaparCeros(int anchura, int altura, int[][] tablero) {
+    public void destaparCeros(int fila, int columna, int[][] tablero) {
+        // Validación: si estamos fuera de los límites del tablero, salimos
+        if (fila < 0 || fila >= tablero.length || columna < 0 || columna >= tablero[0].length) {
+            return;
+        }
 
+        // Si la celda ya está destapada o no es 0, terminamos la recursión
+        View boton = botones[fila][columna];
+        if (!boton.isEnabled()) {
+            return;
+        }
+
+        // Si la celda es un número mayor a 0, simplemente la mostramos y terminamos
+        if (tablero[fila][columna] != 0) {
+            if (boton instanceof Button) {
+                mostrarNumero((Button) boton, fila, columna, tablero);
+            }
+            boton.setEnabled(false); // Deshabilitar la celda destapada
+            return;
+        }
+
+        // Destapamos la celda actual si es 0
+        if (boton instanceof Button) {
+            mostrarNumero((Button) boton, fila, columna, tablero);
+        }
+        boton.setEnabled(false); // Deshabilitar para evitar ciclos infinitos
+
+        // Expansión recursiva a las celdas adyacentes
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                // Evitar procesar la celda actual
+                if (i == 0 && j == 0) continue;
+
+                // Llamada recursiva para las celdas adyacentes
+                destaparCeros(fila + i, columna + j, tablero);
+            }
+        }
     }
+
+
 
     // Método para mostrar el número con su color, al destapar un botón sin mina
     public void mostrarNumero(Button boton, int i, int e, int[][] tablero) {
@@ -402,7 +453,7 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
 
                 alerta.show();
             }
-        }, 3000);
+        }, 2000);
     }
 
 }
