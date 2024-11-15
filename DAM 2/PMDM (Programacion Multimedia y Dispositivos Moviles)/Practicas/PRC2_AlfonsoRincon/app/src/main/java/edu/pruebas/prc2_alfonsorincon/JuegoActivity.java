@@ -3,6 +3,7 @@ package edu.pruebas.prc2_alfonsorincon;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -282,6 +283,7 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
 
                             boton.setEnabled(false);
 
+                            reproducirAudio(R.raw.explosion);
                             hasPerdido(tablero);
                         }
                     });
@@ -329,6 +331,7 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                                 destaparCeros(i1, e1, tablero);
                             }
 
+                            reproducirAudio(R.raw.click);
                             mostrarNumero(boton, i1, e1, tablero);
                         }
                     });
@@ -517,6 +520,11 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                 alerta.show();
             }
         }, 2000);
+    }
+
+    public void reproducirAudio(int ruta) {
+        MediaPlayer mp=MediaPlayer.create(this, ruta);
+        mp.start();
     }
 
 }

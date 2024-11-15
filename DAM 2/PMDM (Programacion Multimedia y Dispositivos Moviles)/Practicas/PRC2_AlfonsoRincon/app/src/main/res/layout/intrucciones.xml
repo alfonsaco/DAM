@@ -9,6 +9,7 @@
         android:id="@+id/view"
         android:layout_width="351dp"
         android:layout_height="313dp"
+        android:background="#FFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
