@@ -66,3 +66,8 @@ scaleType="centerInside"	Ajusta las imágenes al elemento, haciendo uque se cent
 
 
 instanceOf	Es como el  typeOf de JS. Permite verficiar que tipo de elemento es. por ejemplo if(botón instaceof Button), verificará si el elemento es una instancia de Button. Si es un botón, devolverá true.
+
+
+ONLINGCLICK
+return true;
+Tras hacer un longClick, es posible que al soltar se haga un click, sin querer. Estoe sun problema, ya que no estará haciendo solo la función del longClick, sino tambien la del click. Para evitarlo, hacermo un return true;

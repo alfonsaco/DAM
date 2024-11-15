@@ -135,6 +135,8 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
 
         } else if(id == R.id.itemReiniciar) {
             partida.comenzar(anchura, altura, minas, JuegoActivity.this);
+            contMina=minas;
+            tvContador.setText(String.valueOf(contMina));
 
         } else if(id == R.id.itemConfiguracion) {
             dialogInflater=inflater.inflate(R.layout.configuracion, null);
@@ -180,18 +182,24 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                             anchura=8;
                             altura=8;
                             minas=10;
+                            contMina=minas;
+                            tvContador.setText(String.valueOf(contMina));
 
                         } else if(rdAmateur != null && rdAmateur.isChecked()) {
                             partida.comenzar(12, 12, 30, JuegoActivity.this);
                             anchura=12;
                             altura=12;
                             minas=30;
+                            contMina=minas;
+                            tvContador.setText(String.valueOf(contMina));
 
                         } else if(rdAvanzado != null && rdAvanzado.isChecked()) {
                             partida.comenzar(16, 16, 60, JuegoActivity.this);
                             anchura=16;
                             altura=16;
                             minas=60;
+                            contMina=minas;
+                            tvContador.setText(String.valueOf(contMina));
                         }
 
                         dialog.dismiss();
@@ -285,6 +293,9 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
 
                             contMina--;
                             tvContador.setText(String.valueOf(contMina));
+                            if(contMina == 0) {
+                                hasGanado(tablero);
+                            }
 
                             // Ponemos true, para evitar que tras el longClick, se haga un Click
                             return true;
@@ -337,6 +348,56 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                 }
             }
         }
+    }
+
+    private void hasGanado(int[][] tablero) {
+        for (int i = 0; i < tablero.length; i++) {
+            for (int e = 0; e < tablero[i].length; e++) {
+                View view = botones[i][e];
+
+                // Mostrar todos los botones que sean minas
+                if (tablero[i][e] == -1 && view instanceof ImageButton) {
+                    ImageButton mina = (ImageButton) view;
+                    mina.setImageResource(personajeSeleccionado);
+                    mina.setBackgroundColor(fondoBoton);
+                    mina.setEnabled(false);
+
+                    // Mostrar todos los botones que no sean minas
+                } else if (view instanceof Button) {
+                    Button boton = (Button) view;
+                    mostrarNumero(boton, i, e, tablero);
+                }
+            }
+        }
+
+        // Tras 3 segundos, se mostrará un diálogo que permitirá reiniciar el juego
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Inflater para poder coger el id del diálogo
+                LayoutInflater inflater=getLayoutInflater();
+                View dialogInflater=inflater.inflate(R.layout.victoria, null);
+
+                // Builder de la alerta
+                AlertDialog.Builder builder=new AlertDialog.Builder(JuegoActivity.this);
+                builder.setView(dialogInflater);
+
+                AlertDialog alerta=builder.create();
+
+                Button btnReiniciar=dialogInflater.findViewById(R.id.btnVictoriaReiniciar);
+                btnReiniciar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        partida.comenzar(anchura, altura, minas, JuegoActivity.this);
+                        contMina=minas;
+                        tvContador.setText(String.valueOf(contMina));
+                        alerta.dismiss();
+                    }
+                });
+
+                alerta.show();
+            }
+        }, 2000);
     }
 
     public void destaparCeros(int fila, int columna, int[][] tablero) {
@@ -447,6 +508,8 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                     @Override
                     public void onClick(View view) {
                         partida.comenzar(anchura, altura, minas, JuegoActivity.this);
+                        contMina=minas;
+                        tvContador.setText(String.valueOf(contMina));
                         alerta.dismiss();
                     }
                 });
