@@ -1,6 +1,7 @@
 package edu.pruebas.prc2_alfonsorincon;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
 
     Button btnPlay;
+    MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btnPlay=findViewById(R.id.btnPlay);
+        reproducirAudio(R.raw.cancion_menu);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -34,14 +37,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+        // Iniciar el juego al pulsar en el botón
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(getApplicationContext(), JuegoActivity.class);
+                reproducirAudio(R.raw.play);
                 startActivity(i);
             }
         });
     }
 
+    public void reproducirAudio(int ruta) {
+        mp =MediaPlayer.create(this, ruta);
+        mp.setVolume(1.0f,1.0f);
+        mp.start();
+    }
 
 }

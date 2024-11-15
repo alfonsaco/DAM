@@ -8,8 +8,8 @@
 
     <View
         android:id="@+id/view4"
-        android:layout_width="308dp"
-        android:layout_height="142dp"
+        android:layout_width="291dp"
+        android:layout_height="165dp"
         android:backgroundTint="#00000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
