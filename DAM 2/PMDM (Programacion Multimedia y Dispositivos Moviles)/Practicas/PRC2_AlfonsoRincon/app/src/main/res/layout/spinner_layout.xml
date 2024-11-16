@@ -17,6 +17,7 @@
         android:padding="10dp"
         android:text="Mina clásica"
         android:gravity="center_vertical"
+        android:textColor="#090909"
         android:textSize="17sp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

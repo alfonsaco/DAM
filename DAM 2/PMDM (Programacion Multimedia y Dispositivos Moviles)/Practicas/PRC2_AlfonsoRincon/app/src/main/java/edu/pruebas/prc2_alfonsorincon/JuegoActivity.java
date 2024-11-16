@@ -58,6 +58,9 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
     int contMina=minas;
     TextView tvContador;
 
+    // Variable para el sonido
+    MediaPlayer mp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -292,6 +295,7 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                         @Override
                         public boolean onLongClick(View view) {
                             boton.setBackgroundResource(R.drawable.bandera);
+                            reproducirAudio(R.raw.click);
                             boton.setEnabled(false);
 
                             contMina--;
@@ -342,6 +346,7 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                         @Override
                         public boolean onLongClick(View view) {
                             hasPerdido(tablero);
+                            reproducirAudio(R.raw.lose);
                             boton.setBackgroundResource(R.drawable.falsa_bandera);
                             boton.setText("");
 
@@ -375,6 +380,8 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                 }
             }
         }
+        // Reproducimos el sonido de victoria
+        reproducirAudio(R.raw.win);
 
         // Tras 3 segundos, se mostrará un diálogo que permitirá reiniciar el juego
         new Handler().postDelayed(new Runnable() {
@@ -389,6 +396,7 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                 builder.setView(dialogInflater);
 
                 AlertDialog alerta=builder.create();
+                alerta.getWindow().setBackgroundDrawableResource(R.color.transparente);
 
                 Button btnReiniciar=dialogInflater.findViewById(R.id.btnVictoriaReiniciar);
                 btnReiniciar.setOnClickListener(new View.OnClickListener() {
@@ -397,6 +405,8 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                         partida.comenzar(anchura, altura, minas, JuegoActivity.this);
                         contMina=minas;
                         tvContador.setText(String.valueOf(contMina));
+
+                        mp.stop();
                         alerta.dismiss();
                     }
                 });
@@ -494,6 +504,8 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                 }
             }
         }
+        //Reproducimos el sonido de derrota
+        reproducirAudio(R.raw.lose);
 
         // Tras 3 segundos, se mostrará un diálogo que permitirá reiniciar el juego
         new Handler().postDelayed(new Runnable() {
@@ -518,6 +530,8 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                         partida.comenzar(anchura, altura, minas, JuegoActivity.this);
                         contMina=minas;
                         tvContador.setText(String.valueOf(contMina));
+
+                        mp.stop();
                         alerta.dismiss();
                     }
                 });
@@ -527,8 +541,9 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
         }, 2000);
     }
 
+    //Función para reproducir los audios
     public void reproducirAudio(int ruta) {
-        MediaPlayer mp=MediaPlayer.create(this, ruta);
+        mp=MediaPlayer.create(this, ruta);
         mp.start();
     }
 
