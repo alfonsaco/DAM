@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Try catch, para evitar que se puedan intrduir valores muy grandes (Ej: 111111111111111111). Esto sucede
+                // Try catch, para evitar que se puedan introduir valores muy grandes (Ej: 111111111111111111). Esto sucede
                 // ya que el valor maximo de int es 2,147,483,647, y a partir de este, Java ono puede convertir más ese
                 // String a int. Por eso, se saca esta excepción.
                 try {
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
             timer=new CountDownTimer(rest*1000, 1000) {
                 @Override
                 public void onTick(long l) {
-                    txtSecondsLeft.setText(String.valueOf(l/1000));
+                    txtSecondsLeft.setText(String.valueOf((l/1000)+1));
                     txtState.setText("REST");
                 }
 
@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
         timer=new CountDownTimer(totalFinal, 1000) {
             @Override
             public void onTick(long l) {
-                txtSecondsLeft.setText(String.valueOf(l/1000));
+                txtSecondsLeft.setText(String.valueOf((l/1000)+1));
                 txtSeriesLeft.setText(String.valueOf(sets-1));
                 txtState.setText("WORK");
             }
