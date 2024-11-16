@@ -8,4 +8,5 @@
     <color name="cuatro">#122578</color>
     <color name="cinco">#8410b5</color>
     <color name="fondo">#DDDDDD</color>
+    <color name="transparente">#00000000</color>
 </resources>

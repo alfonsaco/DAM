@@ -292,6 +292,7 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                         @Override
                         public boolean onLongClick(View view) {
                             boton.setBackgroundResource(R.drawable.bandera);
+                            boton.setEnabled(false);
 
                             contMina--;
                             tvContador.setText(String.valueOf(contMina));
@@ -341,6 +342,8 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                         @Override
                         public boolean onLongClick(View view) {
                             hasPerdido(tablero);
+                            boton.setBackgroundResource(R.drawable.falsa_bandera);
+                            boton.setText("");
 
                             return true;
                         }
@@ -505,6 +508,8 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                 builder.setView(dialogInflater);
 
                 AlertDialog alerta=builder.create();
+                // Quitar el color de fondo que tendrá la alerta, según el sistema
+                alerta.getWindow().setBackgroundDrawableResource(R.color.transparente);
 
                 Button btnReiniciar=dialogInflater.findViewById(R.id.btnDerrotaReiniciar);
                 btnReiniciar.setOnClickListener(new View.OnClickListener() {

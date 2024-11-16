@@ -10,7 +10,7 @@
         android:id="@+id/view4"
         android:layout_width="291dp"
         android:layout_height="165dp"
-        android:background="#FFF"
+        android:background="@drawable/estilos_alerta"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
