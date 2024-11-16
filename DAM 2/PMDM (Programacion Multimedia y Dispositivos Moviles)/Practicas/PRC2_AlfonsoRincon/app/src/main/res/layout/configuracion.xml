@@ -9,7 +9,7 @@
         android:id="@+id/view2"
         android:layout_width="333dp"
         android:layout_height="257dp"
-        android:background="#FFF"
+        android:background="@drawable/estilos_alerta"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,18 +26,21 @@
 
         <RadioButton
             android:id="@+id/rdPrincipiante"
+            android:textColor="#090909"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nivel Principiante" />
 
         <RadioButton
             android:id="@+id/rdAmateur"
+            android:textColor="#090909"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nivel Amateur" />
 
         <RadioButton
             android:id="@+id/rdAvanzado"
+            android:textColor="#090909"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nivel Avanzado" />
@@ -51,6 +54,7 @@
         android:layout_marginTop="18dp"
         android:layout_marginEnd="24dp"
         android:text="Dificultad"
+        android:textColor="#090909"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/view2"
