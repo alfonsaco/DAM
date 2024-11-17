@@ -34,7 +34,7 @@ import java.util.ArrayList;
 public class JuegoActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private Partida partida;
-    private Spinner spinner;
+    private Spinner dialogSpinner;
     private int personajeSeleccionado=R.drawable.submarina;
     // Array de los botones. Como algunos son ImageButtons, y otro Buttons, no se pueden
     // almacenar en un array de Buttons, por ejemplo, por lo que los almaceno en un Array de
@@ -122,7 +122,7 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
             dialogInflater = inflater.inflate(R.layout.personaje, null);
 
             // Spinner de diálogo
-            Spinner dialogSpinner = dialogInflater.findViewById(R.id.spinner);
+            dialogSpinner = dialogInflater.findViewById(R.id.spinner);
 
             // Agregamos todos los elementos al Spinner
             ArrayList<Items> elementosSpinner = new ArrayList<>();
@@ -181,6 +181,7 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                         RadioButton rdAvanzado=finalDialogInflater.findViewById(R.id.rdAvanzado);
 
                         // Condicionales para ver que dificultad se ha elegido, y así poder crear una nueva partida
+                        // CASO PRINCIPANTE
                         if(rdPrincipiante != null && rdPrincipiante.isChecked()) {
                             partida.comenzar(8, 8, 10, JuegoActivity.this);
                             anchura=8;
@@ -188,7 +189,7 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                             minas=10;
                             contMina=minas;
                             tvContador.setText(String.valueOf(contMina));
-
+                        // CASO AMATEUR
                         } else if(rdAmateur != null && rdAmateur.isChecked()) {
                             partida.comenzar(12, 12, 30, JuegoActivity.this);
                             anchura=12;
@@ -196,7 +197,7 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                             minas=30;
                             contMina=minas;
                             tvContador.setText(String.valueOf(contMina));
-
+                        // CASO AVANZADO
                         } else if(rdAvanzado != null && rdAvanzado.isChecked()) {
                             partida.comenzar(16, 16, 60, JuegoActivity.this);
                             anchura=16;
@@ -218,7 +219,7 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                     @Override
                     public void onClick(View view) {
                         // Usamos invalidateOptionsMenu(), para recrear el ToolBar, y así, poner la nueva imagen que hemos seleccionado.
-                        // Gracias a esto, el icono se actualizará
+                        // Gracias a esto, el icono se actualizará.
                         invalidateOptionsMenu();
                         dialog.dismiss();
                     }
@@ -256,18 +257,19 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
         // Definir el tamaño del botón
         //      getDisplayMetrics(): contiene información sobre la pantalla del dispositivo
         //      widthPixels: devuelve el ancho en píxeles
-        int buttonSize=getResources().getDisplayMetrics().widthPixels / tamañoGrid;
-        botones =new View[tamañoGrid][tamañoGrid];
+        int dimensionBoton=getResources().getDisplayMetrics().widthPixels / tamañoGrid;
+        botones=new View[tamañoGrid][tamañoGrid];
 
         for (int i=0; i<tablero.length; i++) {
             for (int e=0; e<tablero[i].length; e++) {
+                // Caso mina
                 if(tablero[i][e] == -1) {
                     ImageButton boton=new ImageButton(this);
 
-                    // Configuración básica para ambos tipos de botón
+                    // Tamaños del botón
                     boton.setLayoutParams(new android.widget.GridLayout.LayoutParams());
-                    boton.getLayoutParams().width = buttonSize;
-                    boton.getLayoutParams().height = buttonSize;
+                    boton.getLayoutParams().width = dimensionBoton;
+                    boton.getLayoutParams().height = dimensionBoton;
 
                     // Agregar los estilos creados en el XML a los botones
                     boton.setBackgroundResource(R.drawable.estilos_boton);
@@ -281,6 +283,7 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                     boton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            // Ponemos la imagen de la mina
                             boton.setImageResource(personajeSeleccionado);
                             boton.setBackgroundColor(fondoBoton);
 
@@ -311,13 +314,15 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
 
                     // Añadir el botón al GridLayout
                     gridLayout.addView(boton);
+
                 } else {
+                    // Caso número
                     Button boton=new Button(this);
 
-                    // Configuración básica para ambos tipos de botón
+                    // Tamaños del botón
                     boton.setLayoutParams(new android.widget.GridLayout.LayoutParams());
-                    boton.getLayoutParams().width = buttonSize;
-                    boton.getLayoutParams().height = buttonSize;
+                    boton.getLayoutParams().width = dimensionBoton;
+                    boton.getLayoutParams().height = dimensionBoton;
 
                     // Agregar los estilos creados en el XML a los botones
                     boton.setBackgroundResource(R.drawable.estilos_boton);
@@ -336,6 +341,7 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
                                 destaparCeros(i1, e1, tablero);
                             }
 
+                            // Reproducimos Click y mostramos el número
                             reproducirAudio(R.raw.click);
                             mostrarNumero(boton, i1, e1, tablero);
                         }
@@ -417,45 +423,40 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
     }
 
     public void destaparCeros(int fila, int columna, int[][] tablero) {
-        // Validación: si estamos fuera de los límites del tablero, salimos
-        if (fila < 0 || fila >= tablero.length || columna < 0 || columna >= tablero[0].length) {
-            return;
-        }
+        // Comprobar que estamos dentro de los límites
+        if ((fila >= 0 && fila < tablero.length) && (columna >= 0 && columna < tablero[0].length)) {
+            View boton = botones[fila][columna];
 
-        // Si la celda ya está destapada o no es 0, terminamos la recursión
-        View boton = botones[fila][columna];
-        if (!boton.isEnabled()) {
-            return;
-        }
+            // Comprobamos que el botón no esté deshabilitado, ya que en este caso no se debe destapar
+            if (boton.isEnabled()) {
+                // Se verifica que no sea mayor de 0. Si lo es, se muestra la casilla y se termina la función
+                if(tablero[fila][columna] != 0) {
+                    if (boton instanceof Button) {
+                        mostrarNumero((Button) boton, fila, columna, tablero);
+                    }
+                    boton.setEnabled(false);
 
-        // Si la celda es un número mayor a 0, simplemente la mostramos y terminamos
-        if (tablero[fila][columna] != 0) {
-            if (boton instanceof Button) {
-                mostrarNumero((Button) boton, fila, columna, tablero);
-            }
-            boton.setEnabled(false); // Deshabilitar la celda destapada
-            return;
-        }
+                // Como es cero, se seguirá ejecutando el código de forma recursiva
+                } else {
+                    if (boton instanceof Button) {
+                        mostrarNumero((Button) boton, fila, columna, tablero);
+                    }
+                    boton.setEnabled(false);
 
-        // Destapamos la celda actual si es 0
-        if (boton instanceof Button) {
-            mostrarNumero((Button) boton, fila, columna, tablero);
-        }
-        boton.setEnabled(false); // Deshabilitar para evitar ciclos infinitos
+                    // For para llegar a la celdas adyacentes
+                    for (int i = -1; i <= 1; i++) {
+                        for (int j = -1; j <= 1; j++) {
+                            // Con esto, evitamos que haga nada con la celda actual. El continue nos da la orden de seguir en el bucle con el siguiente valor
+                            if (i == 0 && j == 0) continue;
 
-        // Expansión recursiva a las celdas adyacentes
-        for (int i = -1; i <= 1; i++) {
-            for (int j = -1; j <= 1; j++) {
-                // Evitar procesar la celda actual
-                if (i == 0 && j == 0) continue;
-
-                // Llamada recursiva para las celdas adyacentes
-                destaparCeros(fila + i, columna + j, tablero);
+                            // Llamada recursiva para las celdas adyacentes
+                            destaparCeros(fila + i, columna + j, tablero);
+                        }
+                    }
+                }
             }
         }
     }
-
-
 
     // Método para mostrar el número con su color, al destapar un botón sin mina
     public void mostrarNumero(Button boton, int i, int e, int[][] tablero) {
@@ -477,6 +478,8 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
         } else if(tablero[i][e] == 5) {
             boton.setText("5");
             boton.setTextColor(cinco);
+        } else if(tablero[i][e] == 6) {
+            boton.setText("6");
         }
 
         // Deshabilitar el botón
@@ -507,7 +510,7 @@ public class JuegoActivity extends AppCompatActivity implements AdapterView.OnIt
         //Reproducimos el sonido de derrota
         reproducirAudio(R.raw.lose);
 
-        // Tras 3 segundos, se mostrará un diálogo que permitirá reiniciar el juego
+        // Tras 2 segundos, se mostrará un diálogo que permitirá reiniciar el juego
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
