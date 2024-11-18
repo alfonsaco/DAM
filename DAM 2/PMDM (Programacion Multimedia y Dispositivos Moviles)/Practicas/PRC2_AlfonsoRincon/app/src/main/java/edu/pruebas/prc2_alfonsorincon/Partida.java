@@ -13,19 +13,9 @@ public class Partida {
         this.tablero=new Tablero();
     }
 
-    // Getters y Setters
-    public int getPuntos() {
-        return puntos;
-    }
-    public void setPuntos(int puntos) {
-        this.puntos = puntos;
-    }
-
     // Método para definir la dificultad del juego. Por defecto, se inicia en Fácil
     public void comenzar(int x, int y, int minas, JuegoActivity juego) {
         int[][] array=tablero.establecerMinas(x,y,minas);
-        tablero.imprimirTablero(array);
         juego.crearTablero(array, x);
-
     }
 }
