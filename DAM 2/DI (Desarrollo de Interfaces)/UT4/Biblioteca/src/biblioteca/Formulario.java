@@ -21,7 +21,6 @@ import org.jvnet.substance.SubstanceLookAndFeel;
 public class Formulario extends javax.swing.JFrame {
 
     private ArrayList<Usuario> usuarios;
-    private Tabla t;
     /**
      * Creates new form PantallaPrincipal
      */
@@ -40,10 +39,6 @@ public class Formulario extends javax.swing.JFrame {
         // Borde bajo
         MatteBorder bordeBajo=BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(144, 144, 144));
         ContenedorBotones.setBorder(bordeBajo);                      
-        
-        // Abrir diálogo de la tabla
-        t=new Tabla(this, true, usuarios);    
-        t.setLocationRelativeTo(null);
     }
 
     /**
@@ -417,6 +412,8 @@ public class Formulario extends javax.swing.JFrame {
 
     
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        Tabla t=new Tabla(this, true, usuarios);    
+        t.setLocationRelativeTo(null);
         t.setVisible(true);
     }//GEN-LAST:event_jLabel2MouseClicked
 

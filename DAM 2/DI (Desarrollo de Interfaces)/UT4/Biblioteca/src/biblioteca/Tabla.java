@@ -29,12 +29,21 @@ public class Tabla extends javax.swing.JDialog {
         modeloTabla=new DefaultTableModel();      
         String[] columnas={"Nombre","Apellidos","DNI","Email","Nacionalidad","Preferencias","Noticias"};            
         modeloTabla.setColumnIdentifiers(columnas);
-        jTable1.setModel(modeloTabla);
-                        
+        modeloTabla.setRowCount(0);
+        
+        
+        
         for(Usuario u: usuarios) {
             Object[] fila={u.getNombre(), u.getApellidos(), u.getDni(), u.getEmail(),u.getNacionalidad(),u.getPreferencias(),u.getNoticias()};
             modeloTabla.addRow(fila);
-        }                        
+        }    
+        
+        jTable1.setModel(modeloTabla);
+                        
+        // Aplicar el renderizador centrado a todas las columnas
+            for (int i = 0; i < modeloTabla.getColumnCount(); i++) {
+                jTable1.getColumnModel().getColumn(i).setCellRenderer(new CentrarColumna());
+        }       
     }
 
     /**
