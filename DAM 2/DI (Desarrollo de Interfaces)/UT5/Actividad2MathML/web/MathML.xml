@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<math>
+    <mrow>
+        <mi>a</mi>
+        <mo>=</mo>
+        <msqrt>
+            <mrow>
+                <!--Superíndices-->
+                <msup>
+                    <mi>c</mi>
+                    <mn>2</mn>
+                </msup>
+                <mo>-</mo>
+                <msup>
+                    <mi>b</mi>
+                    <mn>2</mn>
+                </msup>
+            </mrow>
+        </msqrt>
+    </mrow>
+</math>

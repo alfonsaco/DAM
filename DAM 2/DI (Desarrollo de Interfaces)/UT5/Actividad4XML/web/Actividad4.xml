@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<facturas>
+    <factura numero="1">
+        <fecha>20-11-2024</fecha>
+        <nombre>Juan Pérez</nombre>
+        <!--Datos del cliente-->
+        <cliente>
+            <telefono>612345678</telefono>
+            <direccion>Calle Magia 123, Toledo, España</direccion>
+            <concepto>Compra de productos electrónicos</concepto>
+        </cliente>
+        <total>350.50</total>
+    </factura>
+</facturas>
