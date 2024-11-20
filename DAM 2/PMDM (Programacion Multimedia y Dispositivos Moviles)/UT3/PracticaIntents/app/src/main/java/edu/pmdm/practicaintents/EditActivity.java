@@ -54,7 +54,7 @@ public class EditActivity extends AppCompatActivity {
         EditText etxtEdadModificar = findViewById(R.id.etxtEdadModificar);
         EditText etxtCiudadModificar = findViewById(R.id.etxtCiudadModificar);
 
-        Button btnGuardar = findViewById(R.id.btnGuardar);
+        btnGuardar = findViewById(R.id.btnGuardar);
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
