@@ -5,6 +5,8 @@
  */
 package actividad5interfaz;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import javax.swing.Timer;
 
 /**
@@ -33,22 +35,27 @@ public class DialogSeguir extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        ContenedorGeneral = new javax.swing.JPanel();
         Seguir1 = new javax.swing.JPanel();
         Seguir2 = new javax.swing.JPanel();
         Seguir3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(16, 16, 16));
-        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        ContenedorGeneral.setBackground(new java.awt.Color(16, 16, 16));
+        ContenedorGeneral.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                jPanel1MouseMoved(evt);
+                ContenedorGeneralMouseMoved(evt);
             }
         });
 
         Seguir1.setBackground(new java.awt.Color(255, 255, 102));
         Seguir1.setForeground(new java.awt.Color(255, 255, 102));
+        Seguir1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Seguir1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout Seguir1Layout = new javax.swing.GroupLayout(Seguir1);
         Seguir1.setLayout(Seguir1Layout);
@@ -89,11 +96,11 @@ public class DialogSeguir extends javax.swing.JDialog {
             .addGap(0, 14, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout ContenedorGeneralLayout = new javax.swing.GroupLayout(ContenedorGeneral);
+        ContenedorGeneral.setLayout(ContenedorGeneralLayout);
+        ContenedorGeneralLayout.setHorizontalGroup(
+            ContenedorGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ContenedorGeneralLayout.createSequentialGroup()
                 .addGap(184, 184, 184)
                 .addComponent(Seguir1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -102,11 +109,11 @@ public class DialogSeguir extends javax.swing.JDialog {
                 .addComponent(Seguir3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(172, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        ContenedorGeneralLayout.setVerticalGroup(
+            ContenedorGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ContenedorGeneralLayout.createSequentialGroup()
                 .addGap(188, 188, 188)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(ContenedorGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Seguir3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Seguir2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Seguir1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -117,17 +124,17 @@ public class DialogSeguir extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(ContenedorGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(ContenedorGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPanel1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseMoved
+    private void ContenedorGeneralMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ContenedorGeneralMouseMoved
         int x=evt.getX()-Seguir1.getWidth()/2;
         int y=evt.getY()-Seguir1.getHeight()/2;
         
@@ -148,13 +155,23 @@ public class DialogSeguir extends javax.swing.JDialog {
         
         timer2.setRepeats(false);
         timer2.start();
-    }//GEN-LAST:event_jPanel1MouseMoved
+    }//GEN-LAST:event_ContenedorGeneralMouseMoved
+
+    private void Seguir1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Seguir1MouseClicked
+        ContenedorGeneral.setBackground(new Color(190, 190, 190));
+        
+        Timer timer=new Timer(20, e-> {
+           ContenedorGeneral.setBackground(new Color(16,16,16));
+        });
+        timer.setRepeats(false);
+        timer.start();        
+    }//GEN-LAST:event_Seguir1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel ContenedorGeneral;
     private javax.swing.JPanel Seguir1;
     private javax.swing.JPanel Seguir2;
     private javax.swing.JPanel Seguir3;
-    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
