@@ -31,8 +31,12 @@ public class MainActivity extends AppCompatActivity {
                     if(result.getResultCode() == RESULT_OK) {
                         Intent data=result.getData();
                         if(data != null) {
-                            // Obtenemos la URL del otro acivity
+                            // Obtenemos los datos del ConfigActivity
                             String urlModificada=data.getStringExtra("URL");
+                            String correoEnviar=data.getStringExtra("correo");
+                            String asuntoEnviar=data.getStringExtra("asunto");
+                            String mensajeEnviar=data.getStringExtra("mensaje");
+
                             if(urlModificada != null) {
                                 btnAbrirWeb.setOnClickListener(new View.OnClickListener() {
                                     @Override
@@ -47,46 +51,23 @@ public class MainActivity extends AppCompatActivity {
                                         }
                                     }
                                 });
-                            } else {
-                                Toast.makeText(getApplicationContext(), "URL no válida", Toast.LENGTH_SHORT).show();
                             }
-                        }
-                    }
-                }
-            });
 
-    private ActivityResultLauncher<Intent> launcherCorreo=registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if(result.getResultCode() == RESULT_OK) {
-                        Intent data=result.getData();
-                        if(data != null) {
-                            // Obtenemos la URL del otro acivity
-                            String urlModificada=data.getStringExtra("URL");
-                            String correoEnviar;
-                            String asuntoEnviar;
-                            String mensajeEnviar;
-
-                            if(urlModificada != null) {
+                            if(correoEnviar != null && asuntoEnviar != null && mensajeEnviar != null) {
                                 btnEnviarCorreo.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        // Crear Intent con ACTION_SENDTO y mailto
                                         Intent intent = new Intent(Intent.ACTION_SENDTO);
                                         intent.setData(Uri.parse("mailto:" + correoEnviar));
-                                        // Asunto del email
+                                        // Asunto
                                         intent.putExtra(Intent.EXTRA_SUBJECT, asuntoEnviar);
-                                        // Mensaje del email
+                                        // Mensaje
                                         intent.putExtra(Intent.EXTRA_TEXT, mensajeEnviar);
 
                                         // Abrir el correo para poder enviar el email
                                         startActivity(intent);
                                     }
                                 });
-                            } else {
-                                Toast.makeText(getApplicationContext(), "URL no válida", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }

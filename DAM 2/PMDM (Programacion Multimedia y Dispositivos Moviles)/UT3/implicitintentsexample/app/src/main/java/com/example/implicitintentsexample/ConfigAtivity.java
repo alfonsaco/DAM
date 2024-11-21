@@ -70,15 +70,19 @@ public class ConfigAtivity extends AppCompatActivity {
         btnCorreo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Obtenemos los textos de los EditText
-                String asunto = etxtAsunto.getText().toString();
-                String correo = etxtCorreo.getText().toString();
-                String mensaje = etxtMensaje.getText().toString();
+                String asunto=etxtAsunto.getText().toString();
+                String correo=etxtCorreo.getText().toString();
+                String mensaje=etxtMensaje.getText().toString();
 
-                // Verificamos que no estén vacíos
                 if (asunto != null && !asunto.equals("") && correo != null && !correo.equals("") && mensaje != null && !mensaje.equals("")) {
                     if (esCorreo(correo)) {
-                        
+                        // Enviar correo
+                        Intent intent=new Intent();
+                        intent.putExtra("correo",correo);
+                        intent.putExtra("asunto", asunto);
+                        intent.putExtra("mensaje", mensaje);
+                        setResult(RESULT_OK, intent);
+                        finish();
 
                     } else {
                         Toast.makeText(getApplicationContext(), "Correo no válido", Toast.LENGTH_SHORT).show();
@@ -89,6 +93,7 @@ public class ConfigAtivity extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     // Método para verificar que el correo insertado por el usuario, sea un correo realmente
