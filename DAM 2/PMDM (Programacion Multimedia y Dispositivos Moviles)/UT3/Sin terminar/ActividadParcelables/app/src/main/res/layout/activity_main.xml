@@ -8,27 +8,27 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnNuevaAsignatura"
         android:layout_width="174dp"
         android:layout_height="55dp"
         android:layout_marginTop="24dp"
         android:text="AÑADIR ASIGNATURA"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber2" />
+        app:layout_constraintTop_toBottomOf="@+id/etxtNotaMedia" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnVisualizar"
         android:layout_width="174dp"
         android:layout_height="55dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginBottom="90dp"
         android:text="VISUALIZAR"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText5" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/etxtNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -41,50 +41,51 @@
         app:layout_constraintVertical_bias="0.19999999" />
 
     <EditText
-        android:id="@+id/editTextNumber"
+        android:id="@+id/etxtEdad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Edad"
         android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="@+id/editTextText"
-        app:layout_constraintStart_toStartOf="@+id/editTextText"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+        app:layout_constraintEnd_toEndOf="@+id/etxtNombre"
+        app:layout_constraintStart_toStartOf="@+id/etxtNombre"
+        app:layout_constraintTop_toBottomOf="@+id/etxtNombre" />
 
     <EditText
-        android:id="@+id/editTextNumber2"
+        android:id="@+id/etxtNotaMedia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Nota media"
         android:inputType="number"
-        app:layout_constraintEnd_toEndOf="@+id/editTextText"
-        app:layout_constraintStart_toStartOf="@+id/editTextText"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
+        app:layout_constraintEnd_toEndOf="@+id/etxtNombre"
+        app:layout_constraintStart_toStartOf="@+id/etxtNombre"
+        app:layout_constraintTop_toBottomOf="@+id/etxtEdad" />
 
     <EditText
-        android:id="@+id/editTextText4"
+        android:id="@+id/etxtNombreAsig"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
         android:ems="10"
         android:hint="Nombre asignatura"
         android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/etxtNota"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="439dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editTextText5"
+        android:id="@+id/etxtNota"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
         android:ems="10"
         android:hint="Nota"
         android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="@+id/editTextText4"
-        app:layout_constraintStart_toStartOf="@+id/editTextText4"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText4" />
+        app:layout_constraintBottom_toTopOf="@+id/btnVisualizar"
+        app:layout_constraintEnd_toEndOf="@+id/etxtNombreAsig"
+        app:layout_constraintStart_toStartOf="@+id/etxtNombreAsig" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
