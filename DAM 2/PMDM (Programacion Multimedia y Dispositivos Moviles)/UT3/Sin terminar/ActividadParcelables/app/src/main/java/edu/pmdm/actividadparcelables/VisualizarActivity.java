@@ -39,7 +39,13 @@ public class VisualizarActivity extends AppCompatActivity {
             return insets;
         });
 
-        txtDatos.setText(a.getNombre());
+        String datos="Nombre:"+a.getNombre()+"\nEdad: "+a.getEdad()+"\nNota Media: "+a.getMediaNotas();
+        for (Asignatura asig : a.getAsignaturas()) {
+            datos+="\tNombre: "+asig.getNombreAsignatura()+"\nNota: "+asig.getNotaAsignatura();
+        }
+        txtDatos.setText(datos);
+        txtJSON.setText(a.convertirJSON());
+
     }
 
     @Override

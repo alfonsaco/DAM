@@ -13,6 +13,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     Button btnVisualizar;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     String nombre;
     String mediaTexto;
     private boolean mostrar=false;
+    private ArrayList<Asignatura> asignaturas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
         etxtNombre=findViewById(R.id.etxtNombre);
         etxtEdad=findViewById(R.id.etxtEdad);
         etxtNotaMedia=findViewById(R.id.etxtNotaMedia);
+
+        // Incializo el ArrayList
+        asignaturas=new ArrayList<>();
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -98,7 +104,12 @@ public class MainActivity extends AppCompatActivity {
                                     if(notaAsig < 0 || notaAsig > 10) {
                                         Toast.makeText(MainActivity.this, "La nota de la asignatura no es válida", Toast.LENGTH_SHORT).show();
                                     } else {
+                                        Asignatura asig=new Asignatura(notaAsig, nombreAsig);
+                                        asignaturas.add(asig);
 
+                                        Toast.makeText(MainActivity.this, "Asignatura agregada con éxito", Toast.LENGTH_SHORT).show();
+                                        etxtNombreAsig.setText("");
+                                        etxtNota.setText("");
                                     }
 
                                 } catch (NumberFormatException e) {
@@ -120,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
                 if(edadTexto == null || nombre == null || mediaTexto == null || edadTexto.isEmpty() || nombre.isEmpty() || mediaTexto.isEmpty() || mostrar==false){
                     Toast.makeText(MainActivity.this, "Rellena los campos de alumno", Toast.LENGTH_SHORT).show();
                 } else {
-                    Alumno alumno=new Alumno(Double.parseDouble(mediaTexto), Integer.parseInt(edadTexto), nombre);
+                    Alumno alumno=new Alumno(Double.parseDouble(mediaTexto), Integer.parseInt(edadTexto), nombre, asignaturas);
                     Intent intent=new Intent(MainActivity.this, VisualizarActivity.class);
                     intent.putExtra("alumno", alumno);
                     startActivity(intent);
