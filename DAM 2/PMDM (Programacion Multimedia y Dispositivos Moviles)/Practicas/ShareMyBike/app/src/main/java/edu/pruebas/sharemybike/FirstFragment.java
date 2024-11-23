@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -21,6 +22,7 @@ private FragmentFirstBinding binding;
 
     CalendarView calendarView;
     TextView txtFecha;
+    boolean cambiarFragment=false;
 
     @Override
     public View onCreateView(
@@ -39,15 +41,23 @@ private FragmentFirstBinding binding;
         calendarView=view.findViewById(R.id.calendarView);
         txtFecha=view.findViewById(R.id.txtFecha);
 
-        binding.buttonFirst.setOnClickListener(v ->
-                NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment)
-        );
+        // Botón para pasar al siguiente Fragment
+        binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (cambiarFragment == false) {
+                    Toast.makeText(getContext(), "Selecciona una fecha", Toast.LENGTH_SHORT).show();
+                } else {
+                    NavHostFragment.findNavController(FirstFragment.this).navigate(R.id.action_FirstFragment_to_SecondFragment);
+                }
+            }
+        });
 
         calendarView.setOnDateChangeListener((view1, year, month, dayOfMonth) -> {
             // Aquí puedes manejar el cambio de fecha
             String fechaSeleccionada=dayOfMonth + "/" + (month + 1) + "/" + year;
             txtFecha.setText(fechaSeleccionada);
+            cambiarFragment=true;
         });
     }
 

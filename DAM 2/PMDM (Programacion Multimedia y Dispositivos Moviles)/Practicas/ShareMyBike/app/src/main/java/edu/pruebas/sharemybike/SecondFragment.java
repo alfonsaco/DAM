@@ -8,11 +8,16 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import edu.pruebas.sharemybike.databinding.FragmentSecondBinding;
 
 public class SecondFragment extends Fragment {
 
 private FragmentSecondBinding binding;
+
+    RecyclerView recicler;
 
     @Override
     public View onCreateView(
@@ -28,10 +33,10 @@ private FragmentSecondBinding binding;
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.buttonSecond.setOnClickListener(v ->
-                NavHostFragment.findNavController(SecondFragment.this)
-                        .navigate(R.id.action_SecondFragment_to_FirstFragment)
-        );
+        recicler=view.findViewById(R.id.recicler);
+        recicler.setLayoutManager(new LinearLayoutManager(getContext()));
+        recicler.setAdapter(new MyReciclerViewAdapter(elementos));
+
     }
 
 @Override
