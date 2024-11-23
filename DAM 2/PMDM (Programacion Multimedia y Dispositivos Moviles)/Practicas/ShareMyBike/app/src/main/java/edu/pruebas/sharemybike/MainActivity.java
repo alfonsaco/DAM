@@ -33,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
     TextView txtCodPostal;
     EditText etxtEmail;
     private FusedLocationProviderClient fusedLocationClient;
-    private boolean login = false;
+    // Cambiar a false después
+    private boolean login = true;
 
     private double lastLatitude = 0.0;
     private double lastLongitude = 0.0;
@@ -74,14 +75,6 @@ public class MainActivity extends AppCompatActivity {
         btnUbi.setOnClickListener(view -> {
             // Solicitar permisos de ubicación
             requestLocationPermission();
-        });
-
-        btnLogin.setOnClickListener(view -> {
-            if (!login) {
-                Toast.makeText(MainActivity.this, "Primero debes obtener la ubicación", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(MainActivity.this, "Login exitoso", Toast.LENGTH_SHORT).show();
-            }
         });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
