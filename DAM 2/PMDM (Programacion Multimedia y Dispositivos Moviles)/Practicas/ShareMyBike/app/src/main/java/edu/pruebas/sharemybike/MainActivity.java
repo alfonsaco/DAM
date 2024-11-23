@@ -6,8 +6,11 @@ import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.util.Patterns;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,9 +28,10 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ImageButton btnUbi;
-    private Button btnLogin;
-    private TextView txtCodPostal;
+    ImageButton btnUbi;
+    Button btnLogin;
+    TextView txtCodPostal;
+    EditText etxtEmail;
     private FusedLocationProviderClient fusedLocationClient;
     private boolean login = false;
 
@@ -44,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         btnUbi = findViewById(R.id.btnUbi);
         btnLogin = findViewById(R.id.btnLogin);
         txtCodPostal = findViewById(R.id.txtCodPostal);
+        etxtEmail=findViewById(R.id.etxtEmail);
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -76,6 +81,29 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Primero debes obtener la ubicación", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(MainActivity.this, "Login exitoso", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String email=etxtEmail.getText().toString();
+
+                // Verificamos que se ha agregado la ubicación
+                if(login == false) {
+                    Toast.makeText(MainActivity.this, "Primero debes obtener la ubicación", Toast.LENGTH_SHORT).show();
+                } else {
+                    if(email.isEmpty() ||email == null) {
+                        Toast.makeText(MainActivity.this, "Debes agregar un email", Toast.LENGTH_SHORT).show();
+                    } else {
+                        if(esEmail(email)) {
+                            Intent intent=new Intent(MainActivity.this, BikeActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(MainActivity.this, "Email no válido", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
             }
         });
     }
@@ -138,5 +166,9 @@ public class MainActivity extends AppCompatActivity {
         if (lastLatitude != 0.0 && lastLongitude != 0.0) {
             getPostalAddress(lastLatitude, lastLongitude);
         }
+    }
+
+    private boolean esEmail(String email) {
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 }
