@@ -35,7 +35,7 @@ private FragmentSecondBinding binding;
 
         recicler=view.findViewById(R.id.recicler);
         recicler.setLayoutManager(new LinearLayoutManager(getContext()));
-        recicler.setAdapter(new MyReciclerViewAdapter(elementos));
+       // recicler.setAdapter(new MyReciclerViewAdapter(elementos));
 
     }
 
