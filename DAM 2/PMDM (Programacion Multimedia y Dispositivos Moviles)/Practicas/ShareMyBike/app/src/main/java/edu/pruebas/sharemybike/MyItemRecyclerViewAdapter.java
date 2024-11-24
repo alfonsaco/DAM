@@ -2,6 +2,7 @@ package edu.pruebas.sharemybike;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -51,21 +53,25 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         holder.txtAutor.setText(bike.getOwner()); // Establece el nombre del propietario
         holder.txtDescripcion.setText(bike.getDescription()); // Establece la descripción de la bicicleta
         holder.imagenBici.setImageBitmap(bike.getPhoto()); // Establece la imagen de la bicicleta
+        holder.txtCiudad.setText(bike.getCity());
+        holder.txtDireccion.setText(bike.getLocation());
 
         // Configura el botón "Email" para enviar un correo electrónico al propietario
         holder.btnEmailAutor.setOnClickListener(v -> {
             // Crea un Intent para enviar un correo
-            Intent emailIntent = new Intent(Intent.ACTION_SEND);
-            emailIntent.setType("text/plain"); // Define el tipo de contenido como texto plano
-            emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{bike.getEmail()}); // Dirección de correo del propietario
-            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Bike Request"); // Asunto del correo
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+            emailIntent.setData(Uri.parse("mailto:" + bike.getEmail())); // Usa mailto con la dirección del destinatario
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Bike Request");
             emailIntent.putExtra(Intent.EXTRA_TEXT, "Dear " + bike.getOwner() + ",\n\n" +
                     "I'd like to use your bike at " + bike.getLocation() + " (" + bike.getCity() + ").\n\n" +
-                    "Can you confirm its availability?\n\nThank you!"); // Cuerpo del correo
+                    "Can you confirm its availability?\n\nKindest regards!");
 
-            // Inicia la aplicación de correo electrónico para enviar el mensaje
-            context.startActivity(Intent.createChooser(emailIntent, "Send Email"));
+            // Verifica si hay aplicaciones disponibles para manejar el Intent
+
+                context.startActivity(emailIntent);
+
         });
+
     }
 
     // Devuelve la cantidad de elementos en la lista (número de bicicletas)

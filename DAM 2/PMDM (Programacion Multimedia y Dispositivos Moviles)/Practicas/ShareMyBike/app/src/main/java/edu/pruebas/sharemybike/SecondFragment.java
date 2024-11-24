@@ -11,6 +11,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import edu.pruebas.sharemybike.bikes.BikesContent;
 import edu.pruebas.sharemybike.databinding.FragmentSecondBinding;
 
 public class SecondFragment extends Fragment {
@@ -20,22 +21,20 @@ private FragmentSecondBinding binding;
     RecyclerView recicler;
 
     @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
-    ) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view=inflater.inflate(R.layout.fragment_second, container, false);
 
-      binding = FragmentSecondBinding.inflate(inflater, container, false);
-      return binding.getRoot();
+        recicler=view.findViewById(R.id.recicler);
+        recicler.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        BikesContent.loadBikesFromJSON(requireContext());
+        recicler.setAdapter(new MyItemRecyclerViewAdapter(requireContext(), BikesContent.ITEMS));
+
+        return view;
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        recicler=view.findViewById(R.id.recicler);
-        recicler.setLayoutManager(new LinearLayoutManager(getContext()));
-       // recicler.setAdapter(new MyReciclerViewAdapter(elementos));
 
     }
 
