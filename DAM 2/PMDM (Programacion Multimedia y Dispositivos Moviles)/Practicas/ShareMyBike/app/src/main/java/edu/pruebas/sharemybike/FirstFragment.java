@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavOptions;
 import androidx.navigation.fragment.NavHostFragment;
 
 import java.util.Calendar;
@@ -55,7 +56,9 @@ public class FirstFragment extends Fragment {
                 if (cambiarFragment == false) {
                     Toast.makeText(getContext(), "Selecciona una fecha", Toast.LENGTH_SHORT).show();
                 } else {
-                    NavHostFragment.findNavController(FirstFragment.this).navigate(R.id.action_FirstFragment_to_SecondFragment);
+                    NavOptions animacionNav=new NavOptions.Builder().setExitAnim(R.anim.left_out).setEnterAnim(R.anim.right_in).build();
+                    NavHostFragment.findNavController(FirstFragment.this).navigate(R.id.action_FirstFragment_to_SecondFragment, null, animacionNav);
+
                 }
             }
         });

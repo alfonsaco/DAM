@@ -15,8 +15,8 @@
 
         <ImageView
             android:id="@+id/imagenBici"
-            android:layout_width="102dp"
-            android:layout_height="103dp"
+            android:layout_width="83dp"
+            android:layout_height="89dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
@@ -31,6 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:text="Ciudad"
+            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/imagenBici"
             app:layout_constraintTop_toTopOf="@+id/imagenBici" />
 
@@ -38,8 +39,9 @@
             android:id="@+id/txtDescripcion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:text="Descripción"
+            android:textSize="13sp"
             app:layout_constraintStart_toStartOf="@+id/txtCiudad"
             app:layout_constraintTop_toBottomOf="@+id/txtDireccion" />
 
@@ -47,7 +49,8 @@
             android:id="@+id/txtDireccion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
+            android:textSize="13sp"
             android:text="Dirección"
             app:layout_constraintStart_toStartOf="@+id/txtCiudad"
             app:layout_constraintTop_toBottomOf="@+id/txtAutor" />
@@ -56,20 +59,23 @@
             android:id="@+id/txtAutor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:text="Autor"
             app:layout_constraintStart_toStartOf="@+id/txtCiudad"
             app:layout_constraintTop_toBottomOf="@+id/txtCiudad" />
 
         <ImageButton
             android:id="@+id/btnEmailAutor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="45dp"
+            android:layout_height="44dp"
             android:layout_marginEnd="16dp"
+            android:background="@drawable/boton_circular"
+            android:padding="5dp"
             app:layout_constraintBottom_toBottomOf="@+id/imagenBici"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imagenBici"
-            app:srcCompat="@android:drawable/ic_dialog_email" />
+            app:srcCompat="@android:drawable/ic_dialog_email"
+            app:tint="#FFF" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

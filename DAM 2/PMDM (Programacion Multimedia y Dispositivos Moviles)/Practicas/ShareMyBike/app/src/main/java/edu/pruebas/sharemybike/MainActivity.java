@@ -92,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
                         if(esEmail(email)) {
                             Intent intent=new Intent(MainActivity.this, BikeActivity.class);
                             startActivity(intent);
+                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
                         } else {
                             Toast.makeText(MainActivity.this, "Email no válido", Toast.LENGTH_SHORT).show();
                         }
