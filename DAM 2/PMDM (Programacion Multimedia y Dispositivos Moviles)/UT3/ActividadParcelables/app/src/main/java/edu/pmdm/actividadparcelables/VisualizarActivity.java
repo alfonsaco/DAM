@@ -41,7 +41,7 @@ public class VisualizarActivity extends AppCompatActivity {
 
         String datos="Nombre:"+a.getNombre()+"\nEdad: "+a.getEdad()+"\nNota Media: "+a.getMediaNotas();
         for (Asignatura asig : a.getAsignaturas()) {
-            datos+="\tNombre: "+asig.getNombreAsignatura()+"\nNota: "+asig.getNotaAsignatura();
+            datos+="\n\n\t\tNombre: "+asig.getNombreAsignatura()+"\n\t\tNota: "+asig.getNotaAsignatura();
         }
         txtDatos.setText(datos);
         txtJSON.setText(a.convertirJSON());

@@ -18,7 +18,7 @@ public class Alumno implements Parcelable {
         this.mediaNotas = mediaNotas;
         this.edad = edad;
         this.nombre = nombre;
-        this.asignaturas = new ArrayList<>();
+        this.asignaturas = asignaturas;
     }
 
     // Constructor del parcelable
@@ -66,7 +66,7 @@ public class Alumno implements Parcelable {
         parcel.writeDouble(mediaNotas);
         parcel.writeInt(edad);
         parcel.writeString(nombre);
-        parcel.writeTypedList(asignaturas); // Escribir lista de asignaturas
+        parcel.writeTypedList(asignaturas);
     }
 
     // CREATOR
@@ -82,7 +82,7 @@ public class Alumno implements Parcelable {
         }
     };
 
-    // Convertir los datos a JSON (manual, sin bibliotecas externas)
+    // Convertir los datos a JSON
     public String convertirJSON() {
         StringBuilder jsonBuilder = new StringBuilder();
 

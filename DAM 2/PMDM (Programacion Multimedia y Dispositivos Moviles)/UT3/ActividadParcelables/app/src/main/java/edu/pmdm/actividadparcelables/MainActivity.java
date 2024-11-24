@@ -99,21 +99,25 @@ public class MainActivity extends AppCompatActivity {
 
                             // Verificar si se han agregado asignaturas o no
                             if(notaAsigTexto != null || nombreAsig != null || !notaAsigTexto.isEmpty() || !nombreAsig.isEmpty()){
-                                try {
-                                    double notaAsig=Double.parseDouble(notaAsigTexto);
-                                    if(notaAsig < 0 || notaAsig > 10) {
-                                        Toast.makeText(MainActivity.this, "La nota de la asignatura no es válida", Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        Asignatura asig=new Asignatura(notaAsig, nombreAsig);
-                                        asignaturas.add(asig);
+                                if(asignaturas.size() < 4) {
+                                    try {
+                                        double notaAsig=Double.parseDouble(notaAsigTexto);
+                                        if(notaAsig < 0 || notaAsig > 10) {
+                                            Toast.makeText(MainActivity.this, "La nota de la asignatura no es válida", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Asignatura asig=new Asignatura(notaAsig, nombreAsig);
+                                            asignaturas.add(asig);
 
-                                        Toast.makeText(MainActivity.this, "Asignatura agregada con éxito", Toast.LENGTH_SHORT).show();
-                                        etxtNombreAsig.setText("");
-                                        etxtNota.setText("");
+                                            Toast.makeText(MainActivity.this, "Asignatura agregada con éxito", Toast.LENGTH_SHORT).show();
+                                            etxtNombreAsig.setText("");
+                                            etxtNota.setText("");
+                                        }
+
+                                    } catch (NumberFormatException e) {
+                                        e.printStackTrace();
                                     }
-
-                                } catch (NumberFormatException e) {
-                                    e.printStackTrace();
+                                } else {
+                                    Toast.makeText(MainActivity.this, "No puedes añadir más asignaturas", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         }
