@@ -19,35 +19,32 @@ import edu.pruebas.sharemybike.databinding.FragmentSecondBinding;
 
 public class SecondFragment extends Fragment {
 
-private FragmentSecondBinding binding;
-
+    private FragmentSecondBinding binding;
     RecyclerView recicler;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_second, container, false);
 
-        recicler = view.findViewById(R.id.recicler);
-        ProgressBar placeholderProgressBar = view.findViewById(R.id.placeholderProgressBar);
-
-        // Configurar RecyclerView
+        recicler=view.findViewById(R.id.recicler);
         recicler.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        // Mostrar el ProgressBar antes de cargar los datos
-        placeholderProgressBar.setVisibility(View.VISIBLE);
+        // Placeholder para cuando cargen los elementos. Primero estará visible el progressBar, y el resto invisible
+        ProgressBar placeholder=view.findViewById(R.id.progressBar);
+        placeholder.setVisibility(View.VISIBLE);
         recicler.setVisibility(View.GONE);
 
-        // Cargar datos desde JSON
+        // Cargar los datos del JSON
         BikesContent.loadBikesFromJSON(requireContext());
 
-
-
-        Handler handler = new Handler(); // Crear un nuevo Handler
-        handler.postDelayed(() -> {
-            // Lógica que se ejecutará después del retraso
-            placeholderProgressBar.setVisibility(View.GONE);
-            recicler.setVisibility(View.VISIBLE);
-            recicler.setAdapter(new MyItemRecyclerViewAdapter(requireContext(), BikesContent.ITEMS));
+        // Tras 1 segundo, aparecen los resultados. 
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                placeholder.setVisibility(View.GONE);
+                recicler.setVisibility(View.VISIBLE);
+                recicler.setAdapter(new MyItemRecyclerViewAdapter(requireContext(), BikesContent.ITEMS));
+            }
         }, 1000);
 
         return view;
@@ -58,7 +55,7 @@ private FragmentSecondBinding binding;
 
     }
 
-@Override
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;

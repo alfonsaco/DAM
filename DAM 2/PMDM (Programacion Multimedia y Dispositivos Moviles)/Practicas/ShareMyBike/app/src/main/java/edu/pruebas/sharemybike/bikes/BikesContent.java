@@ -23,8 +23,7 @@ public class BikesContent {
 
         String json = null;
         try {
-            InputStream is =
-                    c.getAssets().open("bikeList.json");
+            InputStream is=c.getAssets().open("bikeList.json");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);

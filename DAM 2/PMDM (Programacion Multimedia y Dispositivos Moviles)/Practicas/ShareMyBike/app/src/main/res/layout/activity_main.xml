@@ -50,7 +50,7 @@
         android:background="#00000000"
         app:layout_constraintStart_toStartOf="@+id/btnUbi"
         app:layout_constraintTop_toBottomOf="@+id/btnUbi"
-        app:tint="#C83100"
+        app:tint="@color/rojoAnaranjado"
         android:src="@drawable/at_solid" />
 
     <Button
@@ -58,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="45dp"
-        android:backgroundTint="#FF5900"
+        android:backgroundTint="@color/naranjaClaro"
         android:text="LOGIN"
         android:textColor="#FFF"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
@@ -73,7 +73,7 @@
         android:hint="share@mybike.com"
         android:textColorHint="#E17E5E"
         android:gravity="center_vertical"
-        android:textColor="#C83100"
+        android:textColor="@color/rojoAnaranjado"
         android:textSize="17sp"
         android:textStyle="bold"
         android:layout_marginLeft="15dp"
@@ -87,8 +87,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:gravity="center_vertical"
-        android:text="Aquí tu dirección postal"
-        android:textColor="#C83100"
+        android:text="Your location"
+        android:textColor="@color/rojoAnaranjado"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/btnUbi"
@@ -103,7 +103,7 @@
         android:backgroundTint="#00000000"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:tint="#C83100"
+        app:tint="@color/rojoAnaranjado"
         android:src="@drawable/location_dot_solid" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

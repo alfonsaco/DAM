@@ -25,16 +25,14 @@ public class FirstFragment extends Fragment {
 
     CalendarView calendarView;
     TextView txtFecha;
-    boolean cambiarFragment = false;
+    boolean cambiarFragment=false;
     private SharedPreferences sharedPreferences;
 
     @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 
-        binding = FragmentFirstBinding.inflate(inflater, container, false);
+        binding=FragmentFirstBinding.inflate(inflater, container, false);
         return binding.getRoot();
 
     }
@@ -45,6 +43,7 @@ public class FirstFragment extends Fragment {
         calendarView = view.findViewById(R.id.calendarView);
         txtFecha = view.findViewById(R.id.txtFecha);
 
+        // SharedPreferences para guardar la fecha
         sharedPreferences = getActivity().getSharedPreferences("Preferencias", Context.MODE_PRIVATE);
         String fecha=sharedPreferences.getString("fecha","Select the date to list the available bikes");
         txtFecha.setText(fecha);
@@ -53,9 +52,12 @@ public class FirstFragment extends Fragment {
         binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Evitar cambiar de fragment si no se ha seleccionado fecha
                 if (cambiarFragment == false) {
-                    Toast.makeText(getContext(), "Selecciona una fecha", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Select a date", Toast.LENGTH_SHORT).show();
+
                 } else {
+                    // Transición entre Fragments
                     NavOptions animacionNav=new NavOptions.Builder().setExitAnim(R.anim.left_out).setEnterAnim(R.anim.right_in).build();
                     NavHostFragment.findNavController(FirstFragment.this).navigate(R.id.action_FirstFragment_to_SecondFragment, null, animacionNav);
 
@@ -63,18 +65,23 @@ public class FirstFragment extends Fragment {
             }
         });
 
-        calendarView.setOnDateChangeListener((view1, year, month, dayOfMonth) -> {
-            // Aquí puedes manejar el cambio de fecha
-            String fechaSeleccionada = dayOfMonth + "/" + (month + 1) + "/" + year;
+        // Cambio de selección del día
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView calendarView, int año, int mes, int dia) {
+                // Aquí puedes manejar el cambio de fecha
+                String fechaSeleccionada=dia + "/" + (mes + 1) + "/" + año;
 
+                // Guardar la nueva fecha en SharedPreferences
+                SharedPreferences.Editor editor=sharedPreferences.edit();
+                editor.putString("fecha", fechaSeleccionada);
+                editor.apply();
 
-            SharedPreferences.Editor editor=sharedPreferences.edit();
-            editor.putString("fecha", fechaSeleccionada);
-            editor.apply();
+                txtFecha.setText(fechaSeleccionada);
 
-            txtFecha.setText(fechaSeleccionada);
-
-            cambiarFragment = true;
+                // Ya podemos cambiar de fragment
+                cambiarFragment=true;
+            }
         });
     }
 
@@ -83,6 +90,4 @@ public class FirstFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
-
 }

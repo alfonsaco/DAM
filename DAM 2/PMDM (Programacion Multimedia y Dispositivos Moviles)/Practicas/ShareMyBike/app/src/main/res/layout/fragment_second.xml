@@ -11,7 +11,7 @@
         android:layout_height="match_parent" >
 
         <ProgressBar
-            android:id="@+id/placeholderProgressBar"
+            android:id="@+id/progressBar"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="70dp"
