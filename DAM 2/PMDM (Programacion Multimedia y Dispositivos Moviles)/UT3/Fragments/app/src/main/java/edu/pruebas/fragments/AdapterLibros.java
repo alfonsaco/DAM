@@ -13,22 +13,28 @@ import java.util.List;
 public class AdapterLibros extends RecyclerView.Adapter<AdapterLibros.LibroViewHolder> {
 
     private final List<Libro> libros;
+    private final OnLibroClickListener listener;
 
-    public AdapterLibros(List<Libro> libros) {
+    public interface OnLibroClickListener {
+        void onLibroClick(Libro libro);
+    }
+
+    public AdapterLibros(List<Libro> libros, OnLibroClickListener listener) {
         this.libros = libros;
+        this.listener = listener;
     }
 
     @NonNull
     @Override
     public LibroViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view=LayoutInflater.from(parent.getContext()).inflate(R.layout.libro, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.libro, parent, false);
         return new LibroViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull LibroViewHolder holder, int position) {
-        Libro libro=libros.get(position);
-        holder.bind(libro);
+        Libro libro = libros.get(position);
+        holder.bind(libro, listener);
     }
 
     @Override
@@ -41,11 +47,13 @@ public class AdapterLibros extends RecyclerView.Adapter<AdapterLibros.LibroViewH
 
         public LibroViewHolder(@NonNull View itemView) {
             super(itemView);
-            titulo=itemView.findViewById(R.id.nombreLibro);
+            titulo = itemView.findViewById(R.id.nombreLibro);
         }
 
-        public void bind(Libro libro) {
+        public void bind(Libro libro, OnLibroClickListener listener) {
             titulo.setText(libro.getTitulo());
+            itemView.setOnClickListener(v -> listener.onLibroClick(libro));
         }
     }
 }
+
