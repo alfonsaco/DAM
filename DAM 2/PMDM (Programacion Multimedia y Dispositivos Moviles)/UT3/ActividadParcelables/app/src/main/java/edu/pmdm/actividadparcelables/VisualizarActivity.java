@@ -39,13 +39,13 @@ public class VisualizarActivity extends AppCompatActivity {
             return insets;
         });
 
+        // String con los datos que se van a imprimir
         String datos="Nombre:"+a.getNombre()+"\nEdad: "+a.getEdad()+"\nNota Media: "+a.getMediaNotas();
         for (Asignatura asig : a.getAsignaturas()) {
             datos+="\n\n\t\tNombre: "+asig.getNombreAsignatura()+"\n\t\tNota: "+asig.getNotaAsignatura();
         }
         txtDatos.setText(datos);
         txtJSON.setText(a.convertirJSON());
-
     }
 
     @Override
