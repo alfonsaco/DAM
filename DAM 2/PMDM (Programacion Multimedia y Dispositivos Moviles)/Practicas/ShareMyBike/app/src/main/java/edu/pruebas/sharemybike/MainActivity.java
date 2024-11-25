@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private FusedLocationProviderClient fusedLocationClient;
 
     // Con este boolean se verifica si ya se ha agregado una ubicación
-    private boolean login=false;
+    private boolean login=true;
 
     private double ultimaLatitud=0;
     private double ultimaLongitud=0;
