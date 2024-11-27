@@ -5,6 +5,9 @@
  */
 package pruebaexamen;
 
+import java.util.Locale;
+import javax.swing.JFrame;
+import org.jvnet.substance.SubstanceLookAndFeel;
 import pruebaexamen.pantallas.PantallaPrincipal;
 
 /**
@@ -17,6 +20,11 @@ public class IniciarInterfaz {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        JFrame.setDefaultLookAndFeelDecorated(true);
+        SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.NebulaSkin");
+        
+        Locale.setDefault(new Locale("it","IT"));
+        
         PantallaPrincipal p=new PantallaPrincipal();
         p.setVisible(true);
     }

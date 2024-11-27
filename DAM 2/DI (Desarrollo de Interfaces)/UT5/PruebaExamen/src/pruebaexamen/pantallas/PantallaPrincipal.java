@@ -5,7 +5,13 @@
  */
 package pruebaexamen.pantallas;
 
+import java.awt.Color;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.border.MatteBorder;
+import org.netbeans.validation.api.builtin.stringvalidation.StringValidators;
+import org.netbeans.validation.api.ui.ValidationGroup;
 
 /**
  *
@@ -19,10 +25,23 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     public PantallaPrincipal() {
         initComponents();
         
+        ValidationGroup group=validationPanel1.getValidationGroup();
+        group.add(jTextFieldUusario, StringValidators.REQUIRE_NON_EMPTY_STRING);
+        group.add(jPasswordField, StringValidators.REQUIRE_NON_EMPTY_STRING);       
+        
+        
         // Estilos de la interfaz
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        this.setIconImage(new ImageIcon(getClass().getResource("/pruebaexamen/images/logo.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("/pruebaexamen/images/logo.png")).getImage());              
+        this.setTitle("Examen de Interfaces");
+        
+        // Bordes
+        MatteBorder borde=BorderFactory.createMatteBorder(1, 1, 3, 1, new Color(41, 117, 61));
+        jTextFieldUusario.setBorder(borde);
+        jPasswordField.setBorder(borde);
+        
+        
     }
 
     /**
@@ -34,21 +53,118 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ContenedorGeneral = new javax.swing.JPanel();
+        jTextFieldUusario = new javax.swing.JTextField();
+        jPasswordField = new javax.swing.JPasswordField();
+        jButtonEntrar = new javax.swing.JButton();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        validationPanel1 = new org.netbeans.validation.api.ui.swing.ValidationPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        ContenedorGeneral.setBackground(new java.awt.Color(204, 255, 204));
+
+        jTextFieldUusario.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldUusario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldUusarioActionPerformed(evt);
+            }
+        });
+
+        jPasswordField.setBackground(new java.awt.Color(255, 255, 255));
+        jPasswordField.setText("jPasswordField1");
+
+        jButtonEntrar.setBackground(new java.awt.Color(130, 190, 130));
+        jButtonEntrar.setText("ENTRAR");
+        jButtonEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEntrarActionPerformed(evt);
+            }
+        });
+
+        jCheckBox1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jCheckBox1StateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ContenedorGeneralLayout = new javax.swing.GroupLayout(ContenedorGeneral);
+        ContenedorGeneral.setLayout(ContenedorGeneralLayout);
+        ContenedorGeneralLayout.setHorizontalGroup(
+            ContenedorGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ContenedorGeneralLayout.createSequentialGroup()
+                .addGroup(ContenedorGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ContenedorGeneralLayout.createSequentialGroup()
+                        .addGroup(ContenedorGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(ContenedorGeneralLayout.createSequentialGroup()
+                                .addGap(83, 83, 83)
+                                .addComponent(jTextFieldUusario, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ContenedorGeneralLayout.createSequentialGroup()
+                        .addGap(188, 188, 188)
+                        .addComponent(jButtonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ContenedorGeneralLayout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(validationPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(51, Short.MAX_VALUE))
+        );
+        ContenedorGeneralLayout.setVerticalGroup(
+            ContenedorGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ContenedorGeneralLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(validationPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jTextFieldUusario, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addGroup(ContenedorGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(jPasswordField))
+                .addGap(30, 30, 30)
+                .addComponent(jButtonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(ContenedorGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(ContenedorGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextFieldUusarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUusarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldUusarioActionPerformed
+
+    private void jButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrarActionPerformed
+        String usuario=jTextFieldUusario.getText();
+        String contra=new String(jPasswordField.getPassword());
+        
+        if(contra.equals("") || contra==null || usuario.equals("") || usuario == null) {
+            JOptionPane.showMessageDialog(this, "Rellena todos los campos", "Campos vacíos", JOptionPane.ERROR_MESSAGE);
+        }
+        if(esUsuario(usuario)) {
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "El usuario solo puede contener letras", "Usuario incorrecto", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonEntrarActionPerformed
+
+    private void jCheckBox1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBox1StateChanged
+        if(jCheckBox1.isSelected()) {
+            jPasswordField.setEchoChar((char)0);
+        } else {
+            jPasswordField.setEchoChar('*');
+        }
+    }//GEN-LAST:event_jCheckBox1StateChanged
 
     /**
      * @param args the command line arguments
@@ -84,7 +200,17 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
     }
+    
+    private boolean esUsuario(String usuario) {
+        return usuario.matches("[a-zA-Z]+");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel ContenedorGeneral;
+    private javax.swing.JButton jButtonEntrar;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JPasswordField jPasswordField;
+    private javax.swing.JTextField jTextFieldUusario;
+    private org.netbeans.validation.api.ui.swing.ValidationPanel validationPanel1;
     // End of variables declaration//GEN-END:variables
 }
