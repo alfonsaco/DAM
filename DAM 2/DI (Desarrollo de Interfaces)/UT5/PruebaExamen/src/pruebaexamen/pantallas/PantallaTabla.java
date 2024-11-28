@@ -5,17 +5,25 @@
  */
 package pruebaexamen.pantallas;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author PROGRAMACION
  */
 public class PantallaTabla extends javax.swing.JFrame {
 
+    private DefaultTableModel defaultTable;
     /**
      * Creates new form PantallaTabla
      */
     public PantallaTabla() {
         initComponents();
+        
+        defaultTable=new DefaultTableModel();
+        jTable1.setModel(defaultTable);
+        String[] columnas={"Nombre","Edad"};
+        defaultTable.setColumnIdentifiers(columnas);
     }
 
     /**
@@ -29,6 +37,9 @@ public class PantallaTabla extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jTextFieldNoombre = new javax.swing.JTextField();
+        jTextFieldEdad = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,25 +56,63 @@ public class PantallaTabla extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jTextFieldNoombre.setText(org.openide.util.NbBundle.getMessage(PantallaTabla.class, "PantallaTabla.jTextFieldNoombre.text")); // NOI18N
+
+        jTextFieldEdad.setText(org.openide.util.NbBundle.getMessage(PantallaTabla.class, "PantallaTabla.jTextFieldEdad.text")); // NOI18N
+
+        jButton1.setText(org.openide.util.NbBundle.getMessage(PantallaTabla.class, "PantallaTabla.jButton1.text")); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addGap(45, 45, 45)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(130, 130, 130)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldNoombre)
+                    .addComponent(jTextFieldEdad, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(31, 31, 31))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldNoombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jButton1)))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String nombre=jTextFieldNoombre.getText();
+        String edad=jTextFieldEdad.getText();
+        
+        Persona p=new Persona(nombre, edad);
+        Object[] listas={p.getNombre(), p.getEdad()};
+        
+        defaultTable.addRow(listas);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -101,7 +150,10 @@ public class PantallaTabla extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextFieldEdad;
+    private javax.swing.JTextField jTextFieldNoombre;
     // End of variables declaration//GEN-END:variables
 }

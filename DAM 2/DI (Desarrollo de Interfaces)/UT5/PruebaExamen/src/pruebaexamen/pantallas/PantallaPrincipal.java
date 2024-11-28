@@ -59,6 +59,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jButtonEntrar = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
         validationPanel1 = new org.netbeans.validation.api.ui.swing.ValidationPanel();
+        jPanelLogo1 = new jpanelloog.jPanelLogo();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,26 +89,41 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jPanelLogo1.setRutaImagen(new java.io.File("C:\\Users\\PROGRAMACION\\Desktop\\GRADO\\SUBIR A GIT\\DAM 2\\DI (Desarrollo de Interfaces)\\UT5\\PruebaExamen\\src\\pruebaexamen\\images\\logo.PNG"));
+
+        javax.swing.GroupLayout jPanelLogo1Layout = new javax.swing.GroupLayout(jPanelLogo1);
+        jPanelLogo1.setLayout(jPanelLogo1Layout);
+        jPanelLogo1Layout.setHorizontalGroup(
+            jPanelLogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 81, Short.MAX_VALUE)
+        );
+        jPanelLogo1Layout.setVerticalGroup(
+            jPanelLogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 77, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout ContenedorGeneralLayout = new javax.swing.GroupLayout(ContenedorGeneral);
         ContenedorGeneral.setLayout(ContenedorGeneralLayout);
         ContenedorGeneralLayout.setHorizontalGroup(
             ContenedorGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ContenedorGeneralLayout.createSequentialGroup()
-                .addGroup(ContenedorGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ContenedorGeneralLayout.createSequentialGroup()
-                        .addGroup(ContenedorGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(ContenedorGeneralLayout.createSequentialGroup()
-                                .addGap(83, 83, 83)
-                                .addComponent(jTextFieldUusario, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(ContenedorGeneralLayout.createSequentialGroup()
-                        .addGap(188, 188, 188)
+                .addGroup(ContenedorGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, ContenedorGeneralLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jPanelLogo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(81, 81, 81)
                         .addComponent(jButtonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(ContenedorGeneralLayout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(validationPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(ContenedorGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(ContenedorGeneralLayout.createSequentialGroup()
+                            .addGap(83, 83, 83)
+                            .addGroup(ContenedorGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextFieldUusario, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(ContenedorGeneralLayout.createSequentialGroup()
+                            .addGap(100, 100, 100)
+                            .addComponent(validationPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
         ContenedorGeneralLayout.setVerticalGroup(
@@ -121,9 +137,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 .addGroup(ContenedorGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                     .addComponent(jPasswordField))
-                .addGap(30, 30, 30)
-                .addComponent(jButtonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addGroup(ContenedorGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ContenedorGeneralLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jButtonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ContenedorGeneralLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanelLogo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -152,7 +173,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Rellena todos los campos", "Campos vacíos", JOptionPane.ERROR_MESSAGE);
         }
         if(esUsuario(usuario)) {
-            
+            PantallaTabla pt=new PantallaTabla();
+            pt.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "El usuario solo puede contener letras", "Usuario incorrecto", JOptionPane.ERROR_MESSAGE);
         }
@@ -209,6 +231,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel ContenedorGeneral;
     private javax.swing.JButton jButtonEntrar;
     private javax.swing.JCheckBox jCheckBox1;
+    private jpanelloog.jPanelLogo jPanelLogo1;
     private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JTextField jTextFieldUusario;
     private org.netbeans.validation.api.ui.swing.ValidationPanel validationPanel1;
