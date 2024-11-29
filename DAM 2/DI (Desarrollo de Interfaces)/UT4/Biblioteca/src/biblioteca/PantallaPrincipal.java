@@ -7,6 +7,7 @@ package biblioteca;
 
 import java.awt.Color;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.border.MatteBorder;
 
@@ -25,6 +26,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         // Estilos para la interfaz
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        this.setIconImage(new ImageIcon(getClass().getResource("/biblioteca/images/main_icon.png")).getImage());
         
         MatteBorder bordeBajo=BorderFactory.createMatteBorder(0, 0, 2, 0, new Color(141,141,141));
         jTextFieldUus.setBorder(bordeBajo);
