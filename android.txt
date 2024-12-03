@@ -1,0 +1,4 @@
+PASAR ARCHIVOS DEL ORDENADOR AL EMULADOR:
+- Vamos al Device Manager, y pulsamos en los 3 puntos. Pulsamos en "Open in Device Explorer"
+- Vamos a storage > emulated > 0 > Download
+- Arrastramos el archivo que queramos llevar al emulador a esta carpeta
