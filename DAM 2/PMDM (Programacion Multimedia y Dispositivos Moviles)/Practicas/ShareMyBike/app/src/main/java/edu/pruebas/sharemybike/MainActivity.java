@@ -153,6 +153,8 @@ public class MainActivity extends AppCompatActivity {
         // String con las coordenadas para utilizarlas en el Intent
         String geoUri="geo:0,0?q=" + latitud + "," + longitud;
         Intent intent=new Intent(Intent.ACTION_VIEW, android.net.Uri.parse(geoUri));
+
+        intent.setPackage("com.google.android.apps.maps");
         startActivity(intent);
     }
 
