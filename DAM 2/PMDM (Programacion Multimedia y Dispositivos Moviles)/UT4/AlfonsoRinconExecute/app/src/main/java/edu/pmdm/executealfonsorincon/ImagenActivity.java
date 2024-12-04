@@ -37,13 +37,15 @@ public class ImagenActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_imagen);
 
-        Intent intent = getIntent();
-        enlaces = intent.getStringArrayListExtra("URL");
-        btnVolver = findViewById(R.id.btnVolver);
+        // Obtenemos el ArrayList de imágenes
+        Intent intent=getIntent();
+        enlaces=intent.getStringArrayListExtra("URL");
+        btnVolver=findViewById(R.id.btnVolver);
 
-        // Inicializar ExecutorService (un hilo para las tareas de descarga)
-        executorService = Executors.newSingleThreadExecutor();
-        mainHandler = new Handler(Looper.getMainLooper());  // Handler para actualizar la UI en el hilo principal
+        // Se inicializa el ExecutorService con un hilo
+        executorService=Executors.newSingleThreadExecutor();
+        // Handler para actualizar la UI
+        mainHandler=new Handler(Looper.getMainLooper());
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -53,26 +55,30 @@ public class ImagenActivity extends AppCompatActivity {
 
         añadirImagenes(enlaces);
 
-        btnVolver.setOnClickListener(view -> finish());
+        // Se vuelve a la actividad inicial
+        btnVolver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
+    // Método para añadir imágenes al LinearLayouts
     private void añadirImagenes(ArrayList<String> enlaces) {
-        LinearLayout layout = findViewById(R.id.linearConstraint);
+        LinearLayout layout=findViewById(R.id.linearConstraint);
 
         for (String e : enlaces) {
-            ImageView imagen = new ImageView(this);
+            ImageView imagen=new ImageView(this);
 
-            // Establecemos las LayoutParams para que las imágenes tengan un tamaño más adecuado
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,  // El ancho será el 100% del layout
-                    (int) (getResources().getDisplayMetrics().heightPixels * 0.25)  // Limitar la altura de cada imagen al 25% de la altura de la pantalla
-            );
+            // Parámetros para el tamaño de la imagen
+            LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) (getResources().getDisplayMetrics().heightPixels * 0.25));
             // Margen para separar una imagen de otra
             params.setMargins(0, 0, 0, 10);
 
             imagen.setLayoutParams(params);
 
-            // Ejecutamos la descarga de la imagen en segundo plano
+            // Ejecutamos la descarga de la imagen
             executorService.submit(new DescargaImagenRunnable(imagen, e));
 
             layout.addView(imagen);
@@ -110,15 +116,17 @@ public class ImagenActivity extends AppCompatActivity {
                 connection.setDoInput(true);
                 connection.connect();
 
-                // Obtener el InputStream de la conexión
-                InputStream inputStream = connection.getInputStream();
+                // Se obtiene el InputStream de la conexión
+                InputStream inputStream=connection.getInputStream();
 
-                // Convertir el InputStream a Bitmap
-                bitmap = BitmapFactory.decodeStream(inputStream);
+                // Se convierte el InputStream a Bitmap
+                bitmap=BitmapFactory.decodeStream(inputStream);
                 inputStream.close();
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
             return bitmap;
         }
     }
@@ -126,7 +134,7 @@ public class ImagenActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // Aseguramos que el ExecutorService se cierre cuando la actividad se destruya
+        // Para que el executor se cierre al cerrar la app
         if (executorService != null) {
             executorService.shutdown();
         }

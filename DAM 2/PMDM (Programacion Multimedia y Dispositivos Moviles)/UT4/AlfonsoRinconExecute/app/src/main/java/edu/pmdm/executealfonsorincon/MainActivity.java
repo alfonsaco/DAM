@@ -43,10 +43,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Inicializamos el ExecutorService con un solo hilo para las tareas en segundo plano.
-        executorService = Executors.newSingleThreadExecutor();
+        // Inicializamos el ExecutorService con un solo hilo
+        executorService=Executors.newSingleThreadExecutor();
 
-        // Configuramos la vista de texto para hacerla desplazable.
+        // Coponentes del XML
         txtDescarga = findViewById(R.id.txtDescarga);
         txtDescarga.setMovementMethod(new ScrollingMovementMethod());
         etxtURLImagen=findViewById(R.id.etxtURLImagen);
@@ -57,20 +57,23 @@ public class MainActivity extends AppCompatActivity {
         // ArrayList con los enlaces de las imágenes
         enlaces=new ArrayList<>();
 
+        // Evento de Click en el botón para agregar imágenes
         btnAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String url=String.valueOf(etxtURLImagen.getText());
 
+                // Campo vacío
                 if(url.equals("")) {
                     Toast.makeText(MainActivity.this, "No puedes dejar el campo vacío", Toast.LENGTH_SHORT).show();
 
                 } else {
+                    // Verificar que sea URL
                     if(!esImagen(url)) {
                         Toast.makeText(MainActivity.this, "Enlace no válido", Toast.LENGTH_SHORT).show();
                     } else {
                         enlaces.add(url);
-
+                        // No se pueden agergar más de 3 imágenes
                         if(enlaces.size() > 3) {
                             Toast.makeText(MainActivity.this, "No puedes agregar más de 3 imágenes", Toast.LENGTH_SHORT).show();
 
@@ -89,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Se vacía el arrayList de imágenes al pulsar en este botón
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,59 +104,73 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // Método para verificar que sea URL
     private boolean esImagen(String url) {
         if (url != null && !url.isEmpty()) {
-            Pattern pattern = Pattern.compile("^(https?://)?[a-zA-Z0-9\\-]+(\\.[a-zA-Z]{2,})+(/[^\\s]*)?\\.(png|jpg|jpeg|gif|bmp|webp)$", Pattern.CASE_INSENSITIVE);
-            Matcher matcher = pattern.matcher(url);
-            return matcher.matches();
+            Pattern pattern=Pattern.compile("^(https?://)?[a-zA-Z0-9\\-]+(\\.[a-zA-Z]{2,})+(/[^\\s]*)?\\.(png|jpg|jpeg|gif|bmp|webp)$", Pattern.CASE_INSENSITIVE);
+            Matcher matcher=pattern.matcher(url);
+
+            // Condicional para verificar que no se hayan concatenado URL
+            if (matcher.matches()) {
+                // Su busca si hay más de 1 coincidencia del http. Si lo hace, es que está mal porque se han concatenado
+                if (url.indexOf("http", url.indexOf("://") + 3) != -1) {
+                    return false;
+                }
+                return true;
+            }
         }
         return false;
     }
 
+    // Método para descargar la imagen a través de la URL en segundo plano
     public void Descargar(View v) {
-        EditText etxtURL = findViewById(R.id.etxtURL);
-        txtDescarga = findViewById(R.id.txtDescarga);
+        EditText etxtURL=findViewById(R.id.etxtURL);
 
-        // Comprobamos si hay conexión a Internet.
-        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        // Comprobamos si hay conexión a Internet
+        ConnectivityManager connMgr=(ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo=connMgr.getActiveNetworkInfo();
+
+        // En el caso de que haya una red activa
         if (networkInfo != null && networkInfo.isConnected()) {
-            // Ejecutamos la tarea de descarga en segundo plano usando el ExecutorService.
-            String url = etxtURL.getText().toString();
+            String url=etxtURL.getText().toString();
+            // Enviamos la tarea de descarga al ExecutorService
             executorService.submit(new DescargaRunnable(url));
+
         } else {
             etxtURL.setText("No se ha podido establecer conexión a internet");
         }
     }
 
+    // Clase Runnable que realiza la descarga de la URL en segundo plano
     private class DescargaRunnable implements Runnable {
         private String url;
 
+        // Constructor
         DescargaRunnable(String url) {
             this.url = url;
         }
 
         @Override
         public void run() {
-            // Ejecutamos la descarga en segundo plano.
+            // Método ejecutado en un hilo en segundo plano
             try {
-                String resultado = descargaUrl(url);
+                // Intentamos descargar el contenido de la URL
+                String resultado=descargaUrl(url);
 
-                // Usamos un Handler para actualizar la UI en el hilo principal.
                 new Handler(Looper.getMainLooper()).post(() -> txtDescarga.setText(resultado));
 
             } catch (IOException e) {
-                // En caso de error, mostramos el mensaje de error en la UI.
                 new Handler(Looper.getMainLooper()).post(() -> txtDescarga.setText("Imposible cargar la web! URL mal formada"));
             }
         }
 
+        // Método que realiza la descarga de la URL en un InputStream y devuelve el contenido como un String
         private String descargaUrl(String myurl) throws IOException {
-            InputStream is = null;
+            InputStream is=null;
 
             try {
-                // Realizamos la conexión HTTP para obtener el contenido de la página.
-                URL url = new URL(myurl);
+                URL url=new URL(myurl);
+                // Conexion HTTP
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setReadTimeout(10000 /* milisegundos */);
                 conn.setConnectTimeout(15000 /* milisegundos */);
@@ -160,40 +178,47 @@ public class MainActivity extends AppCompatActivity {
                 conn.setDoInput(true);
                 conn.connect();
 
-                int response = conn.getResponseCode(); // obtenemos el código de respuesta
-                is = conn.getInputStream(); // obtenemos el InputStream de la respuesta
+                int response=conn.getResponseCode();
+                is=conn.getInputStream();
 
-                // Convertimos el InputStream a String.
+                // Se devuelve el InpuStream
                 return leer(is);
+
             } finally {
                 if (is != null) {
-                    // Cerramos el InputStream.
                     is.close();
                 }
             }
         }
 
+        // Método para leer los datos de un InputStream y convertirlos a un String
         private String leer(InputStream is) {
             try {
-                ByteArrayOutputStream bo = new ByteArrayOutputStream();
-                int i = is.read();
+                ByteArrayOutputStream bo=new ByteArrayOutputStream();
+                int i=is.read();
+
+                // Leemos los bytes del InputStream y los escribimos en el ByteArrayOutputStream
                 while (i != -1) {
                     bo.write(i);
                     i = is.read();
                 }
+                // Devolvemos el contenido cnvertido en una cadena de texto
                 return bo.toString();
+
             } catch (IOException e) {
                 return "";
             }
         }
     }
 
+    // Con esto se evitan fugas de memoria
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // Aseguramos que el ExecutorService sea cerrado cuando se destruya la actividad.
+        // Para que el executor se cierre al cerrar la app
         if (executorService != null) {
             executorService.shutdown();
         }
     }
+
 }
