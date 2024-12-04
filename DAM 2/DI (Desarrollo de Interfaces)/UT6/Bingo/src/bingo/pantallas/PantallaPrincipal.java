@@ -25,7 +25,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         initComponents();
         
         // Estilos del JFrame
-        this.setIconImage(new ImageIcon(getClass().getResource("/bingo/images/icono.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("/bingo/images/logo.png")).getImage());
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         

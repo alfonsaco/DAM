@@ -21,6 +21,7 @@ import javax.swing.border.Border;
 public class JuegoBingo extends javax.swing.JFrame {
 
     private String[][] labels;
+    private ArrayList<Integer> repetidos;
     private int contVictoria=0;
     /**
      * Creates new form JuegoBingo
@@ -31,7 +32,10 @@ public class JuegoBingo extends javax.swing.JFrame {
         // Estilos del JFrame
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        this.setIconImage(new ImageIcon(getClass().getResource("/bingo/images/icono.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("/bingo/images/logo.png")).getImage());
+        
+        // Inicializar el arraylist de números
+        repetidos=new ArrayList<>();
         
         // Agrego los labels
         labels=new String[5][5];
@@ -142,22 +146,25 @@ public class JuegoBingo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // Al hacer click en el botón, se generan números aleatorios
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         int random=(int)(1+Math.random()*75);        
+        
+        // Evitar que se generen números repetidos
+        while(repetidos.contains(random)) {
+            random=(int)(1+Math.random()*75);            
+        }
+        repetidos.add(random);
+        
         jLabelNumeroGenerado.setText(String.valueOf(random));
         
-        if(contVictoria < 25) {
-            buscarNumero(labels, random);
-            
-        } else {
-            contVictoria=0;
-            Victoria v=new Victoria(this, true);
-            v.setVisible(true);
-        }       
+        verificarVictoria(random);        
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void añadirCeldas(String[][] labels) {
         int cont=0;        
+        int inicio=1;
+        int numero=0;
         
         for(int i=0; i<5; i++) {
             for(int j=0; j<5; j++) {
@@ -168,39 +175,81 @@ public class JuegoBingo extends javax.swing.JFrame {
                 
                 label.setName(nombre);
                 label.setForeground(Color.BLACK);                
-                label.setText(String.valueOf(cont));
-                label.setHorizontalAlignment(JLabel.CENTER);
+                label.setHorizontalAlignment(JLabel.CENTER);        
+                // Negrita
+                label.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 16));
                 label.setOpaque(true); 
                 
                 // Fondo diferente para casillas pares e impares
                 if(cont%2 == 0) {
                     label.setBackground(new Color(153,204,255));
+                    label.setForeground(Color.WHITE);
                 } else {
                     label.setBackground(Color.WHITE);
+                    label.setForeground(Color.BLACK);
                 }
-                                
+
+                // Número del label
+                numero=(int)(Math.random()*15)+inicio;
+                // Evitamos que se repita
+                while(noRepetido(numero, labels)) {
+                    numero=(int)(Math.random()*15)+inicio;
+                }                
+                
+                label.setText(String.valueOf(numero));
+                
                 GridLayoutBoleto.add(label);
             }
+            inicio+=15;
         }
     }
+    
+    // Función para evitar que el número se repita en el tablero
+    private boolean noRepetido(int num, String[][] labels) {
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (labels[i][j] != null && Integer.parseInt(labels[i][j].substring(5,labels[i][j].length())) == num) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
-    private void buscarNumero(String[][] labels, int numero) {
-        String nombre="label"+numero;
-        
+    public void verificarVictoria(int random) {
+        if(contVictoria < 25) {
+            buscarNumero(labels, random);
+            
+        } else {
+            contVictoria=0;
+            
+            // Abrir diálogo de Victoria
+            Victoria v=new Victoria(this, true);
+            v.setVisible(true);
+            
+            // Resetear boleto
+            añadirCeldas(labels);
+        }                       
+    }
+    
+    // Función para buscar el número que ha salido con el random
+    private void buscarNumero(String[][] labels, int numero) {                
         for(int i=0; i<5; i++) {
             for(int j=0; j<5; j++) {
-                if(labels[i][j].equals(nombre)) {
-                    int indice=i*5+j;
-                    JLabel label=(JLabel) GridLayoutBoleto.getComponent(indice);
-                    
+                JLabel label = (JLabel) GridLayoutBoleto.getComponent(i * 5 + j);
+
+                int numeroElegido=Integer.parseInt(String.valueOf(label.getText()));
+                
+                if(numero == numeroElegido) {                    
                     // Verificar que la casilla en cuestión no haya sido seleccionada antes, ya que de lo
                     // contrario, esto va a hacer que se sume el contador de victoria cuando salgan números
                     // repetidos
-                    if(label.getBackground().equals(new Color(200, 0, 0))) {
+                    if(!label.getBackground().equals(new Color(184, 44, 44))) {
                         contVictoria++;
-                    }
-                    
-                    label.setBackground(new Color(200, 0, 0));                   
+                        
+                        label.setBackground(new Color(184, 44, 44));                   
+                        label.setForeground(Color.WHITE);
+                    }                    
                 }
             }
         }
