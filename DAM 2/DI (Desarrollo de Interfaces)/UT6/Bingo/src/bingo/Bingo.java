@@ -12,7 +12,7 @@ import org.jvnet.substance.SubstanceMenu;
 
 /**
  *
- * @author PROGRAMACION
+ * @author Alfonso
  */
 public class Bingo {
 
@@ -21,7 +21,7 @@ public class Bingo {
      */
     public static void main(String[] args) {
         JFrame.setDefaultLookAndFeelDecorated(true);
-        SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.RavenSkin");
+        SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.NebulaSkin");
                 
         PantallaPrincipal p=new PantallaPrincipal();
         p.setVisible(true);

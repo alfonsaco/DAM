@@ -16,8 +16,7 @@ import javax.swing.border.Border;
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
 
-    private Border blanco;    
-    private Border rojo;
+    private Border negro;    
     /**
      * Creates new form PantallaPrincipal
      */
@@ -30,8 +29,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         
         // Bordes
-        blanco=BorderFactory.createLineBorder(Color.WHITE, 4);
-        rojo=BorderFactory.createLineBorder(new Color(178, 28, 52), 4);
+        negro=BorderFactory.createLineBorder(Color.BLACK, 4);
     }
 
     /**
@@ -55,11 +53,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        BotonJugar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(178, 28, 52), 10));
+        BotonJugar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 10));
         BotonJugar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 30)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(178, 28, 52));
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("JUGAR");
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -83,10 +81,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jPanel1.add(BotonJugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 230, 70));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bingo/images/icono200.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bingo/images/bingos.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 480, 160));
 
-        ImagenFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bingo/images/fondo.jpg"))); // NOI18N
+        ImagenFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bingo/images/fondoBlanco2.png"))); // NOI18N
         ImagenFondo.setText("jLabel2");
         jPanel1.add(ImagenFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 506, 346));
 
@@ -107,12 +105,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     // HOVER DEL BOTÓN
     private void jLabel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseEntered
         jLabel3.setForeground(Color.WHITE);
-        BotonJugar.setBorder(blanco);
     }//GEN-LAST:event_jLabel3MouseEntered
 
     private void jLabel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseExited
-        jLabel3.setForeground(new Color(178, 28, 52));
-        BotonJugar.setBorder(rojo);
+        jLabel3.setForeground(Color.BLACK);
+        BotonJugar.setBorder(negro);
     }//GEN-LAST:event_jLabel3MouseExited
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked

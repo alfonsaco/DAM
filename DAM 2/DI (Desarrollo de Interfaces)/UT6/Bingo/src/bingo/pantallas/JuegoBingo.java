@@ -20,9 +20,8 @@ import javax.swing.border.Border;
  */
 public class JuegoBingo extends javax.swing.JFrame {
 
-    private String[][] labels;
     private ArrayList<Integer> repetidos;
-    private int contVictoria=0;
+    private int[][] casillas;
     /**
      * Creates new form JuegoBingo
      */
@@ -38,9 +37,9 @@ public class JuegoBingo extends javax.swing.JFrame {
         repetidos=new ArrayList<>();
         
         // Agrego los labels
-        labels=new String[5][5];
-        añadirCeldas(labels);
-        
+        casillas=new int[5][5];
+                
+        añadirCeldas();                
     }
 
     /**
@@ -56,15 +55,18 @@ public class JuegoBingo extends javax.swing.JFrame {
         Boleto = new javax.swing.JPanel();
         GridLayoutBoleto = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        BotonTirar = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabelNumeroGenerado = new javax.swing.JLabel();
+        BotonReset = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Boleto.setBackground(new java.awt.Color(102, 153, 255));
+        Boleto.setBackground(new java.awt.Color(44, 100, 212));
         Boleto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         GridLayoutBoleto.setBackground(new java.awt.Color(255, 255, 255));
@@ -100,12 +102,12 @@ public class JuegoBingo extends javax.swing.JFrame {
                 .addGap(16, 16, 16))
         );
 
-        jPanel1.add(Boleto, new org.netbeans.lib.awtextra.AbsoluteConstraints(307, 39, -1, -1));
+        jPanel1.add(Boleto, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, -1, -1));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        BotonTirar.setBackground(new java.awt.Color(44, 100, 212));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(153, 0, 0));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("TIRAR");
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -113,34 +115,85 @@ public class JuegoBingo extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel2MouseExited(evt);
+            }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+        javax.swing.GroupLayout BotonTirarLayout = new javax.swing.GroupLayout(BotonTirar);
+        BotonTirar.setLayout(BotonTirarLayout);
+        BotonTirarLayout.setHorizontalGroup(
+            BotonTirarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BotonTirarLayout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        BotonTirarLayout.setVerticalGroup(
+            BotonTirarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(86, 149, -1, -1));
+        jPanel1.add(BotonTirar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
 
+        jLabelNumeroGenerado.setBackground(new java.awt.Color(255, 255, 255));
         jLabelNumeroGenerado.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabelNumeroGenerado.setForeground(new java.awt.Color(18, 18, 18));
         jLabelNumeroGenerado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(jLabelNumeroGenerado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 90, 80));
+        jLabelNumeroGenerado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jLabelNumeroGenerado.setOpaque(true);
+        jPanel1.add(jLabelNumeroGenerado, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 80, 80));
+
+        BotonReset.setBackground(new java.awt.Color(44, 100, 212));
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("RESET");
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel3MouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout BotonResetLayout = new javax.swing.GroupLayout(BotonReset);
+        BotonReset.setLayout(BotonResetLayout);
+        BotonResetLayout.setHorizontalGroup(
+            BotonResetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+        );
+        BotonResetLayout.setVerticalGroup(
+            BotonResetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(BotonReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 286, 193, 60));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bingo/images/fondoBlanco2.png"))); // NOI18N
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 380));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -155,60 +208,103 @@ public class JuegoBingo extends javax.swing.JFrame {
             random=(int)(1+Math.random()*75);            
         }
         repetidos.add(random);
-        
         jLabelNumeroGenerado.setText(String.valueOf(random));
         
-        verificarVictoria(random);        
+        // Buscamos que el número esté en el boleto
+        buscarNumero(random);
+        leerArray(casillas);
+               
+        // Verificamos si ha ganado o no
+        if(verificarVictoria()) {
+            // Diálogo de victoria
+            Victoria v = new Victoria(this, true);
+            v.setVisible(true);
+            
+            limpiarTablero();
+            añadirCeldas();
+            jLabelNumeroGenerado.setText("");
+        }       
     }//GEN-LAST:event_jLabel2MouseClicked
 
-    private void añadirCeldas(String[][] labels) {
-        int cont=0;        
-        int inicio=1;
-        int numero=0;
-        
-        for(int i=0; i<5; i++) {
+    // RESETEAR EL JUEGO
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        limpiarTablero();
+        añadirCeldas();  
+        jLabelNumeroGenerado.setText("");
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jLabel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseEntered
+        BotonTirar.setBackground(new Color(27, 68, 150));
+    }//GEN-LAST:event_jLabel2MouseEntered
+
+    private void jLabel2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseExited
+        BotonTirar.setBackground(new Color(44,100,212));
+    }//GEN-LAST:event_jLabel2MouseExited
+
+    private void jLabel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseEntered
+        BotonReset.setBackground(new Color(27, 68, 150));
+    }//GEN-LAST:event_jLabel3MouseEntered
+
+    private void jLabel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseExited
+        BotonReset.setBackground(new Color(44,100,212));
+    }//GEN-LAST:event_jLabel3MouseExited
+
+    private void leerArray(int[][] casillas) {
+        for(int i=0; i<5; i++)  {
             for(int j=0; j<5; j++) {
-                cont++;
-                String nombre="label"+cont;
-                labels[i][j]=nombre;                
-                JLabel label=new JLabel();
-                
-                label.setName(nombre);
-                label.setForeground(Color.BLACK);                
-                label.setHorizontalAlignment(JLabel.CENTER);        
-                // Negrita
+                System.out.print(casillas[i][j]+" ");
+            }
+            System.out.println();
+        }
+          System.out.println();
+    }
+    
+   // Llenar el tablero con los números aleatorios (sin repetidos)
+    private void añadirCeldas() {        
+        limpiarTablero();
+        
+        int inicio = 1;
+        int numero = 0;
+
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                // Asignar un número único a cada casilla
+                numero = (int) (Math.random() * 15) + inicio;
+
+                // Evitar que el número se repita en el tablero
+                while (numeroRepetido(numero)) {
+                    numero = (int) (Math.random() * 15) + inicio;
+                }
+                casillas[i][j] = numero;
+
+                // Crear el label correspondiente
+                JLabel label = new JLabel();
+                label.setText(String.valueOf(numero));
+                label.setHorizontalAlignment(JLabel.CENTER);
                 label.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 16));
-                label.setOpaque(true); 
-                
+                label.setOpaque(true);
+
                 // Fondo diferente para casillas pares e impares
-                if(cont%2 == 0) {
-                    label.setBackground(new Color(153,204,255));
+                if ((i + j) % 2 == 0) {
+                    label.setBackground(new Color(102,153,255));
                     label.setForeground(Color.WHITE);
                 } else {
                     label.setBackground(Color.WHITE);
                     label.setForeground(Color.BLACK);
                 }
 
-                // Número del label
-                numero=(int)(Math.random()*15)+inicio;
-                // Evitamos que se repita
-                while(noRepetido(numero, labels)) {
-                    numero=(int)(Math.random()*15)+inicio;
-                }                
-                
-                label.setText(String.valueOf(numero));
-                
+                // Agregar la casilla al grid
                 GridLayoutBoleto.add(label);
             }
-            inicio+=15;
+            inicio += 15;
         }
     }
-    
-    // Función para evitar que el número se repita en el tablero
-    private boolean noRepetido(int num, String[][] labels) {
+
+    // Función para evitar números repetidos en el tablero
+    private boolean numeroRepetido(int num) {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
-                if (labels[i][j] != null && Integer.parseInt(labels[i][j].substring(5,labels[i][j].length())) == num) {
+                if (casillas[i][j] == num) {
                     return true;
                 }
             }
@@ -216,52 +312,75 @@ public class JuegoBingo extends javax.swing.JFrame {
         return false;
     }
 
-    public void verificarVictoria(int random) {
-        if(contVictoria < 25) {
-            buscarNumero(labels, random);
-            
-        } else {
-            contVictoria=0;
-            
-            // Abrir diálogo de Victoria
-            Victoria v=new Victoria(this, true);
-            v.setVisible(true);
-            
-            // Resetear boleto
-            añadirCeldas(labels);
-        }                       
+    public boolean verificarVictoria() {        
+        // VERIFICAMOS LAS FILAS
+        if(casillas[0][0]==0 && casillas[0][1]==0 && casillas[0][2]==0 && casillas[0][3]==0 && casillas[0][4]==0) {
+            return true;
+        } else if(casillas[1][0]==0 && casillas[1][1]==0 && casillas[1][2]==0 && casillas[1][3]==0 && casillas[1][4]==0) {
+            return true;
+        } else if(casillas[2][0]==0 && casillas[2][1]==0 && casillas[2][2]==0 && casillas[2][3]==0 && casillas[2][4]==0) {
+            return true;
+        } else if(casillas[3][0]==0 && casillas[3][1]==0 && casillas[3][2]==0 && casillas[3][3]==0 && casillas[3][4]==0) {
+            return true;
+        } else if(casillas[4][0]==0 && casillas[4][1]==0 && casillas[4][2]==0 && casillas[4][3]==0 && casillas[4][4]==0) {
+            return true;
+        // VERIFICAMOS LAS COLUMNAS
+        } else if(casillas[0][0]==0 && casillas[1][0]==0 && casillas[2][0]==0 && casillas[3][0]==0 && casillas[4][0]==0) {
+            return true;
+        } else if(casillas[0][1]==0 && casillas[1][1]==0 && casillas[2][1]==0 && casillas[3][1]==0 && casillas[4][1]==0) {
+            return true;
+        } else if(casillas[0][2]==0 && casillas[1][2]==0 && casillas[2][2]==0 && casillas[3][2]==0 && casillas[4][2]==0) {
+            return true;
+        } else if(casillas[0][3]==0 && casillas[1][3]==0 && casillas[2][3]==0 && casillas[3][3]==0 && casillas[4][3]==0) {
+            return true;
+        } else if(casillas[0][4]==0 && casillas[1][4]==0 && casillas[2][4]==0 && casillas[3][4]==0 && casillas[4][4]==0) {
+            return true;
+        // VERIFICAMOS LAS DIAGONALES
+        } else if(casillas[0][0]==0 && casillas[1][1]==0 && casillas[2][2]==0 && casillas[3][3]==0 && casillas[4][4]==0) {
+            return true;
+        }  else if(casillas[4][0]==0 && casillas[3][1]==0 && casillas[2][2]==0 && casillas[1][3]==0 && casillas[0][4]==0) {
+            return true;
+        }
+        
+        return false;
     }
-    
-    // Función para buscar el número que ha salido con el random
-    private void buscarNumero(String[][] labels, int numero) {                
-        for(int i=0; i<5; i++) {
-            for(int j=0; j<5; j++) {
-                JLabel label = (JLabel) GridLayoutBoleto.getComponent(i * 5 + j);
 
-                int numeroElegido=Integer.parseInt(String.valueOf(label.getText()));
-                
-                if(numero == numeroElegido) {                    
-                    // Verificar que la casilla en cuestión no haya sido seleccionada antes, ya que de lo
-                    // contrario, esto va a hacer que se sume el contador de victoria cuando salgan números
-                    // repetidos
-                    if(!label.getBackground().equals(new Color(184, 44, 44))) {
-                        contVictoria++;
-                        
-                        label.setBackground(new Color(184, 44, 44));                   
+    // Buscar el número en el tablero y marcar la casilla correspondiente
+    private void buscarNumero(int numero) {
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (casillas[i][j] == numero) {
+                    // Marcar la casilla
+                    JLabel label = (JLabel) GridLayoutBoleto.getComponent(i * 5 + j);
+                    if (!label.getBackground().equals(new Color(184, 44, 44))) {
+                        label.setBackground(new Color(184, 44, 44));
                         label.setForeground(Color.WHITE);
-                    }                    
+                        
+                        casillas[i][j]=0;
+                    }
                 }
             }
         }
     }
+
+    // Limpiar el tablero
+    private void limpiarTablero() {
+        GridLayoutBoleto.removeAll();
+        GridLayoutBoleto.repaint();
+        GridLayoutBoleto.revalidate();
+        repetidos.clear();
+    }
             
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Boleto;
+    private javax.swing.JPanel BotonReset;
+    private javax.swing.JPanel BotonTirar;
     private javax.swing.JPanel GridLayoutBoleto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelNumeroGenerado;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }
