@@ -8,6 +8,7 @@ package tresenraya;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.border.MatteBorder;
 
 /**
@@ -16,11 +17,10 @@ import javax.swing.border.MatteBorder;
  */
 public class JuegoTresEnRaya extends javax.swing.JFrame {
 
-    // FALSE = CPU      2
-    // TRUE = Usuario   1
-    private boolean turno=true;
+    private boolean jugar=true;
     private int[][] arrayJuego;
-    private ImageIcon icono;
+    private ImageIcon iconoX;
+    private ImageIcon iconoO;
     
     /**
      * Creates new form JuegoTresEnRaya
@@ -29,7 +29,7 @@ public class JuegoTresEnRaya extends javax.swing.JFrame {
         initComponents();
         
         // Estilos del JFrame
-        this.setSize(408, 530);
+        this.setSize(408, 540);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setIconImage(new ImageIcon(getClass().getResource("/tresenraya/images/icono.png")).getImage());
@@ -46,19 +46,20 @@ public class JuegoTresEnRaya extends javax.swing.JFrame {
         MatteBorder bordeCelda32=BorderFactory.createMatteBorder(3, 3, 0, 3, colorBorde);
         MatteBorder bordeCelda33=BorderFactory.createMatteBorder(3, 3, 0, 0, colorBorde);
                 
-        Celda11.setBorder(bordeCelda11);
-        Celda12.setBorder(bordeCelda12);
-        Celda13.setBorder(bordeCelda13);
-        Celda21.setBorder(bordeCelda21);
-        Celda22.setBorder(bordeCelda22);
-        Celda23.setBorder(bordeCelda23);
-        Celda31.setBorder(bordeCelda31);
-        Celda32.setBorder(bordeCelda32);
-        Celda33.setBorder(bordeCelda33);
+        jLabelCelda11.setBorder(bordeCelda11);
+        jLabelCelda12.setBorder(bordeCelda12);
+        jLabelCelda13.setBorder(bordeCelda13);
+        jLabelCelda21.setBorder(bordeCelda21);
+        jLabelCelda22.setBorder(bordeCelda22);
+        jLabelCelda23.setBorder(bordeCelda23);
+        jLabelCelda31.setBorder(bordeCelda31);
+        jLabelCelda32.setBorder(bordeCelda32);
+        jLabelCelda33.setBorder(bordeCelda33);
         
         // Array de Juego
         arrayJuego=new int[3][3];
-        icono=new ImageIcon(getClass().getResource("/tresenraya/images/x.png"));
+        iconoX=new ImageIcon(getClass().getResource("/tresenraya/images/x.png"));
+        iconoO=new ImageIcon(getClass().getResource("/tresenraya/images/o.png"));
     }
 
     /**
@@ -72,27 +73,18 @@ public class JuegoTresEnRaya extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         GridCeldas = new javax.swing.JPanel();
-        Celda11 = new javax.swing.JPanel();
         jLabelCelda11 = new javax.swing.JLabel();
-        Celda12 = new javax.swing.JPanel();
         jLabelCelda12 = new javax.swing.JLabel();
-        Celda13 = new javax.swing.JPanel();
         jLabelCelda13 = new javax.swing.JLabel();
-        Celda21 = new javax.swing.JPanel();
         jLabelCelda21 = new javax.swing.JLabel();
-        Celda22 = new javax.swing.JPanel();
         jLabelCelda22 = new javax.swing.JLabel();
-        Celda23 = new javax.swing.JPanel();
         jLabelCelda23 = new javax.swing.JLabel();
-        Celda31 = new javax.swing.JPanel();
         jLabelCelda31 = new javax.swing.JLabel();
-        Celda32 = new javax.swing.JPanel();
         jLabelCelda32 = new javax.swing.JLabel();
-        Celda33 = new javax.swing.JPanel();
+        jLabelCelda33 = new javax.swing.JLabel();
         TextoResultado = new javax.swing.JLabel();
         BotonReset = new javax.swing.JPanel();
         LabelReset = new javax.swing.JLabel();
-        jLabelCelda33 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -104,215 +96,86 @@ public class JuegoTresEnRaya extends javax.swing.JFrame {
         GridCeldas.setPreferredSize(new java.awt.Dimension(320, 320));
         GridCeldas.setLayout(new java.awt.GridLayout(3, 3));
 
-        Celda11.setBackground(new java.awt.Color(255, 255, 255));
-        Celda11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Celda11.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Celda11MouseClicked(evt);
-            }
-        });
-
         jLabelCelda11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelCelda11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelCelda11.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelCelda11MouseClicked(evt);
             }
         });
-
-        javax.swing.GroupLayout Celda11Layout = new javax.swing.GroupLayout(Celda11);
-        Celda11.setLayout(Celda11Layout);
-        Celda11Layout.setHorizontalGroup(
-            Celda11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelCelda11, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-        );
-        Celda11Layout.setVerticalGroup(
-            Celda11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelCelda11, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-        );
-
-        GridCeldas.add(Celda11);
-
-        Celda12.setBackground(new java.awt.Color(255, 255, 255));
-        Celda12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Celda12.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Celda12MouseClicked(evt);
-            }
-        });
+        GridCeldas.add(jLabelCelda11);
 
         jLabelCelda12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-        javax.swing.GroupLayout Celda12Layout = new javax.swing.GroupLayout(Celda12);
-        Celda12.setLayout(Celda12Layout);
-        Celda12Layout.setHorizontalGroup(
-            Celda12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelCelda12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-        );
-        Celda12Layout.setVerticalGroup(
-            Celda12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelCelda12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-        );
-
-        GridCeldas.add(Celda12);
-
-        Celda13.setBackground(new java.awt.Color(255, 255, 255));
-        Celda13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Celda13.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabelCelda12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelCelda12.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Celda13MouseClicked(evt);
+                jLabelCelda12MouseClicked(evt);
             }
         });
+        GridCeldas.add(jLabelCelda12);
 
         jLabelCelda13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-        javax.swing.GroupLayout Celda13Layout = new javax.swing.GroupLayout(Celda13);
-        Celda13.setLayout(Celda13Layout);
-        Celda13Layout.setHorizontalGroup(
-            Celda13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelCelda13, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-        );
-        Celda13Layout.setVerticalGroup(
-            Celda13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelCelda13, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-        );
-
-        GridCeldas.add(Celda13);
-
-        Celda21.setBackground(new java.awt.Color(255, 255, 255));
-        Celda21.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Celda21.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabelCelda13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelCelda13.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Celda21MouseClicked(evt);
+                jLabelCelda13MouseClicked(evt);
             }
         });
+        GridCeldas.add(jLabelCelda13);
 
         jLabelCelda21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-        javax.swing.GroupLayout Celda21Layout = new javax.swing.GroupLayout(Celda21);
-        Celda21.setLayout(Celda21Layout);
-        Celda21Layout.setHorizontalGroup(
-            Celda21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelCelda21, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-        );
-        Celda21Layout.setVerticalGroup(
-            Celda21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelCelda21, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-        );
-
-        GridCeldas.add(Celda21);
-
-        Celda22.setBackground(new java.awt.Color(255, 255, 255));
-        Celda22.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Celda22.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabelCelda21.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelCelda21.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Celda22MouseClicked(evt);
+                jLabelCelda21MouseClicked(evt);
             }
         });
+        GridCeldas.add(jLabelCelda21);
 
         jLabelCelda22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-        javax.swing.GroupLayout Celda22Layout = new javax.swing.GroupLayout(Celda22);
-        Celda22.setLayout(Celda22Layout);
-        Celda22Layout.setHorizontalGroup(
-            Celda22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelCelda22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        Celda22Layout.setVerticalGroup(
-            Celda22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelCelda22, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        GridCeldas.add(Celda22);
-
-        Celda23.setBackground(new java.awt.Color(255, 255, 255));
-        Celda23.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Celda23.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabelCelda22.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelCelda22.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Celda23MouseClicked(evt);
+                jLabelCelda22MouseClicked(evt);
             }
         });
+        GridCeldas.add(jLabelCelda22);
 
         jLabelCelda23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-        javax.swing.GroupLayout Celda23Layout = new javax.swing.GroupLayout(Celda23);
-        Celda23.setLayout(Celda23Layout);
-        Celda23Layout.setHorizontalGroup(
-            Celda23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelCelda23, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-        );
-        Celda23Layout.setVerticalGroup(
-            Celda23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelCelda23, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-        );
-
-        GridCeldas.add(Celda23);
-
-        Celda31.setBackground(new java.awt.Color(255, 255, 255));
-        Celda31.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Celda31.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabelCelda23.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelCelda23.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Celda31MouseClicked(evt);
+                jLabelCelda23MouseClicked(evt);
             }
         });
+        GridCeldas.add(jLabelCelda23);
 
         jLabelCelda31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-        javax.swing.GroupLayout Celda31Layout = new javax.swing.GroupLayout(Celda31);
-        Celda31.setLayout(Celda31Layout);
-        Celda31Layout.setHorizontalGroup(
-            Celda31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelCelda31, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-        );
-        Celda31Layout.setVerticalGroup(
-            Celda31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelCelda31, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-        );
-
-        GridCeldas.add(Celda31);
-
-        Celda32.setBackground(new java.awt.Color(255, 255, 255));
-        Celda32.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Celda32.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabelCelda31.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelCelda31.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Celda32MouseClicked(evt);
+                jLabelCelda31MouseClicked(evt);
             }
         });
+        GridCeldas.add(jLabelCelda31);
 
         jLabelCelda32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-        javax.swing.GroupLayout Celda32Layout = new javax.swing.GroupLayout(Celda32);
-        Celda32.setLayout(Celda32Layout);
-        Celda32Layout.setHorizontalGroup(
-            Celda32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelCelda32, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-        );
-        Celda32Layout.setVerticalGroup(
-            Celda32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelCelda32, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-        );
-
-        GridCeldas.add(Celda32);
-
-        Celda33.setBackground(new java.awt.Color(255, 255, 255));
-        Celda33.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Celda33.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabelCelda32.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelCelda32.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Celda33MouseClicked(evt);
+                jLabelCelda32MouseClicked(evt);
             }
         });
+        GridCeldas.add(jLabelCelda32);
 
-        javax.swing.GroupLayout Celda33Layout = new javax.swing.GroupLayout(Celda33);
-        Celda33.setLayout(Celda33Layout);
-        Celda33Layout.setHorizontalGroup(
-            Celda33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 106, Short.MAX_VALUE)
-        );
-        Celda33Layout.setVerticalGroup(
-            Celda33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 106, Short.MAX_VALUE)
-        );
-
-        GridCeldas.add(Celda33);
+        jLabelCelda33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelCelda33.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelCelda33.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelCelda33MouseClicked(evt);
+            }
+        });
+        GridCeldas.add(jLabelCelda33);
 
         TextoResultado.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         TextoResultado.setForeground(new java.awt.Color(153, 153, 153));
@@ -340,8 +203,6 @@ public class JuegoTresEnRaya extends javax.swing.JFrame {
             .addComponent(LabelReset, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
         );
 
-        jLabelCelda33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -355,27 +216,19 @@ public class JuegoTresEnRaya extends javax.swing.JFrame {
                             .addComponent(TextoResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(170, 170, 170)
-                        .addComponent(BotonReset, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(jLabelCelda33, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)))
-                .addGap(27, 27, 27))
+                        .addComponent(BotonReset, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(TextoResultado, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(TextoResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(GridCeldas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(BotonReset, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelCelda33, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-                        .addContainerGap())))
+                .addGap(28, 28, 28)
+                .addComponent(BotonReset, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -386,7 +239,9 @@ public class JuegoTresEnRaya extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -402,64 +257,7 @@ public class JuegoTresEnRaya extends javax.swing.JFrame {
         System.out.println("");
     }
     
-    // EVENTO PARA CADA CASILLA. AL PULSAR, SE CAMBIA EL ARRAY
-    private void Celda11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Celda11MouseClicked
-        if(arrayJuego[0][0] == 0) {
-            arrayJuego[0][0]=1;
-            jLabelCelda11.setIcon(icono);
-        }
-        
-        leerArray();        
-    }//GEN-LAST:event_Celda11MouseClicked
-
-    private void Celda12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Celda12MouseClicked
-        if(arrayJuego[0][1] == 0) {
-            arrayJuego[0][1]=1;
-        }
-        
-        leerArray();   
-    }//GEN-LAST:event_Celda12MouseClicked
-
-    private void Celda13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Celda13MouseClicked
-        if(arrayJuego[0][2] == 0) {
-            arrayJuego[0][2]=1;
-        }
-        
-        leerArray();   
-    }//GEN-LAST:event_Celda13MouseClicked
-
-    private void Celda21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Celda21MouseClicked
-        if(arrayJuego[1][0] == 0) {
-            arrayJuego[1][0]=1;
-        }
-        
-        leerArray();   
-    }//GEN-LAST:event_Celda21MouseClicked
-
-    private void Celda22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Celda22MouseClicked
-        if(arrayJuego[1][1] == 0) {
-            arrayJuego[1][1]=1;
-        }
-        
-        leerArray();   
-    }//GEN-LAST:event_Celda22MouseClicked
-
-    private void Celda23MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Celda23MouseClicked
-        if(arrayJuego[1][2] == 0) {
-            arrayJuego[1][2]=1;
-        }
-        
-        leerArray();   
-    }//GEN-LAST:event_Celda23MouseClicked
-
-    private void Celda31MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Celda31MouseClicked
-        if(arrayJuego[2][0] == 0) {
-            arrayJuego[2][0]=1;
-        }
-        
-        leerArray();   
-    }//GEN-LAST:event_Celda31MouseClicked
-
+    
     // BOTÓN RESETEAR JUEGO
     private void LabelResetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LabelResetMouseClicked
         // Resetear Array
@@ -471,35 +269,249 @@ public class JuegoTresEnRaya extends javax.swing.JFrame {
         
         // Eliminar iconos
         for(int i=0; i<9; i++) {
-            
+            JLabel label=(JLabel) GridCeldas.getComponent(i);
+            label.setIcon(null);
         }
+        
+        TextoResultado.setText("");
+        jugar=true;
     }//GEN-LAST:event_LabelResetMouseClicked
 
-    private void Celda32MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Celda32MouseClicked
-        if(arrayJuego[2][1] == 0) {
-            arrayJuego[2][1]=1;
-        }
-
-        leerArray();
-    }//GEN-LAST:event_Celda32MouseClicked
-
-    private void Celda33MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Celda33MouseClicked
+    // EVENTO PARA CADA CASILLA. AL PULSAR, SE CAMBIA EL ARRAY
+    private void jLabelCelda33MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCelda33MouseClicked
         if(arrayJuego[2][2] == 0) {
             arrayJuego[2][2]=1;
-        }
+            jLabelCelda33.setIcon(iconoX);
+            
+            leerArray();
+            mensajeVictoria();
 
-        leerArray();
-    }//GEN-LAST:event_Celda33MouseClicked
+            if(jugar == true) {
+                turnoCPU();
+                mensajeVictoria();
+            }     
+        }          
+    }//GEN-LAST:event_jLabelCelda33MouseClicked
+    private void jLabelCelda32MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCelda32MouseClicked
+        if(arrayJuego[2][1] == 0) {
+            arrayJuego[2][1]=1;
+            jLabelCelda32.setIcon(iconoX);
+            
+            leerArray();   
+            mensajeVictoria();
 
+            if(jugar == true) {
+                turnoCPU();
+                mensajeVictoria();
+            }     
+        }           
+    }//GEN-LAST:event_jLabelCelda32MouseClicked
+    private void jLabelCelda31MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCelda31MouseClicked
+        if(arrayJuego[2][0] == 0) {
+            arrayJuego[2][0]=1;
+            jLabelCelda31.setIcon(iconoX);
+            
+            leerArray();   
+            mensajeVictoria();
+
+            if(jugar == true) {
+                turnoCPU();
+                mensajeVictoria();
+            }     
+        }                   
+    }//GEN-LAST:event_jLabelCelda31MouseClicked
+    private void jLabelCelda23MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCelda23MouseClicked
+        if(arrayJuego[1][2] == 0) {
+            arrayJuego[1][2]=1;
+            jLabelCelda23.setIcon(iconoX);
+            
+            leerArray();  
+            mensajeVictoria();
+
+            if(jugar == true) {
+                turnoCPU();
+                mensajeVictoria();
+            }      
+        }                  
+    }//GEN-LAST:event_jLabelCelda23MouseClicked
+    private void jLabelCelda22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCelda22MouseClicked
+        if(arrayJuego[1][1] == 0) {
+            arrayJuego[1][1]=1;
+            jLabelCelda22.setIcon(iconoX);
+            
+            leerArray();   
+            mensajeVictoria();
+
+            if(jugar == true) {
+                turnoCPU();
+                mensajeVictoria();
+            }     
+        }           
+    }//GEN-LAST:event_jLabelCelda22MouseClicked
+    private void jLabelCelda21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCelda21MouseClicked
+        if(arrayJuego[1][0] == 0) {
+            arrayJuego[1][0]=1;
+            jLabelCelda21.setIcon(iconoX);
+            
+            leerArray();  
+            mensajeVictoria();
+
+            if(jugar == true) {
+                turnoCPU();
+                mensajeVictoria();
+            }  
+        }              
+    }//GEN-LAST:event_jLabelCelda21MouseClicked
+    private void jLabelCelda13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCelda13MouseClicked
+        if(arrayJuego[0][2] == 0) {
+            arrayJuego[0][2]=1;
+            jLabelCelda13.setIcon(iconoX);
+            
+            leerArray();   
+            mensajeVictoria();
+
+            if(jugar == true) {
+                turnoCPU();
+                mensajeVictoria();
+            } 
+        }               
+    }//GEN-LAST:event_jLabelCelda13MouseClicked
+    private void jLabelCelda12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCelda12MouseClicked
+        if(arrayJuego[0][1] == 0) {
+            arrayJuego[0][1]=1;
+            jLabelCelda12.setIcon(iconoX);
+            
+            leerArray();   
+            mensajeVictoria();
+
+            if(jugar == true) {
+                turnoCPU();
+                mensajeVictoria();
+            }   
+        }             
+    }//GEN-LAST:event_jLabelCelda12MouseClicked
     private void jLabelCelda11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCelda11MouseClicked
         if(arrayJuego[0][0] == 0) {
             arrayJuego[0][0]=1;
-            jLabelCelda11.setIcon(icono);
-        }
-        
-        leerArray();  
+            jLabelCelda11.setIcon(iconoX);
+            
+            leerArray();  
+            mensajeVictoria();
+
+            if(jugar == true) {
+                turnoCPU();
+                mensajeVictoria();
+            }   
+        }             
     }//GEN-LAST:event_jLabelCelda11MouseClicked
 
+    // MÉTODO PARA VERIFICAR VICTORIA
+    private int verificarVictoria() {
+        // 1: jugador ganó
+        // 2: CPU ganó
+        // 3: empate
+        
+        // JUGADOR GANA
+        if(arrayJuego[0][0] == 1 && arrayJuego[1][1] == 1 && arrayJuego[2][2] == 1) {
+            return 1;
+        } else if(arrayJuego[0][0] == 1 && arrayJuego[0][1] == 1 && arrayJuego[0][2] == 1) {
+            return 1;
+        } else if(arrayJuego[0][0] == 1 && arrayJuego[1][0] == 1 && arrayJuego[2][0] == 1) {
+            return 1;
+        } else if(arrayJuego[0][2] == 1 && arrayJuego[1][1] == 1 && arrayJuego[2][0] == 1) {
+            return 1;
+        } else if(arrayJuego[0][0] == 1 && arrayJuego[0][1] == 1 && arrayJuego[0][2] == 1) {
+            return 1;
+        } else if(arrayJuego[1][0] == 1 && arrayJuego[1][1] == 1 && arrayJuego[1][2] == 1) {
+            return 1;
+        } else if(arrayJuego[2][0] == 1 && arrayJuego[2][1] == 1 && arrayJuego[2][2] == 1) {
+            return 1;
+        } else if(arrayJuego[0][1] == 1 && arrayJuego[1][1] == 1 && arrayJuego[2][1] == 1) {
+            return 1;
+        } else if(arrayJuego[0][2] == 1 && arrayJuego[1][2] == 1 && arrayJuego[2][2] == 1) {
+            return 1;
+        }
+        
+        // CPU GANA
+        if(arrayJuego[0][0] == 2 && arrayJuego[1][1] == 2 && arrayJuego[2][2] == 2) {
+            return 2;
+        } else if(arrayJuego[0][0] == 2 && arrayJuego[0][1] == 2 && arrayJuego[0][2] == 2) {
+            return 2;
+        } else if(arrayJuego[0][0] == 2 && arrayJuego[1][0] == 2 && arrayJuego[2][0] == 2) {
+            return 2;
+        } else if(arrayJuego[0][2] == 2 && arrayJuego[1][1] == 2 && arrayJuego[2][0] == 2) {
+            return 2;
+        } else if(arrayJuego[0][0] == 2 && arrayJuego[0][1] == 2 && arrayJuego[0][2] == 2) {
+            return 2;
+        } else if(arrayJuego[1][0] == 2 && arrayJuego[1][1] == 2 && arrayJuego[1][2] == 2) {
+            return 2;
+        } else if(arrayJuego[2][0] == 2 && arrayJuego[2][1] == 2 && arrayJuego[2][2] == 2) {
+            return 2;
+        } else if(arrayJuego[0][1] == 2 && arrayJuego[1][1] == 2 && arrayJuego[2][1] == 2) {
+            return 2;
+        } else if(arrayJuego[0][2] == 2 && arrayJuego[1][2] == 2 && arrayJuego[2][2] == 2) {
+            return 2;
+        }
+        
+        for(int i=0; i<3; i++) {
+            for(int j=0; j<3; j++) {
+                if(arrayJuego[i][j] == 0) {
+                    return 0;
+                }
+            }
+        }
+        
+        // EMPATE
+        return 3;
+    }
+    
+    private void mensajeVictoria() {
+        if(verificarVictoria() == 1) {
+            TextoResultado.setText("HAS GANADO!!");
+            jugar=false;
+            
+        } else if(verificarVictoria() == 2) {
+            TextoResultado.setText("HAS PERDIDO");
+            jugar=false;
+            
+        } else if(verificarVictoria() == 3) {
+            TextoResultado.setText("EMPATE");
+            jugar=false;
+        }
+    }
+    
+    // TURNO DE LA CPU
+    private void turnoCPU() {
+        // Verificar que todavía haya alguna casilla libre
+        int cont=0;
+        
+        for(int i=0; i<3; i++) {
+            for(int j=0; j<3; j++) {
+                if(arrayJuego[i][j] == 0) {
+                    cont++;
+                }
+            }
+        }
+        
+        // Si hay 0, es el turno del CPU        
+        if(cont > 0) {
+            boolean terminar=false;
+            while(!terminar) {
+                // Filas y columnas aleatorias
+                int i=(int)(Math.random() * 3);
+                int j=(int)(Math.random() * 3);
+                
+                if (arrayJuego[i][j] == 0) {
+                    JLabel label=(JLabel) GridCeldas.getComponent(i*3+j);
+                    label.setIcon(iconoO);
+
+                    arrayJuego[i][j]=2;
+                    terminar=true;
+                }
+            }
+        }       
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -537,15 +549,6 @@ public class JuegoTresEnRaya extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BotonReset;
-    private javax.swing.JPanel Celda11;
-    private javax.swing.JPanel Celda12;
-    private javax.swing.JPanel Celda13;
-    private javax.swing.JPanel Celda21;
-    private javax.swing.JPanel Celda22;
-    private javax.swing.JPanel Celda23;
-    private javax.swing.JPanel Celda31;
-    private javax.swing.JPanel Celda32;
-    private javax.swing.JPanel Celda33;
     private javax.swing.JPanel GridCeldas;
     private javax.swing.JLabel LabelReset;
     private javax.swing.JLabel TextoResultado;
