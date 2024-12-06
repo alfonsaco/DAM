@@ -7,6 +7,7 @@ package juegomoverbola;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
@@ -25,10 +26,22 @@ public class JuegoBola extends javax.swing.JFrame {
         
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.setIconImage(new ImageIcon(getClass().getResource("/juegomoverbola/images/icono.png")).getImage());
         
-        x=100;
-        y=100;
-        dibujarBola(x, y);
+        // Se sustituye el panel por uno igual, para poder dibujar en él
+        PanelBola panelBola = new PanelBola();
+        panelBola.setBounds(ContenedorBola.getBounds()); 
+        panelBola.setBackground(ContenedorBola.getBackground());
+        ContenedorGeneral.remove(ContenedorBola);      
+        ContenedorBola = panelBola;                    
+        ContenedorGeneral.add(ContenedorBola);         
+        ContenedorGeneral.revalidate();
+        ContenedorGeneral.repaint();
+       
+        x=ContenedorBola.getWidth()/2;
+        y=ContenedorBola.getHeight()/2;
+        ContenedorBola.repaint();
+        
     }
 
     /**
@@ -56,8 +69,9 @@ public class JuegoBola extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         ContenedorGeneral.setBackground(new java.awt.Color(204, 204, 204));
+        ContenedorGeneral.setLayout(null);
 
-        ContenedorBola.setBackground(new java.awt.Color(22, 22, 22));
+        ContenedorBola.setBackground(new java.awt.Color(8, 8, 8));
         ContenedorBola.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 3));
 
         javax.swing.GroupLayout ContenedorBolaLayout = new javax.swing.GroupLayout(ContenedorBola);
@@ -70,6 +84,9 @@ public class JuegoBola extends javax.swing.JFrame {
             ContenedorBolaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 273, Short.MAX_VALUE)
         );
+
+        ContenedorGeneral.add(ContenedorBola);
+        ContenedorBola.setBounds(20, 20, 337, 279);
 
         GridBotones.setOpaque(false);
         GridBotones.setLayout(new java.awt.GridBagLayout());
@@ -198,40 +215,18 @@ public class JuegoBola extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 3, 0, 0);
         GridBotones.add(BotonRight, gridBagConstraints);
 
-        javax.swing.GroupLayout ContenedorGeneralLayout = new javax.swing.GroupLayout(ContenedorGeneral);
-        ContenedorGeneral.setLayout(ContenedorGeneralLayout);
-        ContenedorGeneralLayout.setHorizontalGroup(
-            ContenedorGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ContenedorGeneralLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(ContenedorBola, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(GridBotones, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                .addGap(15, 15, 15))
-        );
-        ContenedorGeneralLayout.setVerticalGroup(
-            ContenedorGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ContenedorGeneralLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(ContenedorBola, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContenedorGeneralLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(GridBotones, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
-        );
+        ContenedorGeneral.add(GridBotones);
+        GridBotones.setBounds(378, 47, 210, 207);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(ContenedorGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(ContenedorGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ContenedorGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(ContenedorGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
         );
 
         pack();
@@ -239,34 +234,36 @@ public class JuegoBola extends javax.swing.JFrame {
 
     // BOTÓN ARRIBA
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        y+=2;
-        dibujarBola(x, y);
+        y-=3;
+        ContenedorBola.repaint();
     }//GEN-LAST:event_jLabel1MouseClicked
 
     // BOTÓN ABAJO
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        y-=2;
-        dibujarBola(x, y);
+        y+=3;
+        ContenedorBola.repaint();
     }//GEN-LAST:event_jLabel2MouseClicked
 
     // BOTÓN IZQUIERDA
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        x-=2;
-        dibujarBola(x, y);
+        x-=3;
+        ContenedorBola.repaint();
     }//GEN-LAST:event_jLabel4MouseClicked
 
     // BOTÓN DERECHA
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        x+=2;
-        dibujarBola(x, y);
+        x+=3;
+        ContenedorBola.repaint();        
     }//GEN-LAST:event_jLabel3MouseClicked
 
-    private void dibujarBola(int x, int y) {
-        ContenedorBola.repaint();
-        
-        Graphics g=ContenedorBola.getGraphics();
-        g.setColor(Color.RED);
-        g.fillOval(x, y, 50, 50);
+   // Clase interna para dibujar la bola
+    private class PanelBola extends JPanel {
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g); // Limpia el área del panel
+            g.setColor(Color.RED);  // Color de la bola
+            g.fillOval(x, y, 50, 50); // Dibujar bola en la posición actual
+        }
     }
     
     /**
