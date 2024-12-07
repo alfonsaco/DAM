@@ -260,9 +260,9 @@ public class JuegoBola extends javax.swing.JFrame {
     private class PanelBola extends JPanel {
         @Override
         protected void paintComponent(Graphics g) {
-            super.paintComponent(g); // Limpia el área del panel
-            g.setColor(Color.RED);  // Color de la bola
-            g.fillOval(x, y, 50, 50); // Dibujar bola en la posición actual
+            super.paintComponent(g);
+            g.setColor(Color.RED); 
+            g.fillOval(x, y, 50, 50);
         }
     }
     
