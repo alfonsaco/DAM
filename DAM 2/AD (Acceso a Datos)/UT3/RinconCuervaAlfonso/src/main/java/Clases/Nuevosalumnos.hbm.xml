@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 12 dic 2024, 19:22:02 by Hibernate Tools 5.4.33.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="Clases.Nuevosalumnos" optimistic-lock="none" table="NUEVOSALUMNOS">
+        <composite-id class="Clases.NuevosalumnosId" name="id">
+            <key-property name="codalum" type="big_integer">
+                <column name="CODALUM" precision="22" scale="0"/>
+            </key-property>
+            <key-property name="nombre" type="string">
+                <column length="20" name="NOMBRE"/>
+            </key-property>
+            <key-property name="direccion" type="string">
+                <column length="20" name="DIRECCION"/>
+            </key-property>
+            <key-property name="poblacion" type="string">
+                <column length="20" name="POBLACION"/>
+            </key-property>
+            <key-property name="telef" type="string">
+                <column length="10" name="TELEF"/>
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

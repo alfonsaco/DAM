@@ -204,9 +204,6 @@ public class Principal {
 		
 	}
 	
-	
-	
-	
 	private static void mostrardatosprofescentro(int id) {
 		
 		Session session = factori.openSession();
