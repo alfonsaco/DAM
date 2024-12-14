@@ -6,6 +6,7 @@
 package pong;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -16,7 +17,7 @@ import javax.swing.JPanel;
  * @author Alfonso
  */
 public class GamePanel extends JPanel implements Runnable, KeyListener {
-    private final int WIDTH=800, HEIGHT=800;
+    private final int WIDTH=800, HEIGHT=600;
     private Thread gameThread;
     private boolean running;
     private Ball ball;
@@ -26,10 +27,10 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackground(Color.BLACK);
         addKeyListener(this);
-        setFocusCycleRoot(true);
+        setFocusable(true);
         ball=new Ball(WIDTH/2, HEIGHT/2, 20, 20);
-        player1=new Paddle(10, HEIGHT/2-60, 20, 120);
-        player2=new Paddle(WIDTH-20, HEIGHT/2-60, 10, 120);
+        player1=new Paddle(0, HEIGHT/2-60, 200, 20);
+        player2=new Paddle(WIDTH-20, HEIGHT/2-60, 200, 20);
         startGame();
     }
     
@@ -58,12 +59,16 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         ball.move();
         ball.checkCollision(player1, player2, WIDTH, HEIGHT);
         player1.move(HEIGHT);
-        player2.move(HEIGHT)
+        player2.move(HEIGHT);
     }
 
     @Override
-    public void paintComponents(Graphics g) {
+    public void paintComponent(Graphics g) {
         super.paintComponents(g);
+        
+        g.setColor(Color.BLACK); 
+        g.fillRect(0, 0, getWidth(), getHeight()); 
+        
         ball.draw(g);
         player1.draw(g);
         player2.draw(g);

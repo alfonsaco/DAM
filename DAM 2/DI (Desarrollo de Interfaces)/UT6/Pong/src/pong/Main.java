@@ -5,11 +5,12 @@
  */
 package pong;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
  *
- * @author PROGRAMACION
+ * @author Alfonso
  */
 public class Main {
 
@@ -22,6 +23,7 @@ public class Main {
         
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
+        frame.setIconImage(new ImageIcon(Main.class.getResource("/pong/images/logo.png")).getImage());
         frame.add(panelGame);
         frame.pack();
         frame.setLocationRelativeTo(null);
