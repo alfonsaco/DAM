@@ -7,7 +7,7 @@ package pong;
 
 /**
  *
- * @author PROGRAMACION
+ * @author Alfonso
  */
 public class Ball {
     

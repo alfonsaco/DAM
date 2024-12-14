@@ -5,6 +5,8 @@
  */
 package pong;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author PROGRAMACION
@@ -15,7 +17,15 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        JFrame frame=new JFrame("Pong Game");
+        GamePanel panelGame=new GamePanel();
+        
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.add(panelGame);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
     
 }

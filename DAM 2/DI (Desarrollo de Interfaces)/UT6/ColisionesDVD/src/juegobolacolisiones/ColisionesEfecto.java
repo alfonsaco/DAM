@@ -5,13 +5,23 @@
  */
 package juegobolacolisiones;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import javax.swing.Timer;
+
 /**
  *
  * @author Alfonso
  */
 public class ColisionesEfecto extends javax.swing.JFrame {
 
-    private int x,y, calcX, calcY;
+    private int x,y;
+    private int calcX, calcY;
     /**
      * Creates new form ColisionesEfecto
      */
@@ -20,12 +30,39 @@ public class ColisionesEfecto extends javax.swing.JFrame {
         
         // Estilos del Frame
         this.setResizable(false);
-        
+        this.pack();
+        this.setLocationRelativeTo(null);        
+        this.setIconImage(new ImageIcon(getClass().getResource("/juegobolacolisiones/images/dvd.png")).getImage());
         
         // Inicializar variables
         calcX=2;
         calcY=2;
-               
+        x=DVD.getX();
+        y=DVD.getX();
+        
+        Timer timer=new Timer(10, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                DVD.setLocation(x, y);
+                
+                if((DVD.getY()+DVD.getHeight()) >= ContenedorGeneral.getHeight()) {
+                    calcY=-2;                   
+                }
+                if((DVD.getX()+DVD.getWidth()) >= ContenedorGeneral.getWidth()) {
+                    calcX=-2;     
+                }
+                if(DVD.getY() == 0) {
+                    calcY=2;                   
+                }
+                if(DVD.getX() == 0) {
+                    calcX=2;     
+                }
+                
+                x+=calcX;
+                y+=calcY;                               
+            }
+        });
+        timer.start();                    
     }
 
     /**
@@ -37,17 +74,27 @@ public class ColisionesEfecto extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ContenedorGeneral = new javax.swing.JPanel();
+        DVD = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(615, 410));
+
+        ContenedorGeneral.setBackground(new java.awt.Color(0, 0, 0));
+        ContenedorGeneral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        DVD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/juegobolacolisiones/images/dvd70.png"))); // NOI18N
+        ContenedorGeneral.add(DVD, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(ContenedorGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(ContenedorGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -89,5 +136,7 @@ public class ColisionesEfecto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel ContenedorGeneral;
+    private javax.swing.JLabel DVD;
     // End of variables declaration//GEN-END:variables
 }
