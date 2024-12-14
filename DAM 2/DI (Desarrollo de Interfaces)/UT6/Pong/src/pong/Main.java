@@ -9,7 +9,7 @@ package pong;
  *
  * @author PROGRAMACION
  */
-public class Pong {
+public class Main {
 
     /**
      * @param args the command line arguments
