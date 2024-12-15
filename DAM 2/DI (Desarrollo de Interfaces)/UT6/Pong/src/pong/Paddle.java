@@ -15,7 +15,7 @@ import java.awt.Graphics;
 public class Paddle {
     private int x, y, height, width, speed=5, direction=0;
 
-    public Paddle(int x, int y, int height, int width) {
+    public Paddle(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
         this.height = height;
@@ -48,6 +48,10 @@ public class Paddle {
     public int getWidth() {
         return width;
     }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }        
 
     public void setDirection(int direction) {
         this.direction = direction;
