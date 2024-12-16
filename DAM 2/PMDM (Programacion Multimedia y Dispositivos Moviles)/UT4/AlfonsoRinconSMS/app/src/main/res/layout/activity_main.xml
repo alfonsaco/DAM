@@ -48,7 +48,7 @@
         android:layout_marginStart="24dp"
         android:backgroundTint="#000000"
         android:src="@android:drawable/ic_menu_search"
-        android:tint="#FFFFFF"
+        app:tint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/etxtApellido"
         app:layout_constraintEnd_toEndOf="@+id/btnBuscarNombre"
         app:layout_constraintStart_toEndOf="@+id/etxtApellido"
@@ -60,7 +60,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="24dp"
         android:backgroundTint="#020202"
-        android:tint="#FFFFFF"
+        app:tint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/etxtNombre"
         app:layout_constraintStart_toEndOf="@+id/etxtNombre"
         app:layout_constraintTop_toTopOf="@+id/etxtNombre"
@@ -76,6 +76,7 @@
         app:layout_constraintTop_toBottomOf="@+id/etxtApellido">
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" />
