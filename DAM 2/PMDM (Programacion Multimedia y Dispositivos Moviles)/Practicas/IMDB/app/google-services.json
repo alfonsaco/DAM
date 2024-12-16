@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "638388689934",
+    "project_id": "rinconcuervaimdbapp",
+    "storage_bucket": "rinconcuervaimdbapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638388689934:android:4e0d61f7a928d5b45c305f",
+        "android_client_info": {
+          "package_name": "edu.pmdm.rincon_cuervaimdbapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkSwqGDD9vLMd-HWal87Ro22yzbtadnjg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

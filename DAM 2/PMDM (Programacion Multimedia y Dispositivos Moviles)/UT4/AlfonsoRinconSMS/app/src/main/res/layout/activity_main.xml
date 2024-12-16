@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btnSeleccionar"
+        android:layout_width="255dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="45dp"
+        android:backgroundTint="#1A1A1A"
+        android:text="SELECCIONAR CONTACTO"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etxtNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="Nombre"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSeleccionar" />
+
+    <EditText
+        android:id="@+id/etxtApellido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Apellido"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="@+id/etxtNombre"
+        app:layout_constraintTop_toBottomOf="@+id/etxtNombre" />
+
+    <ImageButton
+        android:id="@+id/btnBuscarApellido"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="24dp"
+        android:backgroundTint="#000000"
+        android:src="@android:drawable/ic_menu_search"
+        android:tint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/etxtApellido"
+        app:layout_constraintEnd_toEndOf="@+id/btnBuscarNombre"
+        app:layout_constraintStart_toEndOf="@+id/etxtApellido"
+        app:layout_constraintTop_toTopOf="@+id/etxtApellido" />
+
+    <ImageButton
+        android:id="@+id/btnBuscarNombre"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="24dp"
+        android:backgroundTint="#020202"
+        android:tint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/etxtNombre"
+        app:layout_constraintStart_toEndOf="@+id/etxtNombre"
+        app:layout_constraintTop_toTopOf="@+id/etxtNombre"
+        app:srcCompat="@android:drawable/ic_menu_search" />
+
+    <ScrollView
+        android:id="@+id/scrollContactos"
+        android:layout_width="314dp"
+        android:layout_height="346dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etxtApellido">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
