@@ -22,6 +22,18 @@ public class JuegoBingo extends javax.swing.JFrame {
 
     private ArrayList<Integer> repetidos;
     private int[][] casillas;
+    
+    // Variable para controlar el tipo de Victoria
+    private int tipo;
+    // ArrayList para verificar qué casos han sido ya verificados
+    private ArrayList<Boolean> listaDeCasos; 
+    /*
+        FILAS 1
+        COLUMNAS 2
+        DIAGONAL 3
+        BINGO 4
+        
+    */
     /**
      * Creates new form JuegoBingo
      */
@@ -35,9 +47,13 @@ public class JuegoBingo extends javax.swing.JFrame {
         
         // Inicializar el arraylist de números
         repetidos=new ArrayList<>();
+        listaDeCasos=new ArrayList<>();
+        for (int i = 0; i < 12; i++) {
+            listaDeCasos.add(true);
+        }
         
         // Agrego los labels
-        casillas=new int[5][5];
+        casillas=new int[5][5];        
                 
         añadirCeldas();                
     }
@@ -216,13 +232,22 @@ public class JuegoBingo extends javax.swing.JFrame {
                
         // Verificamos si ha ganado o no
         if(verificarVictoria()) {
-            // Diálogo de victoria
-            Victoria v = new Victoria(this, true);
-            v.setVisible(true);
+            if(tipo == 1) {
+                JOptionPane.showMessageDialog(this, "FILA COMPLETA");
+            } else if(tipo == 2) {
+                JOptionPane.showMessageDialog(this, "COLUMNA COMPLETA");
+            } else if(tipo == 3) {
+                JOptionPane.showMessageDialog(this, "DIAGONAL COMPLETA");
+            } else {
+                // Diálogo de victoria
+                Victoria v = new Victoria(this, true);
+                v.setVisible(true);
+                
+                limpiarTablero();
+                añadirCeldas();
+                jLabelNumeroGenerado.setText("");
+            }             
             
-            limpiarTablero();
-            añadirCeldas();
-            jLabelNumeroGenerado.setText("");
         }       
     }//GEN-LAST:event_jLabel2MouseClicked
 
@@ -269,16 +294,16 @@ public class JuegoBingo extends javax.swing.JFrame {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
                 // Asignar un número único a cada casilla
-                numero = (int) (Math.random() * 15) + inicio;
+                numero=(int) (Math.random() * 15) + inicio;
 
                 // Evitar que el número se repita en el tablero
-                while (numeroRepetido(numero)) {
-                    numero = (int) (Math.random() * 15) + inicio;
+                while(numeroRepetido(numero)) {
+                    numero=(int) (Math.random() * 15) + inicio;
                 }
-                casillas[i][j] = numero;
+                casillas[i][j]=numero;
 
                 // Crear el label correspondiente
-                JLabel label = new JLabel();
+                JLabel label=new JLabel();
                 label.setText(String.valueOf(numero));
                 label.setHorizontalAlignment(JLabel.CENTER);
                 label.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 16));
@@ -314,31 +339,55 @@ public class JuegoBingo extends javax.swing.JFrame {
 
     public boolean verificarVictoria() {        
         // VERIFICAMOS LAS FILAS
-        if(casillas[0][0]==0 && casillas[0][1]==0 && casillas[0][2]==0 && casillas[0][3]==0 && casillas[0][4]==0) {
+        if(casillas[0][0]==0 && casillas[0][1]==0 && casillas[0][2]==0 && casillas[0][3]==0 && casillas[0][4]==0 && listaDeCasos.get(0) != false) {
+            tipo=1;
+            listaDeCasos.set(0, false);
             return true;
-        } else if(casillas[1][0]==0 && casillas[1][1]==0 && casillas[1][2]==0 && casillas[1][3]==0 && casillas[1][4]==0) {
+        } else if(casillas[1][0]==0 && casillas[1][1]==0 && casillas[1][2]==0 && casillas[1][3]==0 && casillas[1][4]==0 && listaDeCasos.get(1) != false) {
+            tipo=1;
+            listaDeCasos.set(1, false);
             return true;
-        } else if(casillas[2][0]==0 && casillas[2][1]==0 && casillas[2][2]==0 && casillas[2][3]==0 && casillas[2][4]==0) {
+        } else if(casillas[2][0]==0 && casillas[2][1]==0 && casillas[2][2]==0 && casillas[2][3]==0 && casillas[2][4]==0 && listaDeCasos.get(2) != false) {
+            tipo=1;
+            listaDeCasos.set(2, false);
             return true;
-        } else if(casillas[3][0]==0 && casillas[3][1]==0 && casillas[3][2]==0 && casillas[3][3]==0 && casillas[3][4]==0) {
+        } else if(casillas[3][0]==0 && casillas[3][1]==0 && casillas[3][2]==0 && casillas[3][3]==0 && casillas[3][4]==0 && listaDeCasos.get(3) != false) {
+            tipo=1;
+            listaDeCasos.set(3, false);
             return true;
-        } else if(casillas[4][0]==0 && casillas[4][1]==0 && casillas[4][2]==0 && casillas[4][3]==0 && casillas[4][4]==0) {
+        } else if(casillas[4][0]==0 && casillas[4][1]==0 && casillas[4][2]==0 && casillas[4][3]==0 && casillas[4][4]==0 && listaDeCasos.get(4) != false) {
+            tipo=1;
+            listaDeCasos.set(4, false);
             return true;
         // VERIFICAMOS LAS COLUMNAS
-        } else if(casillas[0][0]==0 && casillas[1][0]==0 && casillas[2][0]==0 && casillas[3][0]==0 && casillas[4][0]==0) {
+        } else if(casillas[0][0]==0 && casillas[1][0]==0 && casillas[2][0]==0 && casillas[3][0]==0 && casillas[4][0]==0 && listaDeCasos.get(5) != false) {
+            tipo=2;
+            listaDeCasos.set(5, false);
             return true;
-        } else if(casillas[0][1]==0 && casillas[1][1]==0 && casillas[2][1]==0 && casillas[3][1]==0 && casillas[4][1]==0) {
+        } else if(casillas[0][1]==0 && casillas[1][1]==0 && casillas[2][1]==0 && casillas[3][1]==0 && casillas[4][1]==0 && listaDeCasos.get(6) != false) {
+            tipo=2;
+            listaDeCasos.set(6, false);
             return true;
-        } else if(casillas[0][2]==0 && casillas[1][2]==0 && casillas[2][2]==0 && casillas[3][2]==0 && casillas[4][2]==0) {
+        } else if(casillas[0][2]==0 && casillas[1][2]==0 && casillas[2][2]==0 && casillas[3][2]==0 && casillas[4][2]==0 && listaDeCasos.get(7) != false) {
+            tipo=2;
+            listaDeCasos.set(7, false);
             return true;
-        } else if(casillas[0][3]==0 && casillas[1][3]==0 && casillas[2][3]==0 && casillas[3][3]==0 && casillas[4][3]==0) {
+        } else if(casillas[0][3]==0 && casillas[1][3]==0 && casillas[2][3]==0 && casillas[3][3]==0 && casillas[4][3]==0 && listaDeCasos.get(8) != false) {
+            tipo=2;
+            listaDeCasos.set(8, false);
             return true;
-        } else if(casillas[0][4]==0 && casillas[1][4]==0 && casillas[2][4]==0 && casillas[3][4]==0 && casillas[4][4]==0) {
+        } else if(casillas[0][4]==0 && casillas[1][4]==0 && casillas[2][4]==0 && casillas[3][4]==0 && casillas[4][4]==0 && listaDeCasos.get(9) != false) {
+            tipo=2;
+            listaDeCasos.set(9, false);
             return true;
         // VERIFICAMOS LAS DIAGONALES
-        } else if(casillas[0][0]==0 && casillas[1][1]==0 && casillas[2][2]==0 && casillas[3][3]==0 && casillas[4][4]==0) {
+        } else if(casillas[0][0]==0 && casillas[1][1]==0 && casillas[2][2]==0 && casillas[3][3]==0 && casillas[4][4]==0 && listaDeCasos.get(10) != false) {
+            tipo=3;
+            listaDeCasos.set(10, false);
             return true;
-        }  else if(casillas[4][0]==0 && casillas[3][1]==0 && casillas[2][2]==0 && casillas[1][3]==0 && casillas[0][4]==0) {
+        }  else if(casillas[4][0]==0 && casillas[3][1]==0 && casillas[2][2]==0 && casillas[1][3]==0 && casillas[0][4]==0 && listaDeCasos.get(11) != false) {
+            tipo=3;
+            listaDeCasos.set(11, false);
             return true;
         }
         

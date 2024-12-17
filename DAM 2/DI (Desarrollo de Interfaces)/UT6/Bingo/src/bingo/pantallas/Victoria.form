@@ -56,7 +56,7 @@
               <Color blue="0" green="99" red="33" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="HAS GANADO"/>
+            <Property name="text" type="java.lang.String" value="BINGO"/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Constraints>
