@@ -46,8 +46,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         setFocusable(true);
         
         ball=new Ball(WIDTH/2, HEIGHT/2, 20, 20);
-        player1=new Paddle(0, HEIGHT/2-60, 20, 200);
-        player2=new Paddle(WIDTH-20, HEIGHT/2-60, 20, 200);
+        player1=new Paddle(10, HEIGHT/2-60, 10, 200);
+        player2=new Paddle(WIDTH-20, HEIGHT/2-60, 10, 200);
         startGame();
         
         // Timar para que haya un pequeño descanso cuando un jugador anota un punto
@@ -150,7 +150,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
         // Cuando se cuela la bola en uno de los dos lados, se resetea el juego, y se suma al jugador que haya marcado
         // También se aumentará la velocidad        
-        if(ball.getX() <= 0 || ball.getX() >= WIDTH) {
+        if(ball.getX() <= 10 || ball.getX() >= WIDTH-30) {
             if(ball.getX() <= 0) {
                 puntuacionJug2++;                                             
             } else {

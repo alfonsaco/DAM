@@ -73,7 +73,9 @@ public class Ball {
     public void checkCollision(Paddle p1, Paddle p2, int screenWidth, int screenHeight) {
         if(y  <= 0 || y+height >= screenHeight) {
             ySpeed*=-1;
-        }
+        }      
+
+        // Casos en los que la bola llega al final de la pantalla. Un jugador gana un punto
         if(x <= p1.getX()+p1.getWidth() && y+height >= p1.getY() && y <= p1.getY()+p1.getHeight()) {
             xSpeed*=-1;
             contBotes++;
