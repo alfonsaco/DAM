@@ -234,25 +234,49 @@ public class JuegoBola extends javax.swing.JFrame {
 
     // BOTÓN ARRIBA
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        y-=3;
+        int minArr=ContenedorBola.getInsets().top;
+        
+        if(y > minArr) {
+            y-=5;
+        } else {
+            y=minArr;
+        }        
         ContenedorBola.repaint();
     }//GEN-LAST:event_jLabel1MouseClicked
 
     // BOTÓN ABAJO
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        y+=3;
+        int minAbj=ContenedorBola.getHeight()-50;
+        
+        if(y < minAbj) {
+            y+=5;   
+        } else {
+            y=minAbj;
+        }        
         ContenedorBola.repaint();
     }//GEN-LAST:event_jLabel2MouseClicked
 
     // BOTÓN IZQUIERDA
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        x-=3;
+        int minIzq=ContenedorBola.getInsets().left;
+        
+        if(x > minIzq) {
+            x-=5;            
+        } else {
+            x=minIzq;
+        }
         ContenedorBola.repaint();
     }//GEN-LAST:event_jLabel4MouseClicked
 
     // BOTÓN DERECHA
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        x+=3;
+        int minDer=ContenedorBola.getWidth()-50;
+        
+        if(x < minDer) {
+            x+=5;    
+        } else {
+            x=minDer;
+        }
         ContenedorBola.repaint();        
     }//GEN-LAST:event_jLabel3MouseClicked
 

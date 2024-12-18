@@ -186,13 +186,23 @@ public class moverRaya extends javax.swing.JFrame {
 
     // MOVER LA RAYA
     private void jLabelIzquierdaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelIzquierdaMouseClicked
-        x-=5;
-        ContenedorRaya.repaint();
+        int minx=ContenedorRaya.getInsets().left;
+        if(x > minx) {
+            x-=5;              
+        } else {
+            x=minx;
+        }
+        ContenedorRaya.repaint(); 
     }//GEN-LAST:event_jLabelIzquierdaMouseClicked
 
     private void jLabelDerechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelDerechaMouseClicked
-        x+=5;
-        ContenedorRaya.repaint();
+        int maxx=ContenedorRaya.getWidth()-40;
+        if(x < maxx) {
+            x+=5;
+        } else {
+            x=maxx;
+        }
+        ContenedorRaya.repaint(); 
     }//GEN-LAST:event_jLabelDerechaMouseClicked
 
     /**
