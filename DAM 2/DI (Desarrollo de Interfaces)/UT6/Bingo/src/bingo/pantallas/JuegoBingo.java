@@ -25,6 +25,7 @@ public class JuegoBingo extends javax.swing.JFrame {
     
     // Variable para controlar el tipo de Victoria
     private int tipo;
+    private int victoriaBingo;
     // ArrayList para verificar qué casos han sido ya verificados
     private ArrayList<Boolean> listaDeCasos; 
     /*
@@ -51,6 +52,7 @@ public class JuegoBingo extends javax.swing.JFrame {
         for (int i = 0; i < 12; i++) {
             listaDeCasos.add(true);
         }
+        victoriaBingo=0;
         
         // Agrego los labels
         casillas=new int[5][5];        
@@ -338,6 +340,19 @@ public class JuegoBingo extends javax.swing.JFrame {
     }
 
     public boolean verificarVictoria() {        
+        victoriaBingo=0;
+        for(int i=0; i<5; i++) {
+            for(int j=0; j<5; j++) {
+                if(casillas[i][j] == 0) {
+                    victoriaBingo++;
+                }
+            }
+        }
+        if(victoriaBingo == 25) {
+            tipo=4;
+            return true;
+        }
+        
         // VERIFICAMOS LAS FILAS
         if(casillas[0][0]==0 && casillas[0][1]==0 && casillas[0][2]==0 && casillas[0][3]==0 && casillas[0][4]==0 && listaDeCasos.get(0) != false) {
             tipo=1;
@@ -418,6 +433,13 @@ public class JuegoBingo extends javax.swing.JFrame {
         GridLayoutBoleto.repaint();
         GridLayoutBoleto.revalidate();
         repetidos.clear();
+        // Resetear el arraylist y llenarlo de 0
+        listaDeCasos.clear();
+        for (int i = 0; i < 12; i++) {
+            listaDeCasos.add(true);
+        }
+        
+        victoriaBingo=0;
     }
             
     // Variables declaration - do not modify//GEN-BEGIN:variables
