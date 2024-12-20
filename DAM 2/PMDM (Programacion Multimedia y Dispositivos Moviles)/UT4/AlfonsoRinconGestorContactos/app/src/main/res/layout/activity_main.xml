@@ -11,7 +11,7 @@
         android:id="@+id/btnAcceder"
         android:layout_width="280dp"
         android:layout_height="45dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="45dp"
         android:text="Acceder a Contactos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,8 +39,8 @@
 
     <ScrollView
         android:id="@+id/scrollView"
-        android:layout_width="327dp"
-        android:layout_height="373dp"
+        android:layout_width="313dp"
+        android:layout_height="258dp"
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,4 +52,38 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" />
     </ScrollView>
+
+    <EditText
+        android:id="@+id/etxtNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="Nombre"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView" />
+
+    <EditText
+        android:id="@+id/etxtTelefono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Teléfono"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etxtNombre" />
+
+    <Button
+        android:id="@+id/btnGuardarContacto"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Guardar Contacto"
+        app:layout_constraintEnd_toEndOf="@+id/etxtTelefono"
+        app:layout_constraintStart_toStartOf="@+id/etxtTelefono"
+        app:layout_constraintTop_toBottomOf="@+id/etxtTelefono" />
 </androidx.constraintlayout.widget.ConstraintLayout>
