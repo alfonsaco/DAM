@@ -59,16 +59,16 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        btnAcceder=findViewById(R.id.btnAcceder);
-        btnAgregar=findViewById(R.id.btnAgregar);
-        btnBluetooth=findViewById(R.id.btnBluetooth);
-        linearLayout=findViewById(R.id.linearLayout);
-        btnGuardarContacto=findViewById(R.id.btnGuardarContacto);
-        etxtNombre=findViewById(R.id.etxtNombre);
-        etxtTelefono=findViewById(R.id.etxtTelefono);
+        btnAcceder = findViewById(R.id.btnAcceder);
+        btnAgregar = findViewById(R.id.btnAgregar);
+        btnBluetooth = findViewById(R.id.btnBluetooth);
+        linearLayout = findViewById(R.id.linearLayout);
+        btnGuardarContacto = findViewById(R.id.btnGuardarContacto);
+        etxtNombre = findViewById(R.id.etxtNombre);
+        etxtTelefono = findViewById(R.id.etxtTelefono);
 
         // Launcher del Bluetooth
-        bluetoothLauncher=registerForActivityResult(
+        bluetoothLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     if (result.getResultCode() == RESULT_OK) {
@@ -116,22 +116,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Se guarda el nuevo contacto
         btnGuardarContacto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String nombre = etxtNombre.getText().toString();
                 String telefono = etxtTelefono.getText().toString();
 
+                // Verificamos que no esté vacío y que el número de teléfono sea válido
                 if (!nombre.isEmpty() && !telefono.isEmpty()) {
-                    guardarContacto(nombre, telefono);
-                    etxtNombre.setText("");
-                    etxtTelefono.setText("");
+                    if(esTelefono(telefono)) {
+                        guardarContacto(nombre, telefono);
+                        etxtNombre.setText("");
+                        etxtTelefono.setText("");
+                    } else {
+                        Toast.makeText(MainActivity.this, "Número no válido", Toast.LENGTH_SHORT).show();
+                    }
 
                 } else {
                     Toast.makeText(MainActivity.this, "Por favor, completa ambos campos.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+    }
+
+    // Método para verificar que el texto sea un teléfono
+    private boolean esTelefono(String tel) {
+        return tel.matches("^\\+?[0-9\\- ]+$");
     }
 
     // Método para pedir permisos
@@ -154,12 +165,12 @@ public class MainActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if (requestCode == PERMISSION_REQUEST_CONTACTS) {
+        if (requestCode == 1) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permiso concedido, acceder a los contactos
-                mostrarContactos();
-            } else {
+                listarDispositivosBluetooth();
 
+            } else {
+                Toast.makeText(this, "Permiso de Bluetooth denegado.", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -170,10 +181,10 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        // Usa un HashSet para evitar que se dupliquen los contactos
-        Set<String> contactIds = new HashSet<>();
+        // Usamos un HashSet para evitar que se dupliquen los contactos
+        Set<String> IDcontactos = new HashSet<>();
 
-        // Obtén los contactos del dispositivo
+        // Obtenemos los contactos del dispositivo
         Cursor cursor = getContentResolver().query(
                 ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                 null,
@@ -183,41 +194,40 @@ public class MainActivity extends AppCompatActivity {
         );
 
         if (cursor != null) {
-            linearLayout.removeAllViews(); // Limpia el LinearLayout antes de agregar los contactos
+            linearLayout.removeAllViews();
 
             while (cursor.moveToNext()) {
-                // Obtén el ID del contacto
-                String contactId = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.CONTACT_ID));
+                // ID del contacto
+                String ID = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.CONTACT_ID));
 
-                // Si el contacto ya ha sido procesado, continúa con el siguiente
-                if (contactIds.contains(contactId)) {
+                // Verificamos que el contacto no esté  en el set, para evitar que haya duplicados
+                if (IDcontactos.contains(ID)) {
                     continue;
                 }
+                IDcontactos.add(ID);
 
-                // Agrega el ID al HashSet para evitar duplicados
-                contactIds.add(contactId);
+                String nombre = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+                String telefono = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER));
 
-                // Obtén el nombre y el número de teléfono
-                String name = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-                String phone = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER));
-
-                // Crea un TextView para mostrar el contacto
                 TextView contactView = new TextView(this);
-                contactView.setText(name + "\n" + phone + "\n");
-                contactView.setTextSize(16); // Opcional: ajustar tamaño del texto
-                contactView.setPadding(16, 16, 16, 16); // Opcional: agregar padding
+                contactView.setText(nombre + "\n" + telefono + "\n");
+                contactView.setTextSize(16);
+                // Padding para mejorar aspecto
+                contactView.setPadding(16, 16, 16, 16);
                 contactView.setLayoutParams(new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT
                 ));
 
+                // Evento de Click. Se permite editar la información
                 contactView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        mostrarDialogoEditarContacto(contactId, name, phone);
+                        mostrarDialogoEditarContacto(ID, nombre, telefono);
                     }
                 });
 
+                // Evento longClick. Permite enviar un VCARD
                 contactView.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View view) {
@@ -244,7 +254,10 @@ public class MainActivity extends AppCompatActivity {
 
                         // Selecciona un dispositivo (modifica según tu lógica)
                         BluetoothDevice dispositivoSeleccionado = dispositivosEmparejados.iterator().next();
-                        enviarContactoComoVCard(name, phone, dispositivoSeleccionado);
+
+                        // Mostrar el diálogo con los datos del contacto
+                        mostrarDialogoEnviarContacto(nombre, telefono, dispositivoSeleccionado);
+
                         return true;
                     }
                 });
@@ -257,56 +270,96 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // Método para verificar si el Bluetooth está habilitado de forma segura
-    private boolean bluetoothEstaConectado() {
-        try {
-            BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-            if (bluetoothAdapter == null) {
-                // El dispositivo no tiene Bluetooth
-                return false;
-            }
-            return bluetoothAdapter.isEnabled();
-        } catch (Exception e) {
-            // Captura cualquier excepción para evitar que la app se bloquee
-            return false;
+    // Muestra el diálogo para enivar el contacto al dispositivo Bluetooth
+    private void mostrarDialogoEnviarContacto(String nombre, String telefono, BluetoothDevice dispositivo) {
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_enviar, null);
+        TextView txtContactoEnviar = dialogView.findViewById(R.id.txtModificar);
+        Button btnAceptar = dialogView.findViewById(R.id.btnAceptar);
+
+        // Contenido en el diálogo
+        String vCard = "BEGIN:VCARD\n" +
+                "VERSION:3.0\n" +
+                "FN:" + nombre + "\n" +
+                "TEL:" + telefono + "\n" +
+                "END:VCARD";
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
         }
-    }
+        txtContactoEnviar.setText("Contacto enviado al \"" + dispositivo.getName() + "\":\n" + vCard);
 
-
-    // Método para verificar si el Bluetooth está habilitado
-    private boolean isBluetoothConnected() {
-        BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        return bluetoothAdapter != null && bluetoothAdapter.isEnabled();
-    }
-
-
-    private void mostrarDialogoEditarContacto(String contactId, String currentName, String currentPhone) {
-        // Inflar el diseño del diálogo
-        View dialogView = getLayoutInflater().inflate(R.layout.dialog_editar_contacto, null);
-        EditText editName = dialogView.findViewById(R.id.editTextText);
-        EditText editPhone = dialogView.findViewById(R.id.editTextText2);
-
-        // Establecer valores iniciales
-        editName.setText(currentName);
-        editPhone.setText(currentPhone);
-
-        // Crear el diálogo
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setView(dialogView)
                 .setCancelable(false)
                 .create();
 
-        dialogView.findViewById(R.id.btnCancelar).setOnClickListener(v -> dialog.dismiss());
-
-        dialogView.findViewById(R.id.btnGuardar).setOnClickListener(v -> {
-            String newName = editName.getText().toString();
-            String newPhone = editPhone.getText().toString();
-
-            if (!newName.isEmpty() && !newPhone.isEmpty()) {
-                actualizarContacto(contactId, newName, newPhone);
+        // Al pulsar en aceptar, se cierra el diálogo y se envia el VCARD
+        btnAceptar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 dialog.dismiss();
-            } else {
-                Toast.makeText(this, "Por favor, completa ambos campos.", Toast.LENGTH_SHORT).show();
+                enviarContactoComoVCard(nombre, telefono, dispositivo);
+            }
+        });
+
+        dialog.show();
+    }
+
+    // Método para verificar si el Bluetooth está habilitado
+    private boolean bluetoothEstaConectado() {
+        try {
+            BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+            // Caso en el que el dispositivo no tiene bluetooth
+            if (bluetoothAdapter == null) {
+                return false;
+            }
+            return bluetoothAdapter.isEnabled();
+
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    // Método para mostrar el diálogo que permite editar un contacto
+    private void mostrarDialogoEditarContacto(String id, String nombreActual, String telefonoActual) {
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_editar_contacto, null);
+        EditText etxtNombre = dialogView.findViewById(R.id.editTextText);
+        EditText etxtTelefono = dialogView.findViewById(R.id.editTextText2);
+
+        etxtNombre.setText(nombreActual);
+        etxtTelefono.setText(telefonoActual);
+
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setView(dialogView)
+                .setCancelable(false)
+                .create();
+
+        dialogView.findViewById(R.id.btnCancelar).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+        dialogView.findViewById(R.id.btnGuardar).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String newName = etxtNombre.getText().toString();
+                String newPhone = etxtTelefono.getText().toString();
+
+                if (!newName.isEmpty() && !newPhone.isEmpty()) {
+                    actualizarContacto(id, newName, newPhone);
+                    dialog.dismiss();
+                } else {
+                    Toast.makeText(MainActivity.this, "Por favor, completa ambos campos.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -346,18 +399,21 @@ public class MainActivity extends AppCompatActivity {
         mostrarContactos(); // Refrescar la lista de contactos
     }
 
+    // Método para pedir los permisos de bluetooth
     private void pedirPermisosBluetooth() {
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+        // Caso en el que el dispositivo no tiene bluetooth
         if (bluetoothAdapter == null) {
-            // El dispositivo no tiene soporte para Bluetooth
             Toast.makeText(this, "Bluetooth no es compatible con este dispositivo.", Toast.LENGTH_SHORT).show();
             return;
         }
 
+        // El bluetooth no está activo
         if (!bluetoothAdapter.isEnabled()) {
-            // Solicitar al usuario que active el Bluetooth
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             bluetoothLauncher.launch(enableBtIntent);
+
         } else {
             Toast.makeText(this, "El Bluetooth ya está activado.", Toast.LENGTH_SHORT).show();
             listarDispositivosBluetooth();
@@ -377,7 +433,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        // Limpia el LinearLayout antes de agregar los dispositivos
+        // Limpia el LinearLayout
         linearLayout.removeAllViews();
 
         // Obtiene los dispositivos emparejados
@@ -398,12 +454,12 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        // Iterar sobre los dispositivos emparejados
+        // Se muestran todos los dispositivos detectados
         for (BluetoothDevice dispositivo : dispositivosEmparejados) {
             String nombreDispositivo = dispositivo.getName();
             String direccionDispositivo = dispositivo.getAddress(); // Dirección MAC del dispositivo
 
-            // Crea un TextView para mostrar el dispositivo
+            // TextView para mostrar el dispositivo
             TextView dispositivoView = new TextView(this);
             dispositivoView.setText(nombreDispositivo + " (" + direccionDispositivo + ")");
             dispositivoView.setTextSize(16);
@@ -413,7 +469,7 @@ public class MainActivity extends AppCompatActivity {
                     LinearLayout.LayoutParams.WRAP_CONTENT
             ));
 
-            // Configura un OnClickListener para mostrar un Toast al seleccionar el dispositivo
+            // Mostrar un Toast al seleccionar el dispositivo
             dispositivoView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -421,11 +477,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-            // Agrega el TextView al LinearLayout
             linearLayout.addView(dispositivoView);
         }
     }
 
+    // Método para guardar el nuevo contacto creado
     private void guardarContacto(String nombre, String telefono) {
         ContentValues values = new ContentValues();
 
@@ -450,39 +506,36 @@ public class MainActivity extends AppCompatActivity {
         getContentResolver().insert(ContactsContract.Data.CONTENT_URI, values);
 
         Toast.makeText(this, "Contacto \""+nombre+"\" añadido", Toast.LENGTH_SHORT).show();
-
         mostrarContactos();
     }
 
+    // Método para enviar el contacto como VCard
     private void enviarContactoComoVCard(String nombre, String telefono, BluetoothDevice dispositivo) {
         try {
-            // Crear contenido de la VCard
+            // Contenido de la VCard
             String vCard = "BEGIN:VCARD\n" +
                     "VERSION:3.0\n" +
                     "FN:" + nombre + "\n" +
                     "TEL:" + telefono + "\n" +
                     "END:VCARD";
 
-            // Crear un archivo temporal
             File vCardFile = new File(getCacheDir(), "contacto.vcf");
             try (FileWriter writer = new FileWriter(vCardFile)) {
                 writer.write(vCard);
             }
 
-            // Crear intent para enviar el archivo
+            // Intent para enviar el archivo
             Intent sendIntent = new Intent(Intent.ACTION_SEND);
             sendIntent.setType("text/x-vcard");
             Uri fileUri = FileProvider.getUriForFile(this, getPackageName() + ".provider", vCardFile);
             sendIntent.putExtra(Intent.EXTRA_STREAM, fileUri);
 
-            // Configurar el dispositivo destino
+            // Se configura el dispositivo de destino
             sendIntent.putExtra("android.bluetooth.device.extra.DEVICE", dispositivo);
-
-            // Lanzar intent
             startActivity(Intent.createChooser(sendIntent, "Enviar contacto a través de:"));
+
         } catch (IOException e) {
             Toast.makeText(this, "Error al crear la VCard: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
-
 }
