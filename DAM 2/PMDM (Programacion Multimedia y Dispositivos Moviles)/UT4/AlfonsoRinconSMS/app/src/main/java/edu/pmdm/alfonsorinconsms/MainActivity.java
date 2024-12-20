@@ -100,9 +100,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // MÉTODO PARA CARGAR LOS CONTACTOS EN EL SCROLL
     private void cargarContactos() {
-        Log.d("MainActivity", "Cargando contactos...");
         ContentResolver resolver = getContentResolver();
+        // Consulta de contactos
         Cursor cursor = resolver.query(
                 ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                 null,
@@ -115,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
             while (cursor.moveToNext()) {
                 @SuppressLint("Range") String nombre = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
 
-
                 TextView contactoView = new TextView(this);
                 contactoView.setText(nombre);
                 contactoView.setTextSize(18);
@@ -123,11 +123,10 @@ public class MainActivity extends AppCompatActivity {
                 linearLayout.addView(contactoView);
             }
             cursor.close();
-        } else {
-            Log.d("MainActivity", "No se encontraron contactos.");
         }
     }
 
+    // PEDIR PERMISOS AL USUARIO
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -137,14 +136,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void buscarContactosPorPatron(String patron) {
-        // Limpiar los resultados previos
         linearLayout.removeAllViews();
 
-        // Reemplazar '#' por '%', que es el comodín en SQL
-        String queryPatron = patron.replace("#", "%");
+        // Para que los contactos empiecen por una letra en cuestión
+        String queryPatron = patron + "%";
 
         ContentResolver resolver = getContentResolver();
-        String selection = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " LIKE ?";
+        String selection=ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " LIKE ?";
         String[] selectionArgs = { queryPatron };
 
         Cursor cursor = resolver.query(
@@ -158,18 +156,16 @@ public class MainActivity extends AppCompatActivity {
         if (cursor != null) {
             while (cursor.moveToNext()) {
                 @SuppressLint("Range") String nombreCompleto = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-                @SuppressLint("Range") String telefono = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
 
                 TextView contactoView = new TextView(this);
-                contactoView.setText(nombreCompleto + " - " + telefono);
+                contactoView.setText(nombreCompleto);
                 contactoView.setTextSize(18);
                 contactoView.setPadding(16, 16, 16, 16);
                 linearLayout.addView(contactoView);
             }
             cursor.close();
-        } else {
-            Log.d("MainActivity", "No se encontraron contactos con el patrón: " + patron);
         }
     }
+
 
 }

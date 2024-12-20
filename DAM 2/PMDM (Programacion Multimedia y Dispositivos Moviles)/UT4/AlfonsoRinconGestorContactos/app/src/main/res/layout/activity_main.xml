@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btnAcceder"
+        android:layout_width="280dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="60dp"
+        android:text="Acceder a Contactos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnAgregar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Agregar Contacto"
+        app:layout_constraintEnd_toEndOf="@+id/btnAcceder"
+        app:layout_constraintStart_toStartOf="@+id/btnAcceder"
+        app:layout_constraintTop_toBottomOf="@+id/btnAcceder" />
+
+    <Button
+        android:id="@+id/btnBluetooth"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Activar Bluetooth"
+        app:layout_constraintEnd_toEndOf="@+id/btnAgregar"
+        app:layout_constraintStart_toStartOf="@+id/btnAgregar"
+        app:layout_constraintTop_toBottomOf="@+id/btnAgregar" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="327dp"
+        android:layout_height="373dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnBluetooth">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
