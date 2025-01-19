@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 public class Conexion {
     public static Connection conectar() {
         try {
-            Class.forName("com.mysql.jbdc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             // Conexión, Usuario y Contraseña (no tiene)
             return DriverManager.getConnection("jdbc:mysql://localhost:3306/biblioteca", "root", "");
             
