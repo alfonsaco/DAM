@@ -3,6 +3,9 @@
     Created on : 28-ene-2025, 0:01:16
     Author     : PROGRAMACION
 --%>
+<%@page import="dao.CineDao"%>
+<%@page import="dao.PeliculaDao"%>
+<%@page import="model.Pelicula"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -35,6 +38,10 @@
         <div>
             <div class="cabecera-web">
                 <i class="fas fa-home"></i> Lista películas
+
+                <div class="boton-imprimir">
+                    <i class="fa-solid fa-print"></i>
+                </div>
             </div>
             <div class="contenido-tabla">
                 <table>
@@ -48,13 +55,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                        
                     </tbody>
                 </table>
             </div>
