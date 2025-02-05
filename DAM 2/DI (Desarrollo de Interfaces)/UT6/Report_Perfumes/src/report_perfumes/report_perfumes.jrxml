@@ -31,7 +31,10 @@
 			<band height="27">
 				<textField>
 					<reportElement x="127" y="0" width="251" height="20" uuid="5657b468-de49-45bd-a71b-b0b1ada0ad2d"/>
-					<textFieldExpression><![CDATA["DISEÑADOR: " ]]></textFieldExpression>
+					<textElement>
+						<font isBold="true" isItalic="true" isUnderline="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["DISEÑADOR: "]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement x="218" y="0" width="100" height="20" uuid="22da3759-832d-4a85-b754-3a6ed8270b5d"/>
@@ -42,7 +45,7 @@
 		<groupFooter>
 			<band height="27">
 				<textField>
-					<reportElement x="127" y="0" width="100" height="20" uuid="dcd5be70-8efe-44a4-afba-65bb1247b305"/>
+					<reportElement x="358" y="0" width="60" height="20" uuid="dcd5be70-8efe-44a4-afba-65bb1247b305"/>
 					<textFieldExpression><![CDATA[$V{ID_1}]]></textFieldExpression>
 				</textField>
 			</band>
@@ -52,16 +55,30 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="36" splitType="Stretch"/>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement x="160" y="10" width="218" height="26" uuid="33744a30-c276-4e5b-90bd-9d5525b16fd4"/>
+				<textElement textAlignment="Center">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Informe de perfumes]]></text>
+			</staticText>
+		</band>
 	</title>
 	<columnHeader>
 		<band height="32" splitType="Stretch">
 			<staticText>
 				<reportElement x="127" y="4" width="100" height="20" uuid="d662cedb-fffd-45ea-ac7f-9552c79eac27"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
 				<text><![CDATA[ID]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="318" y="4" width="100" height="20" uuid="db7b14d9-5e2c-4a4e-9619-fbe0effa8b53"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
 				<text><![CDATA[Nombre]]></text>
 			</staticText>
 		</band>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d57b6515-027c-41be-b7e3-ee5f43816326">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="REGION" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT * FROM POKEMON WHERE REGION=$P{REGION} ORDER BY REGION;]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipo1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipo2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hp" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ataque" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="defensa" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="velocidad" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="region" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="id_1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{id}]]></variableExpression>
+	</variable>
+	<group name="GRUPOREGION">
+		<groupExpression><![CDATA[$F{region}]]></groupExpression>
+		<groupHeader>
+			<band height="50">
+				<textField>
+					<reportElement x="126" y="14" width="100" height="20" uuid="1dfcb472-4d94-4ec7-a401-475d94e27c23"/>
+					<textFieldExpression><![CDATA["Region " + $F{region}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="50">
+				<textField>
+					<reportElement x="126" y="11" width="100" height="20" uuid="f670998e-7bda-48d6-98dc-09bb0f303fbf"/>
+					<textFieldExpression><![CDATA[$V{id_1}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="126" y="37" width="159" height="20" uuid="6be464c0-ad69-4ad7-8da9-73d2b2d38cc9"/>
+				<text><![CDATA[Pokemon de la Región]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="299" y="37" width="100" height="20" uuid="d99f68b8-78da-438f-b83c-35a659866e2e"/>
+				<textFieldExpression><![CDATA[$P{REGION}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement x="126" y="0" width="100" height="20" uuid="74cced3b-b0e6-4b61-9a81-02f19a872790"/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="256" y="0" width="100" height="20" uuid="b2070764-25c8-4856-9a3f-2caeb697a87d"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="126" y="0" width="100" height="20" uuid="f1d99fab-c923-4af3-a635-6f2dffa77c97"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="256" y="0" width="100" height="20" uuid="501ec37d-0b71-45bc-853d-6de4dc3b99af"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
