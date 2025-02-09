@@ -1,10 +1,19 @@
 package edu.pruebas.prc6_alfonsorincon;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Cancion {
+    @SerializedName("nombre")
     private String autor;
+
+    @SerializedName("descripcion")
     private String nombre;
+
     private String tipo;
+
+    @SerializedName("URI")
     private String URI;
+
     private String imagen;
 
     // Constructores

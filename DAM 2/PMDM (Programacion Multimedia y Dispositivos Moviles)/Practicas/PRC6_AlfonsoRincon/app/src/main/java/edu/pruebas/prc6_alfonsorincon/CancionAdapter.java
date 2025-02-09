@@ -10,6 +10,9 @@ import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 public class CancionAdapter extends RecyclerView.Adapter<CancionAdapter.ViewHolder> {
@@ -37,8 +40,18 @@ public class CancionAdapter extends RecyclerView.Adapter<CancionAdapter.ViewHold
         // Mostrar los datos
         //portadaAlbum=itemView.findViewWithTag(R.id.portadaAlbum);
         //imagenTipoCancion=itemView.findViewWithTag(R.id.imagenTipoCancion);
+
+        // Textos
         holder.txtAutor.setText(cancion.getAutor());
         holder.txtNombreCancion.setText(cancion.getNombre());
+
+        // Imágenes
+        int portadaId=context.getResources().getIdentifier(
+                cancion.getImagen(),
+                "drawable",
+                context.getPackageName()
+        );
+        Glide.with(context).load(portadaId != 0 ? portadaId : R.drawable.placeholder).into(holder.portadaAlbum);
     }
 
     @Override
