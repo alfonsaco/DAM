@@ -1,5 +1,7 @@
 package edu.pruebas.prc6_alfonsorincon;
 
+import android.media.MediaPlayer;
+import android.widget.MediaController;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -17,11 +19,14 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MediaController.MediaPlayerControl {
 
     private RecyclerView recyclerCanciones;
     private CancionAdapter adapter;
     private List<Cancion> listaCanciones;
+
+    private MediaPlayer mediaPlayer;
+    private MediaController mediaController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
         }else{
             listaCanciones=new ArrayList<>();
         }
+
+        mediaController=new MediaController(this);
+        mediaController.setAnchorView(findViewById(R.id.main));
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -70,5 +78,83 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return json;
+    }
+
+    public void reproducirCancion(int cancionID) {
+        // Para controlar que no haya ya nada reproduciendo
+        if (mediaPlayer != null) {
+            if(mediaPlayer.isPlaying()) {
+                mediaPlayer.stop();
+            }
+        }
+
+        mediaPlayer=MediaPlayer.create(this, cancionID);
+
+        // Reproducirt canción y mostrar MediaControlelr
+        if (mediaPlayer != null) {
+            mediaPlayer.start();
+            mediaController.setMediaPlayer(this);
+            mediaController.setEnabled(true);
+            mediaController.show();
+        }
+    }
+
+    @Override
+    public void start() {
+        if(mediaPlayer != null) {
+            mediaPlayer.start();
+        }
+    }
+
+    @Override
+    public void pause() {
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            mediaPlayer.pause();
+        }
+    }
+
+    @Override
+    public int getDuration() {
+        return 0;
+    }
+
+    @Override
+    public int getCurrentPosition() {
+        return 0;
+    }
+
+    @Override
+    public void seekTo(int pos) {
+
+    }
+
+    @Override
+    public boolean isPlaying() {
+        return false;
+    }
+
+    @Override
+    public int getBufferPercentage() {
+        return 0;
+    }
+
+    @Override
+    public boolean canPause() {
+        return false;
+    }
+
+    @Override
+    public boolean canSeekBackward() {
+        return false;
+    }
+
+    @Override
+    public boolean canSeekForward() {
+        return false;
+    }
+
+    @Override
+    public int getAudioSessionId() {
+        return 0;
     }
 }

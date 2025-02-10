@@ -1,6 +1,7 @@
 package edu.pruebas.prc6_alfonsorincon;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import edu.pruebas.prc6_alfonsorincon.MainActivity;
 
 import com.bumptech.glide.Glide;
 
@@ -54,17 +56,39 @@ public class CancionAdapter extends RecyclerView.Adapter<CancionAdapter.ViewHold
         Glide.with(context).load(portadaId != 0 ? portadaId : R.drawable.placeholder).into(holder.portadaAlbum);
 
         // Obtener el tipo de imagen
+        int tipoID=0;
         if(Integer.parseInt(cancion.getTipo()) == 0) {
-            int tipoID=context.getResources().getIdentifier("audio", "drawable", context.getPackageName());
-            Glide.with(context).load(tipoID).into(holder.imagenTipoCancion);
+            tipoID=context.getResources().getIdentifier("audio", "drawable", context.getPackageName());
 
         } else if(Integer.parseInt(cancion.getTipo()) == 1) {
-            int tipoID=context.getResources().getIdentifier("video", "drawable", context.getPackageName());
-            Glide.with(context).load(tipoID).into(holder.imagenTipoCancion);
+            tipoID=context.getResources().getIdentifier("video", "drawable", context.getPackageName());
 
         } else if(Integer.parseInt(cancion.getTipo()) == 2) {
-            int tipoID=context.getResources().getIdentifier("streaming", "drawable", context.getPackageName());
-            Glide.with(context).load(tipoID).into(holder.imagenTipoCancion);
+            tipoID=context.getResources().getIdentifier("streaming", "drawable", context.getPackageName());
+        }
+        Glide.with(context).load(tipoID).into(holder.imagenTipoCancion);
+
+        holder.btnReproducirCancion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reproducirCancion(cancion.getTipo(), cancion.getURI());
+            }
+        });
+    }
+
+    private void reproducirCancion(String tipo, String uri) {
+        int tipoInt=Integer.parseInt(tipo);
+        if(tipoInt == 0) {
+            int cancionID=context.getResources().getIdentifier(uri,"raw",context.getPackageName());
+            // Usamos los métodos de reproducir sonido del MainActivity
+            if (context instanceof MainActivity) {
+                ((MainActivity) context).reproducirCancion(cancionID);
+            }
+
+        } else if(tipoInt == 1) {
+
+
+        } else if(tipoInt == 2) {
 
         }
     }
