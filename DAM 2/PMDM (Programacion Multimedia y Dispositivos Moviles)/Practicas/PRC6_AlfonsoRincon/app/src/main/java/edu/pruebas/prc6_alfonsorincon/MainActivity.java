@@ -95,7 +95,8 @@ public class MainActivity extends AppCompatActivity implements MediaController.M
             mediaPlayer.start();
             mediaController.setMediaPlayer(this);
             mediaController.setEnabled(true);
-            mediaController.show();
+            // Se pone el "0" para evitar que desaparezca el MediaController a los pocos segundos
+            mediaController.show(0);
         }
     }
 
@@ -115,22 +116,30 @@ public class MainActivity extends AppCompatActivity implements MediaController.M
 
     @Override
     public int getDuration() {
+        if (mediaPlayer != null) {
+            return mediaPlayer.getDuration();
+        }
         return 0;
     }
 
     @Override
     public int getCurrentPosition() {
+        if(mediaPlayer != null) {
+            return mediaPlayer.getCurrentPosition();
+        }
         return 0;
     }
 
     @Override
     public void seekTo(int pos) {
-
+        if (mediaPlayer != null) {
+            mediaPlayer.seekTo(pos);
+        }
     }
 
     @Override
     public boolean isPlaying() {
-        return false;
+        return (mediaPlayer != null) && mediaPlayer.isPlaying();
     }
 
     @Override
@@ -140,21 +149,24 @@ public class MainActivity extends AppCompatActivity implements MediaController.M
 
     @Override
     public boolean canPause() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean canSeekBackward() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean canSeekForward() {
-        return false;
+        return true;
     }
 
     @Override
     public int getAudioSessionId() {
+        if (mediaPlayer != null) {
+            return mediaPlayer.getAudioSessionId();
+        }
         return 0;
     }
 }

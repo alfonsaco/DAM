@@ -1,6 +1,7 @@
 package edu.pruebas.prc6_alfonsorincon;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -86,7 +87,9 @@ public class CancionAdapter extends RecyclerView.Adapter<CancionAdapter.ViewHold
             }
 
         } else if(tipoInt == 1) {
-
+            Intent intent=new Intent(context, VideoActivity.class);
+            intent.putExtra("uri", uri);
+            context.startActivity(intent);
 
         } else if(tipoInt == 2) {
 
