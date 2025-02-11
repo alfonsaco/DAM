@@ -86,12 +86,11 @@ public class CancionAdapter extends RecyclerView.Adapter<CancionAdapter.ViewHold
                 ((MainActivity) context).reproducirCancion(cancionID);
             }
 
-        } else if(tipoInt == 1) {
+        } else {
             Intent intent=new Intent(context, VideoActivity.class);
             intent.putExtra("uri", uri);
+            intent.putExtra("tipo", tipoInt);
             context.startActivity(intent);
-
-        } else if(tipoInt == 2) {
 
         }
     }
