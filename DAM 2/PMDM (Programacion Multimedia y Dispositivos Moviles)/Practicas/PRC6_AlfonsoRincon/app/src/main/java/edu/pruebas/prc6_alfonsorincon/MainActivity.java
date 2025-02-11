@@ -1,10 +1,17 @@
 package edu.pruebas.prc6_alfonsorincon;
 
 import android.media.MediaPlayer;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.MediaController;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -24,6 +31,9 @@ public class MainActivity extends AppCompatActivity implements MediaController.M
     private RecyclerView recyclerCanciones;
     private CancionAdapter adapter;
     private List<Cancion> listaCanciones;
+    private List<Cancion> listaCancionesSinFiltros;
+
+    private boolean[] checkboxesSeleccionados;
 
     private MediaPlayer mediaPlayer;
     private MediaController mediaController;
@@ -34,8 +44,14 @@ public class MainActivity extends AppCompatActivity implements MediaController.M
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
+        // Toolbar de opciones
+        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         recyclerCanciones=findViewById(R.id.recyclerCanciones);
         recyclerCanciones.setLayoutManager(new LinearLayoutManager(this));
+
+        checkboxesSeleccionados = new boolean[]{false, false, false};
 
         String jsonString=leerJSON("recursosList.json");
         // Obtener los datos del JSON
@@ -44,11 +60,14 @@ public class MainActivity extends AppCompatActivity implements MediaController.M
             RecursosWrapper wrapper=gson.fromJson(jsonString, RecursosWrapper.class);
             listaCanciones=wrapper.getListaRecursos();
 
+            listaCancionesSinFiltros=new ArrayList<>(listaCanciones);
+
             adapter=new CancionAdapter(this, listaCanciones);
             recyclerCanciones.setAdapter(adapter);
 
         }else{
             listaCanciones=new ArrayList<>();
+            listaCancionesSinFiltros=new ArrayList<>();
         }
 
         mediaController=new MediaController(this);
@@ -98,6 +117,10 @@ public class MainActivity extends AppCompatActivity implements MediaController.M
             // Se pone el "0" para evitar que desaparezca el MediaController a los pocos segundos
             mediaController.show(0);
         }
+    }
+
+    public void setListaCancionesSinFiltros(List<Cancion> listaCancionesSinFiltros) {
+        this.listaCancionesSinFiltros = listaCancionesSinFiltros;
     }
 
     @Override
@@ -168,5 +191,83 @@ public class MainActivity extends AppCompatActivity implements MediaController.M
             return mediaPlayer.getAudioSessionId();
         }
         return 0;
+    }
+
+    // Inflar las opciones del ToolBar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemSeleccionado=item.getItemId();
+
+        if(itemSeleccionado == R.id.opcionFiltrar) {
+            AlertDialog.Builder builder=new AlertDialog.Builder(this);
+
+            View dialogView=getLayoutInflater().inflate(R.layout.dialog_filtrar, null);
+
+            AlertDialog dialog=builder.setView(dialogView).create();
+
+            CheckBox checkVideo=dialogView.findViewById(R.id.checkVideo);
+            CheckBox checkAudio=dialogView.findViewById(R.id.checkAudio);
+            CheckBox checkStream=dialogView.findViewById(R.id.checkStream);
+
+            // Dejar la casilla seleccionada por el usuario al desplegar el Dialog
+            if (checkboxesSeleccionados[0]) {
+                checkAudio.setChecked(true);
+            }
+            if (checkboxesSeleccionados[1]) {
+                checkVideo.setChecked(true);
+            }
+            if (checkboxesSeleccionados[2]) {
+                checkStream.setChecked(true);
+            }
+
+            Button btnFiltrar=dialogView.findViewById(R.id.btnFiltrar);
+            btnFiltrar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    checkboxesSeleccionados[0] = checkAudio.isChecked();
+                    checkboxesSeleccionados[1] = checkVideo.isChecked();
+                    checkboxesSeleccionados[2] = checkStream.isChecked();
+
+                    List<Cancion> listaFiltrada = new ArrayList<>();
+
+                    if(!checkVideo.isChecked() && !checkAudio.isChecked() && !checkStream.isChecked()) {
+                        listaFiltrada=new ArrayList<>(listaCancionesSinFiltros);
+
+                    } else {
+                        for(Cancion c : listaCancionesSinFiltros) {
+                            boolean añadir=false;
+                            if(c.getTipo().equals("0") && checkAudio.isChecked()) {
+                                añadir=true;
+                            }
+                            if(c.getTipo().equals("1") && checkVideo.isChecked()) {
+                                añadir=true;
+                            }
+                            if(c.getTipo().equals("2") && checkStream.isChecked()) {
+                                añadir=true;
+                            }
+                            if(añadir) {
+                                listaFiltrada.add(c);
+                            }
+                        }
+                    }
+
+                    listaCanciones.clear();
+                    listaCanciones.addAll(listaFiltrada);
+                    adapter.notifyDataSetChanged();
+
+                    dialog.dismiss();
+                }
+            });
+
+            dialog.show();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
