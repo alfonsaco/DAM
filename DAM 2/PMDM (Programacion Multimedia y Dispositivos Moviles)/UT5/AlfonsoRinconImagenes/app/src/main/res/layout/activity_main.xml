@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#DFDFDF"
+        android:padding="16dp">
+
+        <!-- Sección Imagen -->
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:scaleType="fitCenter"
+            android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/btnGrabarImagen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="#000"
+            android:text="Hacer foto" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <Button
+                android:id="@+id/btnEscalaGrises"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:backgroundTint="#000"
+                android:layout_height="wrap_content"
+                android:text="Escala de Grises" />
+
+            <Button
+                android:id="@+id/btnInvertir"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:backgroundTint="#000"
+                android:layout_height="wrap_content"
+                android:text="Invertir Colores" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <Button
+                android:id="@+id/btnRecortar"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:backgroundTint="#000"
+                android:layout_height="wrap_content"
+                android:text="Recortar" />
+
+            <Button
+                android:id="@+id/btnRotar"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:backgroundTint="#000"
+                android:layout_height="wrap_content"
+                android:text="Rotar" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ajustar Brillo:"
+            android:layout_marginTop="8dp"/>
+
+        <SeekBar
+            android:id="@+id/seekBarBrillo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="200"
+            android:progress="100"/>
+
+        <Button
+            android:id="@+id/btnGuardarImagen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Guardar Imagen"
+            android:backgroundTint="#000"
+            android:layout_marginTop="8dp" />
+
+        <!-- Separador -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CCCCCC"
+            android:layout_marginTop="16dp"/>
+
+        <!-- Sección Video -->
+        <Button
+            android:id="@+id/btnGrabarVideo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Grabar Video"
+            android:backgroundTint="#000"
+            android:layout_marginTop="16dp" />
+
+        <VideoView
+            android:id="@+id/videoView"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <Button
+                android:id="@+id/btnVelocidadMedia"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:backgroundTint="#000"
+                android:layout_height="wrap_content"
+                android:text="0.5x" />
+
+            <Button
+                android:id="@+id/btnVelocidadNormal"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:backgroundTint="#000"
+                android:layout_height="wrap_content"
+                android:text="1x" />
+
+            <Button
+                android:id="@+id/btnPorDos"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:backgroundTint="#000"
+                android:layout_height="wrap_content"
+                android:text="2x" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
