@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements MediaController.M
     private MediaPlayer mediaPlayer;
     private MediaController mediaController;
 
+    private int posicionCancion=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,13 +111,13 @@ public class MainActivity extends AppCompatActivity implements MediaController.M
 
         mediaPlayer=MediaPlayer.create(this, cancionID);
 
-        // Reproducirt canción y mostrar MediaControlelr
+        // Reproducir canción y mostrar MediaControlelr
         if (mediaPlayer != null) {
             mediaPlayer.start();
             mediaController.setMediaPlayer(this);
             mediaController.setEnabled(true);
             // Se pone el "0" para evitar que desaparezca el MediaController a los pocos segundos
-            mediaController.show(0);
+            mediaController.show(40000);
         }
     }
 
@@ -269,5 +271,29 @@ public class MainActivity extends AppCompatActivity implements MediaController.M
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    // Parar la música al cambiar a la actividad video o al salir
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        if(mediaPlayer != null) {
+            if(mediaPlayer.isPlaying()) {
+                posicionCancion=mediaPlayer.getCurrentPosition();
+                mediaPlayer.pause();
+            }
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if(mediaPlayer != null) {
+            mediaPlayer.seekTo(posicionCancion);
+            mediaPlayer.start();
+            mediaController.show();
+        }
     }
 }
