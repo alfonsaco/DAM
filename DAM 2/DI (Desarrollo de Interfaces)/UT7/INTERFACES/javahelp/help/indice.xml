@@ -4,6 +4,11 @@
          "http://java.sun.com/products/javahelp/index_1_0.dtd">
 <index version="1.0">
         <indexitem text="Ejemplo JavaHelp"    target="aplicacion"/>
-        <indexitem text="Ventana principal"    target="ventana_principal"/>
-        <indexitem text="Ventana secundaria"    target="ventana_secundaria"/>
+        <indexitem text="Introducción"    target="introduccion"/>
+        <indexitem text="Instalación"     target="instalacion"/>
+        <indexitem text="Interfaz de Usuario"    target="interfaz_usuario"/>
+        <indexitem text="Funciones Principales"    target="funciones_principales"/>
+        <indexitem text="Solución Problemas"    target="solucion_problemas"/>
+        <indexitem text="Acerca"         
+target="acerca"/>
 </index>
