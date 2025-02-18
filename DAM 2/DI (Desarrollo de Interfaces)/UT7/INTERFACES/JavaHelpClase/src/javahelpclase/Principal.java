@@ -12,7 +12,7 @@ import javax.help.HelpSet;
 
 /**
  *
- * @author PROGRAMACION
+ * @author Alfonso
  */
 public class Principal extends javax.swing.JFrame {
 
@@ -23,6 +23,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         ponerAyuda();
+        this.setLocationRelativeTo(null);
         
         jComboBox1.setSelectedIndex(0);
         

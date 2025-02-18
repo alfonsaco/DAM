@@ -9,6 +9,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.HashMap;
 import java.util.Map;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
 
 /**
  *
@@ -100,12 +103,12 @@ public class Interfaz extends javax.swing.JFrame {
     private void jButtonMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarActionPerformed
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            Connection conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/PokemonDB", "root", "");
+            Connection conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/PersumesDB", "root", "");
             
             Map parametros=new HashMap();
-            parametros.put("REGION", jComboBox1.getSelectedItem());
+            parametros.put("DISEÑADOR", jComboBox1.getSelectedItem());
             
-            JasperPrint print=JasperFillManager.fillReport("Informes/report_pokemon.jasper", parametros, conexion);
+            JasperPrint print=JasperFillManager.fillReport("Informes/report_perfumes.jasper", parametros, conexion);
             JasperExportManager.exportReportToPdfFile(print, "Informes/report1.pdf");
             
         } catch(Throwable e) {
