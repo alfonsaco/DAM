@@ -24,6 +24,7 @@ public class Interfaz extends javax.swing.JFrame {
      */
     public Interfaz() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -103,7 +104,7 @@ public class Interfaz extends javax.swing.JFrame {
     private void jButtonMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarActionPerformed
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            Connection conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/PersumesDB", "root", "");
+            Connection conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/PerfumesDB", "root", "");
             
             Map parametros=new HashMap();
             parametros.put("DISEÑADOR", jComboBox1.getSelectedItem());
