@@ -9,7 +9,6 @@ import dao.CategoriaDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,8 +28,7 @@ public class CategoriaControl extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
-     */  
-
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -74,17 +72,20 @@ public class CategoriaControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         String nombre=request.getParameter("nombre");
-        Categoria cat=new Categoria();
-        cat.setNombre(nombre);
         
-        if(CategoriaDao.registrar(cat)) {
-            request.setAttribute("mensaje", "Se ha registrado correctamente");
+        String nombre = request.getParameter("nombre");
+        Categoria c = new Categoria();
+        c.setNombre(nombre);
+        
+        if (CategoriaDao.registrar(c)) {
+            request.setAttribute("mensaje", "La categoría fue registrada");
         } else {
-            request.setAttribute("mensaje", "La categoría no fue registrada");
+            request.setAttribute("mensaje", "La categoría NO fue registrada");
         }
         
         request.getRequestDispatcher("registroCategoria.jsp").forward(request, response);
+        
+        
     }
 
     /**

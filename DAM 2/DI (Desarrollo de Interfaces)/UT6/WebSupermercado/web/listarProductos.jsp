@@ -1,21 +1,37 @@
 <%-- 
-    Document   : ListarLibros
+    Document   : ListarProductos
     Created on : 18-feb-2018, 17:32:12
-    Author     : Christian Gámez
+    Author     : Alfonso
 --%>
 
+<%@page import="dao.CategoriaDao"%>
+<%@page import="dao.ProveedorDao"%>
+<%@page import="dao.ProductoDao"%>
+<%@page import="model.Producto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta charset="utf-8" />
-        <title>Gestión de libros</title>
+        <title>Gestión de productos</title>
 
         <meta name="description" content="Christian Gámez Udemy" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
-        <%@include file="css.jsp" %>
+        <%@include file = "css.jsp" %>
+
+        <!-- inline styles related to this page -->
+
+        <!-- ace settings handler -->
+        <script src="assets/js/ace-extra.min.js"></script>
+
+        <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+        <!--[if lte IE 8]>
+        <script src="assets/js/html5shiv.min.js"></script>
+        <script src="assets/js/respond.min.js"></script>
+        <![endif]-->
     </head>
 
     <body class="no-skin">
@@ -35,7 +51,7 @@
                     <a href="index.jsp" class="navbar-brand">
                         <small>
                             <i class="fa fa-book"></i>
-                            Gestión de libros
+                            Gestión de Supermercado
                         </small>
                     </a>
                 </div>
@@ -107,7 +123,7 @@
                                                 </div>
                                             </a>
                                         </li>
-                                    </ul>
+                                    </ul>f
                                 </li>
 
                                 <li class="dropdown-footer">
@@ -396,7 +412,7 @@
                     <li class="active open">
                         <a href="#" class="dropdown-toggle">
                             <i class="menu-icon fa fa-book"></i>
-                            <span class="menu-text"> Gestionar libros </span>
+                            <span class="menu-text"> Gestionar mercado </span>
 
                             <b class="arrow fa fa-angle-down"></b>
                         </a>
@@ -407,24 +423,24 @@
                             <li class="active">
                                 <a href="index.jsp">
                                     <i class="menu-icon fa fa-caret-right"></i>
-                                    Lista de libros
+                                    Lista de Productos
                                 </a>
 
                                 <b class="arrow"></b>
                             </li>
 
                             <li class="">
-                                <a href="registroLibro.jsp">
+                                <a href="registroProducto.jsp">
                                     <i class="menu-icon fa fa-caret-right"></i>
-                                    Registrar Libro
+                                    Registrar Producto
                                 </a>
 
                                 <b class="arrow"></b>
                             </li>
                             <li class="">
-                                <a href="registroEditorial.jsp">
+                                <a href="registrosProveedores.jsp">
                                     <i class="menu-icon fa fa-caret-right"></i>
-                                    Registrar Editorial
+                                    Registrar Proveedor
                                 </a>
 
                                 <b class="arrow"></b>
@@ -539,10 +555,10 @@
 
                         <div class="page-header">
                             <h1>
-                                Gestionar los libros
+                                Gestionar mercado
                                 <small>
                                     <i class="ace-icon fa fa-angle-double-right"></i>
-                                    Lista de libros
+                                    Lista de productos 
                                 </small>
                             </h1>
                         </div><!-- /.page-header -->
@@ -565,37 +581,33 @@
                                             <table id="dynamic-table" class="table table-striped table-bordered table-hover">
                                                 <thead>
                                                     <tr>
-                                                        <th>ISBN</th>
-                                                        <th>Titulo</th>
-                                                        <th class="hidden-480">Autor</th>
-
-                                                        <th>
-                                                            <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
-                                                            Fecha
-                                                        </th>
-                                                        <th>
-
-                                                            Editorial
-                                                        </th>
-                                                        <th class="hidden-480">Categoría</th>
-
-                                                        <th></th>
+                                                        <th>Código</th>
+                                                        <th>Nombre</th>
+                                                        <th>Descripción</th>
+                                                        <th>Cantidad Inventario</th>
+                                                        <th>Precio Producto</th>
+                                                        <th>Proveedor</th>
+                                                        <th>Categoria</th>
                                                     </tr>
                                                 </thead>
 
                                                 <tbody>
+
+                                                    <% for (Producto p : ProductoDao.listar()) {%>
                                                     <tr>
 
                                                         <td>
-                                                            <a href="#">1254-3256-9856-652</a>
+                                                            <a href="#"><%= p.getCodigo() %></a>
                                                         </td>
-                                                        <td class="hidden-480">Introducción a desarrollo web con JSP</td>
-                                                        <td>Christian Gámez</td>
+                                                        <td class="hidden-480"><%= p.getNombre() %></td>
+                                                        <td><%= p.getDescripcion() %></td>
 
-                                                        <td>2017-12-31</td>
-                                                        <td><span class="label label-sm label-success">Planeta</span></td>
+                                                        <td><%= p.getCantidad_inventario() %></td>
+                                                        <td><%= p.getPrecio() %></td>
+                                                        
+                                                        <td><span class="label label-sm label-success"><%= p.getNombreProveedor() %></span></td>
                                                         <td>
-                                                            <span class="label label-sm label-success">Matemáticas</span>
+                                                            <span class="label label-sm label-success"><%= p.getNombreCategoria() %></span>
                                                         </td>
 
                                                         <td>
@@ -648,6 +660,8 @@
                                                             </div>
                                                         </td>
                                                     </tr>
+                                                    <%}%>
+
 
 
                                                 </tbody>

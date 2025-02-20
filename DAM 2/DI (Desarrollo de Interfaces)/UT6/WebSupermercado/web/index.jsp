@@ -1,6 +1,6 @@
 <%-- 
     Document   : index
-    Created on : 19-dic-2024, 20:34:27
+    Created on : 15-ene-2025, 11:01:07
     Author     : Alfonso
 --%>
 
@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+    <!--<a href="../../../../../../../../D:/FP/2º/Desarrollo Interfaces/TEMA-6/apache-tomcat-9.0.98/conf/server.xml"></a>-->
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>

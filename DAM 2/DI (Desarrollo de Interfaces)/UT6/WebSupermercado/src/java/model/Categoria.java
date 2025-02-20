@@ -5,33 +5,41 @@
  */
 package model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Alfonso
  */
-public class Categoria {
-        private int id;
+public class Categoria implements Serializable{
+    
+    private int codigo;
     private String nombre;
 
-    // Constructores
     public Categoria() {
+        this.codigo = 0;
+        this.nombre = "";
     }
-    public Categoria(int id, String nombre) {
-        this.id = id;
+
+    public Categoria(int codigo, String nombre) {
+        this.codigo = codigo;
         this.nombre = nombre;
     }
 
-    // Getters y Setters
-    public int getId() {
-        return id;
+    public int getCodigo() {
+        return codigo;
     }
-    public void setId(int id) {
-        this.id = id;
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
+
     public String getNombre() {
         return nombre;
     }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }        
+    }
+    
 }

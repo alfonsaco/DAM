@@ -5,57 +5,74 @@
  */
 package model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Alfonso
  */
-public class Proveedor {
-    private int nit;
+public class Proveedor implements Serializable {
+
+    private String nit;
     private String nombre;
     private String telefono;
     private String direccion;
-    private String correo;
+    private String correo_electronico;
 
-    // Constructores
     public Proveedor() {
+        this.nit = "";
+        this.nombre = "";
+        this.telefono = "";
+        this.direccion = "";
+        this.correo_electronico = "";
     }
-    public Proveedor(int nit, String nombre, String telefono, String direccion, String correo) {
+
+    public Proveedor(String nit, String nombre, String telefono, String direccion, String correo_electronico) {
         this.nit = nit;
         this.nombre = nombre;
         this.telefono = telefono;
         this.direccion = direccion;
-        this.correo = correo;
+        this.correo_electronico = correo_electronico;
     }
 
-    // Getters y Setters
-    public int getNit() {
+    public String getNit() {
         return nit;
     }
-    public void setNit(int nit) {
+
+    public void setNit(String nit) {
         this.nit = nit;
     }
+
     public String getNombre() {
         return nombre;
     }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
     public String getTelefono() {
         return telefono;
     }
+
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+
     public String getDireccion() {
         return direccion;
     }
+
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-    public String getCorreo() {
-        return correo;
+
+    public String getCorreo_electronico() {
+        return correo_electronico;
     }
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }   
+
+    public void setCorreo_electronico(String correo_electronico) {
+        this.correo_electronico = correo_electronico;
+    }
+    
 }

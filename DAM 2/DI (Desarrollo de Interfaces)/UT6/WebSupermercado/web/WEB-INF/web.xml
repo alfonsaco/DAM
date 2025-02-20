@@ -4,10 +4,28 @@
         <servlet-name>CategoriaControl</servlet-name>
         <servlet-class>controler.CategoriaControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProveedorControl</servlet-name>
+        <servlet-class>controler.ProveedorControl</servlet-class>
+    </servlet>
+        
+    <servlet>
+        <servlet-name>ProductoControl</servlet-name>
+        <servlet-class>controler.ProductoControl</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CategoriaControl</servlet-name>
         <url-pattern>/CategoriaControl</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProveedorControl</servlet-name>
+        <url-pattern>/ProveedorControl</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductoControl</servlet-name>
+        <url-pattern>/ProductoControl</url-pattern>
+    </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30

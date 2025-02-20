@@ -77,13 +77,6 @@ CREATE TABLE VENTA_PERFUME (
 -------------------------------------------------
 -- Inserción de Ventas y Detalles en VENTA_PERFUME
 -------------------------------------------------
-/*
-   Se registran las ventas de la siguiente forma:
-   - Se inserta una venta en VENTAS (con su FECHA).
-   - Se inserta el detalle en VENTA_PERFUME, relacionando el ID de la venta con el ID del perfume, cantidad y precio_unitario.
-   Se asume que el primer INSERT en VENTAS genera ID = 1, el siguiente ID = 2, etc.
-*/
-
 -- Venta 1: '2025-01-10' con PERFUME_ID = 3, CANTIDAD = 2, PRECIO_UNITARIO = 105.50
 INSERT INTO VENTAS (fecha) VALUES ('2025-01-10');
 INSERT INTO VENTA_PERFUME (venta_id, perfume_id, cantidad, precio_unitario) 
