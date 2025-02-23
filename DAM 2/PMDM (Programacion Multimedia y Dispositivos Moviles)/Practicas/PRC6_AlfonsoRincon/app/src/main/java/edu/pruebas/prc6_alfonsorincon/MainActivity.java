@@ -1,5 +1,6 @@
 package edu.pruebas.prc6_alfonsorincon;
 
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -46,33 +47,38 @@ public class MainActivity extends AppCompatActivity implements MediaController.M
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        // Toolbar de opciones
+        // Recuperar preferencias guardadas
+        SharedPreferences prefs = getSharedPreferences("FiltroPrefs", MODE_PRIVATE);
+        checkboxesSeleccionados = new boolean[]{
+                prefs.getBoolean("filtro_audio", false),
+                prefs.getBoolean("filtro_video", false),
+                prefs.getBoolean("filtro_stream", false)
+        };
+
+        // Toolbar y demás configuraciones...
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        recyclerCanciones=findViewById(R.id.recyclerCanciones);
+        recyclerCanciones = findViewById(R.id.recyclerCanciones);
         recyclerCanciones.setLayoutManager(new LinearLayoutManager(this));
 
-        checkboxesSeleccionados = new boolean[]{false, false, false};
-
-        String jsonString=leerJSON("recursosList.json");
-        // Obtener los datos del JSON
-        if(jsonString!=null){
-            Gson gson=new Gson();
-            RecursosWrapper wrapper=gson.fromJson(jsonString, RecursosWrapper.class);
-            listaCanciones=wrapper.getListaRecursos();
-
-            listaCancionesSinFiltros=new ArrayList<>(listaCanciones);
-
-            adapter=new CancionAdapter(this, listaCanciones);
+        String jsonString = leerJSON("recursosList.json");
+        if(jsonString != null) {
+            Gson gson = new Gson();
+            RecursosWrapper wrapper = gson.fromJson(jsonString, RecursosWrapper.class);
+            listaCanciones = wrapper.getListaRecursos();
+            listaCancionesSinFiltros = new ArrayList<>(listaCanciones);
+            adapter = new CancionAdapter(this, listaCanciones);
             recyclerCanciones.setAdapter(adapter);
 
-        }else{
-            listaCanciones=new ArrayList<>();
-            listaCancionesSinFiltros=new ArrayList<>();
+            aplicarFiltros();
+
+        } else {
+            listaCanciones = new ArrayList<>();
+            listaCancionesSinFiltros = new ArrayList<>();
         }
 
-        mediaController=new MediaController(this);
+        mediaController = new MediaController(this);
         mediaController.setAnchorView(findViewById(R.id.main));
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -236,32 +242,7 @@ public class MainActivity extends AppCompatActivity implements MediaController.M
                     checkboxesSeleccionados[1] = checkVideo.isChecked();
                     checkboxesSeleccionados[2] = checkStream.isChecked();
 
-                    List<Cancion> listaFiltrada = new ArrayList<>();
-
-                    if(!checkVideo.isChecked() && !checkAudio.isChecked() && !checkStream.isChecked()) {
-                        listaFiltrada=new ArrayList<>(listaCancionesSinFiltros);
-
-                    } else {
-                        for(Cancion c : listaCancionesSinFiltros) {
-                            boolean añadir=false;
-                            if(c.getTipo().equals("0") && checkAudio.isChecked()) {
-                                añadir=true;
-                            }
-                            if(c.getTipo().equals("1") && checkVideo.isChecked()) {
-                                añadir=true;
-                            }
-                            if(c.getTipo().equals("2") && checkStream.isChecked()) {
-                                añadir=true;
-                            }
-                            if(añadir) {
-                                listaFiltrada.add(c);
-                            }
-                        }
-                    }
-
-                    listaCanciones.clear();
-                    listaCanciones.addAll(listaFiltrada);
-                    adapter.notifyDataSetChanged();
+                    aplicarFiltros();
 
                     dialog.dismiss();
                 }
@@ -273,10 +254,49 @@ public class MainActivity extends AppCompatActivity implements MediaController.M
         return super.onOptionsItemSelected(item);
     }
 
+    // Con este método añadiremos las canciones necesarias al recycclerview, según los filtros seleccionados
+    private void aplicarFiltros() {
+        List<Cancion> listaFiltrada = new ArrayList<>();
+
+        // Si no hay ningún filtro seleccionado, mostramos todas las canciones
+        if (!checkboxesSeleccionados[0] && !checkboxesSeleccionados[1] && !checkboxesSeleccionados[2]) {
+            listaFiltrada = new ArrayList<>(listaCancionesSinFiltros);
+        } else {
+            for (Cancion c : listaCancionesSinFiltros) {
+                boolean añadir = false;
+                if(c.getTipo().equals("0") && checkboxesSeleccionados[0]) {
+                    añadir = true;
+                }
+                if(c.getTipo().equals("1") && checkboxesSeleccionados[1]) {
+                    añadir = true;
+                }
+                if(c.getTipo().equals("2") && checkboxesSeleccionados[2]) {
+                    añadir = true;
+                }
+                if(añadir) {
+                    listaFiltrada.add(c);
+                }
+            }
+        }
+
+        listaCanciones.clear();
+        listaCanciones.addAll(listaFiltrada);
+        adapter.notifyDataSetChanged();
+    }
+
+
     // Parar la música al cambiar a la actividad video o al salir
     @Override
     protected void onStop() {
         super.onStop();
+
+        // Guardar preferencias
+        SharedPreferences prefs = getSharedPreferences("FiltroPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("filtro_audio", checkboxesSeleccionados[0]);
+        editor.putBoolean("filtro_video", checkboxesSeleccionados[1]);
+        editor.putBoolean("filtro_stream", checkboxesSeleccionados[2]);
+        editor.apply();
 
         if(mediaPlayer != null) {
             if(mediaPlayer.isPlaying()) {
