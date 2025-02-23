@@ -3,10 +3,13 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<parameter name="PERFUME_ID" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[select * from perfumes ORDER BY DISEÑADOR]]>
-	</queryString>
-	<field name="ID" class="java.lang.Integer">
+            <![CDATA[SELECT PERFUME_ID, NOMBRE, DISEÑADOR, NOTAS, PRECIO 
+                     FROM PERFUMES 
+                     WHERE PERFUME_ID = $P{PERFUME_ID}]]>
+        </queryString>
+	<field name="PERFUME_ID" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="NOMBRE" class="java.lang.String">
@@ -38,19 +41,19 @@
 	<pageHeader>
 		<band height="70" splitType="Stretch">
 			<subreport>
-				<reportElement x="254" y="0" width="253" height="63" uuid="2f3d2432-3934-4e08-938d-7776232bd9dd"/>
+				<reportElement x="246" y="0" width="261" height="63" uuid="2f3d2432-3934-4e08-938d-7776232bd9dd"/>
 				<subreportParameter name="PERFUME_ID">
-					<subreportParameterExpression><![CDATA[$F{PERFUME_ID} + "informePrincipal_subreport.jasper"]]></subreportParameterExpression>
+					<subreportParameterExpression><![CDATA[]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA["informePrincipal_subreport.jasper"]]></subreportExpression>
 			</subreport>
 			<textField>
-				<reportElement x="20" y="20" width="143" height="20" uuid="a1e5be5d-2b99-45a3-8b7a-3f7a81bbffc8"/>
+				<reportElement x="20" y="13" width="206" height="50" uuid="a1e5be5d-2b99-45a3-8b7a-3f7a81bbffc8"/>
 				<textElement>
 					<font isBold="true" isItalic="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{PERFUME_ID} + "informePrincipal_subreport.jrxml"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["ID PERFUME: " + $P{PERFUME_ID}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>

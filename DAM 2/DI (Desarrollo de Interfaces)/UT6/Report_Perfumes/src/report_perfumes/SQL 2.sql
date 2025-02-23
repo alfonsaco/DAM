@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS PERFUMES;
 -- 1. Tabla de Perfumes
 -------------------------------------------------
 CREATE TABLE PERFUMES (
-    ID INT AUTO_INCREMENT PRIMARY KEY,
+    PERFUME_ID INT AUTO_INCREMENT PRIMARY KEY,
     NOMBRE VARCHAR(50) NOT NULL,
     DISEÑADOR VARCHAR(50) NOT NULL,
     NOTAS VARCHAR(50) NOT NULL,
@@ -56,7 +56,7 @@ INSERT INTO PERFUMES (nombre, diseñador, notas, precio) VALUES
 -------------------------------------------------
 -- Ahora la tabla VENTAS solo registra el ID y la FECHA
 CREATE TABLE VENTAS (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    VENTA_ID INT AUTO_INCREMENT PRIMARY KEY,
     fecha DATE NOT NULL
 );
 
@@ -70,66 +70,73 @@ CREATE TABLE VENTA_PERFUME (
     cantidad INT NOT NULL,
     precio_unitario DECIMAL(10,2) NOT NULL,
     PRIMARY KEY (venta_id, perfume_id),
-    FOREIGN KEY (venta_id) REFERENCES VENTAS(id),
-    FOREIGN KEY (perfume_id) REFERENCES PERFUMES(id)
+    FOREIGN KEY (venta_id) REFERENCES VENTAS(VENTA_ID),
+    FOREIGN KEY (perfume_id) REFERENCES PERFUMES(PERFUME_ID)
 );
 
 -------------------------------------------------
 -- Inserción de Ventas y Detalles en VENTA_PERFUME
 -------------------------------------------------
--- Venta 1: '2025-01-10' con PERFUME_ID = 3, CANTIDAD = 2, PRECIO_UNITARIO = 105.50
-INSERT INTO VENTAS (fecha) VALUES ('2025-01-10');
+-- 1. Agregar la columna cantidad en la tabla VENTAS
+ALTER TABLE VENTAS ADD COLUMN cantidad INT NOT NULL DEFAULT 0;
+
+-- 2. Actualizar inserciones en VENTAS con la cantidad total de perfumes vendidos
+-- Venta 1: '2025-01-10' con 2 perfumes vendidos
+INSERT INTO VENTAS (fecha, cantidad) VALUES ('2025-01-10', 2);
 INSERT INTO VENTA_PERFUME (venta_id, perfume_id, cantidad, precio_unitario) 
 VALUES (1, 3, 2, 105.50);
 
--- Venta 2: '2025-01-12' con PERFUME_ID = 1, CANTIDAD = 1, PRECIO_UNITARIO = 79.99
-INSERT INTO VENTAS (fecha) VALUES ('2025-01-12');
+-- Venta 2: '2025-01-12' con 1 perfume vendido
+INSERT INTO VENTAS (fecha, cantidad) VALUES ('2025-01-12', 1);
 INSERT INTO VENTA_PERFUME (venta_id, perfume_id, cantidad, precio_unitario) 
 VALUES (2, 1, 1, 79.99);
 
--- Venta 3: '2025-01-15' con PERFUME_ID = 15, CANTIDAD = 3, PRECIO_UNITARIO = 99.50
-INSERT INTO VENTAS (fecha) VALUES ('2025-01-15');
+-- Venta 3: '2025-01-15' con 3 perfumes vendidos
+INSERT INTO VENTAS (fecha, cantidad) VALUES ('2025-01-15', 3);
 INSERT INTO VENTA_PERFUME (venta_id, perfume_id, cantidad, precio_unitario) 
 VALUES (3, 15, 3, 99.50);
 
--- Venta 4: '2025-01-18' con PERFUME_ID = 7, CANTIDAD = 1, PRECIO_UNITARIO = 99.50
-INSERT INTO VENTAS (fecha) VALUES ('2025-01-18');
+-- Venta 4: '2025-01-18' con 1 perfume vendido
+INSERT INTO VENTAS (fecha, cantidad) VALUES ('2025-01-18', 1);
 INSERT INTO VENTA_PERFUME (venta_id, perfume_id, cantidad, precio_unitario) 
 VALUES (4, 7, 1, 99.50);
 
--- Venta 5: '2025-01-20' con PERFUME_ID = 22, CANTIDAD = 2, PRECIO_UNITARIO = 125.99
-INSERT INTO VENTAS (fecha) VALUES ('2025-01-20');
+-- Venta 5: '2025-01-20' con 2 perfumes vendidos
+INSERT INTO VENTAS (fecha, cantidad) VALUES ('2025-01-20', 2);
 INSERT INTO VENTA_PERFUME (venta_id, perfume_id, cantidad, precio_unitario) 
 VALUES (5, 22, 2, 125.99);
 
--- Venta 6: '2025-01-22' con PERFUME_ID = 12, CANTIDAD = 1, PRECIO_UNITARIO = 115.00
-INSERT INTO VENTAS (fecha) VALUES ('2025-01-22');
+-- Venta 6: '2025-01-22' con 1 perfume vendido
+INSERT INTO VENTAS (fecha, cantidad) VALUES ('2025-01-22', 1);
 INSERT INTO VENTA_PERFUME (venta_id, perfume_id, cantidad, precio_unitario) 
 VALUES (6, 12, 1, 115.00);
 
--- Venta 7: '2025-01-25' con PERFUME_ID = 28, CANTIDAD = 4, PRECIO_UNITARIO = 88.99
-INSERT INTO VENTAS (fecha) VALUES ('2025-01-25');
+-- Venta 7: '2025-01-25' con 4 perfumes vendidos
+INSERT INTO VENTAS (fecha, cantidad) VALUES ('2025-01-25', 4);
 INSERT INTO VENTA_PERFUME (venta_id, perfume_id, cantidad, precio_unitario) 
 VALUES (7, 28, 4, 88.99);
 
--- Venta 8: '2025-01-28' con PERFUME_ID = 30, CANTIDAD = 1, PRECIO_UNITARIO = 109.50
-INSERT INTO VENTAS (fecha) VALUES ('2025-01-28');
+-- Venta 8: '2025-01-28' con 1 perfume vendido
+INSERT INTO VENTAS (fecha, cantidad) VALUES ('2025-01-28', 1);
 INSERT INTO VENTA_PERFUME (venta_id, perfume_id, cantidad, precio_unitario) 
 VALUES (8, 30, 1, 109.50);
 
--- Venta 9: '2025-01-30' con PERFUME_ID = 5, CANTIDAD = 2, PRECIO_UNITARIO = 95.99
-INSERT INTO VENTAS (fecha) VALUES ('2025-01-30');
+-- Venta 9: '2025-01-30' con 2 perfumes vendidos
+INSERT INTO VENTAS (fecha, cantidad) VALUES ('2025-01-30', 2);
 INSERT INTO VENTA_PERFUME (venta_id, perfume_id, cantidad, precio_unitario) 
 VALUES (9, 5, 2, 95.99);
 
--- Venta 10: '2025-02-02' con PERFUME_ID = 18, CANTIDAD = 2, PRECIO_UNITARIO = 112.00
-INSERT INTO VENTAS (fecha) VALUES ('2025-02-02');
+-- Venta 10: '2025-02-02' con 2 perfumes vendidos
+INSERT INTO VENTAS (fecha, cantidad) VALUES ('2025-02-02', 2);
 INSERT INTO VENTA_PERFUME (venta_id, perfume_id, cantidad, precio_unitario) 
 VALUES (10, 18, 2, 112.00);
 
--------------------------------------------------
--- Consultas de verificación
--------------------------------------------------
+-- Venta 11: '2025-02-02' con 2 perfumes vendidos
+INSERT INTO VENTAS (fecha, cantidad) VALUES ('2025-03-02', 4);
+INSERT INTO VENTA_PERFUME (venta_id, perfume_id, cantidad, precio_unitario) 
+VALUES (11, 1, 4, 112.00);
+
+-- 3. Consultas de verificación
 SELECT * FROM PERFUMES;
 SELECT * FROM VENTAS;
 SELECT * FROM VENTA_PERFUME;
