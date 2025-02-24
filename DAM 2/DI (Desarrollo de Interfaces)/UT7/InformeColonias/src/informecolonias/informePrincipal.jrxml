@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="informePrincipal" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3a9abc36-b089-40b1-a11e-f3c60f999b11">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="41"/>
 	<parameter name="PERFUME_ID" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT PERFUME_ID, NOMBRE, DISEÑADOR, NOTAS, PRECIO 
@@ -39,7 +39,7 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="82" splitType="Stretch">
+		<band height="88" splitType="Stretch">
 			<subreport>
 				<reportElement x="246" y="0" width="261" height="63" uuid="2f3d2432-3934-4e08-938d-7776232bd9dd"/>
 				<subreportParameter name="PERFUME_ID">
@@ -108,6 +108,37 @@
 		<band height="54" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="218" splitType="Stretch">
+			<barChart>
+				<chart>
+					<reportElement x="129" y="30" width="324" height="162" uuid="ba5019eb-5fc5-4273-9288-1a970d4ea4ed"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Perfumes por diseñador"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{DISEÑADOR}]]></categoryExpression>
+						<valueExpression><![CDATA[$V{COLUMN_COUNT}]]></valueExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Precios"]]></seriesExpression>
+						<categoryExpression><![CDATA["Precio"]]></categoryExpression>
+						<valueExpression><![CDATA[$F{PRECIO}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
 	</summary>
 </jasperReport>

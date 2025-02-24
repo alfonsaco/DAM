@@ -9,13 +9,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 
 /**
  *
- * @author PROGRAMACION
+ * @author Alfonso
  */
 public class Interfaz extends javax.swing.JFrame {
 
@@ -37,19 +38,18 @@ public class Interfaz extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jButtonMostrar = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chanel", "Emporio Armani", "Jean Paul Gaultier", "Dior", "Paco Rabanne", "Hermès", "Giorgio Armani", "Viktor & Rolf", "Tom Ford", "Yves Saint Laurent" }));
-
         jLabel1.setFont(new java.awt.Font("Dialog", 2, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel1.setText("Seleccione un proveedor");
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Inserte un código de perfume");
 
         jButtonMostrar.setText("MOSTRAR");
         jButtonMostrar.addActionListener(new java.awt.event.ActionListener() {
@@ -65,24 +65,23 @@ public class Interfaz extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(150, 150, 150)
-                        .addComponent(jButtonMostrar)))
-                .addContainerGap(74, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonMostrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextField1))))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
+                .addContainerGap(41, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addComponent(jButtonMostrar)
                 .addGap(66, 66, 66))
         );
@@ -107,10 +106,23 @@ public class Interfaz extends javax.swing.JFrame {
             Connection conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/PerfumesDB", "root", "");
             
             Map parametros=new HashMap();
-            parametros.put("DISEÑADOR", jComboBox1.getSelectedItem());
+            int numero=0;
+            try {
+                numero=Integer.parseInt(jTextField1.getText());
+            } catch(NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "No válido");
+            }
             
-            JasperPrint print=JasperFillManager.fillReport("Informes/report_perfumes.jasper", parametros, conexion);
-            JasperExportManager.exportReportToPdfFile(print, "Informes/report1.pdf");
+            if(numero < 0 || numero > 37) {
+                JOptionPane.showMessageDialog(this, "No válido");
+            } else {
+                parametros.put("PERFUME_ID", String.valueOf(numero));
+            
+                JasperPrint print=JasperFillManager.fillReport("build/classes/informecolonias/informePrincipal.jasper", parametros, conexion);
+                JasperExportManager.exportReportToPdfFile(print, "Informes/reporte_perfumes.pdf");
+            }
+            //parametros.put("PERFUME_ID", jComboBox1.getSelectedItem());
+
             
         } catch(Throwable e) {
             e.printStackTrace();
@@ -154,8 +166,8 @@ public class Interfaz extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonMostrar;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
